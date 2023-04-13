@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Bienenstock Corp.</h1>
       </header>
+      <main>
+        <h2>Home</h2>
+        <p>El pedazo de trabajo que nos vamos a armar es genial</p>
+      </main>
+      <footer>
+        <p>© 2021 Bienenstock Corp.</p>
+      </footer>
     </div>
   );
 }
