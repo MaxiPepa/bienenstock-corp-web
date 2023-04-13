@@ -66,12 +66,6 @@ aside {
   border-radius: var(--border-radius);
 }
 
-/* No styles provided */
-footer {
-}
-header {
-}
-
 h1 {
   font-size: 2.5rem;
 }
@@ -118,22 +112,6 @@ th {
   font-weight: 700;
 }
 
-/* Not provided */
-hgroup {
-}
-
-/* Not provided */
-main {
-}
-
-/* Not provided */
-nav {
-}
-
-/* Not provided */
-section {
-}
-
 /* Text content */
 blockquote {
   position: relative;
@@ -156,9 +134,6 @@ dd {
   padding-bottom: 11px;
 }
 
-dl {
-}
-
 dt {
   font-weight: bold;
 }
@@ -174,10 +149,6 @@ figure {
 
 hr {
   border: 2px solid var(--border);
-}
-
-ul,
-ol {
 }
 
 li {
