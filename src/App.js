@@ -11,7 +11,7 @@ function App() {
         <p>El pedazo de trabajo que nos vamos a armar es genial</p>
       </main>
       <footer>
-        <p>© 2021 Bienenstock Corp.</p>
+        <p>© 2023 Bienenstock Corp.</p>
       </footer>
     </div>
   );
