@@ -7,7 +7,7 @@ import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import Burgerbutton from "../BurgerButton/BurgerButton";
 
 const Sidebar = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<MenuRoundedIcon />);
   const openMenu = () => {
     setIsVisible(!isVisible);
