@@ -1,3 +1,9 @@
+body {
+  background: #f1f1f1;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }

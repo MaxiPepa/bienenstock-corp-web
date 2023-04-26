@@ -1,18 +1,12 @@
 import "./App.css";
+import Main from "./Components/Main/Main";
+import Sidebar from "./Components/Sidebar/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <h1>Bienenstock Corp.</h1>
-      </header>
-      <main>
-        <h2>Home</h2>
-        <p>El pedazo de trabajo que nos vamos a armar es genial</p>
-      </main>
-      <footer>
-        <p>© 2023 Bienenstock Corp.</p>
-      </footer>
+      <Sidebar />
+      <Main />
     </div>
   );
 }

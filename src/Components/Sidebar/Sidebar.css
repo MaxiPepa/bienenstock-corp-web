@@ -1,0 +1,14 @@
+.sidebar {
+  position: absolute;
+  width: 350px;
+  height: 100vh;
+  background: #3c7ec9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  transition: all 0.3s ease;
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
