@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Sidebar.css";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -9,13 +9,17 @@ import Burgerbutton from "../BurgerButton/BurgerButton";
 const Sidebar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<MenuRoundedIcon />);
-  const openMenu = () => {
-    setIsVisible(!isVisible);
+
+  useEffect(() => {
     if (isVisible === true) {
       setMenuIcon(<MenuOpenRoundedIcon />);
     } else {
       setMenuIcon(<MenuRoundedIcon />);
     }
+  }, [isVisible]);
+
+  const openMenu = () => {
+    setIsVisible(!isVisible);
   };
   return (
     <div className={isVisible ? "sidebar open" : "sidebar"}>
@@ -24,15 +28,9 @@ const Sidebar = () => {
         openMenu={openMenu}
         isVisible={isVisible}
       />
-      <h1>Sidebar</h1>
+      <h1>Bienenstock Corp.</h1>
       <nav>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
-          <li>Portfolio</li>
-          <li>Contact</li>
-        </ul>
+        <ul></ul>
       </nav>
     </div>
   );
