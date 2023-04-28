@@ -11,7 +11,7 @@
   box-shadow: 0 0 5px #ccc;
   cursor: pointer;
   transform: translateX(0);
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .close {
