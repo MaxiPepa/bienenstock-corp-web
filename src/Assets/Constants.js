@@ -1,6 +1,6 @@
-export const USER = {
+export let USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: "Sales",
-  bool: true,
+  bool: false,
 };

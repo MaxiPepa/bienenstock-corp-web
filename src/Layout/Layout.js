@@ -17,9 +17,9 @@ const Layout = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <>
       <Outlet />
-    </div>
+    </>
   );
 };
 
