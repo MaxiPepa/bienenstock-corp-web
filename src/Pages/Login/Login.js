@@ -25,7 +25,7 @@ const Login = () => {
         <h2>
           Bienen<span>stock</span> Corp
         </h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="formlogin">
           <div className="inputs">
             <PersonOutlineTwoToneIcon className="icon" />
             <input
@@ -44,7 +44,7 @@ const Login = () => {
               placeholder="contraseña"
               {...register("password", { required: true })}
             />
-             <button
+            <button
               id="visibility"
               type="button"
               onClick={() => {
@@ -58,9 +58,10 @@ const Login = () => {
             {errors.password?.type === "required" && (
               <p className="error">Debe ingresar una contraseña</p>
             )}
-           
           </div>
-          <button type="submit" className="signIn">INGRESAR</button>
+          <button type="submit" className="signIn">
+            INGRESAR
+          </button>
         </form>
       </div>
       <p id="copyright">© Produced by Mente Colmena</p>
