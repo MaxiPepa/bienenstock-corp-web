@@ -17,7 +17,7 @@ const Login = () => {
     console.log(data);
   };
 
-  const [visibilityPassword, setVisibilityPassword] = useState("text");
+  const [visibilityPassword, setVisibilityPassword] = useState("password");
 
   return (
     <>
