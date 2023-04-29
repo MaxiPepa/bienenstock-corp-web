@@ -1,0 +1,110 @@
+body {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0)),
+    color-stop(100%, rgba(0, 0, 0, 0.65))
+  );
+  font-family: "Exo", sans-serif;
+}
+
+.login {
+  width: 100%;
+  height: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login h2 {
+  font-size: 30px;
+  font-weight: 400;
+}
+.login h2 span {
+  color: var(--c-color-1);
+}
+
+.formlogin {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error {
+  color: rgb(109, 11, 11);
+  font-size: 15px;
+}
+.inputs {
+  height: 50px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+.inputs input {
+  position: relative;
+  width: 100%;
+  height: 35px;
+  background: transparent;
+  padding: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  color: var(--c-color-1);
+  padding-left: 2rem;
+}
+.icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+
+.inputs input::placeholder {
+  color: rgb(233, 233, 233);
+}
+
+.inputs input:focus {
+  outline: none;
+  border: 1px solid var(--c-color-1);
+  color: var(--c-color-1);
+}
+
+.signIn {
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  height: 35px;
+  border: none;
+  color: var(--c-color-1);
+  padding: 5px;
+}
+
+.signIn:hover {
+  cursor: pointer;
+  background-color: var(--c-color-1);
+  color: white;
+}
+
+#copyright {
+  text-align: center;
+  color: white;
+}
+
+#visibility {
+  position: absolute;
+  text-align: end;
+  background: transparent;
+  border: none;
+  margin-top: 5px;
+  right: 5px;
+}
+
+#visibility:hover {
+  cursor: pointer;
+  color: var(--c-color-1);
+}
