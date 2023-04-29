@@ -1,14 +1,14 @@
 import React from "react";
 import "./Main.css";
+import Header from "../Header/Header";
 
-const Main = () => {
+const Main = ({ isVisible, setIsVisible }) => {
   return (
     <main>
-      <h1>Main</h1>
-      <article>
-        <h2>Home</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </article>
+      <Header isVisible={isVisible} setIsVisible={setIsVisible} />
+      <div className="main-content">
+        <h1>Dashboard</h1>
+      </div>
     </main>
   );
 };

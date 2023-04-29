@@ -1,36 +1,26 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import "./Sidebar.css";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
-import Burgerbutton from "../BurgerButton/BurgerButton";
 
-const Sidebar = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [menuIcon, setMenuIcon] = useState(<MenuRoundedIcon />);
-
-  useEffect(() => {
-    if (isVisible === true) {
-      setMenuIcon(<MenuOpenRoundedIcon />);
-    } else {
-      setMenuIcon(<MenuRoundedIcon />);
-    }
-  }, [isVisible]);
-
-  const openMenu = () => {
-    setIsVisible(!isVisible);
-  };
+const Sidebar = ({ isVisible }) => {
   return (
     <div className={isVisible ? "sidebar open" : "sidebar"}>
-      <Burgerbutton
-        menuIcon={menuIcon}
-        openMenu={openMenu}
-        isVisible={isVisible}
-      />
-      <h1>Bienenstock Corp.</h1>
       <nav>
-        <ul></ul>
+        <ul>
+          <li>
+            <Link to="/dashboar">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/dashboar">Users</Link>
+          </li>
+          <li>
+            <Link to="/dashboar">Products</Link>
+          </li>
+          <li>
+            <Link to="/dashboar">Orders</Link>
+          </li>
+        </ul>
       </nav>
     </div>
   );

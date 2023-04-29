@@ -1,0 +1,12 @@
+header {
+  background-color: #18467a;
+  height: 70px;
+  line-height: 60px;
+  padding: 0 20px;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
