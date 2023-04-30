@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import StatesContext from "../../Contexts/StatesContext";
 
 import "./Sidebar.css";
 
@@ -10,10 +13,20 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import ArchiveRoundedIcon from "@mui/icons-material/ArchiveRounded";
 import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const Sidebar = ({ isVisible, setIsVisible }) => {
+  const navigate = useNavigate();
+  const { setIsLogged } = useContext(StatesContext);
+
   const handleClick = () => {
     setIsVisible(!isVisible);
+  };
+
+  const handleLogOut = () => {
+    handleClick();
+    setIsLogged(false);
+    navigate("/login");
   };
   return (
     <div className={isVisible ? "sidebar open" : "sidebar"}>
@@ -59,6 +72,12 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
             <Link to="/settings" onClick={handleClick}>
               <BuildRoundedIcon className="sidebar-icon" />
               <span className="sidebar-link-name">Settings</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={handleLogOut}>
+              <ExitToAppIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Log Out</span>
             </Link>
           </li>
         </ul>
