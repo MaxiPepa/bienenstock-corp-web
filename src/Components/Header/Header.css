@@ -11,8 +11,9 @@ header {
   align-items: center;
 }
 
-header > h2 {
+header > a {
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: 900;
+  text-decoration: none;
 }

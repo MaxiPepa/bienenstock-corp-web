@@ -7,7 +7,12 @@ const Header = ({ isVisible, setIsVisible }) => {
   return (
     <header>
       <Burgerbutton isVisible={isVisible} setIsVisible={setIsVisible} />
-      <h2>Bienenstock Corp.</h2>
+      <a
+        href="https://github.com/MaxiPepa/bienenstock-corp-web"
+        target="_blanck"
+      >
+        Bienenstock Corp.
+      </a>
     </header>
   );
 };
