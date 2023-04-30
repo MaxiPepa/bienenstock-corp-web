@@ -14,7 +14,7 @@ const Layout = () => {
     } else {
       navigate("/dashboard");
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <>
