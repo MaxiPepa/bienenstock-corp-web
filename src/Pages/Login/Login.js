@@ -1,12 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import StatesContext from "../../Contexts/StatesContext";
+
 import "./Login.css";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
 import HttpsTwoToneIcon from "@mui/icons-material/HttpsTwoTone";
 
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const { setIsLogged } = useContext(StatesContext);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -14,7 +21,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setIsLogged(true);
     console.log(data);
+    navigate("/dashboard");
   };
 
   const [visibilityPassword, setVisibilityPassword] = useState("password");
