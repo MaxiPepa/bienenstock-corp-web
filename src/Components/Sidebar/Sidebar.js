@@ -1,36 +1,67 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import "./Sidebar.css";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
-import Burgerbutton from "../BurgerButton/BurgerButton";
 
-const Sidebar = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [menuIcon, setMenuIcon] = useState(<MenuRoundedIcon />);
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import BackupTableRoundedIcon from "@mui/icons-material/BackupTableRounded";
+import BuildRoundedIcon from "@mui/icons-material/BuildRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
+import ArchiveRoundedIcon from "@mui/icons-material/ArchiveRounded";
+import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
 
-  useEffect(() => {
-    if (isVisible === true) {
-      setMenuIcon(<MenuOpenRoundedIcon />);
-    } else {
-      setMenuIcon(<MenuRoundedIcon />);
-    }
-  }, [isVisible]);
-
-  const openMenu = () => {
+const Sidebar = ({ isVisible, setIsVisible }) => {
+  const handleClick = () => {
     setIsVisible(!isVisible);
   };
   return (
     <div className={isVisible ? "sidebar open" : "sidebar"}>
-      <Burgerbutton
-        menuIcon={menuIcon}
-        openMenu={openMenu}
-        isVisible={isVisible}
-      />
-      <h1>Bienenstock Corp.</h1>
       <nav>
-        <ul></ul>
+        <ul>
+          <li>
+            <Link to="/dashboard" onClick={handleClick}>
+              <DashboardIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Dashboard</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/products" onClick={handleClick}>
+              <BackupTableRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Products</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/purchansing-area" onClick={handleClick}>
+              <ShoppingCartRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Purchansing</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/sales-area" onClick={handleClick}>
+              <ReceiptRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Sales</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/storage-area" onClick={handleClick}>
+              <ArchiveRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Storage</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/reports-area" onClick={handleClick}>
+              <LeaderboardRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Reports</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/settings" onClick={handleClick}>
+              <BuildRoundedIcon className="sidebar-icon" />
+              <span className="sidebar-link-name">Settings</span>
+            </Link>
+          </li>
+        </ul>
       </nav>
     </div>
   );

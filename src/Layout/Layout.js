@@ -11,10 +11,8 @@ const Layout = () => {
   useEffect(() => {
     if (USER.bool === false) {
       navigate("/login");
-    } else {
-      navigate("/dashboard");
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <>
