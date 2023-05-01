@@ -1,10 +1,18 @@
 import icons from "./Icons";
 
-export let USER = {
+export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: "Seller",
-  bool: false,
+  bool: true,
+};
+
+export const ROLES = {
+  ADMIN: "Admin",
+  BUYER: "Buyer",
+  SELLER: "Seller",
+  DEPOSITOR: "Depositor",
+  ANALYST: "Analyst",
 };
 
 export const NAVLINKS = [
@@ -23,32 +31,39 @@ export const NAVLINKS = [
     navItemName: "Products",
   },
   {
-    roles: "Buyer",
+    roles: ROLES.BUYER,
     navigation: "/dashboard/purchansing-area",
     aditionalFunction: "hideSidebar",
     icon: <icons.ShoppingCartRoundedIcon />,
     navItemName: "Purchansing",
   },
   {
-    roles: "Seller",
+    roles: ROLES.SELLER,
     navigation: "/dashboard/sales-area",
     aditionalFunction: "hideSidebar",
     icon: <icons.ReceiptRoundedIcon />,
     navItemName: "Sales",
   },
   {
-    roles: "Depositor",
+    roles: ROLES.DEPOSITOR,
     navigation: "/dashboard/storage-area",
     aditionalFunction: "hideSidebar",
     icon: <icons.ArchiveRoundedIcon />,
     navItemName: "Storage",
   },
   {
-    roles: "Analyst",
+    roles: ROLES.ANALYST,
     navigation: "/dashboard/reports-area",
     aditionalFunction: "hideSidebar",
     icon: <icons.LeaderboardRoundedIcon />,
     navItemName: "Reports",
+  },
+  {
+    roles: ROLES.ADMIN,
+    navigation: "/users",
+    aditionalFunction: "hideSidebar",
+    icon: <icons.GroupIcon />,
+    navItemName: "Users",
   },
   {
     roles: "All",
