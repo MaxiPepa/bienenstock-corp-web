@@ -16,18 +16,14 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
       <nav>
         <ul>
           {NAVLINKS.map((navlink) => {
-            if (navlink.roles === "All" || navlink.roles === USER.role) {
-              return (
-                <NavLink
-                  navigation={navlink.navigation}
-                  aditionalFunction={hideSidebar}
-                  icon={navlink.icon}
-                  navItemName={navlink.navItemName}
-                />
-              );
-            } else {
-              return null;
-            }
+            return navlink.roles === "All" || navlink.roles === USER.role ? (
+              <NavLink
+                navigation={navlink.navigation}
+                aditionalFunction={hideSidebar}
+                icon={navlink.icon}
+                navItemName={navlink.navItemName}
+              />
+            ) : null;
           })}
         </ul>
       </nav>
