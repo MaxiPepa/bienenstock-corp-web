@@ -3,7 +3,7 @@ import icons from "./Icons";
 export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
-  role: "Buyer",
+  role: "Admin",
   bool: false,
 };
 
