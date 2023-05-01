@@ -6,7 +6,7 @@ const PurchansingArea = () => {
   useRedirect(USER.role, ROLES.BUYER);
   return (
     <div>
-      <h2>PurchansingArea</h2>
+      <h2>PurchasesArea</h2>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import icons from "./Icons";
 export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
-  role: "Admin",
+  role: "Buyer",
   bool: false,
 };
 
@@ -32,10 +32,10 @@ export const NAVLINKS = [
   },
   {
     roles: ROLES.BUYER,
-    navigation: "/dashboard/purchansing-area",
+    navigation: "/dashboard/purchases-area",
     aditionalFunction: "hideSidebar",
     icon: <icons.ShoppingCartRoundedIcon />,
-    navItemName: "Purchansing",
+    navItemName: "Purchases",
   },
   {
     roles: ROLES.SELLER,
