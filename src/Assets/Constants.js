@@ -4,7 +4,7 @@ export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: "Admin",
-  bool: false,
+  bool: true,
 };
 
 export const ROLES = {
@@ -60,10 +60,10 @@ export const NAVLINKS = [
   },
   {
     roles: ROLES.ADMIN,
-    navigation: "/users",
+    navigation: "/admin-menu",
     aditionalFunction: "hideSidebar",
     icon: <icons.GroupIcon />,
-    navItemName: "Users",
+    navItemName: "Admin Menu",
   },
   {
     roles: "All",
@@ -80,3 +80,10 @@ export const NAVLINKS = [
     navItemName: "Logout",
   },
 ];
+
+export const APIURL = {
+  local:"https://localhost:7040/",
+}
+
+export const THEADUSER = ["ProductId","Name","Description","Price","ExpirationDate","EnterDate","Quantity"];
+export const THEADPRODUCTS = ["UserId","Name","LastName","Email","UserType"];

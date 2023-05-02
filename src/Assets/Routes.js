@@ -12,9 +12,9 @@ import PurchasesArea from "../Pages/PurchasesArea/PurchasesArea";
 import SalesArea from "../Pages/SalesArea/SalesArea";
 import StorageArea from "../Pages/StorageArea/StorageArea";
 import ReportsArea from "../Pages/ReportsArea/ReportsArea";
-import Users from "../Pages/Users/Users";
 import Settings from "../Pages/Settings/Settings";
 import Main from "../Components/Main/Main";
+import AdminMenu from "../Pages/AdminMenu/AdminMenu";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,7 +41,7 @@ export const router = createBrowserRouter(
         path="/dashboard/reports-area"
         element={<Main render={<ReportsArea />} />}
       />
-      <Route path="/users" element={<Main render={<Users />} />} />
+      <Route path="/admin-menu" element={<Main render={<AdminMenu />} />} />
       <Route path="/settings" element={<Main render={<Settings />} />} />
     </Route>
   )

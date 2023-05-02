@@ -1,25 +1,14 @@
-import { useState, useEffect } from "react";
+import { APIURL } from "../../Assets/Constants";
 
-const useAPI = (url) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const useAPI = async (url) => {
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setIsLoading(false);
-        setData(data);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err);
-      });
-  }, [url]);
+  const response = await fetch(APIURL.local+url)
+    .then((res) => res.json())
+    .catch((err) => err );
 
-  return { data, error, isLoading };
+  console.log(response);
+  return { response };
+
 };
 
 export default useAPI;

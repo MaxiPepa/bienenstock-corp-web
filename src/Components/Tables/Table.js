@@ -10,7 +10,7 @@ import "./Table.css"
     ===================================================================
 
 */
-
+const TheadUser = ["ID","NAME","ROLE","EMAIL"]
 
 const PRODUCTS = [
     {
@@ -20,7 +20,8 @@ const PRODUCTS = [
         price:55000,  
         dateEntry:"10-04-2023",  
         dateExp:""
-    },{
+    },
+    {
         id:2,
         name:"YAMAHA R1",  
         amount:10,          
@@ -28,7 +29,8 @@ const PRODUCTS = [
         dateEntry:"10-04-2023",  
         dateExp:""
 
-    },{
+    },
+    {
         id:1,
         name:"HONDA CBR 100.",  
         amount:10,          
@@ -36,7 +38,8 @@ const PRODUCTS = [
         dateEntry:"10-04-2023",  
         dateExp:""
 
-    },{
+    },
+    {
         id:1,
         name:"HONDA CBR 100.",  
         amount:10,          
@@ -48,31 +51,25 @@ const PRODUCTS = [
 ];
 
 
-const Table = () => {
+const Table = ({content,thead}) => {
 
 
   return (
-
-    //si el UserType isEqual(ADMIN) 
     <>
         <table>
-            <thead >
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Fecha de ingreso</th>
-                <th>Fecha de vencimiento</th>
+            <thead>
+                { thead.map((attr)=>{<th>{attr}</th>}) }
             </thead>    
             <tbody>
-                {PRODUCTS.map((item) =>
-                    <tr key={item.id}  >
-                        <td>{item.name}</td>  
-                        <td>{item.amount}</td>          
-                        <td>usd {item.price}</td>  
-                        <td>{item.dateEntry}</td>  
-                        <td>{item.dateExp}</td>
+                {
+                    content.map((item) =>
+                    <tr key={item.userId}  >
+                        <td>{item.fullName}</td>  
+                        <td>{item.userType}</td>  
+                        <td>{item.email}</td>
                     </tr>
-                )}
+                    )
+                }
             </tbody>
         </table>
     </>
