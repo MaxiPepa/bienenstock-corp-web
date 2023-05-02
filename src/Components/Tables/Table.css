@@ -1,4 +1,4 @@
-.ProductTable{
+table{
     width: 100%;
     background-color: #161616;
     color: aliceblue;
@@ -6,15 +6,10 @@
     border-spacing: 0;
 }
 
-.ProductTable > thead{
-    border-radius: 1vh;
-}
-
-.ProductTable > tbody{
+table > tbody{
     border-bottom-left-radius: 3%;
     border-bottom-right-radius: 3%;
 }
-
 
 th,tr,td{
     padding: 1vh;
