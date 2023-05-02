@@ -1,22 +1,19 @@
-import useAPI from "../../Hooks/API/useAPI";
+import API from "../../Hooks/API/API";
 import Table from "../../Components/Tables/Table";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
-import { USER,THEADUSER, ROLES,APIURL } from "../../Assets/Constants";
+import { USER,THEADUSER, ROLES } from "../../Assets/Constants";
 import { useEffect, useState } from "react";
 
 const AdminMenu = () => {
 
   const [users,setUsers] = useState([]);
   useRedirect(USER.role, ROLES.ADMIN);
-  
-  
-  useEffect(async ()=>{
-    
-    await fetch(APIURL.local+"user/getUsers")
-    .then((res) => {
-      
-      const data = res.json()
 
+  
+  useEffect( ()=>{
+    
+    new API().get("user/getUsers").then( (data)=>{
+      
       setUsers(data.users.map((r)=>({
         fullName: r.fullName,
         userId: r.userId,
@@ -24,10 +21,10 @@ const AdminMenu = () => {
         userType: r.userType
       })))
 
-    })
-    .catch((err) => err );
-    
+    });
 
+
+    
     console.log("loop en adminmenu")
   },[]);
   
