@@ -9,7 +9,6 @@ const useRedirect = (currentRole, requiredRole) => {
     if (currentRole !== requiredRole && currentRole !== ROLES.ADMIN) {
       navigate("/dashboard");
     }
-    console.log("loop")
   }, [currentRole, requiredRole,navigate]);
 
   return;

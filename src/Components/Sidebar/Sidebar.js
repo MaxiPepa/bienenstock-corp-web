@@ -22,11 +22,12 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
       </div>
       <nav>
         <ul>
-          {NAVLINKS.map((navlink) => {
+          {NAVLINKS.map((navlink,index) => {
             return navlink.roles === "All" ||
               navlink.roles === USER.role ||
               USER.role === ROLES.ADMIN ? (
               <NavLink
+                key={index}
                 navigation={navlink.navigation}
                 aditionalFunction={hideSidebar}
                 icon={navlink.icon}
