@@ -1,0 +1,29 @@
+.ProductTable{
+    width: 100%;
+    background-color: #161616;
+    color: aliceblue;
+    border-radius: 1vh;
+    border-spacing: 0;
+}
+
+.ProductTable > thead{
+    border-radius: 1vh;
+}
+
+.ProductTable > tbody{
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+}
+
+
+th,tr,td{
+    padding: 1vh;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+tr:hover {
+    background-color: coral;
+}
