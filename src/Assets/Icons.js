@@ -6,6 +6,7 @@ import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import ArchiveRoundedIcon from "@mui/icons-material/ArchiveRounded";
 import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import GroupIcon from "@mui/icons-material/Group";
 
 const icons = {
   DashboardIcon,
@@ -16,6 +17,7 @@ const icons = {
   ArchiveRoundedIcon,
   LeaderboardRoundedIcon,
   ExitToAppIcon,
+  GroupIcon,
 };
 
 export default icons;

@@ -2,13 +2,13 @@ import React from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 import { USER, ROLES } from "../../Assets/Constants";
 
-const StorageArea = () => {
-  useRedirect(USER.role, ROLES.DEPOSITOR);
+const PurchansingArea = () => {
+  useRedirect(USER.role, ROLES.BUYER);
   return (
     <div>
-      <h2>StorageArea</h2>
+      <h2>PurchasesArea</h2>
     </div>
   );
 };
 
-export default StorageArea;
+export default PurchansingArea;
