@@ -39,19 +39,22 @@ const Login = () => {
             <PersonOutlineTwoToneIcon className="icon" />
             <input
               type="text"
-              placeholder="usuario"
-              {...register("user", { required: true })}
+              placeholder="email"
+              {...register("user", { required: true, pattern: /\S+@\S+\.\S+/ })}
             />
             {errors.user?.type === "required" && (
               <p className="error">Debe ingresar un usuario</p>
             )}
+            {errors.user?.type === "pattern" && (
+            <p className="error">Debe ingresar un email válido</p>
+          )}
           </div>
           <div className="inputs">
             <HttpsTwoToneIcon className="icon" />
             <input
               type={visibilityPassword}
               placeholder="contraseña"
-              {...register("password", { required: true })}
+              {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/ })}
             />
             <button
               id="visibility"
@@ -67,8 +70,11 @@ const Login = () => {
             {errors.password?.type === "required" && (
               <p className="error">Debe ingresar una contraseña</p>
             )}
+            {errors.password?.type === "pattern" && (
+            <p className="error errorPassword">La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula, un número y un caracter especial</p>
+          )}
           </div>
-          <button type="submit" className="signIn">
+          <button type="submit" className="signInButton">
             INGRESAR
           </button>
         </form>
