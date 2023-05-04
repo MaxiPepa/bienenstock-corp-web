@@ -35,12 +35,14 @@ const PurchansingArea = () => {
   return (
     <div className="purchase-area">
       <h2>PurchasesArea</h2>
-      <Button
-        styles="purchase-button"
-        buttonFunction={modalStatusHandler}
-        buttonIcon={<icons.ShoppingCartRoundedIcon />}
-        buttonText="Nueva Compra"
-      />
+      {USER.role === ROLES.BUYER ? (
+        <Button
+          styles="purchase-button"
+          buttonFunction={modalStatusHandler}
+          buttonIcon={<icons.ShoppingCartRoundedIcon />}
+          buttonText="Nueva Compra"
+        />
+      ) : null}
       <h3> Historial de compras</h3>
       <Table content={filteredData} thead={THEADPURCHASESHISTORY} />
       <Modal modalTitle="Nueva Compra" enterFunction={buyProductsHandler}>
