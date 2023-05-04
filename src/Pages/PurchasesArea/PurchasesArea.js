@@ -23,7 +23,7 @@ const PurchansingArea = () => {
   };
 
   return (
-    <div>
+    <div className="purchase-area">
       <h2>PurchasesArea</h2>
       <Button
         styles="purchase-button"
