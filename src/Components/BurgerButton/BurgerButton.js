@@ -3,17 +3,16 @@ import { useState, useEffect } from "react";
 
 import "./BurgerButton.css";
 
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import icons from "../../Assets/Icons"
 
 const Burgerbutton = ({ isVisible, setIsVisible }) => {
-  const [menuIcon, setMenuIcon] = useState(<MenuRoundedIcon />);
+  const [menuIcon, setMenuIcon] = useState(<icons.MenuRoundedIcon />);
 
   useEffect(() => {
     if (isVisible === true) {
-      setMenuIcon(<MenuOpenRoundedIcon />);
+      setMenuIcon(<icons.MenuOpenRoundedIcon />);
     } else {
-      setMenuIcon(<MenuRoundedIcon />);
+      setMenuIcon(<icons.MenuRoundedIcon />);
     }
   }, [isVisible]);
 

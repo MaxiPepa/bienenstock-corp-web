@@ -19,3 +19,13 @@ body, #root {
   --c-color-1:rgb(89, 90, 6);
 }
 
+body {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0)),
+    color-stop(100%, rgba(0, 0, 0, 0.65))
+  );
+  font-family: "Exo", sans-serif;
+}
