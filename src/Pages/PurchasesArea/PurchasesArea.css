@@ -42,3 +42,9 @@
 .purchase-button svg {
   font-size: 50px;
 }
+
+.purchase-button:hover svg,
+.purchase-button:hover span {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}

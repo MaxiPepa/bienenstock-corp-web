@@ -9,7 +9,7 @@ const Button = ({ styles, type, buttonFunction, buttonIcon, buttonText }) => {
         onClick={buttonFunction}
       >
         {buttonIcon}
-        {buttonText}
+        <span>{buttonText}</span>
       </button>
     </>
   );
