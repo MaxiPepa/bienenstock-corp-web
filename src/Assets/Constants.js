@@ -4,7 +4,7 @@ export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: "Admin",
-  bool: false,
+  bool: true,
 };
 
 export const ROLES = {

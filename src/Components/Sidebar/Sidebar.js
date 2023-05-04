@@ -4,7 +4,9 @@ import NavLink from "../NavLink/NavLink";
 import "./Sidebar.css";
 
 import { NAVLINKS, USER, ROLES } from "../../Assets/Constants";
-import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
+
+import icons from "../../Assets/Icons"
+
 
 const Sidebar = ({ isVisible, setIsVisible }) => {
   const hideSidebar = () => {
@@ -15,7 +17,7 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
     <div className={isVisible ? "sidebar open" : "sidebar"}>
       <div className="user-card">
         <div className="user-profile">
-          <AccountCircleSharpIcon />
+          <icons.AccountCircleSharpIcon />
           <p>{USER.name}</p>
         </div>
         <span>{USER.role}</span>
