@@ -34,7 +34,7 @@
   border-top-left-radius: 10px;
 }
 
-.modal-header h2 {
+.modal-header > h2 {
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: 900;
