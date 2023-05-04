@@ -61,7 +61,7 @@ const PurchansingArea = () => {
           styles="modal-button-add"
           buttonFunction={buyProductsHandler}
           buttonIcon={<icons.ShoppingCartRoundedIcon />}
-          buttonText="Comprar"
+          buttonText="Agregar Compra"
         />
       </Modal>
     </div>
