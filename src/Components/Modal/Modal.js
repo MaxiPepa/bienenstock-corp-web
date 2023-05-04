@@ -8,14 +8,6 @@ import icons from "../../Assets/Icons";
 const Modal = ({ modalTitle, children, enterFunction }) => {
   const { showModal, setShowModal } = useContext(StatesContext);
 
-  const escPressed = (e) => {
-    if (e.key === "Escape") {
-      setShowModal(false);
-    }
-  };
-
-  window.onkeydown = escPressed;
-
   const enterPressed = (e) => {
     if (e.key === "Enter") {
       enterFunction();
