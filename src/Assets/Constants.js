@@ -12,7 +12,7 @@ export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: ROLES.ADMIN,
-  bool: false,
+  bool: true,
 };
 
 export const NAVLINKS = [

@@ -20,7 +20,7 @@ const Layout = () => {
         ? navigate("/dashboard")
         : navigate(currentURL);
     }
-  }, []);
+  }, [currentURL, navigate]);
 
   return (
     <>
