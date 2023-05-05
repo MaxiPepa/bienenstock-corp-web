@@ -5,8 +5,7 @@ import "./Sidebar.css";
 
 import { NAVLINKS, USER, ROLES } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons"
-
+import icons from "../../Assets/Icons";
 
 const Sidebar = ({ isVisible, setIsVisible }) => {
   const hideSidebar = () => {
@@ -24,7 +23,7 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
       </div>
       <nav>
         <ul>
-          {NAVLINKS.map((navlink,index) => {
+          {NAVLINKS.map((navlink, index) => {
             return navlink.roles === "All" ||
               navlink.roles === USER.role ||
               USER.role === ROLES.ADMIN ? (

@@ -15,6 +15,12 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
+import HttpsTwoToneIcon from "@mui/icons-material/HttpsTwoTone";
 
 const icons = {
   DashboardIcon,
@@ -34,6 +40,12 @@ const icons = {
   MenuOpenRoundedIcon,
   AccountCircleSharpIcon,
   CloseRoundedIcon,
+  MenuRoundedIcon,
+  MenuOpenRoundedIcon,
+  AccountCircleSharpIcon,
+  VisibilityIcon,
+  PersonOutlineTwoToneIcon,
+  HttpsTwoToneIcon,
 };
 
 export default icons;
