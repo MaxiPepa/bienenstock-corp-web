@@ -11,8 +11,8 @@ export const ROLES = {
 export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
-  role: ROLES.BUYER,
-  bool: true,
+  role: ROLES.ADMIN,
+  bool: false,
 };
 
 export const NAVLINKS = [

@@ -3,15 +3,17 @@ import { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import StatesContext from "../Contexts/StatesContext";
+import UserContext from "../Contexts/UserContext";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(StatesContext);
+  const { userData } = useContext(UserContext);
 
   useEffect(() => {
-    if (isLogged === false) {
-      navigate("/login");
+    if (!userData.token) {
+      navigate("/dashboard");
+    } else {
+      navigate("/dashboard");
     }
   }, []);
 

@@ -1,5 +1,6 @@
 import React from "react";
 import StatesContext from "../../Contexts/StatesContext";
+import UserContext from "../../Contexts/UserContext";
 
 import { useForm } from "react-hook-form";
 import { useState, useContext } from "react";
@@ -7,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
+import API from "../../Hooks/API/API";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
 
   const { setIsLogged } = useContext(StatesContext);
+  const { setUserData } = useContext(UserContext);
   const navigate = useNavigate();
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
@@ -36,8 +39,23 @@ const Login = () => {
 
   const onSubmit = (data) => {
     setIsLogged(true);
-    console.log(data);
-    navigate("/dashboard");
+    new API()
+      .login(data)
+      .then((res) => {
+        if (res.success) {
+          setUserData({
+            avatar: res.avatar,
+            email: res.email,
+            fullName: res.fullName,
+            token: res.token,
+            userType: res.userType,
+          });
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -52,7 +70,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="email"
-              {...register("user", { required: true, pattern: emailRegex })}
+              {...register("email", { required: true, pattern: emailRegex })}
             />
             {errors.user?.type === "required" && (
               <p className="error">Debe ingresar un usuario</p>
@@ -65,7 +83,7 @@ const Login = () => {
             <icons.HttpsTwoToneIcon className="icon" />
             <input
               type={visibilityPassword}
-              placeholder="contraseña"
+              placeholder="password"
               {...register("password", {
                 required: true,
                 pattern: passwordRegex,
