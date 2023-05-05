@@ -12,10 +12,7 @@ const Layout = () => {
   useEffect(() => {
     if (isLogged === false) {
       navigate("/login");
-    }else{
-      navigate("/dashboard");
     }
-    
   }, []);
 
   return (

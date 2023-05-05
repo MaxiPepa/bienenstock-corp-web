@@ -82,8 +82,22 @@ export const NAVLINKS = [
 ];
 
 export const APIURL = {
-  local:"https://localhost:7040/",
-}
+  local: "https://localhost:7040/",
+};
 
-export const THEADUSER = ["ProductId","Name","Description","Price","ExpirationDate","EnterDate","Quantity"];
-export const THEADPRODUCTS = ["UserId","Name","LastName","Email","UserType"];
+export const THEADUSER = [
+  "ProductId",
+  "Name",
+  "Description",
+  "Price",
+  "ExpirationDate",
+  "EnterDate",
+  "Quantity",
+];
+export const THEADPRODUCTS = [
+  "UserId",
+  "Name",
+  "LastName",
+  "Email",
+  "UserType",
+];

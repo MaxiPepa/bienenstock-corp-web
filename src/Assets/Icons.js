@@ -8,12 +8,13 @@ import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import GroupIcon from "@mui/icons-material/Group";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
 import HttpsTwoToneIcon from "@mui/icons-material/HttpsTwoTone";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const icons = {
   DashboardIcon,
@@ -31,7 +32,8 @@ const icons = {
   HttpsTwoToneIcon,
   MenuRoundedIcon,
   MenuOpenRoundedIcon,
-  AccountCircleSharpIcon
+  AccountCircleSharpIcon,
+  CloseRoundedIcon,
 };
 
 export default icons;
