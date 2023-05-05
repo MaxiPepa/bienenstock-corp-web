@@ -72,11 +72,13 @@ const Login = () => {
               placeholder="email"
               {...register("email", { required: true, pattern: emailRegex })}
             />
-            {errors.user?.type === "required" && (
-              <p className="error">Debe ingresar un usuario</p>
+            {errors.email?.type === "required" && (
+              <p className="error">You must enter an email address to login</p>
             )}
-            {errors.user?.type === "pattern" && (
-              <p className="error">Debe ingresar un email válido</p>
+            {errors.email?.type === "pattern" && (
+              <p className="error">
+                You must enter a valid email address to login
+              </p>
             )}
           </div>
           <div className="inputs">
@@ -97,12 +99,12 @@ const Login = () => {
               {visibilityButton}
             </button>
             {errors.password?.type === "required" && (
-              <p className="error">Debe ingresar una contraseña</p>
+              <p className="error">You must enter a password to log in</p>
             )}
             {errors.password?.type === "pattern" && (
               <p className="error errorPassword">
-                La contraseña debe tener al menos 6 caracteres, una mayúscula,
-                una minúscula, un número y un caracter especial
+                The password must have at least 6 characters, a capital letter,
+                a lowercase letter, a number and a special character.
               </p>
             )}
           </div>
@@ -111,7 +113,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <p id="copyright">© Produced by Mente Colmena</p>
+      <p id="copyright">© 2023 Bienenstock Corp.</p>
     </>
   );
 };
