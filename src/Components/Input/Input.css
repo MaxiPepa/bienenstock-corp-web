@@ -1,0 +1,33 @@
+.input-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 15px;
+  gap: 15px;
+}
+
+.input-content label {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.input-content input {
+  padding: 0.5rem;
+  border: 1px solid #18467a;
+  border-radius: 5px;
+  font-family: "Exo";
+  font-size: 1rem;
+  font-weight: 900;
+  outline: none;
+  color: #222222;
+}
+
+.input-content input:focus {
+  border: 2px solid #076c7e;
+}
+
+.input-content input::placeholder {
+  font-size: 1rem;
+  color: #2678d657;
+  font-weight: 900;
+}

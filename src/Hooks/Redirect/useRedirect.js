@@ -9,7 +9,7 @@ const useRedirect = (currentRole, requiredRole) => {
     if (currentRole !== requiredRole && currentRole !== ROLES.ADMIN) {
       navigate("/dashboard");
     }
-  }, [currentRole, requiredRole,navigate]);
+  }, [currentRole, requiredRole, navigate]);
 
   return;
 };

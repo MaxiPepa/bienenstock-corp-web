@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import "./BurgerButton.css";
 
-import icons from "../../Assets/Icons"
+import icons from "../../Assets/Icons";
 
 const Burgerbutton = ({ isVisible, setIsVisible }) => {
   const [menuIcon, setMenuIcon] = useState(<icons.MenuRoundedIcon />);

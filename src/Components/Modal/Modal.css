@@ -1,0 +1,128 @@
+.modal {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fefefe;
+  margin: auto;
+  width: 800px;
+  height: auto;
+  border-radius: 15px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #18467a;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.modal-header > h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-decoration: none;
+  margin: auto;
+}
+
+.modal-close-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #990e0e;
+}
+
+.modal-close-button svg {
+  font-size: 40px;
+}
+
+.modal-close-button:hover {
+  transform: scale(1.2);
+  color: #bb1717;
+  transition: all 0.1s ease-in-out;
+}
+
+.modal-close-button:active {
+  transform: scale(1.1);
+  color: #bb1717;
+  transition: all 0.1s ease-in-out;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+}
+
+.modal-button-add {
+  /*position: absolute;
+  right: 0;
+  bottom: 0;*/
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+  border-radius: 5px;
+  background-size: 100% auto;
+  font-family: inherit;
+  font-size: 17px;
+  padding: 0.6em 1.5em;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.modal-button-add:hover {
+  background-position: right center;
+  background-size: 200% auto;
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse512 1.5s infinite;
+}
+
+.modal-button-add:active {
+  background-size: 100%;
+  -webkit-animation: none;
+  animation: none;
+  transform: scale(0.9);
+}
+
+@keyframes pulse512 {
+  0% {
+    box-shadow: 0 0 0 0 #05bada66;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+  }
+}
