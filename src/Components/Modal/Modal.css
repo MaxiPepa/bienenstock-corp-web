@@ -57,11 +57,13 @@
 .modal-close-button:hover {
   transform: scale(1.2);
   color: #bb1717;
+  transition: all 0.1s ease-in-out;
 }
 
 .modal-close-button:active {
   transform: scale(1.1);
   color: #bb1717;
+  transition: all 0.1s ease-in-out;
 }
 
 .modal-body {
