@@ -40,12 +40,12 @@ const PurchansingArea = () => {
           styles="purchase-button"
           buttonFunction={modalStatusHandler}
           buttonIcon={<icons.ShoppingCartRoundedIcon />}
-          buttonText="Nueva Compra"
+          buttonText="New Purchase"
         />
       ) : null}
       <h3> Historial de compras</h3>
       <Table content={filteredData} thead={THEADPURCHASESHISTORY} />
-      <Modal modalTitle="Nueva Compra" enterFunction={buyProductsHandler}>
+      <Modal modalTitle="New Purchase" enterFunction={buyProductsHandler}>
         {arrayPurchaseInputs.map((input, index) => (
           <Input
             key={index}
@@ -61,7 +61,7 @@ const PurchansingArea = () => {
           styles="modal-button-add"
           buttonFunction={buyProductsHandler}
           buttonIcon={<icons.ShoppingCartRoundedIcon />}
-          buttonText="Agregar Compra"
+          buttonText="Add Purchase"
         />
       </Modal>
     </div>

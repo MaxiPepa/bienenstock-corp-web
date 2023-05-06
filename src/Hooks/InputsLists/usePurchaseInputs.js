@@ -9,15 +9,15 @@ export const usePurchaseInputs = () => {
 
   const arrayPurchaseInputs = [
     {
-      labelName: "Nombre del Producto",
+      labelName: "Product name: ",
       styles: "input",
       type: "text",
-      placeholder: "Laptop, tablet, celular...",
+      placeholder: "Laptop, tablet, phone...",
       value: inputProductName,
       inputFunction: setInputProductName,
     },
     {
-      labelName: "Precio del Producto",
+      labelName: "Product price: ",
       styles: "input",
       type: "number",
       placeholder: "$x.xxx,xx",
@@ -25,7 +25,7 @@ export const usePurchaseInputs = () => {
       inputFunction: setInputProductPrice,
     },
     {
-      labelName: "Cantidad del Producto",
+      labelName: "Product Quantity: ",
       styles: "input",
       type: "number",
       placeholder: "xxx",
@@ -33,7 +33,7 @@ export const usePurchaseInputs = () => {
       inputFunction: setInputProductQuantity,
     },
     {
-      labelName: "Proveedor",
+      labelName: "Supplier",
       styles: "input",
       type: "text",
       placeholder: "Frávega, Garbarino, Megatone...",
@@ -41,10 +41,10 @@ export const usePurchaseInputs = () => {
       inputFunction: setInputSupplier,
     },
     {
-      labelName: "Descripción",
+      labelName: "Descritcion",
       styles: "input",
       type: "text",
-      placeholder: "Consola de videojuegos, notebook, celular...",
+      placeholder: "Video game console, notebook asus 75g, iphone 14...",
       value: inputDescription,
       inputFunction: setInputDescription,
     },

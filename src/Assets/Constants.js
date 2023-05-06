@@ -11,7 +11,7 @@ export const ROLES = {
 export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
-  role: ROLES.ADMIN,
+  role: ROLES.BUYER,
   bool: true,
 };
 
@@ -104,13 +104,13 @@ export const THEADPRODUCTS = [
 ];
 
 export const THEADPURCHASESHISTORY = [
-  "Comprador",
-  "Producto",
-  "Cantidad",
-  "Precio",
-  "Fecha de compra",
-  "Proveedor",
-  "Estado de ingreso",
+  "Buyer",
+  "Product",
+  "Quantity",
+  "Price",
+  "Purchase date",
+  "Supplier",
+  "Income status",
 ];
 
 export const TBODYPURCHASEHISTORYPROVISIONAL = [
