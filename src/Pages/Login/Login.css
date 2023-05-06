@@ -16,7 +16,7 @@
 }
 
 .formlogin {
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -27,7 +27,7 @@
   font-size: 15px;
 }
 
-.errorPassword{
+.errorPassword {
   font-size: 11px;
   text-align: justify;
 }

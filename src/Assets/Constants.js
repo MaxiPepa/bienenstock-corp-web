@@ -104,13 +104,13 @@ export const THEADPRODUCTS = [
 ];
 
 export const THEADPURCHASESHISTORY = [
-  "Comprador",
-  "Producto",
-  "Cantidad",
-  "Precio",
-  "Fecha de compra",
-  "Proveedor",
-  "Estado de ingreso",
+  "Buyer",
+  "Product",
+  "Quantity",
+  "Price",
+  "Purchase date",
+  "Supplier",
+  "Income status",
 ];
 
 export const TBODYPURCHASEHISTORYPROVISIONAL = [

@@ -1,5 +1,6 @@
 import React from "react";
 import StatesContext from "../../Contexts/StatesContext";
+import UserContext from "../../Contexts/UserContext";
 
 import { useForm } from "react-hook-form";
 import { useState, useContext } from "react";
@@ -7,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
+import API from "../../Hooks/API/API";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
 
   const { setIsLogged } = useContext(StatesContext);
+  const { setUserData } = useContext(UserContext);
   const navigate = useNavigate();
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
@@ -36,8 +39,23 @@ const Login = () => {
 
   const onSubmit = (data) => {
     setIsLogged(true);
-    console.log(data);
-    navigate("/dashboard");
+    new API()
+      .login(data)
+      .then((res) => {
+        if (res.success) {
+          setUserData({
+            avatar: res.avatar,
+            email: res.email,
+            fullName: res.fullName,
+            token: res.token,
+            userType: res.userType,
+          });
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -52,20 +70,22 @@ const Login = () => {
             <input
               type="text"
               placeholder="email"
-              {...register("user", { required: true, pattern: emailRegex })}
+              {...register("email", { required: true, pattern: emailRegex })}
             />
-            {errors.user?.type === "required" && (
-              <p className="error">Debe ingresar un usuario</p>
+            {errors.email?.type === "required" && (
+              <p className="error">You must enter an email address to login</p>
             )}
-            {errors.user?.type === "pattern" && (
-              <p className="error">Debe ingresar un email válido</p>
+            {errors.email?.type === "pattern" && (
+              <p className="error">
+                You must enter a valid email address to login
+              </p>
             )}
           </div>
           <div className="inputs">
             <icons.HttpsTwoToneIcon className="icon" />
             <input
               type={visibilityPassword}
-              placeholder="contraseña"
+              placeholder="password"
               {...register("password", {
                 required: true,
                 pattern: passwordRegex,
@@ -79,12 +99,12 @@ const Login = () => {
               {visibilityButton}
             </button>
             {errors.password?.type === "required" && (
-              <p className="error">Debe ingresar una contraseña</p>
+              <p className="error">You must enter a password to log in</p>
             )}
             {errors.password?.type === "pattern" && (
               <p className="error errorPassword">
-                La contraseña debe tener al menos 6 caracteres, una mayúscula,
-                una minúscula, un número y un caracter especial
+                The password must have at least 6 characters, a capital letter,
+                a lowercase letter, a number and a special character.
               </p>
             )}
           </div>
@@ -93,7 +113,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <p id="copyright">© Produced by Mente Colmena</p>
+      <p id="copyright">© 2023 Bienenstock Corp.</p>
     </>
   );
 };
