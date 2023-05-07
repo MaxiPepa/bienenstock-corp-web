@@ -5,13 +5,16 @@ import UserContext from "../../Contexts/UserContext";
 import { useForm } from "react-hook-form";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-import icons from "../../Assets/Icons";
-import "./Login.css";
 import API from "../../Hooks/API/API";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
+import { USER } from "../../Assets/Constants";
+
+import icons from "../../Assets/Icons";
+import "./Login.css";
+
 const Login = () => {
+  useRedirect(USER.role, "login");
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
 
