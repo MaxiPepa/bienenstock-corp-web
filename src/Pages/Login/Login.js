@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import icons from "../../Assets/Icons";
 import "./Login.css";
 import API from "../../Hooks/API/API";
+import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;

@@ -4,6 +4,7 @@ import { USER, ROLES } from "../../Assets/Constants";
 
 const SalesArea = () => {
   useRedirect(USER.role, ROLES.SELLER);
+  console.log("reder on sales area");
   return (
     <div>
       <h2>SalesArea</h2>

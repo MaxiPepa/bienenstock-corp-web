@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import useRedirect from "../Hooks/Redirect/useRedirect";
 
 import UserContext from "../Contexts/UserContext";
 import { USER } from "../Assets/Constants";
@@ -15,12 +16,8 @@ const Layout = () => {
     // reemplazar !USER.bool por !userData.token
     if (!USER.bool) {
       navigate("/login");
-    } else {
-      currentURL === "/" || currentURL === "/login"
-        ? navigate("/dashboard")
-        : navigate(currentURL);
     }
-  }, [currentURL, navigate]);
+  }, [navigate]);
 
   return (
     <>

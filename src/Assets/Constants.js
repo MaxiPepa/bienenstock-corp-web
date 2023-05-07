@@ -11,8 +11,8 @@ export const ROLES = {
 export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
-  role: ROLES.BUYER,
-  bool: true,
+  role: ROLES.DEPOSITOR,
+  bool: false,
 };
 
 export const NAVLINKS = [
@@ -85,7 +85,7 @@ export const APIURL = {
   local: "https://localhost:7040/",
 };
 
-export const THEADUSER = [
+export const THEADPRODUCTS = [
   "ProductId",
   "Name",
   "Description",
@@ -95,13 +95,7 @@ export const THEADUSER = [
   "Quantity",
 ];
 
-export const THEADPRODUCTS = [
-  "UserId",
-  "Name",
-  "LastName",
-  "Email",
-  "UserType",
-];
+export const THEADUSER = ["UserId", "Name", "LastName", "Email", "UserType"];
 
 export const THEADPURCHASESHISTORY = [
   "Buyer",
