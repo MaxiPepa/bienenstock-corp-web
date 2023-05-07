@@ -4,12 +4,19 @@ import { useEffect } from "react";
 
 const useRedirect = (currentRole, requiredRole) => {
   const navigate = useNavigate();
+  const currentURL = window.location.pathname;
 
   useEffect(() => {
-    if (currentRole !== requiredRole && currentRole !== ROLES.ADMIN) {
+    if (currentRole === true && requiredRole === "login") {
       navigate("/dashboard");
+    } else if (currentRole !== requiredRole && currentRole !== ROLES.ADMIN) {
+      navigate("/dashboard");
+    } else {
+      currentURL === "/" || currentURL === "/login"
+        ? navigate("/dashboard")
+        : navigate(currentURL);
     }
-  }, [currentRole, requiredRole, navigate]);
+  }, [currentRole, requiredRole, navigate, currentURL]);
 
   return;
 };
