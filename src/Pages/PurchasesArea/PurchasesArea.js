@@ -5,7 +5,7 @@ import {
   USER,
   ROLES,
   THEADPURCHASESHISTORY,
-  TBODYPURCHASEHISTORYPROVISIONAL,
+  TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
 import StatesContext from "../../Contexts/StatesContext";
 import { usePurchaseInputs } from "../../Hooks/InputsLists/usePurchaseInputs";
@@ -28,9 +28,10 @@ const PurchansingArea = () => {
     setShowModal(!showModal);
   };
 
-  const filteredData = TBODYPURCHASEHISTORYPROVISIONAL.filter(
-    USER.role === ROLES.ADMIN ? () => true : (item) => item.Name === USER.name
-  );
+  const updatedTBODYPURCHASEHISTORY = TBODYPURCHASEHISTORY.map((entry) => ({
+    ...entry,
+    Status: "Pending",
+  }));
 
   return (
     <div className="purchase-area">
@@ -43,8 +44,11 @@ const PurchansingArea = () => {
           buttonText="New Purchase"
         />
       ) : null}
-      <h3> Purchases History</h3>
-      <Table content={filteredData} thead={THEADPURCHASESHISTORY} />
+      <h3>Purchases History</h3>
+      <Table
+        content={updatedTBODYPURCHASEHISTORY}
+        thead={THEADPURCHASESHISTORY}
+      />
       <Modal modalTitle="New Purchase" enterFunction={buyProductsHandler}>
         {arrayPurchaseInputs.map((input, index) => (
           <Input

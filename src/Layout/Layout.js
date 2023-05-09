@@ -3,16 +3,16 @@ import { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import APIContext from "../Contexts/APIContext";
 import UserContext from "../Contexts/UserContext";
-import { USER } from "../Assets/Constants";
 
 const Layout = () => {
   const navigate = useNavigate();
   const { userData } = useContext(UserContext);
+  const { getToken } = useContext(APIContext);
 
   useEffect(() => {
-    // reemplazar !USER.bool por !userData.token
-    if (!USER.bool) {
+    if (!getToken()) {
       navigate("/login");
     }
   }, [navigate]);

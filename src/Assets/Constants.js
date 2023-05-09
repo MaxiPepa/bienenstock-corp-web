@@ -12,7 +12,6 @@ export const USER = {
   name: "Gaston Garnero",
   email: "gastongarnero@gmail.com",
   role: ROLES.DEPOSITOR,
-  bool: true,
 };
 
 export const NAVLINKS = [
@@ -75,7 +74,7 @@ export const NAVLINKS = [
   {
     roles: "All",
     navigation: "/login",
-    aditionalFunction: "hideSidebar",
+    aditionalFunction: "logoutHandler",
     icon: <icons.ExitToAppIcon />,
     navItemName: "Logout",
   },
@@ -83,6 +82,10 @@ export const NAVLINKS = [
 
 export const APIURL = {
   local: "https://localhost:7040/",
+};
+
+export const COOKIENAME = {
+  session: "bienenstockSessionToken",
 };
 
 export const THEADPRODUCTS = [
@@ -95,7 +98,7 @@ export const THEADPRODUCTS = [
   "Quantity",
 ];
 
-export const THEADUSER = ["UserId", "Name", "LastName", "Email", "UserType"];
+export const THEADUSER = ["UserId", "Full Name", "Email", "UserType"];
 
 export const THEADPURCHASESHISTORY = [
   "PurchaseId",
@@ -108,7 +111,7 @@ export const THEADPURCHASESHISTORY = [
   "Income status",
 ];
 
-export const TBODYPURCHASEHISTORYPROVISIONAL = [
+export const TBODYPURCHASEHISTORY = [
   {
     id: 1,
     Name: "Gaston Garnero",
@@ -117,7 +120,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "100",
     Date: "29/12/2020",
     Supplier: "Coca Cola Companie",
-    Status: "Pendiente",
   },
   {
     id: 2,
@@ -127,7 +129,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "700",
     Date: "15/12/2020",
     Supplier: "CompraGamer",
-    Status: "Pendiente",
   },
   {
     id: 3,
@@ -137,7 +138,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "70",
     Date: "08/12/2020",
     Supplier: "Nike",
-    Status: "Pendiente",
   },
   {
     id: 4,
@@ -147,7 +147,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "100",
     Date: "29/12/2020",
     Supplier: "Coca Cola Companie",
-    Status: "Pendiente",
   },
   {
     id: 5,
@@ -157,7 +156,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "100",
     Date: "29/12/2020",
     Supplier: "Coca Cola Companie",
-    Status: "Pendiente",
   },
   {
     id: 6,
@@ -167,7 +165,6 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "700",
     Date: "15/12/2020",
     Supplier: "CompraGamer",
-    Status: "Pendiente",
   },
   {
     id: 7,
@@ -177,86 +174,9 @@ export const TBODYPURCHASEHISTORYPROVISIONAL = [
     Price: "70",
     Date: "08/12/2020",
     Supplier: "Nike",
-    Status: "Pendiente",
   },
   {
     id: 8,
-    Name: "Lucas Mule",
-    Product: "Coca Cola",
-    Quantity: "200",
-    Price: "100",
-    Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
-    Status: "Pendiente",
-  },
-];
-
-export const TBODYPENDINGENTRY = [
-  {
-    id: "1",
-    Name: "Gaston Garnero",
-    Product: "Coca Cola",
-    Quantity: "200",
-    Price: "100",
-    Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
-  },
-  {
-    id: "2",
-    Name: "Lucas Mule",
-    Product: "Laptop Gamer",
-    Quantity: "30",
-    Price: "700",
-    Date: "15/12/2020",
-    Supplier: "CompraGamer",
-  },
-  {
-    id: "3",
-    Name: "Gaston Garnero",
-    Product: "Zapatillas re chetas",
-    Quantity: "50",
-    Price: "70",
-    Date: "08/12/2020",
-    Supplier: "Nike",
-  },
-  {
-    id: "4",
-    Name: "Lucas Mule",
-    Product: "Coca Cola",
-    Quantity: "200",
-    Price: "100",
-    Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
-  },
-  {
-    id: "5",
-    Name: "Gaston Garnero",
-    Product: "Coca Cola",
-    Quantity: "200",
-    Price: "100",
-    Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
-  },
-  {
-    id: "6",
-    Name: "Lucas Mule",
-    Product: "Laptop Gamer",
-    Quantity: "30",
-    Price: "700",
-    Date: "15/12/2020",
-    Supplier: "CompraGamer",
-  },
-  {
-    id: "7",
-    Name: "Gaston Garnero",
-    Product: "Zapatillas re chetas",
-    Quantity: "50",
-    Price: "70",
-    Date: "08/12/2020",
-    Supplier: "Nike",
-  },
-  {
-    id: "8",
     Name: "Lucas Mule",
     Product: "Coca Cola",
     Quantity: "200",

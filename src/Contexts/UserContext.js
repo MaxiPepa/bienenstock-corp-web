@@ -7,8 +7,8 @@ const UserProvider = ({ children }) => {
     avatar: null,
     email: null,
     fullName: null,
-    token: null,
     userType: null,
+    tokenExpiration: null,
   });
 
   return (

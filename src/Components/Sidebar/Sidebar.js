@@ -1,15 +1,22 @@
 import React from "react";
 import NavLink from "../NavLink/NavLink";
+import Cookies from "universal-cookie";
 
-import "./Sidebar.css";
-
-import { NAVLINKS, USER, ROLES } from "../../Assets/Constants";
+import { NAVLINKS, USER, ROLES, COOKIENAME } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
+import "./Sidebar.css";
 
 const Sidebar = ({ isVisible, setIsVisible }) => {
+  const cookies = new Cookies();
+
   const hideSidebar = () => {
     setIsVisible(!isVisible);
+  };
+
+  const logoutHandler = () => {
+    hideSidebar();
+    cookies.remove(COOKIENAME.session);
   };
 
   return (
@@ -30,7 +37,11 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
               <NavLink
                 key={index}
                 navigation={navlink.navigation}
-                aditionalFunction={hideSidebar}
+                aditionalFunction={
+                  navlink.aditionalFunction === "hideSidebar"
+                    ? hideSidebar
+                    : logoutHandler
+                }
                 icon={navlink.icon}
                 navItemName={navlink.navItemName}
               />

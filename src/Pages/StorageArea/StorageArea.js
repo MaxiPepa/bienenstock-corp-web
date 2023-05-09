@@ -4,7 +4,7 @@ import {
   USER,
   ROLES,
   THEADPURCHASESHISTORY,
-  TBODYPENDINGENTRY,
+  TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
 import StatesContext from "../../Contexts/StatesContext";
 
@@ -27,7 +27,7 @@ const StorageArea = () => {
     setShowModal(true);
   };
 
-  const updatedTBODYPENDINGENTRY = TBODYPENDINGENTRY.map((entry) => ({
+  const updatedTBODYPURCHASEHISTORY = TBODYPURCHASEHISTORY.map((entry) => ({
     ...entry,
     Status: (
       <Button
@@ -45,7 +45,7 @@ const StorageArea = () => {
         <h3>Pending product entry</h3>
         <Table
           thead={THEADPURCHASESHISTORY}
-          content={updatedTBODYPENDINGENTRY}
+          content={updatedTBODYPURCHASEHISTORY}
         />
       </section>
       <section>

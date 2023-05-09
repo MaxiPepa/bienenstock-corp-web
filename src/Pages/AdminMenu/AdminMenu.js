@@ -1,25 +1,30 @@
-import API from "../../Hooks/API/API";
+import { useEffect, useState, useContext } from "react";
+import APIContext from "../../Contexts/APIContext";
 import Table from "../../Components/Tables/Table";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 import { USER, THEADUSER, ROLES } from "../../Assets/Constants";
-import { useEffect, useState } from "react";
 
 const AdminMenu = () => {
   const [users, setUsers] = useState([]);
   useRedirect(USER.role, ROLES.ADMIN);
 
+  const { get } = useContext(APIContext);
+
   useEffect(() => {
-    new API().get("user/getUsers").then((data) => {
-      setUsers(
-        data.users.map((r) => ({
-          fullName: r.fullName,
-          userId: r.userId,
-          email: r.email,
-          userType: r.userType,
-        }))
-      );
-    });
-  }, []);
+    const getUsers = async () => {
+      await get("user/getUsers").then((data) => {
+        setUsers(
+          data.users.map((r) => ({
+            userId: r.userId,
+            fullName: r.fullName,
+            email: r.email,
+            userType: r.userType,
+          }))
+        );
+      });
+    };
+    getUsers();
+  }, [get]);
 
   return (
     <div>

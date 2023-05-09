@@ -20,7 +20,7 @@ import AdminMenu from "../Pages/AdminMenu/AdminMenu";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      {<Route path="/" element={<Navigate replace to="/dashboard" />} />}
+      <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Main render={<Dashboard />} />} />
       <Route
