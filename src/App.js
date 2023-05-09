@@ -9,13 +9,13 @@ import "./App.css";
 function App() {
   return (
     <>
-      <UserProvider>
-        <StatesProvider>
-          <APIProvider>
+      <APIProvider>
+        <UserProvider>
+          <StatesProvider>
             <RouterProvider router={router} />
-          </APIProvider>
-        </StatesProvider>
-      </UserProvider>
+          </StatesProvider>
+        </UserProvider>
+      </APIProvider>
     </>
   );
 }

@@ -10,7 +10,7 @@ const APIProvider = ({ children }) => {
   };
 
   const login = async (userData) => {
-    return await fetch(APIURL.local + "autentication/login", {
+    return await fetch(APIURL.local + "authentication/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

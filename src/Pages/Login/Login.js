@@ -52,7 +52,6 @@ const Login = () => {
             avatar: res.avatar,
             fullName: res.fullName,
             email: res.email,
-            tokenExpiration: res.expiration,
             userType: res.userType,
           });
           cookies.set(COOKIENAME.session, res.token, {
