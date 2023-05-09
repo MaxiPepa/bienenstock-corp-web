@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 import {
-  USER,
   ROLES,
   THEADPURCHASESHISTORY,
   TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
 import StatesContext from "../../Contexts/StatesContext";
+import UserContext from "../../Contexts/UserContext";
 
 import Table from "../../Components/Tables/Table";
 import Button from "../../Components/Button/Button";
@@ -18,7 +18,8 @@ import Modal from "../../Components/Modal/Modal";
 import { useStoreInputs } from "../../Hooks/InputsLists/useStoreInputs";
 
 const StorageArea = () => {
-  useRedirect(USER.role, ROLES.DEPOSITOR);
+  const { userData } = useContext(UserContext);
+  useRedirect(userData.userType, ROLES.DEPOSITOR);
 
   const { setShowModal } = useContext(StatesContext);
   const {

@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 import {
-  USER,
   ROLES,
   THEADPURCHASESHISTORY,
   TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
 import StatesContext from "../../Contexts/StatesContext";
+import UserContext from "../../Contexts/UserContext";
 import { usePurchaseInputs } from "../../Hooks/InputsLists/usePurchaseInputs";
 
 import Button from "../../Components/Button/Button";
@@ -19,7 +19,8 @@ import icons from "../../Assets/Icons";
 import "./PurchasesArea.css";
 
 const PurchansingArea = () => {
-  useRedirect(USER.role, ROLES.BUYER);
+  const { userData } = useContext(UserContext);
+  useRedirect(userData.userType, ROLES.BUYER);
 
   const { setShowModal, showModal } = useContext(StatesContext);
   const { arrayPurchaseInputs, buyProductsHandler } = usePurchaseInputs();
@@ -36,7 +37,7 @@ const PurchansingArea = () => {
   return (
     <div className="purchase-area">
       <h2>Purchases Area</h2>
-      {USER.role === ROLES.BUYER ? (
+      {userData.userType === ROLES.BUYER ? (
         <Button
           styles="purchase-button"
           buttonFunction={modalStatusHandler}

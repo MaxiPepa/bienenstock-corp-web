@@ -1,14 +1,17 @@
-import React from "react";
-import NavLink from "../NavLink/NavLink";
+import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import { NAVLINKS, USER, ROLES, COOKIENAME } from "../../Assets/Constants";
+import NavLink from "../NavLink/NavLink";
+import UserCard from "../UserCard/UserCard";
+import UserContext from "../../Contexts/UserContext";
 
-import icons from "../../Assets/Icons";
+import { NAVLINKS, ROLES, COOKIENAME } from "../../Assets/Constants";
+
 import "./Sidebar.css";
 
 const Sidebar = ({ isVisible, setIsVisible }) => {
   const cookies = new Cookies();
+  const { userData } = useContext(UserContext);
 
   const hideSidebar = () => {
     setIsVisible(!isVisible);
@@ -21,19 +24,13 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
 
   return (
     <div className={isVisible ? "sidebar open" : "sidebar"}>
-      <div className="user-card">
-        <div className="user-profile">
-          <icons.AccountCircleSharpIcon />
-          <p>{USER.name}</p>
-        </div>
-        <span>{USER.role}</span>
-      </div>
+      <UserCard />
       <nav>
         <ul>
           {NAVLINKS.map((navlink, index) => {
             return navlink.roles === "All" ||
-              navlink.roles === USER.role ||
-              USER.role === ROLES.ADMIN ? (
+              navlink.roles === userData.userType ||
+              userData.userType === ROLES.ADMIN ? (
               <NavLink
                 key={index}
                 navigation={navlink.navigation}
