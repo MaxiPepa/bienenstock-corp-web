@@ -1,25 +1,20 @@
-import React from "react";
-import StatesContext from "../../Contexts/StatesContext";
-import UserContext from "../../Contexts/UserContext";
-
+import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../../Hooks/API/API";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
-
-import { USER } from "../../Assets/Constants";
+import UserContext from "../../Contexts/UserContext";
+import APIContext from "../../Contexts/APIContext";
+import Cookies from "universal-cookie";
+import { COOKIENAME } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
 
 const Login = () => {
-  useRedirect(USER.role, "login");
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
-
-  const { setIsLogged } = useContext(StatesContext);
   const { setUserData } = useContext(UserContext);
+  const { login, getToken } = useContext(APIContext);
+
   const navigate = useNavigate();
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
@@ -31,6 +26,12 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
+  useEffect(() => {
+    if (getToken()) {
+      navigate("/dashboard");
+    }
+  }, [getToken, navigate]);
+
   const handlerButtonPassword = () => {
     if (visibilityPassword === "password") {
       setVisibilityPassword("text");
@@ -41,18 +42,21 @@ const Login = () => {
     }
   };
 
-  const onSubmit = (data) => {
-    setIsLogged(true);
-    new API()
-      .login(data)
+  const cookies = new Cookies();
+
+  const onSubmit = async (data) => {
+    await login(data)
       .then((res) => {
         if (res.success) {
           setUserData({
             avatar: res.avatar,
-            email: res.email,
             fullName: res.fullName,
-            token: res.token,
+            email: res.email,
+            tokenExpiration: res.expiration,
             userType: res.userType,
+          });
+          cookies.set(COOKIENAME.session, res.token, {
+            expires: new Date(res.expiration),
           });
           navigate("/dashboard");
         }

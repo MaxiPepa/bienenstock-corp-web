@@ -1,0 +1,17 @@
+.pending-table-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #3a990e;
+}
+
+.pending-table-button svg {
+  font-size: 30px;
+}
+
+.pending-table-button:hover {
+  transform: scale(1.3);
+  color: #296e09;
+  transition: all 0.1s ease-in-out;
+}
