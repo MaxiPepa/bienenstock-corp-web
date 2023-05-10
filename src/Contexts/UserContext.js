@@ -16,26 +16,20 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     if (getToken()) {
       const getUserData = async () => {
-        await post("authentication/getLoggedUser", {})
-          .then((res) => {
-            if (res.success) {
-              setUserData({
-                avatar: res.avatar,
-                fullName: res.fullName,
-                email: res.email,
-                userType: res.userType,
-              });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        await post("authentication/getLoggedUser", {}).then((res) => {
+          if (res.success) {
+            setUserData({
+              avatar: res.avatar,
+              fullName: res.fullName,
+              email: res.email,
+              userType: res.userType,
+            });
+          }
+        });
       };
       getUserData();
     }
   }, [getToken, post]);
-
-  console.log(userData);
 
   return (
     <UserContext.Provider
