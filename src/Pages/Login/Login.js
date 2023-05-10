@@ -45,25 +45,22 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    await login(data)
-      .then((res) => {
-        if (res.success) {
-          setUserData({
-            avatar: res.avatar,
-            fullName: res.fullName,
-            email: res.email,
-            tokenExpiration: res.expiration,
-            userType: res.userType,
-          });
-          cookies.set(COOKIENAME.session, res.token, {
-            expires: new Date(res.expiration),
-          });
-          navigate("/dashboard");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    await login(data).then((res) => {
+      if (res.success) {
+        setUserData({
+          avatar: res.avatar,
+          fullName: res.fullName,
+          email: res.email,
+          userType: res.userType,
+        });
+        cookies.set(COOKIENAME.session, res.token, {
+          expires: new Date(res.expiration),
+        });
+        navigate("/dashboard");
+      } else {
+        alert(res.message);
+      }
+    });
   };
 
   return (

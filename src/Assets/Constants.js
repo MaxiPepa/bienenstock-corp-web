@@ -8,12 +8,6 @@ export const ROLES = {
   ANALYST: "Analyst",
 };
 
-export const USER = {
-  name: "Gaston Garnero",
-  email: "gastongarnero@gmail.com",
-  role: ROLES.DEPOSITOR,
-};
-
 export const NAVLINKS = [
   {
     roles: "All",

@@ -1,17 +1,26 @@
 .pending-table-button {
-  cursor: pointer;
-  background-color: transparent;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  font-family: "Exo";
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #3b82f6;
+  color: #f3f7fe;
   border: none;
-  outline: none;
-  color: #3a990e;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s;
+}
+
+.pending-table-button:hover {
+  background-color: #53f761;
+  box-shadow: 0 0 0 5px #41f63b5f;
+  color: #2e2e2e;
+  cursor: pointer;
 }
 
 .pending-table-button svg {
   font-size: 30px;
-}
-
-.pending-table-button:hover {
-  transform: scale(1.3);
-  color: #296e09;
-  transition: all 0.1s ease-in-out;
 }

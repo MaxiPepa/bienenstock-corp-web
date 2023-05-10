@@ -1,9 +1,11 @@
-import React from "react";
+import { useContext } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
-import { USER, ROLES } from "../../Assets/Constants";
+import UserContext from "../../Contexts/UserContext";
+import { ROLES } from "../../Assets/Constants";
 
 const SalesArea = () => {
-  useRedirect(USER.role, ROLES.SELLER);
+  const { userData } = useContext(UserContext);
+  useRedirect(userData.userType, ROLES.SALES);
   return (
     <div>
       <h2>SalesArea</h2>

@@ -10,7 +10,7 @@ const APIProvider = ({ children }) => {
   };
 
   const login = async (userData) => {
-    return await fetch(APIURL.local + "autentication/login", {
+    return await fetch(APIURL.local + "authentication/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ const APIProvider = ({ children }) => {
       body: JSON.stringify(userData),
     })
       .then((res) => res.json())
-      .catch((err) => err);
+      .catch((err) => console.log(err));
   };
 
   const get = async (url) => {
@@ -30,7 +30,7 @@ const APIProvider = ({ children }) => {
       },
     })
       .then((res) => res.json())
-      .catch((err) => err);
+      .catch((err) => console.log(err));
   };
 
   const post = async (url, request) => {
@@ -43,7 +43,7 @@ const APIProvider = ({ children }) => {
       body: JSON.stringify(request),
     })
       .then((res) => res.json())
-      .catch((err) => err);
+      .catch((err) => console.log(err));
   };
 
   return (

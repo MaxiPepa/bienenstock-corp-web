@@ -1,29 +1,40 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 import {
-  USER,
   ROLES,
   THEADPURCHASESHISTORY,
   TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
 import StatesContext from "../../Contexts/StatesContext";
+import UserContext from "../../Contexts/UserContext";
 
 import Table from "../../Components/Tables/Table";
 import Button from "../../Components/Button/Button";
+import Input from "../../Components/Input/Input";
 
 import "./StorageArea.css";
 import icons from "../../Assets/Icons";
 import Modal from "../../Components/Modal/Modal";
+import { useStoreInputs } from "../../Hooks/InputsLists/useStoreInputs";
 
 const StorageArea = () => {
-  useRedirect(USER.role, ROLES.DEPOSITOR);
+  const { userData } = useContext(UserContext);
+  useRedirect(userData.userType, ROLES.DEPOSITOR);
 
   const { setShowModal } = useContext(StatesContext);
-  const [entryProduct, setEntryProduct] = useState();
+  const {
+    arrayStorageInputs,
+    addProductsHandler,
+    setInputProductName,
+    setInputProductQuantity,
+    setInputProductPrice,
+  } = useStoreInputs();
 
   const aceptProduct = (pendingProduct) => {
     console.log("aceptado el producto id ", pendingProduct);
-    setEntryProduct(pendingProduct);
+    setInputProductName(pendingProduct.Product);
+    setInputProductQuantity(pendingProduct.Quantity);
+    setInputProductPrice(pendingProduct.Price);
     setShowModal(true);
   };
 
@@ -52,7 +63,22 @@ const StorageArea = () => {
         <h3>Pending products release</h3>
       </section>
       <Modal modalTitle="Entry Product">
-        <h3>Product: {JSON.stringify(entryProduct)}</h3>
+        {arrayStorageInputs.map((input, index) => (
+          <Input
+            key={index}
+            labelName={input.labelName}
+            styles={input.styles}
+            type={input.type}
+            placeholder={input.placeholder}
+            value={input.value}
+            inputFunction={input.inputFunction}
+          />
+        ))}
+        <Button
+          styles="modal-button-add"
+          buttonFunction={addProductsHandler}
+          buttonText="Add Product"
+        />
       </Modal>
     </div>
   );

@@ -8,8 +8,9 @@ const Button = ({ styles, type, buttonFunction, buttonIcon, buttonText }) => {
         type={type ? type : "button"}
         onClick={buttonFunction}
       >
-        {buttonIcon}
-        <span>{buttonText}</span>
+        {buttonIcon ? buttonIcon : null}
+
+        {buttonText ? <span>{buttonText}</span> : null}
       </button>
     </>
   );
