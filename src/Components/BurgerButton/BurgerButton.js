@@ -5,24 +5,24 @@ import "./BurgerButton.css";
 
 import icons from "../../Assets/Icons";
 
-const Burgerbutton = ({ isVisible, setIsVisible }) => {
+const Burgerbutton = ({ showSideBar, setShowSideBar }) => {
   const [menuIcon, setMenuIcon] = useState(<icons.MenuRoundedIcon />);
 
   useEffect(() => {
-    if (isVisible === true) {
+    if (showSideBar === true) {
       setMenuIcon(<icons.MenuOpenRoundedIcon />);
     } else {
       setMenuIcon(<icons.MenuRoundedIcon />);
     }
-  }, [isVisible]);
+  }, [showSideBar]);
 
   const openMenu = () => {
-    setIsVisible(!isVisible);
+    setShowSideBar(!showSideBar);
   };
   return (
     <>
       <button
-        className={isVisible ? "sidebar-toggle" : "close sidebar-toggle"}
+        className={showSideBar ? "sidebar-toggle" : "close sidebar-toggle"}
         onClick={openMenu}
       >
         {menuIcon}

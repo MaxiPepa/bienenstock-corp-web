@@ -3,16 +3,19 @@ import { useState, createContext } from "react";
 const StatesContext = createContext();
 
 const StatesProvider = ({ children }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   return (
     <StatesContext.Provider
       value={{
-        isVisible,
-        setIsVisible,
+        showSideBar,
+        setShowSideBar,
         showModal,
         setShowModal,
+        showLoader,
+        setShowLoader,
       }}
     >
       {children}

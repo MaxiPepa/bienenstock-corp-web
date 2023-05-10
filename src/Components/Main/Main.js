@@ -7,11 +7,11 @@ import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Main = ({ render }) => {
-  const { isVisible, setIsVisible } = useContext(StatesContext);
+  const { showSideBar, setShowSideBar } = useContext(StatesContext);
   return (
     <main>
-      <Header isVisible={isVisible} setIsVisible={setIsVisible} />
-      <Sidebar isVisible={isVisible} setIsVisible={setIsVisible} />
+      <Header showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
+      <Sidebar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
       <div className="main-content">{render}</div>
     </main>
   );

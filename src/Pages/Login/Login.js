@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../Contexts/UserContext";
 import APIContext from "../../Contexts/APIContext";
+import StatesContext from "../../Contexts/StatesContext";
 import Cookies from "universal-cookie";
 import { COOKIENAME } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
+import Loader from "../../Components/Loader/Loader";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;
@@ -20,6 +22,9 @@ const Login = () => {
   const [visibilityButton, setvisibilityButton] = useState(
     <icons.VisibilityIcon />
   );
+
+  const { setShowLoader } = useContext(StatesContext);
+
   const {
     register,
     formState: { errors },
@@ -45,6 +50,7 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
+    setShowLoader(true);
     await login(data).then((res) => {
       if (res.success) {
         setUserData({
@@ -56,8 +62,10 @@ const Login = () => {
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),
         });
+        setShowLoader(false);
         navigate("/dashboard");
       } else {
+        setShowLoader(false);
         alert(res.message);
       }
     });
@@ -65,6 +73,7 @@ const Login = () => {
 
   return (
     <>
+      <Loader />
       <div className="login">
         <h2>
           Bienen<span>stock</span> Corp
