@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import StatesContext from "../../Contexts/StatesContext";
 
 export const useStoreInputs = () => {
-  const { setShowModal } = useContext(StatesContext);
+  const { setShowModal, setShowExpiration } = useContext(StatesContext);
   const [inputProductName, setInputProductName] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
   const [inputProductPrice, setInputProductPrice] = useState("");
@@ -57,6 +57,7 @@ export const useStoreInputs = () => {
     console.log(productObj);
     cleanInputs();
     setShowModal(false);
+    setShowExpiration(null);
   };
 
   return {
