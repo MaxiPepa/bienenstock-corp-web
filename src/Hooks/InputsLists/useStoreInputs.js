@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import StatesContext from "../../Contexts/StatesContext";
 
 export const useStoreInputs = () => {
+  const { setShowModal } = useContext(StatesContext);
   const [inputProductName, setInputProductName] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
   const [inputProductPrice, setInputProductPrice] = useState("");
-  const [expiration, setExpiration] = useState(false);
   const [expirationDate, setExpirationDate] = useState("");
 
   const arrayStorageInputs = [
@@ -34,19 +35,19 @@ export const useStoreInputs = () => {
     },
   ];
 
-  const inputsValues = [
-    inputProductName,
-    inputProductQuantity,
-    inputProductPrice,
-    expiration,
-    expirationDate,
-  ];
+  const cleanInputs = () => {
+    setInputProductName("");
+    setInputProductPrice("");
+    setInputProductQuantity("");
+    setExpirationDate("");
+  };
 
   const addProductsHandler = () => {
     const productObj = {
       name: inputProductName,
       price: inputProductPrice,
       quantity: inputProductQuantity,
+      expirationDate: expirationDate,
       entryDate: new Date().toLocaleDateString("es-ES", {
         day: "2-digit",
         month: "2-digit",
@@ -54,15 +55,17 @@ export const useStoreInputs = () => {
       }),
     };
     console.log(productObj);
+    cleanInputs();
+    setShowModal(false);
   };
 
   return {
     arrayStorageInputs,
-    inputsValues,
+    inputProductName,
+    expirationDate,
     setInputProductName,
     setInputProductQuantity,
     setInputProductPrice,
-    setExpiration,
     setExpirationDate,
     addProductsHandler,
   };

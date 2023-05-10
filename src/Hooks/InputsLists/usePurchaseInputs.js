@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import StatesContext from "../../Contexts/StatesContext";
 
 export const usePurchaseInputs = () => {
+  const { setShowModal } = useContext(StatesContext);
   const [inputProductName, setInputProductName] = useState("");
   const [inputProductPrice, setInputProductPrice] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
@@ -64,6 +66,7 @@ export const usePurchaseInputs = () => {
       }),
     };
     console.log(productObj);
+    setShowModal(false);
   };
 
   return {

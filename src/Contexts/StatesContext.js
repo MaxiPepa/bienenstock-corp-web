@@ -6,6 +6,7 @@ const StatesProvider = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+  const [showExpiration, setShowExpiration] = useState(null);
 
   return (
     <StatesContext.Provider
@@ -16,6 +17,8 @@ const StatesProvider = ({ children }) => {
         setShowModal,
         showLoader,
         setShowLoader,
+        showExpiration,
+        setShowExpiration,
       }}
     >
       {children}

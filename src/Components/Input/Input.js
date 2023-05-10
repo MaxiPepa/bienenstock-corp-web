@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Input.css";
 
-const input = ({
+const Input = ({
   labelName,
   styles,
   type,
@@ -24,4 +24,4 @@ const input = ({
   );
 };
 
-export default input;
+export default Input;

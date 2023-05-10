@@ -34,7 +34,7 @@ const AdminMenu = () => {
 
   return (
     <div>
-      <h2>Users</h2>
+      <h2 className="area-title">Users</h2>
       <Table content={users} thead={THEADUSER} />
     </div>
   );

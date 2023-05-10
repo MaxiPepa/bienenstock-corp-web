@@ -8,20 +8,6 @@
   height: 100%;
 }
 
-.purchase-area > h2 {
-  font-family: "Exo";
-  font-size: 40px;
-  font-weight: 700;
-  color: #18467a;
-}
-
-.purchase-area > h3 {
-  font-family: "Exo";
-  font-size: 30px;
-  font-weight: 700;
-  color: #18467a;
-}
-
 .purchase-button {
   display: flex;
   justify-content: center;

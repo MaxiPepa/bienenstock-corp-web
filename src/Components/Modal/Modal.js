@@ -6,12 +6,18 @@ import "./Modal.css";
 import icons from "../../Assets/Icons";
 
 const Modal = ({ modalTitle, children, enterFunction }) => {
-  const { showModal, setShowModal } = useContext(StatesContext);
+  const { showModal, setShowModal, setShowExpiration } =
+    useContext(StatesContext);
 
   const enterPressed = (e) => {
     if (e.key === "Enter") {
       enterFunction();
     }
+  };
+
+  const closeModalHandler = () => {
+    setShowModal(!showModal);
+    setShowExpiration(null);
   };
 
   window.onkeydown = enterPressed;
@@ -25,7 +31,7 @@ const Modal = ({ modalTitle, children, enterFunction }) => {
               <h2>{modalTitle}</h2>
               <Button
                 styles="modal-close-button"
-                buttonFunction={() => setShowModal(!showModal)}
+                buttonFunction={closeModalHandler}
                 buttonIcon={<icons.CloseRoundedIcon />}
               />
             </div>
