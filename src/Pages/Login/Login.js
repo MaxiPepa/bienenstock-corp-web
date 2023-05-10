@@ -62,9 +62,7 @@ const Login = () => {
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),
         });
-        setTimeout(() => {
-          setShowLoader(false);
-        }, 500);
+        setShowLoader(false);
         navigate("/dashboard");
       } else {
         setShowLoader(false);
