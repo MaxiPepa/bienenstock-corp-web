@@ -9,12 +9,12 @@ import { NAVLINKS, ROLES, COOKIENAME } from "../../Assets/Constants";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ isVisible, setIsVisible }) => {
+const Sidebar = ({ showSideBar, setShowSideBar }) => {
   const cookies = new Cookies();
   const { userData } = useContext(UserContext);
 
   const hideSidebar = () => {
-    setIsVisible(!isVisible);
+    setShowSideBar(!showSideBar);
   };
 
   const logoutHandler = () => {
@@ -23,7 +23,7 @@ const Sidebar = ({ isVisible, setIsVisible }) => {
   };
 
   return (
-    <div className={isVisible ? "sidebar open" : "sidebar"}>
+    <div className={showSideBar ? "sidebar open" : "sidebar"}>
       <UserCard />
       <nav>
         <ul>
