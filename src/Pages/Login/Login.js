@@ -90,7 +90,7 @@ const Login = () => {
             <icons.PersonOutlineTwoToneIcon className="icon" />
             <input
               type="text"
-              placeholder="email"
+              placeholder="Email"
               {...register("email", { required: true, pattern: emailRegex })}
             />
             {errors.email?.type === "required" && (
@@ -106,7 +106,7 @@ const Login = () => {
             <icons.HttpsTwoToneIcon className="icon" />
             <input
               type={visibilityPassword}
-              placeholder="password"
+              placeholder="Password"
               {...register("password", {
                 required: true,
                 pattern: passwordRegex,
@@ -130,7 +130,7 @@ const Login = () => {
             )}
           </div>
           <button type="submit" className="signInButton">
-            INGRESAR
+            Sign In
           </button>
         </form>
       </div>
