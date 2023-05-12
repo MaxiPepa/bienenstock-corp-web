@@ -1,0 +1,46 @@
+.alert-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  background-color: #c21f1f2d;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.alert-content > svg {
+  width: 30px;
+  height: 30px;
+  fill: rgb(222, 61, 49);
+}
+
+.alert-content > p {
+  color: rgb(255, 125, 125);
+  font-size: 1.2rem;
+  font-weight: 400;
+}

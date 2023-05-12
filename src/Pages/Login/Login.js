@@ -10,20 +10,23 @@ import { COOKIENAME } from "../../Assets/Constants";
 import icons from "../../Assets/Icons";
 import "./Login.css";
 import Loader from "../../Components/Loader/Loader";
+import Alert from "../../Components/Alert/Alert";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
+
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
+  const { setShowLoader, setShowAlert } = useContext(StatesContext);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
     <icons.VisibilityIcon />
   );
-
-  const { setShowLoader } = useContext(StatesContext);
 
   const {
     register,
@@ -66,7 +69,11 @@ const Login = () => {
         navigate("/dashboard");
       } else {
         setShowLoader(false);
-        alert(res.message);
+        setErrorMessage(res.message);
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 3000);
       }
     });
   };
@@ -127,6 +134,10 @@ const Login = () => {
           </button>
         </form>
       </div>
+      <Alert
+        alertIcon={<icons.ErrorOutlineRoundedIcon />}
+        alertMessage={errorMessage}
+      />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
     </>
   );
