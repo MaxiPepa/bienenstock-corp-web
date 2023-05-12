@@ -9,7 +9,7 @@ const Loader = () => {
   return (
     showLoader && (
       <div className="loader-container">
-        <div class="loader"></div>
+        <div className="loader"></div>
       </div>
     )
   );

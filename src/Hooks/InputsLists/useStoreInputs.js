@@ -3,6 +3,7 @@ import StatesContext from "../../Contexts/StatesContext";
 
 export const useStoreInputs = () => {
   const { setShowModal, setShowExpiration } = useContext(StatesContext);
+  const [inputCode, setInputCode] = useState("");
   const [inputProductName, setInputProductName] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
   const [inputProductPrice, setInputProductPrice] = useState("");
@@ -33,6 +34,14 @@ export const useStoreInputs = () => {
       value: inputProductQuantity,
       inputFunction: setInputProductQuantity,
     },
+    {
+      labelName: "Product code: ",
+      styles: "input",
+      type: "text",
+      placeholder: "xxxxx-xxxxx",
+      value: inputCode,
+      inputFunction: setInputCode,
+    },
   ];
 
   const cleanInputs = () => {
@@ -47,6 +56,7 @@ export const useStoreInputs = () => {
       name: inputProductName,
       price: inputProductPrice,
       quantity: inputProductQuantity,
+      code: inputCode,
       expirationDate: expirationDate,
       entryDate: new Date().toLocaleDateString("es-ES", {
         day: "2-digit",
@@ -63,10 +73,12 @@ export const useStoreInputs = () => {
   return {
     arrayStorageInputs,
     inputProductName,
+    inputCode,
     expirationDate,
     setInputProductName,
     setInputProductQuantity,
     setInputProductPrice,
+    setInputCode,
     setExpirationDate,
     addProductsHandler,
   };
