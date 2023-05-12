@@ -24,7 +24,7 @@ td {
   text-align: center;
   font-family: "Exo";
   font-weight: 900;
-  font-size: 1.2vh;
+  font-size: 1rem;
 }
 
 tr:nth-child(even) {

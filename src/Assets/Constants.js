@@ -113,7 +113,7 @@ export const TBODYPURCHASEHISTORY = [
     Quantity: "200",
     Price: "100",
     Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
+    Supplier: "Coca Cola company",
   },
   {
     id: 2,
@@ -140,7 +140,7 @@ export const TBODYPURCHASEHISTORY = [
     Quantity: "200",
     Price: "100",
     Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
+    Supplier: "Coca Cola company",
   },
   {
     id: 5,
@@ -149,7 +149,7 @@ export const TBODYPURCHASEHISTORY = [
     Quantity: "200",
     Price: "100",
     Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
+    Supplier: "Coca Cola company",
   },
   {
     id: 6,
@@ -176,6 +176,6 @@ export const TBODYPURCHASEHISTORY = [
     Quantity: "200",
     Price: "100",
     Date: "29/12/2020",
-    Supplier: "Coca Cola Companie",
+    Supplier: "Coca Cola company",
   },
 ];
