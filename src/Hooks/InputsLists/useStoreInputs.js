@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import StatesContext from "../../Contexts/StatesContext";
 
 export const useStoreInputs = () => {
+  const { setShowModal, setShowExpiration } = useContext(StatesContext);
+  const [inputCode, setInputCode] = useState("");
   const [inputProductName, setInputProductName] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
   const [inputProductPrice, setInputProductPrice] = useState("");
-  const [expiration, setExpiration] = useState(false);
   const [expirationDate, setExpirationDate] = useState("");
 
   const arrayStorageInputs = [
@@ -32,21 +34,30 @@ export const useStoreInputs = () => {
       value: inputProductQuantity,
       inputFunction: setInputProductQuantity,
     },
+    {
+      labelName: "Product code: ",
+      styles: "input",
+      type: "text",
+      placeholder: "xxxxx-xxxxx",
+      value: inputCode,
+      inputFunction: setInputCode,
+    },
   ];
 
-  const inputsValues = [
-    inputProductName,
-    inputProductQuantity,
-    inputProductPrice,
-    expiration,
-    expirationDate,
-  ];
+  const cleanInputs = () => {
+    setInputProductName("");
+    setInputProductPrice("");
+    setInputProductQuantity("");
+    setExpirationDate("");
+  };
 
   const addProductsHandler = () => {
     const productObj = {
       name: inputProductName,
       price: inputProductPrice,
       quantity: inputProductQuantity,
+      code: inputCode,
+      expirationDate: expirationDate,
       entryDate: new Date().toLocaleDateString("es-ES", {
         day: "2-digit",
         month: "2-digit",
@@ -54,15 +65,20 @@ export const useStoreInputs = () => {
       }),
     };
     console.log(productObj);
+    cleanInputs();
+    setShowModal(false);
+    setShowExpiration(null);
   };
 
   return {
     arrayStorageInputs,
-    inputsValues,
+    inputProductName,
+    inputCode,
+    expirationDate,
     setInputProductName,
     setInputProductQuantity,
     setInputProductPrice,
-    setExpiration,
+    setInputCode,
     setExpirationDate,
     addProductsHandler,
   };

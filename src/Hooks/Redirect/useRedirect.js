@@ -7,7 +7,11 @@ const useRedirect = (currentRole, requiredRole) => {
   const currentURL = window.location.pathname;
 
   useEffect(() => {
-    if (currentRole !== requiredRole && currentRole !== ROLES.ADMIN) {
+    if (
+      currentRole !== requiredRole &&
+      currentRole !== ROLES.ADMIN &&
+      currentRole !== null
+    ) {
       navigate("/dashboard");
     } else {
       currentURL === "/" || currentURL === "/login"

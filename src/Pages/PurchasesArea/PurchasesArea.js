@@ -36,7 +36,7 @@ const PurchansingArea = () => {
 
   return (
     <div className="purchase-area">
-      <h2>Purchases Area</h2>
+      <h2 className="area-title">Purchases Area</h2>
       {userData.userType === ROLES.BUYER ? (
         <Button
           styles="purchase-button"
@@ -45,7 +45,7 @@ const PurchansingArea = () => {
           buttonText="New Purchase"
         />
       ) : null}
-      <h3>Purchases History</h3>
+      <h3 className="area-subtitle">Purchases History</h3>
       <Table
         content={updatedTBODYPURCHASEHISTORY}
         thead={THEADPURCHASESHISTORY}

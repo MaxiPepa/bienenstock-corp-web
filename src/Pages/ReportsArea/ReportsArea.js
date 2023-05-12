@@ -8,7 +8,7 @@ const ReportsArea = () => {
   useRedirect(userData.userType, ROLES.ANALYST);
   return (
     <div>
-      <h2>ReportsArea</h2>
+      <h2 className="area-title">ReportsArea</h2>
     </div>
   );
 };
