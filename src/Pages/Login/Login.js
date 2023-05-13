@@ -79,67 +79,76 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Loader />
-      <div className="login">
-        <h2>
-          Bienen<span>stock</span> Corp
-        </h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="formlogin">
-          <div className="inputs">
-            <icons.PersonOutlineTwoToneIcon className="icon" />
-            <input
-              type="text"
-              placeholder="Email"
-              {...register("email", { required: true, pattern: emailRegex })}
-            />
-            {errors.email?.type === "required" && (
-              <p className="error">You must enter an email address to login</p>
-            )}
-            {errors.email?.type === "pattern" && (
-              <p className="error">
-                You must enter a valid email address to login
-              </p>
-            )}
-          </div>
-          <div className="inputs">
-            <icons.HttpsTwoToneIcon className="icon" />
-            <input
-              type={visibilityPassword}
-              placeholder="Password"
-              {...register("password", {
-                required: true,
-                pattern: passwordRegex,
-              })}
-            />
-            <button
-              id="visibility"
-              type="button"
-              onClick={handlerButtonPassword}
-            >
-              {visibilityButton}
+    <div className="login-page">
+      <div className="login-container">
+        <div className="left-login-container">
+          <h2>
+            Bienen<span>stock</span> Corp
+          </h2>
+        </div>
+        <div className="right-login-container">
+          <form onSubmit={handleSubmit(onSubmit)} className="formlogin">
+            <div className="inputs">
+              <div className="input-icons">
+                <icons.PersonOutlineTwoToneIcon className="icon" />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: true,
+                    pattern: emailRegex,
+                  })}
+                />
+              </div>
+              {errors.email?.type === "required" && (
+                <p className="error">
+                  You must enter an email address to login
+                </p>
+              )}
+              {errors.email?.type === "pattern" && (
+                <p className="error">
+                  You must enter a valid email address to login
+                </p>
+              )}
+            </div>
+            <div className="inputs">
+              <div className="input-icons">
+                <icons.HttpsTwoToneIcon className="icon" />
+                <input
+                  type={visibilityPassword}
+                  placeholder="Password"
+                  {...register("password", {
+                    required: true,
+                    pattern: passwordRegex,
+                  })}
+                />
+                <button
+                  id="visibility"
+                  type="button"
+                  onClick={handlerButtonPassword}
+                >
+                  {visibilityButton}
+                </button>
+              </div>
+              {errors.password?.type === "required" && (
+                <p className="error">You must enter a password to log in</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="error">
+                  The password must have at least 6 characters, a capital
+                  letter, a lowercase letter, a number and a special character.
+                </p>
+              )}
+            </div>
+            <button type="submit" className="signInButton">
+              Sign In
             </button>
-            {errors.password?.type === "required" && (
-              <p className="error">You must enter a password to log in</p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p className="error errorPassword">
-                The password must have at least 6 characters, a capital letter,
-                a lowercase letter, a number and a special character.
-              </p>
-            )}
-          </div>
-          <button type="submit" className="signInButton">
-            Sign In
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
-      <Alert
-        alertIcon={<icons.ErrorOutlineRoundedIcon />}
-        alertMessage={errorMessage}
-      />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
-    </>
+      <Loader />
+    </div>
   );
 };
 

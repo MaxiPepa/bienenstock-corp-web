@@ -1,62 +1,86 @@
-.login {
+.login-page {
+  position: absolute;
+  height: 100vh;
   width: 100%;
-  height: 98%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
 }
 
-.login h2 {
-  font-size: 30px;
+.login-container {
+  width: 700px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.left-login-container {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-login-container > h2 {
+  font-size: 40px;
   font-weight: 400;
 }
-.login h2 span {
+
+.left-login-container > h2 > span {
   color: var(--c-color-1);
 }
 
-.formlogin {
-  width: 300px;
+.right-login-container {
+  width: 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.error {
-  color: rgb(109, 11, 11);
-  font-size: 15px;
-}
-
-.errorPassword {
-  font-size: 11px;
-  text-align: justify;
+.formlogin {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .inputs {
-  height: 50px;
+  height: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .icon {
   position: absolute;
-  margin-top: 5px;
-  margin-left: 2px;
+  left: 5px;
 }
+
 .inputs input {
   position: relative;
   width: 100%;
-  height: 35px;
+  height: 40px;
   background: transparent;
   padding: 5px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   color: var(--c-color-1);
   padding-left: 2rem;
-}
-.icon {
-  position: absolute;
-  margin-top: 5px;
-  margin-left: 2px;
 }
 
 .inputs input::placeholder {
@@ -75,6 +99,11 @@
   color: var(--c-color-1);
 }
 
+.error {
+  color: rgb(109, 11, 11);
+  font-size: 1rem;
+}
+
 .signInButton {
   width: 100%;
   background-color: white;
@@ -83,7 +112,6 @@
   border: none;
   color: var(--c-color-1);
   padding: 5px;
-  margin-top: 20px;
 }
 
 .signInButton:hover {
@@ -93,7 +121,9 @@
 }
 
 #copyright {
+  position: absolute;
   text-align: center;
+  bottom: 0;
   color: white;
 }
 
