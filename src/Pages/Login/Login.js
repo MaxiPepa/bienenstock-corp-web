@@ -1,16 +1,18 @@
 import { useState, useContext, useEffect } from "react";
+
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
 import UserContext from "../../Contexts/UserContext";
 import APIContext from "../../Contexts/APIContext";
 import StatesContext from "../../Contexts/StatesContext";
+
 import Cookies from "universal-cookie";
 import { COOKIENAME } from "../../Assets/Constants";
+import Loader from "../../Components/Loader/Loader";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
-import Loader from "../../Components/Loader/Loader";
-import Alert from "../../Components/Alert/Alert";
 
 const Login = () => {
   const emailRegex = /\S+@\S+\.\S+/;
@@ -18,9 +20,7 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
-  const { setShowLoader, setShowAlert } = useContext(StatesContext);
-
-  const [errorMessage, setErrorMessage] = useState("");
+  const { setShowLoader } = useContext(StatesContext);
 
   const navigate = useNavigate();
   const [visibilityPassword, setVisibilityPassword] = useState("password");
@@ -69,11 +69,7 @@ const Login = () => {
         navigate("/dashboard");
       } else {
         setShowLoader(false);
-        setErrorMessage(res.message);
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 3000);
+        alert(res.message);
       }
     });
   };
