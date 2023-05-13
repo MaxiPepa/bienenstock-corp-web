@@ -92,7 +92,7 @@ export const THEADPRODUCTS = [
   "Quantity",
 ];
 
-export const THEADUSER = ["UserId", "Full Name", "Email", "UserType"];
+export const THEADUSER = ["Full Name", "Email", "UserType"];
 
 export const THEADPURCHASESHISTORY = [
   "PurchaseId",

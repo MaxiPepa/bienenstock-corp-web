@@ -18,8 +18,8 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
   };
 
   const logoutHandler = () => {
-    hideSidebar();
     cookies.remove(COOKIENAME.session);
+    hideSidebar();
   };
 
   return (
