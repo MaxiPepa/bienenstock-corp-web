@@ -10,6 +10,7 @@ import StatesContext from "../../Contexts/StatesContext";
 import Cookies from "universal-cookie";
 import { COOKIENAME } from "../../Assets/Constants";
 import Loader from "../../Components/Loader/Loader";
+import Alert from "../../Components/Alert/Alert";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
@@ -20,9 +21,11 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
-  const { setShowLoader } = useContext(StatesContext);
+  const { setShowLoader, setShowAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState("");
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
     <icons.VisibilityIcon />
@@ -69,7 +72,11 @@ const Login = () => {
         navigate("/dashboard");
       } else {
         setShowLoader(false);
-        alert(res.message);
+        setErrorMessage(res.message);
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 5000);
       }
     });
   };
@@ -142,6 +149,10 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <Alert
+        alertIcon={<icons.ErrorOutlineRoundedIcon />}
+        alertMessage={errorMessage}
+      />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
       <Loader />
     </div>

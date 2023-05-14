@@ -1,6 +1,4 @@
 .modal {
-  display: grid;
-  place-items: center;
   position: absolute;
   z-index: 100;
   left: 0;
@@ -16,11 +14,15 @@
   display: flex;
   flex-direction: column;
   background-color: #fefefe;
-  margin: auto;
-  width: 800px;
+  margin: 100px auto;
+  width: 70%;
   height: auto;
   border-radius: 15px;
 }
+
+/*
+  * MODAL HEADER
+*/
 
 .modal-header {
   display: flex;
@@ -28,7 +30,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #18467a;
+  background-color: #141414;
   width: 100%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -66,30 +68,74 @@
   transition: all 0.1s ease-in-out;
 }
 
+/*
+  * MODAL CONTENT
+*/
+
 .modal-body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
   padding: 30px;
+  gap: 20px;
 }
 
+.left-content {
+  width: 49%;
+  height: 100%;
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.inputs-content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.button-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.right-content {
+  width: 49%;
+  height: 100%;
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/*
+  * MODAL ADD BUTTONS
+*/
+
 .modal-button-add {
-  /*position: absolute;
-  right: 0;
-  bottom: 0;*/
-  margin: 0 auto;
-  margin-top: 30px;
   display: flex;
   align-items: center;
   width: auto;
   height: 50px;
   border: none;
   color: #fff;
-  background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+  background-image: linear-gradient(
+    90deg,
+    rgba(36, 36, 36, 1) 0%,
+    rgba(92, 91, 91, 1) 100%
+  );
   border-radius: 5px;
   background-size: 100% auto;
   font-family: inherit;
@@ -115,14 +161,14 @@
 
 @keyframes pulse512 {
   0% {
-    box-shadow: 0 0 0 0 #05bada66;
+    box-shadow: 0 0 0 0 #4b4b4b8e;
   }
 
   70% {
-    box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    box-shadow: 0 0 0 10px #da674400;
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    box-shadow: 0 0 0 0 #da674400;
   }
 }

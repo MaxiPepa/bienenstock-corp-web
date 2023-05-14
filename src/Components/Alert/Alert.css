@@ -1,13 +1,10 @@
 .alert-box {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  top: 100px;
+  right: 100px;
   width: auto;
   height: 50px;
-  background-color: #c21f1f2d;
+  background-color: #c21f1f4d;
   border-radius: 5px;
   padding: 10px 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -36,11 +33,11 @@
 .alert-content > svg {
   width: 30px;
   height: 30px;
-  fill: rgb(222, 61, 49);
+  fill: rgb(218, 15, 0);
 }
 
 .alert-content > p {
-  color: rgb(255, 125, 125);
+  color: rgb(255, 49, 49);
   font-size: 1.2rem;
   font-weight: 400;
 }

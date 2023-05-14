@@ -17,6 +17,7 @@ import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const icons = {
   DashboardIcon,
@@ -38,6 +39,7 @@ const icons = {
   CloseRoundedIcon,
   TaskAltRoundedIcon,
   ErrorOutlineRoundedIcon,
+  AddRoundedIcon,
 };
 
 export default icons;

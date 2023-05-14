@@ -9,6 +9,9 @@ const Input = ({
   placeholder,
   value,
   inputFunction,
+  step,
+  min,
+  max,
 }) => {
   return (
     <div className="input-content">
@@ -18,6 +21,9 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         value={value}
+        step={step ? step : null}
+        min={min ? min : null}
+        max={max ? max : null}
         onChange={(e) => inputFunction(e.target.value)}
       />
     </div>

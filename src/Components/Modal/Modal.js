@@ -5,22 +5,14 @@ import Button from "../Button/Button";
 import "./Modal.css";
 import icons from "../../Assets/Icons";
 
-const Modal = ({ modalTitle, children, enterFunction }) => {
+const Modal = ({ modalTitle, children }) => {
   const { showModal, setShowModal, setShowExpiration } =
     useContext(StatesContext);
-
-  const enterPressed = (e) => {
-    if (e.key === "Enter") {
-      enterFunction();
-    }
-  };
 
   const closeModalHandler = () => {
     setShowModal(!showModal);
     setShowExpiration(null);
   };
-
-  window.onkeydown = enterPressed;
 
   return (
     <>

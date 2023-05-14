@@ -10,19 +10,19 @@ main {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 50px 100px;
+  padding: 50px 200px;
 }
 
 .area-title {
   font-family: "Exo";
   font-size: 40px;
   font-weight: 700;
-  color: #18467a;
+  color: #242424;
 }
 
 .area-subtitle {
   font-family: "Exo";
   font-size: 30px;
   font-weight: 700;
-  color: #18467a;
+  color: #242424;
 }

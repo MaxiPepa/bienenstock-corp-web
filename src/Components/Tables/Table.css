@@ -1,35 +1,66 @@
 table {
-  width: 80%;
-  background-color: #b6b6b6;
-  color: aliceblue;
+  width: 100%;
+  background-color: #e7e7e7;
+  color: black;
   border-spacing: 0;
   border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
   margin: auto;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  text-align: left;
 }
 
-table > thead {
-  background-color: #18467a;
+table > thead > tr {
+  background-color: #242424;
+  color: #b8b8b8;
+}
+
+table > thead > tr > th {
+  font-weight: 600;
+}
+
+table td,
+th {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #b8b8b8;
 }
 
 table > tbody {
   color: #131313;
 }
 
-th,
-tr,
-td {
-  padding: 1vh;
+table > thead > tr > th:nth-child(7),
+table > tbody > tr > td:nth-child(7) {
   text-align: center;
-  font-family: "Exo";
-  font-weight: 900;
-  font-size: 1rem;
 }
 
-tr:nth-child(even) {
-  background-color: #999898;
-}
 tbody > tr:hover {
-  background-color: #719db69d;
+  background-color: #dfdede;
+}
+
+/*
+  * Details button styles
+*/
+
+.details-table-button {
+  margin: auto;
+  background-color: transparent;
+  color: #3d3d3d;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+}
+
+.details-table-button > svg {
+  font-size: 30px;
+}
+
+.details-table-button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  background-color: #0000003f;
+  transition: all 0.2s ease-in-out;
 }

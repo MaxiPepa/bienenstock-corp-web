@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Table.css";
 
-const Table = ({ content, thead }) => {
+const Table = ({ content, thead, PStyles }) => {
   return (
     <>
       <table>
@@ -18,7 +18,11 @@ const Table = ({ content, thead }) => {
             return (
               <tr key={index}>
                 {Object.keys(attr).map((item, key) => {
-                  return <td key={index + key}>{attr[item]}</td>;
+                  return (
+                    <td key={index + key}>
+                      <p>{attr[item]}</p>
+                    </td>
+                  );
                 })}
               </tr>
             );

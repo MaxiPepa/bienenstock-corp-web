@@ -7,9 +7,10 @@ export const usePurchaseInputs = () => {
   const [inputProductPrice, setInputProductPrice] = useState("");
   const [inputProductQuantity, setInputProductQuantity] = useState("");
   const [inputSupplier, setInputSupplier] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
+  const [purchaseDate, setPurchaseDate] = useState("");
+  const [cartList, setCartList] = useState([]);
 
-  const arrayPurchaseInputs = [
+  const arrayPurchaseProductInputs = [
     {
       labelName: "Product name: ",
       styles: "input",
@@ -19,9 +20,10 @@ export const usePurchaseInputs = () => {
       inputFunction: setInputProductName,
     },
     {
-      labelName: "Product price: ",
+      labelName: "Product unit price: ",
       styles: "input",
       type: "number",
+      step: "0.01",
       placeholder: "$x.xxx,xx",
       value: inputProductPrice,
       inputFunction: setInputProductPrice,
@@ -34,43 +36,52 @@ export const usePurchaseInputs = () => {
       value: inputProductQuantity,
       inputFunction: setInputProductQuantity,
     },
+  ];
+
+  const arrayPurchaseAditionalInputs = [
     {
-      labelName: "Supplier",
+      labelName: "Supplier: ",
       styles: "input",
       type: "text",
-      placeholder: "Frávega, Garbarino, Megatone...",
+      placeholder: "Fravega, Musimundo, Garbarino...",
       value: inputSupplier,
       inputFunction: setInputSupplier,
     },
     {
-      labelName: "Descritcion",
+      labelName: "Purchase date: ",
       styles: "input",
-      type: "text",
-      placeholder: "Video game console, notebook asus 75g, iphone 14...",
-      value: inputDescription,
-      inputFunction: setInputDescription,
+      type: "date",
+      placeholder: "dd/mm/aaaa",
+      value: purchaseDate,
+      inputFunction: setPurchaseDate,
     },
   ];
 
-  const buyProductsHandler = () => {
+  const cleanInputs = () => {
+    setInputProductName("");
+    setInputProductPrice("");
+    setInputProductQuantity("");
+  };
+
+  const addToCartHandler = () => {
     const productObj = {
-      name: inputProductName,
-      price: inputProductPrice,
-      quantity: inputProductQuantity,
-      supplier: inputSupplier,
-      description: inputDescription,
-      purchaseDate: new Date().toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }),
+      productName: inputProductName,
+      productQuantity: inputProductQuantity,
+      productPrice: "$" + inputProductPrice,
     };
-    console.log(productObj);
-    setShowModal(false);
+    setCartList([...cartList, productObj]);
+  };
+
+  const finishPurchaseHandler = () => {
+    console.log(cartList);
+    setCartList([]);
   };
 
   return {
-    arrayPurchaseInputs,
-    buyProductsHandler,
+    arrayPurchaseProductInputs,
+    arrayPurchaseAditionalInputs,
+    addToCartHandler,
+    finishPurchaseHandler,
+    cartList,
   };
 };
