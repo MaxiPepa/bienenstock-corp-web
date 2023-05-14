@@ -76,6 +76,7 @@ export const usePurchaseInputs = () => {
   const finishPurchaseHandler = () => {
     console.log(cartList);
     setCartList([]);
+    setShowModal(false);
   };
 
   return {
