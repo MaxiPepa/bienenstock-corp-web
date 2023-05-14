@@ -143,6 +143,7 @@
   padding: 0.6em 1.5em;
   cursor: pointer;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .modal-button-add:hover {

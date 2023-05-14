@@ -70,6 +70,7 @@ export const usePurchaseInputs = () => {
       productPrice: "$" + inputProductPrice,
     };
     setCartList([...cartList, productObj]);
+    cleanInputs();
   };
 
   const finishPurchaseHandler = () => {
