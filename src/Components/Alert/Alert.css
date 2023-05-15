@@ -1,0 +1,74 @@
+.alert-box {
+  width: auto;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  z-index: 150;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.alert-content > svg {
+  width: 30px;
+  height: 30px;
+}
+
+.alert-content > p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.error {
+  background-color: #c21f1f4d;
+}
+
+.error > .alert-content > p,
+.error > .alert-content > svg {
+  color: rgb(255, 49, 49);
+}
+
+.success {
+  background-color: #1fc21f4d;
+}
+
+.success > .alert-content > p,
+.success > .alert-content > svg {
+  color: rgb(49, 255, 49);
+}
+
+.warning {
+  background-color: #c2c21f4d;
+}
+
+.warning > .alert-content > p,
+.warning > .alert-content > svg {
+  color: rgb(255, 255, 49);
+}
+
+.info {
+  background-color: #1fc2c21f;
+}
+
+.info > .alert-content > p,
+.info > .alert-content > svg {
+  color: rgb(0, 255, 255);
+}

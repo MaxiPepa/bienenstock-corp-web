@@ -1,5 +1,5 @@
 header {
-  background-color: #18467a;
+  background: rgba(0, 0, 0, 0.226);
   height: 70px;
   line-height: 60px;
   padding: 0 20px;
@@ -9,10 +9,11 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 header > a {
-  color: #ffffff;
+  color: #242424;
   font-size: 1.5rem;
   font-weight: 900;
   text-decoration: none;

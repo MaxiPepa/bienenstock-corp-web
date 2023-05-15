@@ -6,7 +6,7 @@ const Button = ({ styles, type, buttonFunction, buttonIcon, buttonText }) => {
       <button
         className={styles}
         type={type ? type : "button"}
-        onClick={buttonFunction}
+        onClick={buttonFunction ? buttonFunction : null}
       >
         {buttonIcon ? buttonIcon : null}
 

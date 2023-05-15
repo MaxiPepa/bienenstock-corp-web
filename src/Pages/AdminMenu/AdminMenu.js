@@ -21,7 +21,6 @@ const AdminMenu = () => {
       await get("user/getUsers").then((data) => {
         setUsers(
           data.users.map((r) => ({
-            userId: r.userId,
             fullName: r.fullName,
             email: r.email,
             userType: r.userType,

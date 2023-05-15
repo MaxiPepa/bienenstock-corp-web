@@ -1,76 +1,91 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import StatesContext from "../../Contexts/StatesContext";
 
 export const usePurchaseInputs = () => {
-  const { setShowModal } = useContext(StatesContext);
-  const [inputProductName, setInputProductName] = useState("");
-  const [inputProductPrice, setInputProductPrice] = useState("");
-  const [inputProductQuantity, setInputProductQuantity] = useState("");
-  const [inputSupplier, setInputSupplier] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
+  const { setShowModal, cartData, setCartData } = useContext(StatesContext);
 
-  const arrayPurchaseInputs = [
+  const arrayPurchaseProductInputs = [
     {
       labelName: "Product name: ",
       styles: "input",
       type: "text",
       placeholder: "Laptop, tablet, phone...",
-      value: inputProductName,
-      inputFunction: setInputProductName,
+      formData: "productName",
     },
     {
-      labelName: "Product price: ",
+      labelName: "Product unit price: ",
       styles: "input",
       type: "number",
       placeholder: "$x.xxx,xx",
-      value: inputProductPrice,
-      inputFunction: setInputProductPrice,
+      formData: "productPrice",
     },
     {
       labelName: "Product Quantity: ",
       styles: "input",
       type: "number",
       placeholder: "xxx",
-      value: inputProductQuantity,
-      inputFunction: setInputProductQuantity,
-    },
-    {
-      labelName: "Supplier",
-      styles: "input",
-      type: "text",
-      placeholder: "Frávega, Garbarino, Megatone...",
-      value: inputSupplier,
-      inputFunction: setInputSupplier,
-    },
-    {
-      labelName: "Descritcion",
-      styles: "input",
-      type: "text",
-      placeholder: "Video game console, notebook asus 75g, iphone 14...",
-      value: inputDescription,
-      inputFunction: setInputDescription,
+      formData: "productQuantity",
     },
   ];
 
-  const buyProductsHandler = () => {
-    const productObj = {
-      name: inputProductName,
-      price: inputProductPrice,
-      quantity: inputProductQuantity,
-      supplier: inputSupplier,
-      description: inputDescription,
-      purchaseDate: new Date().toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }),
-    };
+  const arrayPurchaseAditionalInputs = [
+    {
+      labelName: "Supplier: ",
+      styles: "input",
+      type: "text",
+      placeholder: "Fravega, Musimundo, Garbarino...",
+      formData: "supplier",
+    },
+    {
+      labelName: "Purchase date: ",
+      styles: "input",
+      type: "date",
+      placeholder: "dd/mm/aaaa",
+      formData: "purchaseDate",
+    },
+  ];
+
+  const validateDate = (value) => {
+    const selectedDate = new Date(value);
+    const currentDate = new Date();
+
+    if (selectedDate > currentDate) {
+      return "La fecha debe ser igual o menor al día actual";
+    }
+
+    return true;
+  };
+
+  const requiredValidations = (inputType) => {
+    if (inputType === "text") {
+      return { required: true };
+    } else if (inputType === "number") {
+      return { required: true, min: 1 };
+    } else if (inputType === "date") {
+      return { required: true, validate: validateDate };
+    }
+  };
+
+  const addToCartHandler = (productObj) => {
     console.log(productObj);
+    setCartData([...cartData, productObj]);
+  };
+
+  const finishPurchaseHandler = (cartObj) => {
+    const purchaseObj = {
+      ...cartObj,
+      cartData,
+    };
+    console.log(purchaseObj);
+    setCartData([]);
     setShowModal(false);
   };
 
   return {
-    arrayPurchaseInputs,
-    buyProductsHandler,
+    arrayPurchaseProductInputs,
+    arrayPurchaseAditionalInputs,
+    addToCartHandler,
+    finishPurchaseHandler,
+    requiredValidations,
   };
 };

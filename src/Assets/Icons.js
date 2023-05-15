@@ -16,6 +16,11 @@ import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const icons = {
   DashboardIcon,
@@ -36,6 +41,11 @@ const icons = {
   AccountCircleSharpIcon,
   CloseRoundedIcon,
   TaskAltRoundedIcon,
+  AddRoundedIcon,
+  ErrorOutlineRoundedIcon,
+  WarningAmberRoundedIcon,
+  CheckCircleOutlineRoundedIcon,
+  InfoOutlinedIcon,
 };
 
 export default icons;
