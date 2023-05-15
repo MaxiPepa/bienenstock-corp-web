@@ -6,11 +6,18 @@ import "./Modal.css";
 import icons from "../../Assets/Icons";
 
 const Modal = ({ modalTitle, children }) => {
-  const { showModal, setShowModal, setShowExpiration } =
-    useContext(StatesContext);
+  const {
+    showModal,
+    setShowExpiration,
+    setShowModal,
+    setShowInputsModal,
+    setShowCartModal,
+  } = useContext(StatesContext);
 
   const closeModalHandler = () => {
-    setShowModal(!showModal);
+    setShowModal(false);
+    setShowInputsModal(false);
+    setShowCartModal(false);
     setShowExpiration(null);
   };
 

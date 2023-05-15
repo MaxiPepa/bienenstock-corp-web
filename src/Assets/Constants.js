@@ -79,6 +79,18 @@ export const TBODYPURCHASEHISTORY = [
     TotalPrice: "1000",
     Date: "29/11/2020",
     Status: "Pending",
+    cart: [
+      {
+        productName: "Coca Cola",
+        productPrice: "5",
+        productQuantity: "200",
+      },
+      {
+        productName: "Sprite",
+        productPrice: "5",
+        productQuantity: "100",
+      },
+    ],
   },
   {
     id: "#00266",
@@ -87,6 +99,18 @@ export const TBODYPURCHASEHISTORY = [
     TotalPrice: "600",
     Date: "15/11/2020",
     Status: "Pending",
+    cart: [
+      {
+        productName: "Nike Air Max",
+        productPrice: "300",
+        productQuantity: "2",
+      },
+      {
+        productName: "Nike Air Force",
+        productPrice: "150",
+        productQuantity: "2",
+      },
+    ],
   },
   {
     id: "#00698",
@@ -95,21 +119,17 @@ export const TBODYPURCHASEHISTORY = [
     TotalPrice: "150000",
     Date: "07/11/2020",
     Status: "Delivered",
-  },
-  {
-    id: "#00247",
-    Name: "Maxi Bortoli",
-    Supplier: "Toyota",
-    TotalPrice: "15000",
-    Date: "27/10/2020",
-    Status: "Pending",
-  },
-  {
-    id: "#00783",
-    Name: "Gaston Garnero",
-    Supplier: "Adidas",
-    TotalPrice: "1000",
-    Date: "23/10/2020",
-    Status: "Delivered",
+    cart: [
+      {
+        productName: "RTX 3080",
+        productPrice: "150000",
+        productQuantity: "1",
+      },
+      {
+        productName: "Ryzen 9 5900x",
+        productPrice: "100000",
+        productQuantity: "1",
+      },
+    ],
   },
 ];

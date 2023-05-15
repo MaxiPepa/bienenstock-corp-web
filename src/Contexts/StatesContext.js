@@ -9,6 +9,8 @@ const StatesProvider = ({ children }) => {
   const [showExpiration, setShowExpiration] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [cartData, setCartData] = useState([]);
+  const [showInputsModal, setShowInputsModal] = useState(false);
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const functionAlert = () => {
     setShowAlert(true);
@@ -19,6 +21,14 @@ const StatesProvider = ({ children }) => {
 
   const functionModal = () => {
     setShowModal(!showModal);
+  };
+
+  const functionInputsModal = () => {
+    setShowInputsModal(!showInputsModal);
+  };
+
+  const functionCartModal = () => {
+    setShowCartModal(!showCartModal);
   };
 
   return (
@@ -38,6 +48,12 @@ const StatesProvider = ({ children }) => {
         functionModal,
         cartData,
         setCartData,
+        showInputsModal,
+        setShowInputsModal,
+        functionInputsModal,
+        showCartModal,
+        setShowCartModal,
+        functionCartModal,
       }}
     >
       {children}
