@@ -1,68 +1,96 @@
-# Getting Started with Create React App
+# Bienenstock Corp - ERP System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Bienenstock Corp ERP system. This system is designed to efficiently manage the business operations of the company, providing comprehensive tools for purchasing, sales, inventory management, analysis, and more. The system uses modern technologies such as React for the frontend, C# and .NET for the backend, and SQL Server as the database.
 
-## Available Scripts
+## Main Roles
 
-In the project directory, you can run:
+The system has 5 main roles, each with different responsibilities and access permissions. Below are brief descriptions of the roles:
 
-### `npm start`
+### 1. Buyer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Buyer role is responsible for making necessary purchases for the company. Its main functions include:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Placing orders for products from suppliers.
+- Viewing the complete purchase history of the company.
+- Managing the product acquisition process.
 
-### `npm test`
+### 2. Seller
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Seller role is responsible for carrying out sales for the company. Its responsibilities include:
 
-### `npm run build`
+- Conducting sales transactions with customers.
+- Viewing the complete sales history of the company.
+- Managing the sales and invoicing process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. Warehouse
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Warehouse role is responsible for receiving products and managing inventory. Its main functions are:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Receiving products delivered by suppliers.
+- Modifying the stock in the database in case of issues or discrepancies.
+- Keeping the inventory up to date and ensuring product availability.
 
-### `npm run eject`
+### 4. Analyst
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The Analyst role is responsible for performing analysis and generating charts to evaluate business performance. Its tasks include:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Accessing and analyzing data collected by the system.
+- Generating reports and charts to identify trends and opportunities.
+- Providing strategic insights for decision-making.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 5. Administrator
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The Administrator role has access to all areas of the system and has administrative functions. Its responsibilities include:
 
-## Learn More
+- Managing the system, including user and permission management.
+- Performing user creation, deletion, and modification.
+- Overseeing and maintaining system integrity.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The Bienenstock Corp ERP system has been developed using the following technologies:
 
-### Code Splitting
+- **Frontend**: React, an open-source JavaScript library, has been used to build interactive and efficient user interfaces.
+- **Backend**: The backend has been implemented using C# and .NET, a versatile and powerful application development platform.
+- **Database**: The system's database utilizes SQL Server, a robust and scalable relational database management system.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Development Environment Setup
 
-### Analyzing the Bundle Size
+If you wish to set up a local development environment to work with the Bienenstock Corp ERP system, follow the steps below:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Make sure you have Node.js installed on your machine. You can download and install it from [https://nodejs.org](https://nodejs.org).
+2. Clone the project repository from [repository URL](repository URL).
+3. Navigate to the project directory in your terminal or command line.
+4. Run the following command to install the frontend dependencies:
+   > npm start
+5. After the installations are complete, run the following command to start the frontend development server:
+   > npm start
+6. To set up the backend, ensure you have Visual Studio installed with support for C# and .NET application development. You can download Visual Studio from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com).
 
-### Making a Progressive Web App
+7. Open the project solution in Visual Studio and ensure that packages and dependencies are restored correctly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+8. Configure the connection to the SQL Server database in the backend's configuration file.
 
-### Advanced Configuration
+9. Build and run the backend in Visual Studio.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Once these steps are completed, the Bienenstock Corp ERP system will be up and running in your local development environment.
 
-### Deployment
+## Usage Guide
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Below is a basic guide to using the Bienenstock Corp ERP system:
 
-### `npm run build` fails to minify
+1. Log in to the system using the credentials provided by the administrator.
+
+2. Once logged in, you will be redirected to the dashboard. Depending on your assigned role, you will have access to different functions and sections of the system.
+
+3. Explore the different sections of the system based on your role. For example, as a Buyer, you can make purchases, view the purchase history, and manage orders from suppliers.
+
+4. Utilize the system's features to perform transactions, manage inventory, generate analysis, and carry out other tasks related to your role.
+
+5. Make sure to follow the policies and procedures established by the company when using the system.
+
+## Contact and Support
+
+If you have any questions, issues, or need technical support related to the Bienenstock Corp ERP system, feel free to contact our technical support team. You can email us at support@bienenstockcorp.com.
+
+Thank you for using the Bienenstock Corp ERP system! We hope this system contributes to improving the efficiency and success of your company.
