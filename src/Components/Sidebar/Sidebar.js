@@ -37,7 +37,7 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
             navItemName={"Dashboard"}
           />
           <NavLink
-            navigation={"/dashboard/poducts"}
+            navigation={"/dashboard/products"}
             aditionalFunction={hideSidebar}
             icon={<icons.BackupTableRoundedIcon />}
             navItemName={"Products"}

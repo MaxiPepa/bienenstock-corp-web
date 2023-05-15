@@ -21,7 +21,7 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
-  const { setShowLoader, setShowAlert } = useContext(StatesContext);
+  const { setShowLoader, functionAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
 
@@ -73,10 +73,7 @@ const Login = () => {
       } else {
         setShowLoader(false);
         setErrorMessage(res.message);
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 5000);
+        functionAlert();
       }
     });
   };
@@ -149,10 +146,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <Alert
-        alertIcon={<icons.ErrorOutlineRoundedIcon />}
-        alertMessage={errorMessage}
-      />
+      <Alert alertType="error" alertMessage={errorMessage} />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
       <Loader />
     </div>

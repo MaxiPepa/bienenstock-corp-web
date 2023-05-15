@@ -1,14 +1,8 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import StatesContext from "../../Contexts/StatesContext";
 
 export const usePurchaseInputs = () => {
-  const { setShowModal } = useContext(StatesContext);
-  const [inputProductName, setInputProductName] = useState("");
-  const [inputProductPrice, setInputProductPrice] = useState("");
-  const [inputProductQuantity, setInputProductQuantity] = useState("");
-  const [inputSupplier, setInputSupplier] = useState("");
-  const [purchaseDate, setPurchaseDate] = useState("");
-  const [cartList, setCartList] = useState([]);
+  const { setShowModal, cartData, setCartData } = useContext(StatesContext);
 
   const arrayPurchaseProductInputs = [
     {
@@ -16,25 +10,21 @@ export const usePurchaseInputs = () => {
       styles: "input",
       type: "text",
       placeholder: "Laptop, tablet, phone...",
-      value: inputProductName,
-      inputFunction: setInputProductName,
+      formData: "productName",
     },
     {
       labelName: "Product unit price: ",
       styles: "input",
       type: "number",
-      step: "0.01",
       placeholder: "$x.xxx,xx",
-      value: inputProductPrice,
-      inputFunction: setInputProductPrice,
+      formData: "productPrice",
     },
     {
       labelName: "Product Quantity: ",
       styles: "input",
       type: "number",
       placeholder: "xxx",
-      value: inputProductQuantity,
-      inputFunction: setInputProductQuantity,
+      formData: "productQuantity",
     },
   ];
 
@@ -44,38 +34,50 @@ export const usePurchaseInputs = () => {
       styles: "input",
       type: "text",
       placeholder: "Fravega, Musimundo, Garbarino...",
-      value: inputSupplier,
-      inputFunction: setInputSupplier,
+      formData: "supplier",
     },
     {
       labelName: "Purchase date: ",
       styles: "input",
       type: "date",
       placeholder: "dd/mm/aaaa",
-      value: purchaseDate,
-      inputFunction: setPurchaseDate,
+      formData: "purchaseDate",
     },
   ];
 
-  const cleanInputs = () => {
-    setInputProductName("");
-    setInputProductPrice("");
-    setInputProductQuantity("");
+  const validateDate = (value) => {
+    const selectedDate = new Date(value);
+    const currentDate = new Date();
+
+    if (selectedDate > currentDate) {
+      return "La fecha debe ser igual o menor al día actual";
+    }
+
+    return true;
   };
 
-  const addToCartHandler = () => {
-    const productObj = {
-      productName: inputProductName,
-      productQuantity: inputProductQuantity,
-      productPrice: "$" + inputProductPrice,
+  const requiredValidations = (inputType) => {
+    if (inputType === "text") {
+      return { required: true };
+    } else if (inputType === "number") {
+      return { required: true, min: 1 };
+    } else if (inputType === "date") {
+      return { required: true, validate: validateDate };
+    }
+  };
+
+  const addToCartHandler = (productObj) => {
+    console.log(productObj);
+    setCartData([...cartData, productObj]);
+  };
+
+  const finishPurchaseHandler = (cartObj) => {
+    const purchaseObj = {
+      ...cartObj,
+      cartData,
     };
-    setCartList([...cartList, productObj]);
-    cleanInputs();
-  };
-
-  const finishPurchaseHandler = () => {
-    console.log(cartList);
-    setCartList([]);
+    console.log(purchaseObj);
+    setCartData([]);
     setShowModal(false);
   };
 
@@ -84,6 +86,6 @@ export const usePurchaseInputs = () => {
     arrayPurchaseAditionalInputs,
     addToCartHandler,
     finishPurchaseHandler,
-    cartList,
+    requiredValidations,
   };
 };

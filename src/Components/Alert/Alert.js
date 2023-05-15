@@ -1,16 +1,32 @@
 import { useContext } from "react";
 import StatesContext from "../../Contexts/StatesContext";
 
+import icons from "../../Assets/Icons";
+
 import "./Alert.css";
 
-const Alert = ({ alertIcon, alertMessage }) => {
+const Alert = ({ alertType, alertMessage }) => {
   const { showAlert } = useContext(StatesContext);
+  const alertStyle = () => {
+    switch (alertType) {
+      case "success":
+        return <icons.CheckCircleOutlineRoundedIcon />;
+      case "error":
+        return <icons.ErrorOutlineRoundedIcon />;
+      case "warning":
+        return <icons.WarningAmberRoundedIcon />;
+      case "info":
+        return <icons.InfoOutlinedIcon />;
+      default:
+        return null;
+    }
+  };
   return (
     <>
       {showAlert && (
-        <div className="alert-box">
+        <div className={"alert-box " + alertType}>
           <div className="alert-content">
-            {alertIcon}
+            {alertStyle()}
             <p>{alertMessage}</p>
           </div>
         </div>

@@ -8,6 +8,18 @@ const StatesProvider = ({ children }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [showExpiration, setShowExpiration] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+  const [cartData, setCartData] = useState([]);
+
+  const functionAlert = () => {
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
+  const functionModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <StatesContext.Provider
@@ -22,6 +34,10 @@ const StatesProvider = ({ children }) => {
         setShowExpiration,
         showAlert,
         setShowAlert,
+        functionAlert,
+        functionModal,
+        cartData,
+        setCartData,
       }}
     >
       {children}
