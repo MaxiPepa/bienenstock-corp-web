@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+
+import StatesContext from "../../Contexts/StatesContext";
+import APIContext from "../../Contexts/APIContext";
+import { useProductsValidation } from "../../Hooks/Validations/useProductsValidation";
+import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
+
 import icons from "../../Assets/Icons";
 import Alert from "../Alert/Alert";
 
-import { usePurchaseInputs } from "../../Hooks/InputsLists/usePurchaseInputs";
-import StatesContext from "../../Contexts/StatesContext";
+const AditionalInfoForm = ({ cartData, setCartData }) => {
+  const { functionAlert, showAlert, setShowModal } = useContext(StatesContext);
+  const { post } = useContext(APIContext);
 
-const AditionalInfoForm = () => {
-  const { functionAlert, showAlert, cartData } = useContext(StatesContext);
-
-  const {
-    finishPurchaseHandler,
-    arrayPurchaseAditionalInputs,
-    requiredValidations,
-  } = usePurchaseInputs();
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
     register: registerPurchase,
@@ -26,8 +26,20 @@ const AditionalInfoForm = () => {
     if (cartData.length === 0) {
       functionAlert();
     } else {
-      finishPurchaseHandler(data);
-      resetPurchase();
+      const date = new Date(data.purchaseDate);
+      const isoPurchaseDate = date.toISOString();
+      data.purchaseDate = isoPurchaseDate;
+
+      const rq = {
+        ...data,
+        products: cartData,
+      };
+      post("purchase/savePurchase", rq).then((res) => {
+        alert(res.message);
+        setCartData([]);
+        setShowModal(false);
+        resetPurchase();
+      });
     }
   };
 
@@ -46,19 +58,13 @@ const AditionalInfoForm = () => {
               placeholder={input.placeholder}
               {...registerPurchase(
                 input.formData,
-                requiredValidations(input.type)
+                requiredValidations(input.formData)
               )}
             />
           </div>
           {errorsPurchase[input.formData] && (
             <p className="error-input-message">
-              {errorsPurchase[input.formData].type === "required"
-                ? "This field is required"
-                : errorsPurchase[input.formData].type === "min"
-                ? "The value must be greater than 0"
-                : errorsPurchase[input.formData].type === "validate"
-                ? "The date must be equal or less than the current date"
-                : null}
+              {errorMessages(errorsPurchase[input.formData])}
             </p>
           )}
         </div>

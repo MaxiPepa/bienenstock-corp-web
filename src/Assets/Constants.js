@@ -49,17 +49,85 @@ export const COOKIENAME = {
   session: "bienenstockSessionToken",
 };
 
-export const THEADPRODUCTS = [
-  "ProductId",
-  "Name",
-  "Description",
-  "Price",
-  "ExpirationDate",
-  "EnterDate",
-  "Quantity",
+export const arrayPurchaseProductInputs = [
+  {
+    labelName: "Product code: ",
+    styles: "input",
+    type: "text",
+    placeholder: "xxxxx-xxxxx",
+    formData: "productCode",
+  },
+  {
+    labelName: "Product name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Laptop, tablet, phone...",
+    formData: "name",
+  },
+  {
+    labelName: "Product unit price: ",
+    styles: "input",
+    type: "number",
+    step: 0.01,
+    placeholder: "$x.xxx,xx",
+    formData: "unitPrice",
+  },
+  {
+    labelName: "Product Quantity: ",
+    styles: "input",
+    type: "number",
+    placeholder: "xxx",
+    formData: "quantity",
+  },
 ];
 
-export const THEADUSER = ["Full Name", "Email", "UserType"];
+export const arrayPurchaseAditionalInputs = [
+  {
+    labelName: "Supplier: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Fravega, Musimundo, Garbarino...",
+    formData: "supplier",
+  },
+  {
+    labelName: "Purchase date: ",
+    styles: "input",
+    type: "datetime-local",
+    placeholder: "dd/mm/aaaa",
+    formData: "purchaseDate",
+  },
+];
+
+export const arrayUsersInputs = [
+  {
+    labelName: "Name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "John",
+    formData: "name",
+  },
+  {
+    labelName: "Last name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Doe",
+    formData: "lastName",
+  },
+  {
+    labelName: "Email: ",
+    styles: "input",
+    type: "email",
+    placeholder: "Example@Xmail.com",
+    formData: "email",
+  },
+  {
+    labelName: "Password: ",
+    styles: "input",
+    type: "password",
+    placeholder: "********",
+    formData: "password",
+  },
+];
 
 export const THEADPURCHASESHISTORY = [
   "PurchaseId",
@@ -82,13 +150,13 @@ export const TBODYPURCHASEHISTORY = [
     cart: [
       {
         productName: "Coca Cola",
-        productPrice: "5",
         productQuantity: "200",
+        productPrice: "5",
       },
       {
         productName: "Sprite",
-        productPrice: "5",
         productQuantity: "100",
+        productPrice: "5",
       },
     ],
   },
@@ -102,13 +170,13 @@ export const TBODYPURCHASEHISTORY = [
     cart: [
       {
         productName: "Nike Air Max",
-        productPrice: "300",
         productQuantity: "2",
+        productPrice: "300",
       },
       {
         productName: "Nike Air Force",
-        productPrice: "150",
         productQuantity: "2",
+        productPrice: "150",
       },
     ],
   },
@@ -121,14 +189,25 @@ export const TBODYPURCHASEHISTORY = [
     Status: "Delivered",
     cart: [
       {
-        productName: "RTX 3080",
-        productPrice: "150000",
-        productQuantity: "1",
+        productId: 1,
+        name: "RTX 3080",
+        productCode: "ABABABAB",
+        quantity: "3",
+        unitPrice: "150000",
       },
       {
-        productName: "Ryzen 9 5900x",
-        productPrice: "100000",
-        productQuantity: "1",
+        productId: 2,
+        name: "RTX 3070",
+        productCode: "NMNMNMN",
+        quantity: "3",
+        unitPrice: "150000",
+      },
+      {
+        productId: 3,
+        name: "RTX 3090",
+        productCode: "FGFGFGF",
+        quantity: "3",
+        unitPrice: "150000",
       },
     ],
   },

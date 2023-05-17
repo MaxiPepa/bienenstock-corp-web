@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 import {
@@ -6,8 +6,9 @@ import {
   THEADPURCHASESHISTORY,
   TBODYPURCHASEHISTORY,
 } from "../../Assets/Constants";
-import StatesContext from "../../Contexts/StatesContext";
 import UserContext from "../../Contexts/UserContext";
+import StatesContext from "../../Contexts/StatesContext";
+import APIContext from "../../Contexts/APIContext";
 
 import Button from "../../Components/Button/Button";
 import Modal from "../../Components/Modal/Modal";
@@ -23,24 +24,40 @@ const PurchansingArea = () => {
   const { userData } = useContext(UserContext);
   useRedirect(userData.userType, ROLES.BUYER);
 
-  const {
-    functionModal,
-    showInputsModal,
-    functionInputsModal,
-    showCartModal,
-    functionCartModal,
-  } = useContext(StatesContext);
+  const { get } = useContext(APIContext);
+  const [purchaseHistory, setPurchaseHistory] = useState([]);
+
+  useEffect(() => {
+    const getPurchaseHistory = async () => {
+      await get("purchase/getPurchases").then((data) => {
+        setPurchaseHistory(data.purchases);
+      });
+    };
+    getPurchaseHistory();
+  }, [get]);
+  setTimeout(() => {
+    console.log(purchaseHistory);
+  }, 5000);
+  const { setShowModal } = useContext(StatesContext);
+
+  const [cartData, setCartData] = useState([]);
+  const [showInputsModal, setShowInputsModal] = useState(false);
+  const [showCartModal, setShowCartModal] = useState(false);
+
   const [cartByIndex, setCartByIndex] = useState([]);
 
   const openInputsModal = () => {
-    functionModal();
-    functionInputsModal();
+    setShowModal(true);
+    setShowCartModal(false);
+    setShowInputsModal(true);
   };
 
-  const openCartModal = (index) => {
-    setCartByIndex(TBODYPURCHASEHISTORY[index].cart);
-    functionModal();
-    functionCartModal();
+  const openPurchaseHistoryCartModal = (index) => {
+    const productObj = purchaseHistory[index].products;
+    setCartByIndex(productObj);
+    setShowModal(true);
+    setShowInputsModal(false);
+    setShowCartModal(true);
   };
 
   const updatedData = TBODYPURCHASEHISTORY.map((item) => {
@@ -55,7 +72,7 @@ const PurchansingArea = () => {
       <Button
         styles={"details-table-button"}
         buttonFunction={() => {
-          openCartModal(index);
+          openPurchaseHistoryCartModal(index);
         }}
         buttonIcon={<icons.VisibilityIcon />}
       />
@@ -78,27 +95,35 @@ const PurchansingArea = () => {
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
       <Table thead={THEADPURCHASESHISTORY} content={updatedDataWithDetails} />
-      {showInputsModal ? (
-        <Modal modalTitle="New Purchase">
-          <div className="left-content">
-            <h3>Product</h3>
-            <ProductForm />
-          </div>
-          <div className="right-content">
-            <h3>Additional Information</h3>
-            <AditionalInfoForm />
-          </div>
-          <CartList />
-        </Modal>
-      ) : null}
-      {showCartModal ? (
-        <Modal modalTitle="Purchase Data">
+      <Modal
+        modalTitle="New Purchase"
+        setShowCartModal={setShowCartModal}
+        setShowInputsModal={setShowInputsModal}
+        setCartData={setCartData}
+      >
+        {showInputsModal ? (
+          <>
+            <div className="left-content">
+              <h3>Product</h3>
+              <ProductForm setCartData={setCartData} />
+            </div>
+            <div className="right-content">
+              <h3>Additional Information</h3>
+              <AditionalInfoForm
+                cartData={cartData}
+                setCartData={setCartData}
+              />
+            </div>
+            <CartList cartData={cartData} />
+          </>
+        ) : null}
+        {showCartModal ? (
           <Table
-            thead={["Product", "Quantity", "Price"]}
+            thead={["Product Code", "Product", "Quantity", "Price"]}
             content={cartByIndex}
           />
-        </Modal>
-      ) : null}
+        ) : null}
+      </Modal>
     </div>
   );
 };

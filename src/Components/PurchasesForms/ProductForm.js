@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
+
+import { useProductsValidation } from "../../Hooks/Validations/useProductsValidation";
+import { arrayPurchaseProductInputs } from "../../Assets/Constants";
+
 import icons from "../../Assets/Icons";
 
-import { usePurchaseInputs } from "../../Hooks/InputsLists/usePurchaseInputs";
-
-const ProductForm = () => {
-  const { addToCartHandler, arrayPurchaseProductInputs, requiredValidations } =
-    usePurchaseInputs();
+const ProductForm = ({ setCartData }) => {
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
     register: registerCart,
@@ -15,7 +16,7 @@ const ProductForm = () => {
   } = useForm();
 
   const onSbubmitCart = (data) => {
-    addToCartHandler(data);
+    setCartData((prevState) => [...prevState, data]);
     resetCart();
   };
 
@@ -29,16 +30,16 @@ const ProductForm = () => {
               className={input.styles}
               type={input.type}
               placeholder={input.placeholder}
-              {...registerCart(input.formData, requiredValidations(input.type))}
+              step={input.step ? input.step : null}
+              {...registerCart(
+                input.formData,
+                requiredValidations(input.formData)
+              )}
             />
           </div>
           {errorsCart[input.formData] && (
             <p className="error-input-message">
-              {errorsCart[input.formData].type === "required"
-                ? "This field is required"
-                : errorsCart[input.formData].type === "min"
-                ? "The value must be greater than 0"
-                : null}
+              {errorMessages(errorsCart[input.formData])}
             </p>
           )}
         </div>

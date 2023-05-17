@@ -3,22 +3,23 @@ import StatesContext from "../../Contexts/StatesContext";
 import Button from "../Button/Button";
 
 import "./Modal.css";
+import "../Input/Input.css";
 import icons from "../../Assets/Icons";
 
-const Modal = ({ modalTitle, children }) => {
-  const {
-    showModal,
-    setShowExpiration,
-    setShowModal,
-    setShowInputsModal,
-    setShowCartModal,
-  } = useContext(StatesContext);
+const Modal = ({
+  modalTitle,
+  setShowCartModal,
+  setShowInputsModal,
+  setCartData,
+  children,
+}) => {
+  const { showModal, setShowModal } = useContext(StatesContext);
 
   const closeModalHandler = () => {
     setShowModal(false);
-    setShowInputsModal(false);
-    setShowCartModal(false);
-    setShowExpiration(null);
+    setShowCartModal?.(false);
+    setShowInputsModal?.(false);
+    setCartData?.([]);
   };
 
   return (

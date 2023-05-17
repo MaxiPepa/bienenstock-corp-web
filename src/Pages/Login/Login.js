@@ -101,12 +101,12 @@ const Login = () => {
                 />
               </div>
               {errors.email?.type === "required" && (
-                <p className="error">
+                <p className="error-login-message">
                   You must enter an email address to login
                 </p>
               )}
               {errors.email?.type === "pattern" && (
-                <p className="error">
+                <p className="error-login-message">
                   You must enter a valid email address to login
                 </p>
               )}
@@ -131,10 +131,12 @@ const Login = () => {
                 </button>
               </div>
               {errors.password?.type === "required" && (
-                <p className="error">You must enter a password to log in</p>
+                <p className="error-login-message">
+                  You must enter a password to log in
+                </p>
               )}
               {errors.password?.type === "pattern" && (
-                <p className="error">
+                <p className="error-login-message">
                   The password must have at least 6 characters, a capital
                   letter, a lowercase letter, a number and a special character.
                 </p>
