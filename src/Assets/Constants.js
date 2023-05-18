@@ -67,6 +67,14 @@ export const arrayPurchaseProductInputs = [
     formData: "name",
   },
   {
+    labelName: "Product Quantity: ",
+    styles: "input",
+    type: "number",
+    min: 1,
+    placeholder: "XXX",
+    formData: "quantity",
+  },
+  {
     labelName: "Product unit price: ",
     styles: "input",
     type: "number",
@@ -74,14 +82,6 @@ export const arrayPurchaseProductInputs = [
     min: 0.01,
     placeholder: "$X.XXX,XX",
     formData: "unitPrice",
-  },
-  {
-    labelName: "Product Quantity: ",
-    styles: "input",
-    type: "number",
-    min: 1,
-    placeholder: "XXX",
-    formData: "quantity",
   },
 ];
 
@@ -131,79 +131,5 @@ export const arrayUsersInputs = [
     type: "password",
     placeholder: "********",
     formData: "password",
-  },
-];
-
-export const TBODYPURCHASEHISTORY = [
-  {
-    id: "#00465",
-    Name: "Gaston Garnero",
-    Supplier: "Coca Cola company",
-    TotalPrice: "1000",
-    Date: "29/11/2020",
-    Status: "Pending",
-    cart: [
-      {
-        productName: "Coca Cola",
-        productQuantity: "200",
-        productPrice: "5",
-      },
-      {
-        productName: "Sprite",
-        productQuantity: "100",
-        productPrice: "5",
-      },
-    ],
-  },
-  {
-    id: "#00266",
-    Name: "Lucas Mule",
-    Supplier: "Nike",
-    TotalPrice: "600",
-    Date: "15/11/2020",
-    Status: "Pending",
-    cart: [
-      {
-        productName: "Nike Air Max",
-        productQuantity: "2",
-        productPrice: "300",
-      },
-      {
-        productName: "Nike Air Force",
-        productQuantity: "2",
-        productPrice: "150",
-      },
-    ],
-  },
-  {
-    id: "#00698",
-    Name: "Gaston Garnero",
-    Supplier: "CompraGamer",
-    TotalPrice: "150000",
-    Date: "07/11/2020",
-    Status: "Delivered",
-    cart: [
-      {
-        productId: 1,
-        name: "RTX 3080",
-        productCode: "ABABABAB",
-        quantity: "3",
-        unitPrice: "150000",
-      },
-      {
-        productId: 2,
-        name: "RTX 3070",
-        productCode: "NMNMNMN",
-        quantity: "3",
-        unitPrice: "150000",
-      },
-      {
-        productId: 3,
-        name: "RTX 3090",
-        productCode: "FGFGFGF",
-        quantity: "3",
-        unitPrice: "150000",
-      },
-    ],
   },
 ];

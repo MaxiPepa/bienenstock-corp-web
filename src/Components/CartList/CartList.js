@@ -14,7 +14,7 @@ const CartList = ({ cartData }) => {
               ) : (
                 <Table
                   content={cartData}
-                  thead={["Code", "Product", "Quantity", "Price"]}
+                  thead={["Product Code", "Product", "Quantity", "Unit Price"]}
                 />
               )}
             </div>

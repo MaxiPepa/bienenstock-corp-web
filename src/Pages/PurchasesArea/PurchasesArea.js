@@ -34,7 +34,6 @@ const PurchansingArea = () => {
   useEffect(() => {
     const getPurchaseHistory = async () => {
       await get("purchase/getPurchases").then((data) => {
-        console.log(data);
         setPurchaseHistory(
           data.purchases.map((r) => ({
             purchaseId: "#" + r.purchaseId,
@@ -44,10 +43,10 @@ const PurchansingArea = () => {
             date: parsingDate(r.date),
             pending: r.pending ? "Pending" : "Delivered",
             products: r.products.map((p) => ({
-              productCode: p.productCode,
+              productCode: "#" + p.productCode,
               name: p.name,
               quantity: p.quantity,
-              unitPrice: p.unitPrice,
+              unitPrice: "$" + p.unitPrice,
             })),
           }))
         );
@@ -79,11 +78,20 @@ const PurchansingArea = () => {
     ...item,
     Details: (
       <Button
-        styles={"details-table-button"}
+        styles={"table-buttons details-icon"}
         buttonFunction={() => {
           openPurchaseHistoryCartModal(index);
         }}
         buttonIcon={<icons.VisibilityIcon />}
+      />
+    ),
+    Cancel: item.pending === "Pending" && (
+      <Button
+        styles={"table-buttons cancel-icon"}
+        buttonFunction={() => {
+          console.log("cancel purchase ", index);
+        }}
+        buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
       />
     ),
   }));
@@ -112,6 +120,7 @@ const PurchansingArea = () => {
           "Purchase date",
           "Income status",
           "Details",
+          "Cancel",
         ]}
         content={updatedDataWithDetails}
       />

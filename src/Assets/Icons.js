@@ -21,6 +21,7 @@ import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCartRounded";
 
 const icons = {
   DashboardIcon,
@@ -46,6 +47,7 @@ const icons = {
   WarningAmberRoundedIcon,
   CheckCircleOutlineRoundedIcon,
   InfoOutlinedIcon,
+  RemoveShoppingCartRoundedIcon,
 };
 
 export default icons;

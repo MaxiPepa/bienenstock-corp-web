@@ -7,10 +7,9 @@ import { useProductsValidation } from "../../Hooks/Validations/useProductsValida
 import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
-import Alert from "../Alert/Alert";
 
 const AditionalInfoForm = ({ cartData, setCartData }) => {
-  const { functionAlert, showAlert, setShowModal } = useContext(StatesContext);
+  const { setAlert, setShowModal } = useContext(StatesContext);
   const { post } = useContext(APIContext);
 
   const { requiredValidations, errorMessages } = useProductsValidation();
@@ -24,7 +23,11 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
 
   const onSbubmitPurchase = (data) => {
     if (cartData.length === 0) {
-      functionAlert();
+      setAlert({
+        show: true,
+        message: "You must add at least one product to the cart",
+        type: "error",
+      });
     } else {
       const date = new Date(data.purchaseDate);
       const isoPurchaseDate = date.toISOString();
@@ -35,7 +38,11 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         products: cartData,
       };
       post("purchase/savePurchase", rq).then((res) => {
-        alert(res.message);
+        setAlert({
+          show: true,
+          message: res.message,
+          type: res.success ? "success" : "error",
+        });
         setCartData([]);
         setShowModal(false);
         resetPurchase();
@@ -71,14 +78,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         </div>
       ))}
       <div className="button-content">
-        {showAlert ? (
-          <Alert
-            alertType="error"
-            alertMessage="Must load at least one product"
-          />
-        ) : (
-          <p></p>
-        )}
+        <p></p>
         <button type="submit" className="modal-button-add">
           {<icons.AddRoundedIcon />}
           <span>Finish Purchase</span>

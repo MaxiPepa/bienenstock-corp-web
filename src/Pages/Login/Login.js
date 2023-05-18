@@ -9,8 +9,6 @@ import StatesContext from "../../Contexts/StatesContext";
 
 import Cookies from "universal-cookie";
 import { COOKIENAME } from "../../Assets/Constants";
-import Loader from "../../Components/Loader/Loader";
-import Alert from "../../Components/Alert/Alert";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
@@ -21,11 +19,10 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
-  const { setShowLoader, functionAlert } = useContext(StatesContext);
+  const { setAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
 
-  const [errorMessage, setErrorMessage] = useState("");
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
     <icons.VisibilityIcon />
@@ -56,7 +53,6 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    setShowLoader(true);
     await login(data).then((res) => {
       if (res.success) {
         setUserData({
@@ -68,12 +64,13 @@ const Login = () => {
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),
         });
-        setShowLoader(false);
         navigate("/dashboard");
       } else {
-        setShowLoader(false);
-        setErrorMessage(res.message);
-        functionAlert();
+        setAlert({
+          show: true,
+          type: "error",
+          message: res.message,
+        });
       }
     });
   };
@@ -148,9 +145,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <Alert alertType="error" alertMessage={errorMessage} />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
-      <Loader />
     </div>
   );
 };

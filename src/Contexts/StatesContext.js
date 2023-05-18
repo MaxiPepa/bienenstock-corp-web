@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 const StatesContext = createContext();
 
@@ -6,14 +6,23 @@ const StatesProvider = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState({
+    show: false,
+    type: null,
+    message: null,
+  });
 
-  const functionAlert = () => {
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000);
-  };
+  useEffect(() => {
+    if (alert.show) {
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          type: null,
+          message: null,
+        });
+      }, 5000);
+    }
+  }, [alert.show]);
 
   return (
     <StatesContext.Provider
@@ -24,9 +33,8 @@ const StatesProvider = ({ children }) => {
         setShowModal,
         showLoader,
         setShowLoader,
-        showAlert,
-        setShowAlert,
-        functionAlert,
+        alert,
+        setAlert,
       }}
     >
       {children}
