@@ -47,6 +47,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
     <form
       onSubmit={handleSubmitPurchase(onSbubmitPurchase)}
       className="inputs-content"
+      noValidate
     >
       {arrayPurchaseAditionalInputs.map((input, index) => (
         <div className="inputs-maped" key={index}>

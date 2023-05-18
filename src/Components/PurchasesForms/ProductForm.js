@@ -22,7 +22,11 @@ const ProductForm = ({ setCartData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmitCart(onSbubmitCart)} className="inputs-content">
+    <form
+      onSubmit={handleSubmitCart(onSbubmitCart)}
+      className="inputs-content"
+      noValidate
+    >
       {arrayPurchaseProductInputs.map((input, index) => (
         <div className="inputs-maped" key={index}>
           <div className="input-content">
