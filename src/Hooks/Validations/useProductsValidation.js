@@ -24,7 +24,7 @@ export const useProductsValidation = () => {
         return { required: true, maxLength: 10 };
 
       case "name":
-        return { required: true };
+        return { required: true, maxLength: 50 };
 
       case "unitPrice":
         return { required: true, validate: validatePrice };
@@ -33,7 +33,7 @@ export const useProductsValidation = () => {
         return { required: true, min: 1 };
 
       case "supplier":
-        return { required: true };
+        return { required: true, maxLength: 100 };
 
       case "purchaseDate":
         return { required: true, validate: validateDate };

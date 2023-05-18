@@ -1,11 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
-import {
-  ROLES,
-  THEADPURCHASESHISTORY,
-  TBODYPURCHASEHISTORY,
-} from "../../Assets/Constants";
+import { ROLES, THEADPURCHASESHISTORY } from "../../Assets/Constants";
+import { parsingDate } from "../../Assets/Parsing";
 import UserContext from "../../Contexts/UserContext";
 import StatesContext from "../../Contexts/StatesContext";
 import APIContext from "../../Contexts/APIContext";
@@ -27,24 +24,37 @@ const PurchansingArea = () => {
   const { get } = useContext(APIContext);
   const [purchaseHistory, setPurchaseHistory] = useState([]);
 
-  useEffect(() => {
-    const getPurchaseHistory = async () => {
-      await get("purchase/getPurchases").then((data) => {
-        setPurchaseHistory(data.purchases);
-      });
-    };
-    getPurchaseHistory();
-  }, [get]);
-  setTimeout(() => {
-    console.log(purchaseHistory);
-  }, 5000);
   const { setShowModal } = useContext(StatesContext);
-
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
 
   const [cartByIndex, setCartByIndex] = useState([]);
+
+  useEffect(() => {
+    const getPurchaseHistory = async () => {
+      await get("purchase/getPurchases").then((data) => {
+        console.log(data);
+        setPurchaseHistory(
+          data.purchases.map((r) => ({
+            purchaseId: "#" + r.purchaseId,
+            userFullName: r.userFullName,
+            supplier: r.supplier,
+            totalPrice: "$" + r.totalPrice,
+            date: parsingDate(r.date),
+            pending: r.pending ? "Pending" : "Delivered",
+            products: r.products.map((p) => ({
+              productCode: p.productCode,
+              name: p.name,
+              quantity: p.quantity,
+              unitPrice: p.unitPrice,
+            })),
+          }))
+        );
+      });
+    };
+    getPurchaseHistory();
+  }, [get]);
 
   const openInputsModal = () => {
     setShowModal(true);
@@ -60,10 +70,10 @@ const PurchansingArea = () => {
     setShowCartModal(true);
   };
 
-  const updatedData = TBODYPURCHASEHISTORY.map((item) => {
-    // Crea un nuevo objeto sin la propiedad "cart"
-    const { cart, ...newItem } = item;
-    return newItem;
+  const updatedData = purchaseHistory.map((item) => {
+    // Crea un nuevo objeto sin la propiedad "products"
+    const { products, ...newObj } = item;
+    return newObj;
   });
 
   const updatedDataWithDetails = updatedData.map((item, index) => ({

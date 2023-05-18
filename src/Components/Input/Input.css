@@ -30,3 +30,7 @@
   font-size: 1rem;
   font-weight: 400;
 }
+
+.toUppercase {
+  text-transform: uppercase;
+}

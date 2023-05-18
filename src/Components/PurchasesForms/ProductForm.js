@@ -16,6 +16,7 @@ const ProductForm = ({ setCartData }) => {
   } = useForm();
 
   const onSbubmitCart = (data) => {
+    data.productCode = data.productCode.toUpperCase();
     setCartData((prevState) => [...prevState, data]);
     resetCart();
   };
@@ -31,6 +32,9 @@ const ProductForm = ({ setCartData }) => {
               type={input.type}
               placeholder={input.placeholder}
               step={input.step ? input.step : null}
+              min={input.min ? input.min : null}
+              max={input.max ? input.max : null}
+              maxLength={input.maxLength ? input.maxLength : null}
               {...registerCart(
                 input.formData,
                 requiredValidations(input.formData)
