@@ -85,15 +85,16 @@ const PurchansingArea = () => {
         buttonIcon={<icons.VisibilityIcon />}
       />
     ),
-    Cancel: item.pending === "Pending" && (
-      <Button
-        styles={"table-buttons cancel-icon"}
-        buttonFunction={() => {
-          console.log("cancel purchase ", index);
-        }}
-        buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
-      />
-    ),
+    Cancel:
+      item.pending === "Pending" && userData.userType === ROLES.BUYER ? (
+        <Button
+          styles={"table-buttons cancel-icon"}
+          buttonFunction={() => {
+            console.log("cancel purchase ", index);
+          }}
+          buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
+        />
+      ) : null,
   }));
 
   return (
@@ -120,7 +121,7 @@ const PurchansingArea = () => {
           "Purchase date",
           "Income status",
           "Details",
-          "Cancel",
+          userData.userType === ROLES.BUYER ? "Cancel" : null,
         ]}
         content={updatedDataWithDetails}
       />
