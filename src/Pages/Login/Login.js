@@ -9,8 +9,6 @@ import StatesContext from "../../Contexts/StatesContext";
 
 import Cookies from "universal-cookie";
 import { COOKIENAME } from "../../Assets/Constants";
-import Loader from "../../Components/Loader/Loader";
-import Alert from "../../Components/Alert/Alert";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
@@ -21,11 +19,10 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
-  const { setShowLoader, functionAlert } = useContext(StatesContext);
+  const { setAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
 
-  const [errorMessage, setErrorMessage] = useState("");
   const [visibilityPassword, setVisibilityPassword] = useState("password");
   const [visibilityButton, setvisibilityButton] = useState(
     <icons.VisibilityIcon />
@@ -56,7 +53,6 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    setShowLoader(true);
     await login(data).then((res) => {
       if (res.success) {
         setUserData({
@@ -68,12 +64,13 @@ const Login = () => {
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),
         });
-        setShowLoader(false);
         navigate("/dashboard");
       } else {
-        setShowLoader(false);
-        setErrorMessage(res.message);
-        functionAlert();
+        setAlert({
+          show: true,
+          type: "error",
+          message: res.message,
+        });
       }
     });
   };
@@ -101,12 +98,12 @@ const Login = () => {
                 />
               </div>
               {errors.email?.type === "required" && (
-                <p className="error">
+                <p className="error-login-message">
                   You must enter an email address to login
                 </p>
               )}
               {errors.email?.type === "pattern" && (
-                <p className="error">
+                <p className="error-login-message">
                   You must enter a valid email address to login
                 </p>
               )}
@@ -131,10 +128,12 @@ const Login = () => {
                 </button>
               </div>
               {errors.password?.type === "required" && (
-                <p className="error">You must enter a password to log in</p>
+                <p className="error-login-message">
+                  You must enter a password to log in
+                </p>
               )}
               {errors.password?.type === "pattern" && (
-                <p className="error">
+                <p className="error-login-message">
                   The password must have at least 6 characters, a capital
                   letter, a lowercase letter, a number and a special character.
                 </p>
@@ -146,9 +145,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <Alert alertType="error" alertMessage={errorMessage} />
       <p id="copyright">© 2023 Bienenstock Corp.</p>
-      <Loader />
     </div>
   );
 };

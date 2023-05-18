@@ -1,19 +1,18 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import icons from "../../Assets/Icons";
-import Alert from "../Alert/Alert";
 
-import { usePurchaseInputs } from "../../Hooks/InputsLists/usePurchaseInputs";
 import StatesContext from "../../Contexts/StatesContext";
+import APIContext from "../../Contexts/APIContext";
+import { useProductsValidation } from "../../Hooks/Validations/useProductsValidation";
+import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
 
-const AditionalInfoForm = () => {
-  const { functionAlert, showAlert, cartData } = useContext(StatesContext);
+import icons from "../../Assets/Icons";
 
-  const {
-    finishPurchaseHandler,
-    arrayPurchaseAditionalInputs,
-    requiredValidations,
-  } = usePurchaseInputs();
+const AditionalInfoForm = ({ cartData, setCartData }) => {
+  const { setAlert, setShowModal } = useContext(StatesContext);
+  const { post } = useContext(APIContext);
+
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
     register: registerPurchase,
@@ -24,10 +23,30 @@ const AditionalInfoForm = () => {
 
   const onSbubmitPurchase = (data) => {
     if (cartData.length === 0) {
-      functionAlert();
+      setAlert({
+        show: true,
+        message: "You must add at least one product to the cart",
+        type: "error",
+      });
     } else {
-      finishPurchaseHandler(data);
-      resetPurchase();
+      const date = new Date(data.purchaseDate);
+      const isoPurchaseDate = date.toISOString();
+      data.purchaseDate = isoPurchaseDate;
+
+      const rq = {
+        ...data,
+        products: cartData,
+      };
+      post("purchase/savePurchase", rq).then((res) => {
+        setAlert({
+          show: true,
+          message: res.message,
+          type: res.success ? "success" : "error",
+        });
+        setCartData([]);
+        setShowModal(false);
+        resetPurchase();
+      });
     }
   };
 
@@ -35,6 +54,7 @@ const AditionalInfoForm = () => {
     <form
       onSubmit={handleSubmitPurchase(onSbubmitPurchase)}
       className="inputs-content"
+      noValidate
     >
       {arrayPurchaseAditionalInputs.map((input, index) => (
         <div className="inputs-maped" key={index}>
@@ -46,32 +66,19 @@ const AditionalInfoForm = () => {
               placeholder={input.placeholder}
               {...registerPurchase(
                 input.formData,
-                requiredValidations(input.type)
+                requiredValidations(input.formData)
               )}
             />
           </div>
           {errorsPurchase[input.formData] && (
             <p className="error-input-message">
-              {errorsPurchase[input.formData].type === "required"
-                ? "This field is required"
-                : errorsPurchase[input.formData].type === "min"
-                ? "The value must be greater than 0"
-                : errorsPurchase[input.formData].type === "validate"
-                ? "The date must be equal or less than the current date"
-                : null}
+              {errorMessages(errorsPurchase[input.formData])}
             </p>
           )}
         </div>
       ))}
       <div className="button-content">
-        {showAlert ? (
-          <Alert
-            alertType="error"
-            alertMessage="Must load at least one product"
-          />
-        ) : (
-          <p></p>
-        )}
+        <p></p>
         <button type="submit" className="modal-button-add">
           {<icons.AddRoundedIcon />}
           <span>Finish Purchase</span>

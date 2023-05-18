@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import Table from "../Tables/Table";
-import StatesContext from "../../Contexts/StatesContext";
 
-const CartList = () => {
-  const { cartData } = useContext(StatesContext);
+const CartList = ({ cartData }) => {
   return (
     <>
       {cartData.length === 0 ? null : (
@@ -17,7 +14,7 @@ const CartList = () => {
               ) : (
                 <Table
                   content={cartData}
-                  thead={["Product", "Quantity", "Price"]}
+                  thead={["Product Code", "Product", "Quantity", "Unit Price"]}
                 />
               )}
             </div>

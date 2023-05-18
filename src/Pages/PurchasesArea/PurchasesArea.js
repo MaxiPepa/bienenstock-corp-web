@@ -1,13 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
-import {
-  ROLES,
-  THEADPURCHASESHISTORY,
-  TBODYPURCHASEHISTORY,
-} from "../../Assets/Constants";
-import StatesContext from "../../Contexts/StatesContext";
+import { ROLES } from "../../Assets/Constants";
+import { parsingDate } from "../../Assets/Parsing";
 import UserContext from "../../Contexts/UserContext";
+import StatesContext from "../../Contexts/StatesContext";
+import APIContext from "../../Contexts/APIContext";
 
 import Button from "../../Components/Button/Button";
 import Modal from "../../Components/Modal/Modal";
@@ -23,41 +21,77 @@ const PurchansingArea = () => {
   const { userData } = useContext(UserContext);
   useRedirect(userData.userType, ROLES.BUYER);
 
-  const {
-    functionModal,
-    showInputsModal,
-    functionInputsModal,
-    showCartModal,
-    functionCartModal,
-  } = useContext(StatesContext);
+  const { get } = useContext(APIContext);
+  const [purchaseHistory, setPurchaseHistory] = useState([]);
+
+  const { setShowModal } = useContext(StatesContext);
+  const [cartData, setCartData] = useState([]);
+  const [showInputsModal, setShowInputsModal] = useState(false);
+  const [showCartModal, setShowCartModal] = useState(false);
+
   const [cartByIndex, setCartByIndex] = useState([]);
 
+  useEffect(() => {
+    const getPurchaseHistory = async () => {
+      await get("purchase/getPurchases").then((data) => {
+        setPurchaseHistory(
+          data.purchases.map((r) => ({
+            purchaseId: "#" + r.purchaseId,
+            userFullName: r.userFullName,
+            supplier: r.supplier,
+            totalPrice: "$" + r.totalPrice,
+            date: parsingDate(r.date),
+            pending: r.pending ? "Pending" : "Delivered",
+            products: r.products.map((p) => ({
+              productCode: "#" + p.productCode,
+              name: p.name,
+              quantity: p.quantity,
+              unitPrice: "$" + p.unitPrice,
+            })),
+          }))
+        );
+      });
+    };
+    getPurchaseHistory();
+  }, [get]);
+
   const openInputsModal = () => {
-    functionModal();
-    functionInputsModal();
+    setShowModal(true);
+    setShowCartModal(false);
+    setShowInputsModal(true);
   };
 
-  const openCartModal = (index) => {
-    setCartByIndex(TBODYPURCHASEHISTORY[index].cart);
-    functionModal();
-    functionCartModal();
+  const openPurchaseHistoryCartModal = (index) => {
+    const productObj = purchaseHistory[index].products;
+    setCartByIndex(productObj);
+    setShowModal(true);
+    setShowInputsModal(false);
+    setShowCartModal(true);
   };
 
-  const updatedData = TBODYPURCHASEHISTORY.map((item) => {
-    // Crea un nuevo objeto sin la propiedad "cart"
-    const { cart, ...newItem } = item;
-    return newItem;
+  const updatedData = purchaseHistory.map((item) => {
+    const { products, ...newObj } = item;
+    return newObj;
   });
 
   const updatedDataWithDetails = updatedData.map((item, index) => ({
     ...item,
     Details: (
       <Button
-        styles={"details-table-button"}
+        styles={"table-buttons details-icon"}
         buttonFunction={() => {
-          openCartModal(index);
+          openPurchaseHistoryCartModal(index);
         }}
         buttonIcon={<icons.VisibilityIcon />}
+      />
+    ),
+    Cancel: item.pending === "Pending" && (
+      <Button
+        styles={"table-buttons cancel-icon"}
+        buttonFunction={() => {
+          console.log("cancel purchase ", index);
+        }}
+        buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
       />
     ),
   }));
@@ -77,28 +111,48 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      <Table thead={THEADPURCHASESHISTORY} content={updatedDataWithDetails} />
-      {showInputsModal ? (
-        <Modal modalTitle="New Purchase">
-          <div className="left-content">
-            <h3>Product</h3>
-            <ProductForm />
-          </div>
-          <div className="right-content">
-            <h3>Additional Information</h3>
-            <AditionalInfoForm />
-          </div>
-          <CartList />
-        </Modal>
-      ) : null}
-      {showCartModal ? (
-        <Modal modalTitle="Purchase Data">
+      <Table
+        thead={[
+          "ID",
+          "Buyer",
+          "Supplier",
+          "Total Price",
+          "Purchase date",
+          "Income status",
+          "Details",
+          "Cancel",
+        ]}
+        content={updatedDataWithDetails}
+      />
+      <Modal
+        modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
+        setShowCartModal={setShowCartModal}
+        setShowInputsModal={setShowInputsModal}
+        setCartData={setCartData}
+      >
+        {showInputsModal ? (
+          <>
+            <div className="left-content">
+              <h3>Product</h3>
+              <ProductForm setCartData={setCartData} />
+            </div>
+            <div className="right-content">
+              <h3>Additional Information</h3>
+              <AditionalInfoForm
+                cartData={cartData}
+                setCartData={setCartData}
+              />
+            </div>
+            <CartList cartData={cartData} />
+          </>
+        ) : null}
+        {showCartModal ? (
           <Table
-            thead={["Product", "Quantity", "Price"]}
+            thead={["Product Code", "Product", "Quantity", "Price"]}
             content={cartByIndex}
           />
-        </Modal>
-      ) : null}
+        ) : null}
+      </Modal>
     </div>
   );
 };

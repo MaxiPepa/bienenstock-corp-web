@@ -49,87 +49,87 @@ export const COOKIENAME = {
   session: "bienenstockSessionToken",
 };
 
-export const THEADPRODUCTS = [
-  "ProductId",
-  "Name",
-  "Description",
-  "Price",
-  "ExpirationDate",
-  "EnterDate",
-  "Quantity",
-];
-
-export const THEADUSER = ["Full Name", "Email", "UserType"];
-
-export const THEADPURCHASESHISTORY = [
-  "PurchaseId",
-  "Buyer",
-  "Supplier",
-  "Total Price",
-  "Purchase date",
-  "Income status",
-  "Details",
-];
-
-export const TBODYPURCHASEHISTORY = [
+export const arrayPurchaseProductInputs = [
   {
-    id: "#00465",
-    Name: "Gaston Garnero",
-    Supplier: "Coca Cola company",
-    TotalPrice: "1000",
-    Date: "29/11/2020",
-    Status: "Pending",
-    cart: [
-      {
-        productName: "Coca Cola",
-        productPrice: "5",
-        productQuantity: "200",
-      },
-      {
-        productName: "Sprite",
-        productPrice: "5",
-        productQuantity: "100",
-      },
-    ],
+    labelName: "Product code: ",
+    styles: "input toUppercase",
+    type: "text",
+    maxLength: 10,
+    placeholder: "XXXXXXXXXX",
+    formData: "productCode",
   },
   {
-    id: "#00266",
-    Name: "Lucas Mule",
-    Supplier: "Nike",
-    TotalPrice: "600",
-    Date: "15/11/2020",
-    Status: "Pending",
-    cart: [
-      {
-        productName: "Nike Air Max",
-        productPrice: "300",
-        productQuantity: "2",
-      },
-      {
-        productName: "Nike Air Force",
-        productPrice: "150",
-        productQuantity: "2",
-      },
-    ],
+    labelName: "Product name: ",
+    styles: "input",
+    type: "text",
+    maxLength: 50,
+    placeholder: "Laptop, tablet, phone...",
+    formData: "name",
   },
   {
-    id: "#00698",
-    Name: "Gaston Garnero",
-    Supplier: "CompraGamer",
-    TotalPrice: "150000",
-    Date: "07/11/2020",
-    Status: "Delivered",
-    cart: [
-      {
-        productName: "RTX 3080",
-        productPrice: "150000",
-        productQuantity: "1",
-      },
-      {
-        productName: "Ryzen 9 5900x",
-        productPrice: "100000",
-        productQuantity: "1",
-      },
-    ],
+    labelName: "Product Quantity: ",
+    styles: "input",
+    type: "number",
+    min: 1,
+    placeholder: "XXX",
+    formData: "quantity",
+  },
+  {
+    labelName: "Product unit price: ",
+    styles: "input",
+    type: "number",
+    step: 0.01,
+    min: 0.01,
+    placeholder: "$X.XXX,XX",
+    formData: "unitPrice",
+  },
+];
+
+export const arrayPurchaseAditionalInputs = [
+  {
+    labelName: "Supplier: ",
+    styles: "input",
+    type: "text",
+    maxLength: 100,
+    placeholder: "Fravega, Musimundo, Garbarino...",
+    formData: "supplier",
+  },
+  {
+    labelName: "Purchase date: ",
+    styles: "input",
+    type: "datetime-local",
+    placeholder: "dd/mm/aaaa",
+    formData: "purchaseDate",
+  },
+];
+
+export const arrayUsersInputs = [
+  {
+    labelName: "Name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "John",
+    formData: "name",
+  },
+  {
+    labelName: "Last name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Doe",
+    formData: "lastName",
+  },
+  {
+    labelName: "Email: ",
+    styles: "input",
+    type: "email",
+    placeholder: "Example@Xmail.com",
+    formData: "email",
+  },
+  {
+    labelName: "Password: ",
+    styles: "input",
+    type: "password",
+    placeholder: "********",
+    formData: "password",
   },
 ];

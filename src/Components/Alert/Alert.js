@@ -5,10 +5,10 @@ import icons from "../../Assets/Icons";
 
 import "./Alert.css";
 
-const Alert = ({ alertType, alertMessage }) => {
-  const { showAlert } = useContext(StatesContext);
+const Alert = () => {
+  const { alert, setAlert } = useContext(StatesContext);
   const alertStyle = () => {
-    switch (alertType) {
+    switch (alert.type) {
       case "success":
         return <icons.CheckCircleOutlineRoundedIcon />;
       case "error":
@@ -21,13 +21,25 @@ const Alert = ({ alertType, alertMessage }) => {
         return null;
     }
   };
+
+  const closeAlertHandler = () => {
+    setAlert({
+      show: false,
+      message: "",
+      type: "",
+    });
+  };
+
   return (
     <>
-      {showAlert && (
-        <div className={"alert-box " + alertType}>
+      {alert.show && (
+        <div className={"alert-box " + alert.type}>
           <div className="alert-content">
             {alertStyle()}
-            <p>{alertMessage}</p>
+            <p>{alert.message}</p>
+            <button className="close-alert-button" onClick={closeAlertHandler}>
+              <icons.CloseRoundedIcon />
+            </button>
           </div>
         </div>
       )}

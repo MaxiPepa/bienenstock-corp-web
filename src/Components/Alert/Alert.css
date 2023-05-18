@@ -1,4 +1,7 @@
 .alert-box {
+  position: absolute;
+  top: 40px;
+  right: 60px;
   width: auto;
   height: 50px;
   border-radius: 5px;
@@ -27,6 +30,18 @@
   gap: 15px;
 }
 
+.alert-content > button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #990e0e;
+}
+
+.alert-content > button:hover {
+  transform: scale(1.2);
+}
+
 .alert-content > svg {
   width: 30px;
   height: 30px;
@@ -38,37 +53,36 @@
 }
 
 .error {
-  background-color: #c21f1f4d;
+  background-color: #c21f1fc0;
 }
 
-.error > .alert-content > p,
+.alert-content > p {
+  color: rgb(203, 203, 203);
+}
 .error > .alert-content > svg {
-  color: rgb(255, 49, 49);
+  color: rgb(255, 0, 0);
 }
 
 .success {
-  background-color: #1fc21f4d;
+  background-color: #1fc21fad;
 }
 
-.success > .alert-content > p,
 .success > .alert-content > svg {
-  color: rgb(49, 255, 49);
+  color: rgb(0, 146, 0);
 }
 
 .warning {
-  background-color: #c2c21f4d;
+  background-color: #c2c21f9d;
 }
 
-.warning > .alert-content > p,
 .warning > .alert-content > svg {
-  color: rgb(255, 255, 49);
+  color: rgb(121, 113, 0);
 }
 
 .info {
-  background-color: #1fc2c21f;
+  background-color: #148d8db8;
 }
 
-.info > .alert-content > p,
 .info > .alert-content > svg {
-  color: rgb(0, 255, 255);
+  color: rgb(12, 191, 219);
 }
