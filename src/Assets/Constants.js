@@ -134,16 +134,6 @@ export const arrayUsersInputs = [
   },
 ];
 
-export const THEADPURCHASESHISTORY = [
-  "PurchaseId",
-  "Buyer",
-  "Supplier",
-  "Total Price",
-  "Purchase date",
-  "Income status",
-  "Details",
-];
-
 export const TBODYPURCHASEHISTORY = [
   {
     id: "#00465",

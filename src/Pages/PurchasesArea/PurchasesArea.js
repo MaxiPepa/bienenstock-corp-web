@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
-import { ROLES, THEADPURCHASESHISTORY } from "../../Assets/Constants";
+import { ROLES } from "../../Assets/Constants";
 import { parsingDate } from "../../Assets/Parsing";
 import UserContext from "../../Contexts/UserContext";
 import StatesContext from "../../Contexts/StatesContext";
@@ -103,9 +103,20 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      <Table thead={THEADPURCHASESHISTORY} content={updatedDataWithDetails} />
+      <Table
+        thead={[
+          "ID",
+          "Buyer",
+          "Supplier",
+          "Total Price",
+          "Purchase date",
+          "Income status",
+          "Details",
+        ]}
+        content={updatedDataWithDetails}
+      />
       <Modal
-        modalTitle="New Purchase"
+        modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
         setCartData={setCartData}
