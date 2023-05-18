@@ -71,7 +71,6 @@ const PurchansingArea = () => {
   };
 
   const updatedData = purchaseHistory.map((item) => {
-    // Crea un nuevo objeto sin la propiedad "products"
     const { products, ...newObj } = item;
     return newObj;
   });
