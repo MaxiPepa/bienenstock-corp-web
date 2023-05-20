@@ -10,3 +10,19 @@ body {
   background-size: cover;
   /* background-color: #f7f9fc; */
 }
+
+body::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2e2e2e; /* Color de fondo de la barra de desplazamiento */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #252525; /* Color del pulgar de la barra de desplazamiento */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #333333; /* Color del pulgar de la barra de desplazamiento al pasar el cursor */
+}
