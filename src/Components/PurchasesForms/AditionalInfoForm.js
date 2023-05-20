@@ -78,7 +78,6 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         </div>
       ))}
       <div className="button-content">
-        <p></p>
         <button type="submit" className="modal-button-add">
           {<icons.AddRoundedIcon />}
           <span>Finish Purchase</span>

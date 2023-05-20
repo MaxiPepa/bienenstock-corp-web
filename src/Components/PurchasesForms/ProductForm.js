@@ -53,7 +53,6 @@ const ProductForm = ({ setCartData }) => {
         </div>
       ))}
       <div className="button-content">
-        <p></p>
         <button type="submit" className="modal-button-add">
           {<icons.ShoppingCartRoundedIcon />}
           <span>Add to cart</span>

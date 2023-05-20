@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 import { ROLES } from "../../Assets/Constants";
-import { parsingDate } from "../../Assets/Parsing";
+import { parsingDate, purchaseHistoryTableContent } from "../../Assets/Parsing";
 import UserContext from "../../Contexts/UserContext";
 import StatesContext from "../../Contexts/StatesContext";
 import APIContext from "../../Contexts/APIContext";
@@ -69,32 +69,12 @@ const PurchansingArea = () => {
     setShowCartModal(true);
   };
 
-  const updatedData = purchaseHistory.map((item) => {
-    const { products, ...newObj } = item;
-    return newObj;
-  });
-
-  const updatedDataWithDetails = updatedData.map((item, index) => ({
-    ...item,
-    Details: (
-      <Button
-        styles={"table-buttons details-icon"}
-        buttonFunction={() => {
-          openPurchaseHistoryCartModal(index);
-        }}
-        buttonIcon={<icons.VisibilityIcon />}
-      />
-    ),
-    Cancel: item.pending === "Pending" && (
-      <Button
-        styles={"table-buttons cancel-icon"}
-        buttonFunction={() => {
-          console.log("cancel purchase ", index);
-        }}
-        buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
-      />
-    ),
-  }));
+  const purchaseHistoryDataTable = purchaseHistoryTableContent(
+    purchaseHistory,
+    openPurchaseHistoryCartModal,
+    userData,
+    ROLES
+  );
 
   return (
     <div className="purchase-area">
@@ -120,9 +100,9 @@ const PurchansingArea = () => {
           "Purchase date",
           "Income status",
           "Details",
-          "Cancel",
+          userData.userType === ROLES.BUYER ? "Cancel" : null,
         ]}
-        content={updatedDataWithDetails}
+        content={purchaseHistoryDataTable}
       />
       <Modal
         modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
