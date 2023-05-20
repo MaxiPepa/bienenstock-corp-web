@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import UserContext from "../../Contexts/UserContext";
+import StatesContext from "../../Contexts/StatesContext";
 
 import "./SettingInfoBox.css";
 import icons from "../../Assets/Icons";
@@ -14,23 +15,27 @@ const SettingInfoBox = () => {
   } = useForm();
 
   const { userData, setUserData } = useContext(UserContext);
+  const { setAlert } = useContext(StatesContext);
+
   const [editButton, setEditButton] = useState(true);
   const [image, setImage] = useState(userData.avatar);
 
   const convert2base64 = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result.toString());
-    };
-    reader.readAsDataURL(file);
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result.toString());
+      };
+      reader.readAsDataURL(file);
 
-    setUserData({
-      avatar: image,
-      fullName: userData.fullName,
-      email: userData.email,
-      userType: userData.userType,
-    });
+      setUserData({
+        avatar: image,
+        fullName: userData.fullName,
+        email: userData.email,
+        userType: userData.userType,
+      });
+    }
   };
 
   const onSubmit = (data) => {
