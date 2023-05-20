@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import UserContext from "../../Contexts/UserContext";
-import StatesContext from "../../Contexts/StatesContext";
 
 import "./SettingInfoBox.css";
 import icons from "../../Assets/Icons";
