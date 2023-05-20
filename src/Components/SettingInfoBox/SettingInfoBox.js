@@ -15,7 +15,6 @@ const SettingInfoBox = () => {
   } = useForm();
 
   const { userData, setUserData } = useContext(UserContext);
-  const { setAlert } = useContext(StatesContext);
 
   const [editButton, setEditButton] = useState(true);
   const [image, setImage] = useState(userData.avatar);
