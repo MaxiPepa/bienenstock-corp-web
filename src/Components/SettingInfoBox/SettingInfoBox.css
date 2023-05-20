@@ -9,7 +9,6 @@
 }
 
 .basic-settings-img {
-  position: relative;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -17,7 +16,60 @@
   height: 200px;
 }
 
-.basic-settings-img > button {
+.basic-settings-avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: 5;
+}
+
+.basic-settings-avatar:hover {
+  background-color: #3d3d3d;
+  box-shadow: 0 0 0 5px #3d3d3d50;
+  cursor: pointer;
+}
+
+.basic-settings-avatar:hover > span {
+  position: absolute;
+  color: #fff;
+  user-select: none;
+  transition: all 0.4s ease-in-out;
+}
+.basic-settings-avatar > span {
+  position: absolute;
+  font-size: 20px;
+  color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.basic-settings-avatar > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.basic-settings-avatar:hover > img {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.basic-settings-input-file {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -29,47 +81,13 @@
   font-size: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  opacity: 0;
+  z-index: 10;
 }
 
-.basic-settings-img > button:hover {
-  background-color: #3d3d3d;
-  box-shadow: 0 0 0 5px #3d3d3d50;
-  color: #fff;
-}
-
-.basic-settings-default-img {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  color: rgb(51, 51, 51);
-  font-size: 20px;
-  transition: all 0.2s ease-in-out;
-}
-
-.basic-settings-default-img > svg {
+.basic-settings-avatar > svg {
+  color: #383838;
   font-size: 200px;
-}
-
-.basic-settings-default-img > span {
-  position: absolute;
-  font-size: 20px;
-  color: transparent;
-  transition: all 0.2s ease-in-out;
-}
-
-.basic-settings-default-img:hover {
-  background-color: #3d3d3d;
-  box-shadow: 0 0 0 5px #3d3d3d50;
-  cursor: pointer;
-}
-
-.basic-settings-default-img:hover > span {
-  color: #fff;
-  transition: all 0.4s ease-in-out;
 }
 
 /*
@@ -93,6 +111,10 @@
   align-items: center;
   width: 100%;
   gap: 10px;
+}
+
+.input-content > input {
+  width: 85%;
 }
 
 .input-and-button > input {

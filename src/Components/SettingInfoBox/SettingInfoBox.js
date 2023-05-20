@@ -13,8 +13,25 @@ const SettingInfoBox = () => {
     formState: { errors },
   } = useForm();
 
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
   const [editButton, setEditButton] = useState(true);
+  const [image, setImage] = useState(userData.avatar);
+
+  const convert2base64 = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result.toString());
+    };
+    reader.readAsDataURL(file);
+
+    setUserData({
+      avatar: image,
+      fullName: userData.fullName,
+      email: userData.email,
+      userType: userData.userType,
+    });
+  };
 
   const onSubmit = (data) => {
     setEditButton(true);
@@ -40,10 +57,23 @@ const SettingInfoBox = () => {
         <div className="basic-settings">
           <div className="basic-settings-img-container">
             <div className="basic-settings-img">
-              {userData.avatar ? (
-                <button>change me!</button>
+              {image ? (
+                <div className="basic-settings-avatar">
+                  <img src={image} alt="avatar" />
+                  <span>Change me!</span>
+                  <input
+                    type="file"
+                    className="basic-settings-input-file"
+                    onChange={(e) => convert2base64(e)}
+                  />
+                </div>
               ) : (
-                <div className="basic-settings-default-img">
+                <div className="basic-settings-avatar">
+                  <input
+                    type="file"
+                    className="basic-settings-input-file"
+                    onChange={(e) => convert2base64(e)}
+                  />
                   <icons.AccountCircleSharpIcon />
                   <span>Change me!</span>
                 </div>
