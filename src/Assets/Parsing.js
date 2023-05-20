@@ -47,3 +47,12 @@ export const purchaseHistoryTableContent = (
     };
   });
 };
+
+export const parsingEachFirstLetterToUppercase = (string) => {
+  const stringSplitted = string.split(" ");
+  const stringSplittedUppercase = stringSplitted.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+  const stringJoined = stringSplittedUppercase.join(" ");
+  return stringJoined;
+};
