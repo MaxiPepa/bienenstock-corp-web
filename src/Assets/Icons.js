@@ -22,6 +22,8 @@ import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCartRounded";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const icons = {
   DashboardIcon,
@@ -48,6 +50,8 @@ const icons = {
   CheckCircleOutlineRoundedIcon,
   InfoOutlinedIcon,
   RemoveShoppingCartRoundedIcon,
+  DeleteForeverIcon,
+  BorderColorIcon
 };
 
 export default icons;
