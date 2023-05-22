@@ -19,13 +19,13 @@ export const useUserValidation = () => {
         return true;
     }
     
-    // const userTypeValidate = (ut) => {
-    //     if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst") ){
-    //         return "invalid user type"
-    //     }
+    const userTypeValidate = (ut) => {
+        if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst") ){
+            return "invalid user type"
+        }
 
-    //     return true
-    // }
+        return true
+    }
 
     const requiredValidations = (formData) => {
       switch (formData) {
@@ -39,7 +39,7 @@ export const useUserValidation = () => {
             return { required: true, validate : passValidate };
 
         case "userType":
-          return { required: true};
+          return { required: true, validate: userTypeValidate };
   
         default:
           break;

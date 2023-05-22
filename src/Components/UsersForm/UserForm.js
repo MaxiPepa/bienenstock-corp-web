@@ -4,20 +4,15 @@ import { useUserValidation } from "../../Hooks/Validations/useUserValidation";
 import APIContext from "../../Contexts/APIContext";
 
 import { arrayUsersInputs } from "../../Assets/Constants";
-import StatesContext from "../../Contexts/StatesContext";
 
 import icons from "../../Assets/Icons";
 
-const usersTypes = [ "Admin","Analyst","Buyer","Depositor","Seller"];
 
 const UserForm = () => {
 
   const { requiredValidations, errorMessages } = useUserValidation();
 
-
   const { post } = useContext(APIContext);
-  const { setAlert } = useContext(StatesContext) 
-  const { setShowModal } = useContext(StatesContext);
 
   const {
     register,
@@ -29,15 +24,7 @@ const UserForm = () => {
 
   const onSubmitUser = async (data) => {
     await post("user/saveUser",data)
-      .then((r)=>{ 
-        setAlert({
-          show: true,
-          type: "success",
-          message: r.message,
-        });
-        reset();
-        setShowModal(false);
-      })
+    reset()
   };
 
   return (
@@ -65,24 +52,9 @@ const UserForm = () => {
           )}
         </div>
       ))}
-        {/* <div className="input-content">
-          <select
-            {...register("userType",{ required: true})}
-          >
-            {usersTypes.map( (option) => (
-              <option 
-                key={option} 
-                value={option}
-              >
-                {option}
-              </option>
-            ))}
-          </select>
-          {errors.usersTypes && (<span>{errors.usersTypes.message}</span>)}
-        </div> */}
       <div className="button-content">
         <p></p>
-        <button type="submit" className="modal-button-add" >
+        <button type="submit" className="modal-button-add">
           {<icons.AddRoundedIcon />}
           <span>Add user</span>
         </button>
