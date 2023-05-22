@@ -1,20 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import StatesContext from "../../Contexts/StatesContext";
 
 import "./BurgerButton.css";
-
 import icons from "../../Assets/Icons";
 
-const Burgerbutton = ({ showSideBar, setShowSideBar }) => {
-  const [menuIcon, setMenuIcon] = useState(<icons.MenuRoundedIcon />);
-
-  useEffect(() => {
-    if (showSideBar === true) {
-      setMenuIcon(<icons.MenuOpenRoundedIcon />);
-    } else {
-      setMenuIcon(<icons.MenuRoundedIcon />);
-    }
-  }, [showSideBar]);
+const Burgerbutton = () => {
+  const { showSideBar, setShowSideBar } = useContext(StatesContext);
 
   const openMenu = () => {
     setShowSideBar(!showSideBar);
@@ -25,7 +16,11 @@ const Burgerbutton = ({ showSideBar, setShowSideBar }) => {
         className={showSideBar ? "sidebar-toggle" : "close sidebar-toggle"}
         onClick={openMenu}
       >
-        {menuIcon}
+        {showSideBar ? (
+          <icons.MenuOpenRoundedIcon />
+        ) : (
+          <icons.MenuRoundedIcon />
+        )}
       </button>
     </>
   );

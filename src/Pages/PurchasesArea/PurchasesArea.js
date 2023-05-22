@@ -32,27 +32,24 @@ const PurchansingArea = () => {
   const [cartByIndex, setCartByIndex] = useState([]);
 
   useEffect(() => {
-    const getPurchaseHistory = async () => {
-      await get("purchase/getPurchases").then((data) => {
-        setPurchaseHistory(
-          data.purchases.map((r) => ({
-            purchaseId: "#" + r.purchaseId,
-            userFullName: r.userFullName,
-            supplier: r.supplier,
-            totalPrice: "$" + r.totalPrice,
-            date: parsingDate(r.date),
-            pending: r.pending ? "Pending" : "Delivered",
-            products: r.products.map((p) => ({
-              productCode: "#" + p.productCode,
-              name: p.name,
-              quantity: p.quantity,
-              unitPrice: "$" + p.unitPrice,
-            })),
-          }))
-        );
-      });
-    };
-    getPurchaseHistory();
+    get("purchase/getPurchases").then((data) => {
+      setPurchaseHistory(
+        data.purchases.map((r) => ({
+          purchaseId: "#" + r.purchaseId,
+          userFullName: r.userFullName,
+          supplier: r.supplier,
+          totalPrice: "$" + r.totalPrice,
+          date: parsingDate(r.date),
+          pending: r.pending ? "Pending" : "Delivered",
+          products: r.products.map((p) => ({
+            productCode: "#" + p.productCode,
+            name: p.name,
+            quantity: p.quantity,
+            unitPrice: "$" + p.unitPrice,
+          })),
+        }))
+      );
+    });
   }, [get]);
 
   const openInputsModal = () => {

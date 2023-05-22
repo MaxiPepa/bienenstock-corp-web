@@ -49,6 +49,11 @@ export const COOKIENAME = {
   session: "bienenstockSessionToken",
 };
 
+export const EMAILREGEX = /\S+@\S+\.\S+/;
+
+export const PASSWORDREGEX =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
+
 export const arrayPurchaseProductInputs = [
   {
     labelName: "Product code: ",

@@ -1,6 +1,6 @@
 .alert-box {
-  position: absolute;
-  top: 40px;
+  position: fixed;
+  top: 50px;
   right: 60px;
   width: auto;
   height: 50px;

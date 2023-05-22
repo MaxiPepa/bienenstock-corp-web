@@ -3,10 +3,10 @@ import React from "react";
 import "./Header.css";
 import Burgerbutton from "../BurgerButton/BurgerButton";
 
-const Header = ({ showSideBar, setShowSideBar }) => {
+const Header = () => {
   return (
     <header>
-      <Burgerbutton showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
+      <Burgerbutton />
       <a
         href="https://github.com/MaxiPepa/bienenstock-corp-web"
         target="_blanck"

@@ -8,15 +8,12 @@ import APIContext from "../../Contexts/APIContext";
 import StatesContext from "../../Contexts/StatesContext";
 
 import Cookies from "universal-cookie";
-import { COOKIENAME } from "../../Assets/Constants";
+import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
 import "./Login.css";
 
 const Login = () => {
-  const emailRegex = /\S+@\S+\.\S+/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
-
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
@@ -53,7 +50,7 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    await login(data).then((res) => {
+    login(data).then((res) => {
       if (res.success) {
         setUserData({
           avatar: res.avatar,
@@ -93,7 +90,7 @@ const Login = () => {
                   placeholder="Email"
                   {...register("email", {
                     required: true,
-                    pattern: emailRegex,
+                    pattern: EMAILREGEX,
                   })}
                 />
               </div>
@@ -116,7 +113,7 @@ const Login = () => {
                   placeholder="Password"
                   {...register("password", {
                     required: true,
-                    pattern: passwordRegex,
+                    pattern: PASSWORDREGEX,
                   })}
                 />
                 <button

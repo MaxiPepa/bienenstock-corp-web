@@ -57,6 +57,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  border: 5px solid #383838;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
@@ -64,8 +65,45 @@
   transition: all 0.2s ease-in-out;
 }
 
+.basic-settings-avatar > button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  bottom: 25px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  z-index: 15;
+}
+
+.basic-settings-avatar > button > svg {
+  font-size: 40px;
+  color: transparent;
+  transition: all 0.4s ease-in-out;
+}
+
+.basic-settings-avatar:hover > button {
+  background-color: #3a3a3a;
+  cursor: pointer;
+}
+
 .basic-settings-avatar:hover > img {
   opacity: 0.5;
+  cursor: pointer;
+}
+
+.basic-settings-avatar:hover > button > svg {
+  color: #f1f1f1;
+}
+
+.basic-settings-avatar:hover > button:hover > svg {
+  color: #ac0202;
+}
+
+.basic-settings-avatar:hover > button:hover {
+  transform: scale(1.1);
   cursor: pointer;
 }
 

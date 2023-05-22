@@ -5,7 +5,7 @@ import { ROLES } from "../../Assets/Constants";
 
 const SalesArea = () => {
   const { userData } = useContext(UserContext);
-  useRedirect(userData.userType, ROLES.SALES);
+  useRedirect(userData.userType, ROLES.SELLER);
   return (
     <div>
       <h2 className="area-title">SalesArea</h2>

@@ -23,6 +23,7 @@ import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlin
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCartRounded";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const icons = {
   DashboardIcon,
@@ -50,6 +51,7 @@ const icons = {
   InfoOutlinedIcon,
   RemoveShoppingCartRoundedIcon,
   ChangeCircleIcon,
+  DeleteForeverIcon,
 };
 
 export default icons;

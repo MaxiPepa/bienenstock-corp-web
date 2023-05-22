@@ -2,43 +2,111 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import UserContext from "../../Contexts/UserContext";
+import APIContext from "../../Contexts/APIContext";
 
 import "./SettingInfoBox.css";
 import icons from "../../Assets/Icons";
+import StatesContext from "../../Contexts/StatesContext";
 
 const SettingInfoBox = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const { userData, setUserData } = useContext(UserContext);
+  const { post } = useContext(APIContext);
+  const { setAlert } = useContext(StatesContext);
 
   const [editButton, setEditButton] = useState(true);
-  const [image, setImage] = useState(userData.avatar);
+
+  const compressImg = (img) => {
+    const canvas = document.createElement("canvas");
+    const maxWidth = 800; // Tamaño máximo deseado para el ancho de la imagen
+    const maxHeight = 800; // Tamaño máximo deseado para la altura de la imagen
+    let width = img.width;
+    let height = img.height;
+
+    if (width > height) {
+      if (width > maxWidth) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      }
+    } else {
+      if (height > maxHeight) {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+
+    return canvas.toDataURL("image/jpeg", 0.7); // Calidad de compresión ajustable
+  };
 
   const convert2base64 = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result.toString());
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const dataUrl = compressImg(img);
+          post("user/changeAvatar", {
+            avatar: dataUrl,
+          }).then((res) => {
+            setAlert({
+              show: true,
+              type: "success",
+              message: res.message,
+            });
+            setUserData((prevState) => ({
+              ...prevState,
+              avatar: res.avatar,
+            }));
+          });
+        };
+        img.src = event.target.result;
       };
       reader.readAsDataURL(file);
-
-      setUserData({
-        avatar: image,
-        fullName: userData.fullName,
-        email: userData.email,
-        userType: userData.userType,
-      });
     }
   };
 
-  const onSubmit = (data) => {
-    setEditButton(true);
-    console.log(data);
+  const deleteAvatarHandler = () => {
+    post("user/changeAvatar", {
+      avatar: null,
+    }).then((res) => {
+      setAlert({
+        show: true,
+        type: "success",
+        message: res.message,
+      });
+      setUserData((prevState) => ({
+        ...prevState,
+        avatar: res.avatar,
+      }));
+    });
+  };
+
+  const changeEmailHandler = (data) => {
+    post("user/changeEmail", data).then((res) => {
+      setAlert({
+        show: true,
+        type: "success",
+        message: res.message,
+      });
+      setEditButton(true);
+      reset();
+      setUserData((prevState) => ({
+        ...prevState,
+        email: data.email,
+      }));
+    });
   };
 
   const showErrorMessage = (errorType) => {
@@ -53,6 +121,7 @@ const SettingInfoBox = () => {
         return "You must enter a valid email address";
     }
   };
+
   return (
     <>
       <div className="settings-container">
@@ -60,10 +129,16 @@ const SettingInfoBox = () => {
         <div className="basic-settings">
           <div className="basic-settings-img-container">
             <div className="basic-settings-img">
-              {image ? (
+              {userData.avatar ? (
                 <div className="basic-settings-avatar">
-                  <img src={image} alt="avatar" />
+                  <img src={userData.avatar} alt="avatar" />
                   <span>Change me!</span>
+                  <button
+                    className="avatar-button-delete-img"
+                    onClick={deleteAvatarHandler}
+                  >
+                    <icons.DeleteForeverIcon />
+                  </button>
                   <input
                     type="file"
                     className="basic-settings-input-file"
@@ -84,7 +159,10 @@ const SettingInfoBox = () => {
             </div>
           </div>
 
-          <div className="basic-settings-inputs">
+          <form
+            className="basic-settings-inputs"
+            onSubmit={handleSubmit(changeEmailHandler)}
+          >
             <div className="input-content">
               <label>Full Name</label>
               <input
@@ -103,7 +181,7 @@ const SettingInfoBox = () => {
                   maxLength={51}
                   placeholder={userData.email}
                   disabled={editButton ? true : false}
-                  {...register("Email", {
+                  {...register("email", {
                     required: true,
                     maxLength: 50,
                     pattern: /\S+@\S+\.\S+/,
@@ -114,9 +192,7 @@ const SettingInfoBox = () => {
                     Edit
                   </button>
                 ) : (
-                  <button type="submit" onClick={handleSubmit(onSubmit)}>
-                    Save
-                  </button>
+                  <button type="submit">Save</button>
                 )}
               </div>
               {errors.Email && (
@@ -125,7 +201,7 @@ const SettingInfoBox = () => {
                 </p>
               )}
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

@@ -1,18 +1,21 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
+import UserContext from "../../Contexts/UserContext";
+import StatesContext from "../../Contexts/StatesContext";
+
 import NavLink from "../NavLink/NavLink";
 import UserCard from "../UserCard/UserCard";
-import UserContext from "../../Contexts/UserContext";
 
 import { NAVLINKS, COOKIENAME } from "../../Assets/Constants";
 import icons from "../../Assets/Icons";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ showSideBar, setShowSideBar }) => {
+const Sidebar = () => {
   const cookies = new Cookies();
   const { userData } = useContext(UserContext);
+  const { showSideBar, setShowSideBar } = useContext(StatesContext);
 
   const hideSidebar = () => {
     setShowSideBar(!showSideBar);

@@ -22,18 +22,15 @@ const AdminMenu = () => {
   useRedirect(userData.userType, ROLES.ADMIN);
 
   useEffect(() => {
-    const getUsers = async () => {
-      await get("user/getUsers").then((data) => {
-        setUsers(
-          data.users.map((r) => ({
-            fullName: r.fullName,
-            email: r.email,
-            userType: r.userType,
-          }))
-        );
-      });
-    };
-    getUsers();
+    get("user/getUsers").then((data) => {
+      setUsers(
+        data.users.map((r) => ({
+          fullName: r.fullName,
+          email: r.email,
+          userType: r.userType,
+        }))
+      );
+    });
   }, [get]);
 
   const openModal = () => {

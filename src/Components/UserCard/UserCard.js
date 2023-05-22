@@ -9,8 +9,8 @@ const UserCard = () => {
   return (
     <>
       <div className="user-card">
-        {userData.avatar !== null ? (
-          <img src={userData.Avatar} alt="user avatar" />
+        {userData.avatar ? (
+          <img src={userData.avatar} alt="user avatar" />
         ) : (
           <icons.AccountCircleSharpIcon />
         )}
