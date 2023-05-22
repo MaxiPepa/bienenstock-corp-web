@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 
-import { useProductsValidation } from "../../Hooks/Validations/useProductsValidation";
 import { arrayPurchaseProductInputs } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
+import hooks from "../../Assets/Hooks";
 
 const ProductForm = ({ setCartData }) => {
-  const { requiredValidations, errorMessages } = useProductsValidation();
+  const { requiredValidations, errorMessages } = hooks.useProductsValidation();
 
   const {
     register: registerCart,

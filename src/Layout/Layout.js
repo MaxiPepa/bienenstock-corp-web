@@ -2,13 +2,12 @@ import { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import APIContext from "../Contexts/APIContext";
-import Alert from "../Components/Alert/Alert";
-import Loader from "../Components/Loader/Loader";
+import components from "../Assets/Components";
+import contexts from "../Assets/Contexts";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const { getToken } = useContext(APIContext);
+  const { getToken } = useContext(contexts.APIContext);
 
   useEffect(() => {
     if (!getToken()) {
@@ -19,8 +18,8 @@ const Layout = () => {
   return (
     <>
       <Outlet />
-      <Alert />
-      <Loader />
+      <components.Alert />
+      <components.Loader />
     </>
   );
 };

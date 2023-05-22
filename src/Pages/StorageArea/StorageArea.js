@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
 import { ROLES } from "../../Assets/Constants";
-
-import UserContext from "../../Contexts/UserContext";
 
 import "./StorageArea.css";
 
+import contexts from "../../Assets/Contexts";
+import hooks from "../../Assets/Hooks";
+
 const StorageArea = () => {
-  const { userData } = useContext(UserContext);
-  useRedirect(userData.userType, ROLES.DEPOSITOR);
+  const { userData } = useContext(contexts.UserContext);
+  hooks.useRedirect(userData.userType, ROLES.DEPOSITOR);
 
   return (
     <div>

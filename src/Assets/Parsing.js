@@ -1,5 +1,5 @@
-import Button from "../Components/Button/Button";
 import icons from "./Icons";
+import components from "./Components";
 
 export const parsingDate = (isoString) => {
   const fecha = new Date(isoString);
@@ -26,7 +26,7 @@ export const purchaseHistoryTableContent = (
     return {
       ...newObj,
       Details: (
-        <Button
+        <components.Button
           styles={"table-buttons details-icon"}
           buttonFunction={() => {
             openPurchaseHistoryCartModal(index);
@@ -36,7 +36,7 @@ export const purchaseHistoryTableContent = (
       ),
       Cancel:
         item.pending === "Pending" && userData.userType === ROLES.BUYER ? (
-          <Button
+          <components.Button
             styles={"table-buttons cancel-icon"}
             buttonFunction={() => {
               console.log("cancel purchase ", index);

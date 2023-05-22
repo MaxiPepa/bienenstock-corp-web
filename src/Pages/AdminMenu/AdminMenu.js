@@ -1,25 +1,20 @@
 import { useEffect, useState, useContext } from "react";
-import APIContext from "../../Contexts/APIContext";
-import UserContext from "../../Contexts/UserContext";
-import StatesContext from "../../Contexts/StatesContext";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
-
-import Table from "../../Components/Tables/Table";
-import Button from "../../Components/Button/Button";
-import Modal from "../../Components/Modal/Modal";
 
 import { ROLES } from "../../Assets/Constants";
 
 import "./AdminMenu.css";
 import icons from "../../Assets/Icons";
+import components from "../../Assets/Components";
+import contexts from "../../Assets/Contexts";
+import hooks from "../../Assets/Hooks";
 
 const AdminMenu = () => {
   const [users, setUsers] = useState([]);
-  const { get } = useContext(APIContext);
-  const { userData } = useContext(UserContext);
-  const { setShowModal } = useContext(StatesContext);
+  const { get } = useContext(contexts.APIContext);
+  const { userData } = useContext(contexts.UserContext);
+  const { setShowModal } = useContext(contexts.StatesContext);
 
-  useRedirect(userData.userType, ROLES.ADMIN);
+  hooks.useRedirect(userData.userType, ROLES.ADMIN);
 
   useEffect(() => {
     get("user/getUsers").then((data) => {
@@ -41,7 +36,7 @@ const AdminMenu = () => {
     <div className="admin-menu">
       <div className="admin-header">
         <h2 className="area-title">Admin Menu</h2>
-        <Button
+        <components.Button
           styles="admin-button"
           buttonFunction={openModal}
           buttonIcon={<icons.AddRoundedIcon />}
@@ -49,8 +44,11 @@ const AdminMenu = () => {
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <Table content={users} thead={["Full Name", "Email", "UserType"]} />
-      <Modal modalTitle="New User"></Modal>
+      <components.Table
+        content={users}
+        thead={["Full Name", "Email", "UserType"]}
+      />
+      <components.Modal modalTitle="New User"></components.Modal>
     </div>
   );
 };

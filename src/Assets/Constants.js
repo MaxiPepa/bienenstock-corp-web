@@ -108,6 +108,30 @@ export const arrayPurchaseAditionalInputs = [
   },
 ];
 
+export const arrayPasswordInputs = [
+  {
+    labelName: "Current password: ",
+    styles: "input",
+    type: "password",
+    placeholder: "********",
+    formData: "password",
+  },
+  {
+    labelName: "New password: ",
+    styles: "input",
+    type: "password",
+    placeholder: "********",
+    formData: "newPassword",
+  },
+  {
+    labelName: "Confirm new password: ",
+    styles: "input",
+    type: "password",
+    placeholder: "********",
+    formData: "confirmPassword",
+  },
+];
+
 export const arrayUsersInputs = [
   {
     labelName: "Name: ",

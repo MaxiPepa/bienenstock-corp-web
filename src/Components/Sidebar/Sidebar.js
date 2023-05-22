@@ -1,21 +1,18 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import UserContext from "../../Contexts/UserContext";
-import StatesContext from "../../Contexts/StatesContext";
-
-import NavLink from "../NavLink/NavLink";
-import UserCard from "../UserCard/UserCard";
+import contexts from "../../Assets/Contexts";
 
 import { NAVLINKS, COOKIENAME } from "../../Assets/Constants";
 import icons from "../../Assets/Icons";
+import components from "../../Assets/Components";
 
 import "./Sidebar.css";
 
 const Sidebar = () => {
   const cookies = new Cookies();
-  const { userData } = useContext(UserContext);
-  const { showSideBar, setShowSideBar } = useContext(StatesContext);
+  const { userData } = useContext(contexts.UserContext);
+  const { showSideBar, setShowSideBar } = useContext(contexts.StatesContext);
 
   const hideSidebar = () => {
     setShowSideBar(!showSideBar);
@@ -30,16 +27,16 @@ const Sidebar = () => {
 
   return (
     <div className={showSideBar ? "sidebar open" : "sidebar"}>
-      <UserCard />
+      <components.UserCard />
       <nav>
         <ul>
-          <NavLink
+          <components.NavLink
             navigation={"/dashboard"}
             aditionalFunction={hideSidebar}
             icon={<icons.DashboardIcon />}
             navItemName={"Dashboard"}
           />
-          <NavLink
+          <components.NavLink
             navigation={"/dashboard/products"}
             aditionalFunction={hideSidebar}
             icon={<icons.BackupTableRoundedIcon />}
@@ -47,7 +44,7 @@ const Sidebar = () => {
           />
           {NAVLINKS.map((navlink, index) => {
             return navlink.roles.includes(userData.userType) ? (
-              <NavLink
+              <components.NavLink
                 key={index}
                 navigation={navlink.navigation}
                 aditionalFunction={hideSidebar}
@@ -56,13 +53,13 @@ const Sidebar = () => {
               />
             ) : null;
           })}
-          <NavLink
+          <components.NavLink
             navigation={"/settings"}
             aditionalFunction={hideSidebar}
             icon={<icons.BuildRoundedIcon />}
             navItemName={"Settings"}
           />
-          <NavLink
+          <components.NavLink
             navigation={"/login"}
             aditionalFunction={logoutHandler}
             icon={<icons.ExitToAppIcon />}

@@ -1,30 +1,22 @@
 import { useContext, useState, useEffect } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 import { ROLES } from "../../Assets/Constants";
 import { parsingDate, purchaseHistoryTableContent } from "../../Assets/Parsing";
-import UserContext from "../../Contexts/UserContext";
-import StatesContext from "../../Contexts/StatesContext";
-import APIContext from "../../Contexts/APIContext";
 
-import Button from "../../Components/Button/Button";
-import Modal from "../../Components/Modal/Modal";
-import Table from "../../Components/Tables/Table";
-import CartList from "../../Components/CartList/CartList";
-import AditionalInfoForm from "../../Components/PurchasesForms/AditionalInfoForm";
-import ProductForm from "../../Components/PurchasesForms/ProductForm";
-
-import icons from "../../Assets/Icons";
 import "./PurchasesArea.css";
+import icons from "../../Assets/Icons";
+import components from "../../Assets/Components";
+import contexts from "../../Assets/Contexts";
+import hooks from "../../Assets/Hooks";
 
 const PurchansingArea = () => {
-  const { userData } = useContext(UserContext);
-  useRedirect(userData.userType, ROLES.BUYER);
+  const { userData } = useContext(contexts.UserContext);
+  hooks.useRedirect(userData.userType, ROLES.BUYER);
 
-  const { get } = useContext(APIContext);
+  const { get } = useContext(contexts.APIContext);
+  const { setShowModal } = useContext(contexts.StatesContext);
+
   const [purchaseHistory, setPurchaseHistory] = useState([]);
-
-  const { setShowModal } = useContext(StatesContext);
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
@@ -78,7 +70,7 @@ const PurchansingArea = () => {
       <div className="purchase-header">
         <h2 className="area-title">Purchases Area</h2>
         {userData.userType === ROLES.BUYER ? (
-          <Button
+          <components.Button
             styles="purchase-button"
             buttonFunction={openInputsModal}
             buttonIcon={<icons.AddRoundedIcon />}
@@ -88,7 +80,7 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      <Table
+      <components.Table
         thead={[
           "ID",
           "Buyer",
@@ -101,7 +93,7 @@ const PurchansingArea = () => {
         ]}
         content={purchaseHistoryDataTable}
       />
-      <Modal
+      <components.Modal
         modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
@@ -111,25 +103,25 @@ const PurchansingArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <ProductForm setCartData={setCartData} />
+              <components.ProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
-              <AditionalInfoForm
+              <components.AditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}
               />
             </div>
-            <CartList cartData={cartData} />
+            <components.CartList cartData={cartData} />
           </>
         ) : null}
         {showCartModal ? (
-          <Table
+          <components.Table
             thead={["Product Code", "Product", "Quantity", "Price"]}
             content={cartByIndex}
           />
         ) : null}
-      </Modal>
+      </components.Modal>
     </div>
   );
 };

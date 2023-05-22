@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import StatesContext from "../../Contexts/StatesContext";
 
 import icons from "../../Assets/Icons";
+import contexts from "../../Assets/Contexts";
 
 import "./Alert.css";
 
 const Alert = () => {
-  const { alert, setAlert } = useContext(StatesContext);
+  const { alert, setAlert } = useContext(contexts.StatesContext);
   const alertStyle = () => {
     switch (alert.type) {
       case "success":

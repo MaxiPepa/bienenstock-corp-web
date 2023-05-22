@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { usePasswordValidation } from "../../Hooks/Validations/usePasswordValidation";
 
-import APIContext from "../../Contexts/APIContext";
-import StatesContext from "../../Contexts/StatesContext";
+import { arrayPasswordInputs } from "../../Assets/Constants";
 
 import "./SettingPasswordBox.css";
 import icons from "../../Assets/Icons";
+import contexts from "../../Assets/Contexts";
+import hooks from "../../Assets/Hooks";
 
 const SettingPasswordBox = () => {
-  const { post } = useContext(APIContext);
-  const { setAlert } = useContext(StatesContext);
+  const { post } = useContext(contexts.APIContext);
+  const { setAlert } = useContext(contexts.StatesContext);
   const {
     register,
     handleSubmit,
@@ -19,8 +19,7 @@ const SettingPasswordBox = () => {
     reset,
   } = useForm();
 
-  const { requiredValidations, errorMessages, arrayPasswordInputs } =
-    usePasswordValidation();
+  const { requiredValidations, errorMessages } = hooks.usePasswordValidation();
 
   const [visibilityPassword, setVisibilityPassword] = useState([
     "password",

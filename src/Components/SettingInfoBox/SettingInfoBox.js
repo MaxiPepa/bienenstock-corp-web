@@ -1,12 +1,9 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import UserContext from "../../Contexts/UserContext";
-import APIContext from "../../Contexts/APIContext";
-
 import "./SettingInfoBox.css";
 import icons from "../../Assets/Icons";
-import StatesContext from "../../Contexts/StatesContext";
+import contexts from "../../Assets/Contexts";
 
 const SettingInfoBox = () => {
   const {
@@ -16,9 +13,9 @@ const SettingInfoBox = () => {
     reset,
   } = useForm();
 
-  const { userData, setUserData } = useContext(UserContext);
-  const { post } = useContext(APIContext);
-  const { setAlert } = useContext(StatesContext);
+  const { userData, setUserData } = useContext(contexts.UserContext);
+  const { post } = useContext(contexts.APIContext);
+  const { setAlert } = useContext(contexts.StatesContext);
 
   const [editButton, setEditButton] = useState(true);
 

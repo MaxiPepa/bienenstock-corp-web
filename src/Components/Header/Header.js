@@ -1,12 +1,12 @@
 import React from "react";
 
 import "./Header.css";
-import Burgerbutton from "../BurgerButton/BurgerButton";
+import components from "../../Assets/Components";
 
 const Header = () => {
   return (
     <header>
-      <Burgerbutton />
+      <components.BurgerButton />
       <a
         href="https://github.com/MaxiPepa/bienenstock-corp-web"
         target="_blanck"

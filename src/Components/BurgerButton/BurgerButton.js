@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import StatesContext from "../../Contexts/StatesContext";
 
 import "./BurgerButton.css";
 import icons from "../../Assets/Icons";
+import contexts from "../../Assets/Contexts";
 
-const Burgerbutton = () => {
-  const { showSideBar, setShowSideBar } = useContext(StatesContext);
+const BurgerButton = () => {
+  const { showSideBar, setShowSideBar } = useContext(contexts.StatesContext);
 
   const openMenu = () => {
     setShowSideBar(!showSideBar);
@@ -26,4 +26,4 @@ const Burgerbutton = () => {
   );
 };
 
-export default Burgerbutton;
+export default BurgerButton;

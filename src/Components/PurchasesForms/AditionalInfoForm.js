@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import StatesContext from "../../Contexts/StatesContext";
-import APIContext from "../../Contexts/APIContext";
-import { useProductsValidation } from "../../Hooks/Validations/useProductsValidation";
 import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
 
 import icons from "../../Assets/Icons";
+import hooks from "../../Assets/Hooks";
+import contexts from "../../Assets/Contexts";
 
 const AditionalInfoForm = ({ cartData, setCartData }) => {
-  const { setAlert, setShowModal } = useContext(StatesContext);
-  const { post } = useContext(APIContext);
+  const { setAlert, setShowModal } = useContext(contexts.StatesContext);
+  const { post } = useContext(contexts.APIContext);
 
-  const { requiredValidations, errorMessages } = useProductsValidation();
+  const { requiredValidations, errorMessages } = hooks.useProductsValidation();
 
   const {
     register: registerPurchase,

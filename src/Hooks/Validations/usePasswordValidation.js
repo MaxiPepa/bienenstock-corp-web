@@ -1,30 +1,6 @@
 import { PASSWORDREGEX } from "../../Assets/Constants";
 
 export const usePasswordValidation = () => {
-  const arrayPasswordInputs = [
-    {
-      labelName: "Current password: ",
-      styles: "input",
-      type: "password",
-      placeholder: "********",
-      formData: "password",
-    },
-    {
-      labelName: "New password: ",
-      styles: "input",
-      type: "password",
-      placeholder: "********",
-      formData: "newPassword",
-    },
-    {
-      labelName: "Confirm new password: ",
-      styles: "input",
-      type: "password",
-      placeholder: "********",
-      formData: "confirmPassword",
-    },
-  ];
-
   const validateNewAndConfirmPassword = (value, values) => {
     if (value !== values.newPassword) {
       return "The passwords must match";
@@ -66,7 +42,6 @@ export const usePasswordValidation = () => {
   };
 
   return {
-    arrayPasswordInputs,
     requiredValidations,
     errorMessages,
   };

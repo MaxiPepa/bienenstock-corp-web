@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import UserContext from "../../Contexts/UserContext";
+import contexts from "../../Assets/Contexts";
 
 import "./UserCard.css";
 import icons from "../../Assets/Icons";
 
 const UserCard = () => {
-  const { userData } = useContext(UserContext);
+  const { userData } = useContext(contexts.UserContext);
   return (
     <>
       <div className="user-card">

@@ -1,22 +1,18 @@
 import { useState, useContext, useEffect } from "react";
-
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-import UserContext from "../../Contexts/UserContext";
-import APIContext from "../../Contexts/APIContext";
-import StatesContext from "../../Contexts/StatesContext";
 
 import Cookies from "universal-cookie";
 import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons";
 import "./Login.css";
+import icons from "../../Assets/Icons";
+import contexts from "../../Assets/Contexts";
 
 const Login = () => {
-  const { setUserData } = useContext(UserContext);
-  const { login, getToken } = useContext(APIContext);
-  const { setAlert } = useContext(StatesContext);
+  const { setUserData } = useContext(contexts.UserContext);
+  const { login, getToken } = useContext(contexts.APIContext);
+  const { setAlert } = useContext(contexts.StatesContext);
 
   const navigate = useNavigate();
 
