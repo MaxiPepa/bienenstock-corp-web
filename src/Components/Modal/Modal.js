@@ -2,9 +2,9 @@ import { useContext } from "react";
 
 import "./Modal.css";
 import "../Input/Input.css";
-import icons from "../../Assets/Icons";
-import components from "../../Assets/Components";
-import contexts from "../../Assets/Contexts";
+import { CloseRoundedIcon } from "../../Assets/Icons";
+import { Button } from "../../Assets/Components";
+import { StatesContext } from "../../Assets/Contexts";
 
 const Modal = ({
   modalTitle,
@@ -13,7 +13,7 @@ const Modal = ({
   setCartData,
   children,
 }) => {
-  const { showModal, setShowModal } = useContext(contexts.StatesContext);
+  const { showModal, setShowModal } = useContext(StatesContext);
 
   const closeModalHandler = () => {
     setShowModal(false);
@@ -29,10 +29,10 @@ const Modal = ({
           <div className="modal-content">
             <div className="modal-header">
               <h2>{modalTitle}</h2>
-              <components.Button
+              <Button
                 styles="modal-close-button"
                 buttonFunction={closeModalHandler}
-                buttonIcon={<icons.CloseRoundedIcon />}
+                buttonIcon={<CloseRoundedIcon />}
               />
             </div>
             <div className="modal-body">{children}</div>

@@ -1,5 +1,5 @@
-import icons from "./Icons";
-import components from "./Components";
+import { VisibilityIcon, RemoveShoppingCartRoundedIcon } from "./Icons";
+import { Button } from "./Components";
 
 export const parsingDate = (isoString) => {
   const fecha = new Date(isoString);
@@ -26,22 +26,22 @@ export const purchaseHistoryTableContent = (
     return {
       ...newObj,
       Details: (
-        <components.Button
+        <Button
           styles={"table-buttons details-icon"}
           buttonFunction={() => {
             openPurchaseHistoryCartModal(index);
           }}
-          buttonIcon={<icons.VisibilityIcon />}
+          buttonIcon={<VisibilityIcon />}
         />
       ),
       Cancel:
         item.pending === "Pending" && userData.userType === ROLES.BUYER ? (
-          <components.Button
+          <Button
             styles={"table-buttons cancel-icon"}
             buttonFunction={() => {
               console.log("cancel purchase ", index);
             }}
-            buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
+            buttonIcon={<RemoveShoppingCartRoundedIcon />}
           />
         ) : null,
     };

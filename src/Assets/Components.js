@@ -16,7 +16,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Table from "../Components/Tables/Table";
 import UserCard from "../Components/UserCard/UserCard";
 
-const components = {
+export {
   Alert,
   BurgerButton,
   Button,
@@ -35,5 +35,3 @@ const components = {
   Table,
   UserCard,
 };
-
-export default components;

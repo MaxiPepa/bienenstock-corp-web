@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { arrayPasswordInputs } from "../../Assets/Constants";
 
 import "./SettingPasswordBox.css";
-import icons from "../../Assets/Icons";
-import contexts from "../../Assets/Contexts";
-import hooks from "../../Assets/Hooks";
+import {
+  ChangeCircleIcon,
+  VisibilityIcon,
+  VisibilityOffIcon,
+} from "../../Assets/Icons";
+import { APIContext, StatesContext } from "../../Assets/Contexts";
+import { usePasswordValidation } from "../../Assets/Hooks";
 
 const SettingPasswordBox = () => {
-  const { post } = useContext(contexts.APIContext);
-  const { setAlert } = useContext(contexts.StatesContext);
+  const { post } = useContext(APIContext);
+  const { setAlert } = useContext(StatesContext);
   const {
     register,
     handleSubmit,
@@ -19,7 +23,7 @@ const SettingPasswordBox = () => {
     reset,
   } = useForm();
 
-  const { requiredValidations, errorMessages } = hooks.usePasswordValidation();
+  const { requiredValidations, errorMessages } = usePasswordValidation();
 
   const [visibilityPassword, setVisibilityPassword] = useState([
     "password",
@@ -27,9 +31,9 @@ const SettingPasswordBox = () => {
     "password",
   ]);
   const [visibilityButton, setvisibilityButton] = useState([
-    <icons.VisibilityIcon />,
-    <icons.VisibilityIcon />,
-    <icons.VisibilityIcon />,
+    <VisibilityIcon />,
+    <VisibilityIcon />,
+    <VisibilityIcon />,
   ]);
 
   const handlerButtonPassword = (index) => {
@@ -39,7 +43,7 @@ const SettingPasswordBox = () => {
       );
       setvisibilityButton(
         visibilityButton.map((item, i) =>
-          i === index ? <icons.VisibilityOffIcon /> : item
+          i === index ? <VisibilityOffIcon /> : item
         )
       );
     } else {
@@ -48,7 +52,7 @@ const SettingPasswordBox = () => {
       );
       setvisibilityButton(
         visibilityButton.map((item, i) =>
-          i === index ? <icons.VisibilityIcon /> : item
+          i === index ? <VisibilityIcon /> : item
         )
       );
     }
@@ -104,7 +108,7 @@ const SettingPasswordBox = () => {
 
           <div className="button-content">
             <button type="submit" className="modal-button-add">
-              {<icons.ChangeCircleIcon />}
+              {<ChangeCircleIcon />}
               <span>Change Password</span>
             </button>
           </div>

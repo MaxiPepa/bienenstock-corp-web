@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
 import "./BurgerButton.css";
-import icons from "../../Assets/Icons";
-import contexts from "../../Assets/Contexts";
+import { MenuRoundedIcon, MenuOpenRoundedIcon } from "../../Assets/Icons";
+import { StatesContext } from "../../Assets/Contexts";
 
 const BurgerButton = () => {
-  const { showSideBar, setShowSideBar } = useContext(contexts.StatesContext);
+  const { showSideBar, setShowSideBar } = useContext(StatesContext);
 
   const openMenu = () => {
     setShowSideBar(!showSideBar);
@@ -16,11 +16,7 @@ const BurgerButton = () => {
         className={showSideBar ? "sidebar-toggle" : "close sidebar-toggle"}
         onClick={openMenu}
       >
-        {showSideBar ? (
-          <icons.MenuOpenRoundedIcon />
-        ) : (
-          <icons.MenuRoundedIcon />
-        )}
+        {showSideBar ? <MenuOpenRoundedIcon /> : <MenuRoundedIcon />}
       </button>
     </>
   );

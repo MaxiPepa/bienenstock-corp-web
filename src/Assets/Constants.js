@@ -1,4 +1,10 @@
-import icons from "./Icons";
+import {
+  ShoppingCartRoundedIcon,
+  ReceiptRoundedIcon,
+  ArchiveRoundedIcon,
+  LeaderboardRoundedIcon,
+  GroupIcon,
+} from "./Icons";
 
 export const ROLES = {
   ADMIN: "Admin",
@@ -12,31 +18,31 @@ export const NAVLINKS = [
   {
     roles: [ROLES.BUYER, ROLES.ADMIN],
     navigation: "/dashboard/purchases-area",
-    icon: <icons.ShoppingCartRoundedIcon />,
+    icon: <ShoppingCartRoundedIcon />,
     navItemName: "Purchases",
   },
   {
     roles: [ROLES.SELLER, ROLES.ADMIN],
     navigation: "/dashboard/sales-area",
-    icon: <icons.ReceiptRoundedIcon />,
+    icon: <ReceiptRoundedIcon />,
     navItemName: "Sales",
   },
   {
     roles: [ROLES.DEPOSITOR, ROLES.ADMIN],
     navigation: "/dashboard/storage-area",
-    icon: <icons.ArchiveRoundedIcon />,
+    icon: <ArchiveRoundedIcon />,
     navItemName: "Storage",
   },
   {
     roles: [ROLES.ANALYST, ROLES.ADMIN],
     navigation: "/dashboard/reports-area",
-    icon: <icons.LeaderboardRoundedIcon />,
+    icon: <LeaderboardRoundedIcon />,
     navItemName: "Reports",
   },
   {
     roles: [ROLES.ADMIN],
     navigation: "/admin-menu",
-    icon: <icons.GroupIcon />,
+    icon: <GroupIcon />,
     navItemName: "Admin Menu",
   },
 ];

@@ -25,7 +25,7 @@ import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCar
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-const icons = {
+export {
   DashboardIcon,
   BackupTableRoundedIcon,
   BuildRoundedIcon,
@@ -53,5 +53,3 @@ const icons = {
   ChangeCircleIcon,
   DeleteForeverIcon,
 };
-
-export default icons;

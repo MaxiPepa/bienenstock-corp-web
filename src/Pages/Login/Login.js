@@ -6,20 +6,23 @@ import Cookies from "universal-cookie";
 import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
 
 import "./Login.css";
-import icons from "../../Assets/Icons";
-import contexts from "../../Assets/Contexts";
+import {
+  PersonOutlineTwoToneIcon,
+  HttpsTwoToneIcon,
+  VisibilityIcon,
+  VisibilityOffIcon,
+} from "../../Assets/Icons";
+import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 
 const Login = () => {
-  const { setUserData } = useContext(contexts.UserContext);
-  const { login, getToken } = useContext(contexts.APIContext);
-  const { setAlert } = useContext(contexts.StatesContext);
+  const { setUserData } = useContext(UserContext);
+  const { login, getToken } = useContext(APIContext);
+  const { setAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
 
   const [visibilityPassword, setVisibilityPassword] = useState("password");
-  const [visibilityButton, setvisibilityButton] = useState(
-    <icons.VisibilityIcon />
-  );
+  const [visibilityButton, setvisibilityButton] = useState(<VisibilityIcon />);
 
   const {
     register,
@@ -36,10 +39,10 @@ const Login = () => {
   const handlerButtonPassword = () => {
     if (visibilityPassword === "password") {
       setVisibilityPassword("text");
-      setvisibilityButton(<icons.VisibilityOffIcon />);
+      setvisibilityButton(<VisibilityOffIcon />);
     } else {
       setVisibilityPassword("password");
-      setvisibilityButton(<icons.VisibilityIcon />);
+      setvisibilityButton(<VisibilityIcon />);
     }
   };
 
@@ -80,7 +83,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="formlogin">
             <div className="inputs">
               <div className="input-icons">
-                <icons.PersonOutlineTwoToneIcon className="icon" />
+                <PersonOutlineTwoToneIcon className="icon" />
                 <input
                   type="text"
                   placeholder="Email"
@@ -103,7 +106,7 @@ const Login = () => {
             </div>
             <div className="inputs">
               <div className="input-icons">
-                <icons.HttpsTwoToneIcon className="icon" />
+                <HttpsTwoToneIcon className="icon" />
                 <input
                   type={visibilityPassword}
                   placeholder="Password"

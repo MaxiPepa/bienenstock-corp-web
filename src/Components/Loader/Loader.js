@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
-import contexts from "../../Assets/Contexts";
+import { StatesContext } from "../../Assets/Contexts";
 
 import "./Loader.css";
 
 const Loader = () => {
-  const { showLoader } = useContext(contexts.StatesContext);
+  const { showLoader } = useContext(StatesContext);
   return (
     showLoader && (
       <div className="loader-container">

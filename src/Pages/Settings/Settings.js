@@ -1,4 +1,4 @@
-import components from "../../Assets/Components";
+import { SettingInfoBox, SettingPasswordBox } from "../../Assets/Components";
 
 import "./Settings.css";
 
@@ -8,8 +8,8 @@ const Settings = () => {
       <h2 className="area-title">Settings</h2>
       <hr className="division-horizontal-hr" />
       <div className="general-settings-container">
-        <components.SettingInfoBox />
-        <components.SettingPasswordBox />
+        <SettingInfoBox />
+        <SettingPasswordBox />
       </div>
     </div>
   );

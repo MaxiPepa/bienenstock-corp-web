@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import components from "./Components";
+import { Main } from "./Components";
 import pages from "../Assets/Pages";
 
 export const router = createBrowserRouter(
@@ -15,36 +15,33 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<pages.Login />} />
       <Route
         path="/dashboard"
-        element={<components.Main render={<pages.Dashboard />} />}
+        element={<Main render={<pages.Dashboard />} />}
       />
       <Route
         path="/dashboard/products"
-        element={<components.Main render={<pages.Products />} />}
+        element={<Main render={<pages.Products />} />}
       />
       <Route
         path="/dashboard/purchases-area"
-        element={<components.Main render={<pages.PurchasesArea />} />}
+        element={<Main render={<pages.PurchasesArea />} />}
       />
       <Route
         path="/dashboard/sales-area"
-        element={<components.Main render={<pages.SalesArea />} />}
+        element={<Main render={<pages.SalesArea />} />}
       />
       <Route
         path="/dashboard/storage-area"
-        element={<components.Main render={<pages.StorageArea />} />}
+        element={<Main render={<pages.StorageArea />} />}
       />
       <Route
         path="/dashboard/reports-area"
-        element={<components.Main render={<pages.ReportsArea />} />}
+        element={<Main render={<pages.ReportsArea />} />}
       />
       <Route
         path="/admin-menu"
-        element={<components.Main render={<pages.AdminMenu />} />}
+        element={<Main render={<pages.AdminMenu />} />}
       />
-      <Route
-        path="/settings"
-        element={<components.Main render={<pages.Settings />} />}
-      />
+      <Route path="/settings" element={<Main render={<pages.Settings />} />} />
     </Route>
   )
 );

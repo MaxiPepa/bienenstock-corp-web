@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import "./SettingInfoBox.css";
-import icons from "../../Assets/Icons";
-import contexts from "../../Assets/Contexts";
+import { AccountCircleSharpIcon, DeleteForeverIcon } from "../../Assets/Icons";
+import { UserContext, APIContext, StatesContext } from "../../Assets/Contexts";
 
 const SettingInfoBox = () => {
   const {
@@ -13,9 +13,9 @@ const SettingInfoBox = () => {
     reset,
   } = useForm();
 
-  const { userData, setUserData } = useContext(contexts.UserContext);
-  const { post } = useContext(contexts.APIContext);
-  const { setAlert } = useContext(contexts.StatesContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const { post } = useContext(APIContext);
+  const { setAlert } = useContext(StatesContext);
 
   const [editButton, setEditButton] = useState(true);
 
@@ -134,7 +134,7 @@ const SettingInfoBox = () => {
                     className="avatar-button-delete-img"
                     onClick={deleteAvatarHandler}
                   >
-                    <icons.DeleteForeverIcon />
+                    <DeleteForeverIcon />
                   </button>
                   <input
                     type="file"
@@ -149,7 +149,7 @@ const SettingInfoBox = () => {
                     className="basic-settings-input-file"
                     onChange={(e) => convert2base64(e)}
                   />
-                  <icons.AccountCircleSharpIcon />
+                  <AccountCircleSharpIcon />
                   <span>Change me!</span>
                 </div>
               )}

@@ -5,7 +5,7 @@ import { StatesProvider } from "../Contexts/StatesContext";
 import APIContext from "../Contexts/APIContext";
 import { APIProvider } from "../Contexts/APIContext";
 
-const contexts = {
+export {
   UserContext,
   UserProvider,
   StatesContext,
@@ -13,5 +13,3 @@ const contexts = {
   APIContext,
   APIProvider,
 };
-
-export default contexts;

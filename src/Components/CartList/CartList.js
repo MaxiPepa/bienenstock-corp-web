@@ -1,4 +1,4 @@
-import components from "../../Assets/Components";
+import { Table } from "../../Assets/Components";
 
 const CartList = ({ cartData }) => {
   return (
@@ -12,7 +12,7 @@ const CartList = ({ cartData }) => {
               {cartData.length === 0 ? (
                 <p>No se han cargado productos</p>
               ) : (
-                <components.Table
+                <Table
                   content={cartData}
                   thead={["Product Code", "Product", "Quantity", "Unit Price"]}
                 />

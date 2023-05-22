@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 
 import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons";
-import hooks from "../../Assets/Hooks";
-import contexts from "../../Assets/Contexts";
+import { AddRoundedIcon } from "../../Assets/Icons";
+import { useProductsValidation } from "../../Assets/Hooks";
+import { APIContext, StatesContext } from "../../Assets/Contexts";
 
 const AditionalInfoForm = ({ cartData, setCartData }) => {
-  const { setAlert, setShowModal } = useContext(contexts.StatesContext);
-  const { post } = useContext(contexts.APIContext);
+  const { setAlert, setShowModal } = useContext(StatesContext);
+  const { post } = useContext(APIContext);
 
-  const { requiredValidations, errorMessages } = hooks.useProductsValidation();
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
     register: registerPurchase,
@@ -78,7 +78,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
       ))}
       <div className="button-content">
         <button type="submit" className="modal-button-add">
-          {<icons.AddRoundedIcon />}
+          {<AddRoundedIcon />}
           <span>Finish Purchase</span>
         </button>
       </div>

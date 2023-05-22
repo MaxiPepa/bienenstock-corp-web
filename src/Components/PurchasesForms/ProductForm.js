@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 
 import { arrayPurchaseProductInputs } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons";
-import hooks from "../../Assets/Hooks";
+import { ShoppingCartRoundedIcon } from "../../Assets/Icons";
+import { useProductsValidation } from "../../Assets/Hooks";
 
 const ProductForm = ({ setCartData }) => {
-  const { requiredValidations, errorMessages } = hooks.useProductsValidation();
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
     register: registerCart,
@@ -54,7 +54,7 @@ const ProductForm = ({ setCartData }) => {
       ))}
       <div className="button-content">
         <button type="submit" className="modal-button-add">
-          {<icons.ShoppingCartRoundedIcon />}
+          {<ShoppingCartRoundedIcon />}
           <span>Add to cart</span>
         </button>
       </div>

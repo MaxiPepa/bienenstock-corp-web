@@ -3,18 +3,18 @@ import { useEffect, useState, useContext } from "react";
 import { ROLES } from "../../Assets/Constants";
 
 import "./AdminMenu.css";
-import icons from "../../Assets/Icons";
-import components from "../../Assets/Components";
-import contexts from "../../Assets/Contexts";
-import hooks from "../../Assets/Hooks";
+import { AddRoundedIcon } from "../../Assets/Icons";
+import { Button, Table, Modal } from "../../Assets/Components";
+import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+import { useRedirect } from "../../Assets/Hooks";
 
 const AdminMenu = () => {
   const [users, setUsers] = useState([]);
-  const { get } = useContext(contexts.APIContext);
-  const { userData } = useContext(contexts.UserContext);
-  const { setShowModal } = useContext(contexts.StatesContext);
+  const { get } = useContext(APIContext);
+  const { userData } = useContext(UserContext);
+  const { setShowModal } = useContext(StatesContext);
 
-  hooks.useRedirect(userData.userType, ROLES.ADMIN);
+  useRedirect(userData.userType, ROLES.ADMIN);
 
   useEffect(() => {
     get("user/getUsers").then((data) => {
@@ -36,19 +36,16 @@ const AdminMenu = () => {
     <div className="admin-menu">
       <div className="admin-header">
         <h2 className="area-title">Admin Menu</h2>
-        <components.Button
+        <Button
           styles="admin-button"
           buttonFunction={openModal}
-          buttonIcon={<icons.AddRoundedIcon />}
+          buttonIcon={<AddRoundedIcon />}
           buttonText="New User"
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <components.Table
-        content={users}
-        thead={["Full Name", "Email", "UserType"]}
-      />
-      <components.Modal modalTitle="New User"></components.Modal>
+      <Table content={users} thead={["Full Name", "Email", "UserType"]} />
+      <Modal modalTitle="New User"></Modal>
     </div>
   );
 };

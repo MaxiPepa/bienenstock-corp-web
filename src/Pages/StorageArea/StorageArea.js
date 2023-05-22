@@ -3,12 +3,12 @@ import { ROLES } from "../../Assets/Constants";
 
 import "./StorageArea.css";
 
-import contexts from "../../Assets/Contexts";
-import hooks from "../../Assets/Hooks";
+import { UserContext } from "../../Assets/Contexts";
+import { useRedirect } from "../../Assets/Hooks";
 
 const StorageArea = () => {
-  const { userData } = useContext(contexts.UserContext);
-  hooks.useRedirect(userData.userType, ROLES.DEPOSITOR);
+  const { userData } = useContext(UserContext);
+  useRedirect(userData.userType, ROLES.DEPOSITOR);
 
   return (
     <div>
