@@ -133,12 +133,5 @@ export const arrayUsersInputs = [
     type: "password",
     placeholder: "********",
     formData: "password",
-  },
-  {
-    labelName: "User type: ",
-    styles: "input",
-    type: "text",
-    placeholder: "********",
-    formData: "userType",
-  },
+  }
 ];
