@@ -1,8 +1,9 @@
 import { useContext } from "react";
+
 import { UserContext } from "../../Assets/Contexts";
+import { AccountCircleSharpIcon } from "../../Assets/Icons";
 
 import "./UserCard.css";
-import { AccountCircleSharpIcon } from "../../Assets/Icons";
 
 const UserCard = () => {
   const { userData } = useContext(UserContext);

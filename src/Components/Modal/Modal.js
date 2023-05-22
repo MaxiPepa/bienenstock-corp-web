@@ -1,10 +1,11 @@
 import { useContext } from "react";
 
-import "./Modal.css";
-import "../Input/Input.css";
-import { CloseRoundedIcon } from "../../Assets/Icons";
 import { Button } from "../../Assets/Components";
 import { StatesContext } from "../../Assets/Contexts";
+import { CloseRoundedIcon } from "../../Assets/Icons";
+
+import "./Modal.css";
+import "../Input/Input.css";
 
 const Modal = ({
   modalTitle,

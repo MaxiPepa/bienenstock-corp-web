@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
 
-import "./Login.css";
+import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import {
   PersonOutlineTwoToneIcon,
   HttpsTwoToneIcon,
   VisibilityIcon,
   VisibilityOffIcon,
 } from "../../Assets/Icons";
-import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+
+import "./Login.css";
 
 const Login = () => {
   const { setUserData } = useContext(UserContext);

@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 
 import { arrayPasswordInputs } from "../../Assets/Constants";
 
-import "./SettingPasswordBox.css";
+import { APIContext, StatesContext } from "../../Assets/Contexts";
+import { usePasswordValidation } from "../../Assets/Hooks";
 import {
   ChangeCircleIcon,
   VisibilityIcon,
   VisibilityOffIcon,
 } from "../../Assets/Icons";
-import { APIContext, StatesContext } from "../../Assets/Contexts";
-import { usePasswordValidation } from "../../Assets/Hooks";
+
+import "./SettingPasswordBox.css";
 
 const SettingPasswordBox = () => {
   const { post } = useContext(APIContext);

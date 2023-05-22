@@ -6,42 +6,47 @@ import {
 } from "react-router-dom";
 
 import { Main } from "./Components";
-import pages from "../Assets/Pages";
+import {
+  AdminMenu,
+  Dashboard,
+  Layout,
+  Login,
+  Products,
+  PurchasesArea,
+  ReportsArea,
+  SalesArea,
+  Settings,
+  StorageArea,
+} from "../Assets/Pages";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<pages.Layout />}>
+    <Route path="/" element={<Layout />}>
       <Route path="/" element={<Navigate replace to="/login" />} />
-      <Route path="/login" element={<pages.Login />} />
-      <Route
-        path="/dashboard"
-        element={<Main render={<pages.Dashboard />} />}
-      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Main render={<Dashboard />} />} />
       <Route
         path="/dashboard/products"
-        element={<Main render={<pages.Products />} />}
+        element={<Main render={<Products />} />}
       />
       <Route
         path="/dashboard/purchases-area"
-        element={<Main render={<pages.PurchasesArea />} />}
+        element={<Main render={<PurchasesArea />} />}
       />
       <Route
         path="/dashboard/sales-area"
-        element={<Main render={<pages.SalesArea />} />}
+        element={<Main render={<SalesArea />} />}
       />
       <Route
         path="/dashboard/storage-area"
-        element={<Main render={<pages.StorageArea />} />}
+        element={<Main render={<StorageArea />} />}
       />
       <Route
         path="/dashboard/reports-area"
-        element={<Main render={<pages.ReportsArea />} />}
+        element={<Main render={<ReportsArea />} />}
       />
-      <Route
-        path="/admin-menu"
-        element={<Main render={<pages.AdminMenu />} />}
-      />
-      <Route path="/settings" element={<Main render={<pages.Settings />} />} />
+      <Route path="/admin-menu" element={<Main render={<AdminMenu />} />} />
+      <Route path="/settings" element={<Main render={<Settings />} />} />
     </Route>
   )
 );

@@ -2,11 +2,12 @@ import { useEffect, useState, useContext } from "react";
 
 import { ROLES } from "../../Assets/Constants";
 
-import "./AdminMenu.css";
-import { AddRoundedIcon } from "../../Assets/Icons";
 import { Button, Table, Modal } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
+import { AddRoundedIcon } from "../../Assets/Icons";
+
+import "./AdminMenu.css";
 
 const AdminMenu = () => {
   const [users, setUsers] = useState([]);

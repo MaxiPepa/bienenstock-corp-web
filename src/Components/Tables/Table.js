@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Table.css";
 
-const Table = ({ content, thead, PStyles }) => {
+const Table = ({ content, thead }) => {
   return (
     <>
       <table>

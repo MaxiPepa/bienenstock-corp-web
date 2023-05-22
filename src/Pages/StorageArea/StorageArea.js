@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ROLES } from "../../Assets/Constants";
 
-import "./StorageArea.css";
-
 import { UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
+
+import "./StorageArea.css";
 
 const StorageArea = () => {
   const { userData } = useContext(UserContext);

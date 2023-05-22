@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import "./SettingInfoBox.css";
-import { AccountCircleSharpIcon, DeleteForeverIcon } from "../../Assets/Icons";
 import { UserContext, APIContext, StatesContext } from "../../Assets/Contexts";
+import { AccountCircleSharpIcon, DeleteForeverIcon } from "../../Assets/Icons";
+
+import "./SettingInfoBox.css";
 
 const SettingInfoBox = () => {
   const {

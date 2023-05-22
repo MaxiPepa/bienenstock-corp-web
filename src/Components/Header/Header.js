@@ -1,7 +1,8 @@
 import React from "react";
 
-import "./Header.css";
 import { BurgerButton } from "../../Assets/Components";
+
+import "./Header.css";
 
 const Header = () => {
   return (

@@ -9,7 +9,7 @@ import SalesArea from "../Pages/SalesArea/SalesArea";
 import Settings from "../Pages/Settings/Settings";
 import StorageArea from "../Pages/StorageArea/StorageArea";
 
-const pages = {
+export {
   AdminMenu,
   Dashboard,
   Layout,
@@ -21,5 +21,3 @@ const pages = {
   Settings,
   StorageArea,
 };
-
-export default pages;

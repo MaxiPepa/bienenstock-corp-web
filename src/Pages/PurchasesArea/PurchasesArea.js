@@ -3,8 +3,6 @@ import { useContext, useState, useEffect } from "react";
 import { ROLES } from "../../Assets/Constants";
 import { parsingDate, purchaseHistoryTableContent } from "../../Assets/Parsing";
 
-import "./PurchasesArea.css";
-import { AddRoundedIcon } from "../../Assets/Icons";
 import {
   Button,
   Table,
@@ -15,6 +13,9 @@ import {
 } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
+import { AddRoundedIcon } from "../../Assets/Icons";
+
+import "./PurchasesArea.css";
 
 const PurchansingArea = () => {
   const { get } = useContext(APIContext);

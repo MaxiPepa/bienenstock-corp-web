@@ -1,8 +1,9 @@
 import { useContext } from "react";
 
-import "./BurgerButton.css";
-import { MenuRoundedIcon, MenuOpenRoundedIcon } from "../../Assets/Icons";
 import { StatesContext } from "../../Assets/Contexts";
+import { MenuRoundedIcon, MenuOpenRoundedIcon } from "../../Assets/Icons";
+
+import "./BurgerButton.css";
 
 const BurgerButton = () => {
   const { showSideBar, setShowSideBar } = useContext(StatesContext);
