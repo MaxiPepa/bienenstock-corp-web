@@ -1,18 +1,23 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import NavLink from "../NavLink/NavLink";
-import UserCard from "../UserCard/UserCard";
-import UserContext from "../../Contexts/UserContext";
-
 import { NAVLINKS, COOKIENAME } from "../../Assets/Constants";
-import icons from "../../Assets/Icons";
+
+import { NavLink, UserCard } from "../../Assets/Components";
+import { StatesContext, UserContext } from "../../Assets/Contexts";
+import {
+  DashboardIcon,
+  BackupTableRoundedIcon,
+  BuildRoundedIcon,
+  ExitToAppIcon,
+} from "../../Assets/Icons";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ showSideBar, setShowSideBar }) => {
+const Sidebar = () => {
   const cookies = new Cookies();
   const { userData } = useContext(UserContext);
+  const { showSideBar, setShowSideBar } = useContext(StatesContext);
 
   const hideSidebar = () => {
     setShowSideBar(!showSideBar);
@@ -33,13 +38,13 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
           <NavLink
             navigation={"/dashboard"}
             aditionalFunction={hideSidebar}
-            icon={<icons.DashboardIcon />}
+            icon={<DashboardIcon />}
             navItemName={"Dashboard"}
           />
           <NavLink
             navigation={"/dashboard/products"}
             aditionalFunction={hideSidebar}
-            icon={<icons.BackupTableRoundedIcon />}
+            icon={<BackupTableRoundedIcon />}
             navItemName={"Products"}
           />
           {NAVLINKS.map((navlink, index) => {
@@ -56,13 +61,13 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
           <NavLink
             navigation={"/settings"}
             aditionalFunction={hideSidebar}
-            icon={<icons.BuildRoundedIcon />}
+            icon={<BuildRoundedIcon />}
             navItemName={"Settings"}
           />
           <NavLink
             navigation={"/login"}
             aditionalFunction={logoutHandler}
-            icon={<icons.ExitToAppIcon />}
+            icon={<ExitToAppIcon />}
             navItemName={"Logout"}
           />
         </ul>

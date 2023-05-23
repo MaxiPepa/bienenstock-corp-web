@@ -1,30 +1,30 @@
 import { useContext, useState, useEffect } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
 
 import { ROLES } from "../../Assets/Constants";
 import { parsingDate, purchaseHistoryTableContent } from "../../Assets/Parsing";
-import UserContext from "../../Contexts/UserContext";
-import StatesContext from "../../Contexts/StatesContext";
-import APIContext from "../../Contexts/APIContext";
 
-import Button from "../../Components/Button/Button";
-import Modal from "../../Components/Modal/Modal";
-import Table from "../../Components/Tables/Table";
-import CartList from "../../Components/CartList/CartList";
-import AditionalInfoForm from "../../Components/PurchasesForms/AditionalInfoForm";
-import ProductForm from "../../Components/PurchasesForms/ProductForm";
+import {
+  Button,
+  Table,
+  Modal,
+  ProductForm,
+  AditionalInfoForm,
+  CartList,
+} from "../../Assets/Components";
+import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+import { useRedirect } from "../../Assets/Hooks";
+import { AddRoundedIcon } from "../../Assets/Icons";
 
-import icons from "../../Assets/Icons";
 import "./PurchasesArea.css";
 
 const PurchansingArea = () => {
+  const { get } = useContext(APIContext);
+  const { setShowModal } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
+
   useRedirect(userData.userType, ROLES.BUYER);
 
-  const { get } = useContext(APIContext);
   const [purchaseHistory, setPurchaseHistory] = useState([]);
-
-  const { setShowModal } = useContext(StatesContext);
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
@@ -32,27 +32,24 @@ const PurchansingArea = () => {
   const [cartByIndex, setCartByIndex] = useState([]);
 
   useEffect(() => {
-    const getPurchaseHistory = async () => {
-      await get("purchase/getPurchases").then((data) => {
-        setPurchaseHistory(
-          data.purchases.map((r) => ({
-            purchaseId: "#" + r.purchaseId,
-            userFullName: r.userFullName,
-            supplier: r.supplier,
-            totalPrice: "$" + r.totalPrice,
-            date: parsingDate(r.date),
-            pending: r.pending ? "Pending" : "Delivered",
-            products: r.products.map((p) => ({
-              productCode: "#" + p.productCode,
-              name: p.name,
-              quantity: p.quantity,
-              unitPrice: "$" + p.unitPrice,
-            })),
-          }))
-        );
-      });
-    };
-    getPurchaseHistory();
+    get("purchase/getPurchases").then((data) => {
+      setPurchaseHistory(
+        data.purchases.map((r) => ({
+          purchaseId: "#" + r.purchaseId,
+          userFullName: r.userFullName,
+          supplier: r.supplier,
+          totalPrice: "$" + r.totalPrice,
+          date: parsingDate(r.date),
+          pending: r.pending ? "Pending" : "Delivered",
+          products: r.products.map((p) => ({
+            productCode: "#" + p.productCode,
+            name: p.name,
+            quantity: p.quantity,
+            unitPrice: "$" + p.unitPrice,
+          })),
+        }))
+      );
+    });
   }, [get]);
 
   const openInputsModal = () => {
@@ -84,7 +81,7 @@ const PurchansingArea = () => {
           <Button
             styles="purchase-button"
             buttonFunction={openInputsModal}
-            buttonIcon={<icons.AddRoundedIcon />}
+            buttonIcon={<AddRoundedIcon />}
             buttonText="New Purchase"
           />
         ) : null}

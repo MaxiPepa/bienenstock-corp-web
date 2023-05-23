@@ -1,7 +1,13 @@
 import { useContext } from "react";
-import StatesContext from "../../Contexts/StatesContext";
 
-import icons from "../../Assets/Icons";
+import { StatesContext } from "../../Assets/Contexts";
+import {
+  CheckCircleOutlineRoundedIcon,
+  ErrorOutlineRoundedIcon,
+  WarningAmberRoundedIcon,
+  InfoOutlinedIcon,
+  CloseRoundedIcon,
+} from "../../Assets/Icons";
 
 import "./Alert.css";
 
@@ -10,13 +16,13 @@ const Alert = () => {
   const alertStyle = () => {
     switch (alert.type) {
       case "success":
-        return <icons.CheckCircleOutlineRoundedIcon />;
+        return <CheckCircleOutlineRoundedIcon />;
       case "error":
-        return <icons.ErrorOutlineRoundedIcon />;
+        return <ErrorOutlineRoundedIcon />;
       case "warning":
-        return <icons.WarningAmberRoundedIcon />;
+        return <WarningAmberRoundedIcon />;
       case "info":
-        return <icons.InfoOutlinedIcon />;
+        return <InfoOutlinedIcon />;
       default:
         return null;
     }
@@ -38,7 +44,7 @@ const Alert = () => {
             {alertStyle()}
             <p>{alert.message}</p>
             <button className="close-alert-button" onClick={closeAlertHandler}>
-              <icons.CloseRoundedIcon />
+              <CloseRoundedIcon />
             </button>
           </div>
         </div>

@@ -1,8 +1,6 @@
 import { RouterProvider } from "react-router-dom";
-import { StatesProvider } from "./Contexts/StatesContext";
-import { UserProvider } from "./Contexts/UserContext";
-import { APIProvider } from "./Contexts/APIContext";
 import { router } from "./Assets/Routes";
+import { StatesProvider, APIProvider, UserProvider } from "./Assets/Contexts";
 
 import "./App.css";
 

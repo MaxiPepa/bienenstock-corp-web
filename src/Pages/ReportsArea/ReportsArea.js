@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
-import UserContext from "../../Contexts/UserContext";
 import { ROLES } from "../../Assets/Constants";
+
+import { UserContext } from "../../Assets/Contexts";
+import { useRedirect } from "../../Assets/Hooks";
 
 const ReportsArea = () => {
   const { userData } = useContext(UserContext);

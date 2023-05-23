@@ -1,18 +1,19 @@
 import { useContext } from "react";
-import UserContext from "../../Contexts/UserContext";
+
+import { UserContext } from "../../Assets/Contexts";
+import { AccountCircleSharpIcon } from "../../Assets/Icons";
 
 import "./UserCard.css";
-import icons from "../../Assets/Icons";
 
 const UserCard = () => {
   const { userData } = useContext(UserContext);
   return (
     <>
       <div className="user-card">
-        {userData.avatar !== null ? (
-          <img src={userData.Avatar} alt="user avatar" />
+        {userData.avatar ? (
+          <img src={userData.avatar} alt="user avatar" />
         ) : (
-          <icons.AccountCircleSharpIcon />
+          <AccountCircleSharpIcon />
         )}
         <div className="user-profile">
           <p>{userData.fullName}</p>

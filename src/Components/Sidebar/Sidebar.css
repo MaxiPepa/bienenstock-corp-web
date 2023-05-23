@@ -1,12 +1,13 @@
 .sidebar {
-  position: absolute;
+  position: fixed;
   width: 350px;
-  height: 100vh;
+  height: 100%;
   background: #2e2e2e;
   padding: 80px 15px;
   z-index: 45;
   transition: all 0.5s ease-in-out;
   transform: translateX(-100%);
+  overflow-y: auto;
 }
 
 .sidebar.open {
@@ -15,6 +16,22 @@
   -moz-box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.75);
   transform: translateX(0);
   transition: all 0.5s ease-in-out;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #2e2e2e; /* Color de fondo de la barra de desplazamiento */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #252525; /* Color del pulgar de la barra de desplazamiento */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #333333; /* Color del pulgar de la barra de desplazamiento al pasar el cursor */
 }
 
 nav {

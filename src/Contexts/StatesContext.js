@@ -20,7 +20,7 @@ const StatesProvider = ({ children }) => {
           type: null,
           message: null,
         });
-      }, 5000);
+      }, 3000);
     }
   }, [alert.show]);
 
