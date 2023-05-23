@@ -24,6 +24,8 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCartRounded";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 export {
   DashboardIcon,
@@ -52,4 +54,6 @@ export {
   RemoveShoppingCartRoundedIcon,
   ChangeCircleIcon,
   DeleteForeverIcon,
+  DeleteForeverIcon,
+  BorderColorIcon
 };

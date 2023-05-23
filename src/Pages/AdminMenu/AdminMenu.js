@@ -33,6 +33,25 @@ const AdminMenu = () => {
     setShowModal(true);
   };
 
+  const usersContent = users.map((item, index) => ({
+    ...item,
+    Details: (
+      <Button
+        styles={"table-buttons details-icon"}
+        buttonIcon={<icons.BorderColorIcon />}
+      />
+    ),
+    Cancel:(
+      <Button
+        styles={"table-buttons cancel-icon"}
+        buttonFunction={() => {
+          console.log("delete user ", index);
+        }}
+        buttonIcon={<icons.DeleteForeverIcon />}
+      />
+    ),
+  }));
+
   return (
     <div className="admin-menu">
       <div className="admin-header">
@@ -45,8 +64,10 @@ const AdminMenu = () => {
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <Table content={users} thead={["Full Name", "Email", "UserType"]} />
-      <Modal modalTitle="New User"></Modal>
+      <Table content={usersContent} thead={["Full Name", "Email", "UserType","Modify user","Delete user"]} />
+      <Modal modalTitle="New User">
+        <UserForm/>
+      </Modal>
     </div>
   );
 };
