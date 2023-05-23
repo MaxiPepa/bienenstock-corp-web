@@ -20,7 +20,7 @@ export const useUserValidation = () => {
     }
     
     const userTypeValidate = (ut) => {
-        if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst") ){
+        if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst" || ut === "Admin" || ut === "Depositor") ){
             return "invalid user type"
         }
 
@@ -29,7 +29,10 @@ export const useUserValidation = () => {
 
     const requiredValidations = (formData) => {
       switch (formData) {
-        case "name" || "lastName" :
+        case "name" :
+          return { required: true, maxLength: 50 };
+        
+        case "lastName" :
           return { required: true, maxLength: 50 };
   
         case "email":

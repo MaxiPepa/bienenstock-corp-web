@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserValidation } from "../../Hooks/Validations/useUserValidation";
 import APIContext from "../../Contexts/APIContext";
@@ -10,6 +10,7 @@ import icons from "../../Assets/Icons";
 
 const UserForm = () => {
 
+  const {option,setOption} = useState()
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { post } = useContext(APIContext);
@@ -21,8 +22,8 @@ const UserForm = () => {
     formState: { errors },
   } = useForm();
 
-
   const onSubmitUser = async (data) => {
+    console.log(data)
     await post("user/saveUser",data)
     reset()
   };
@@ -52,6 +53,25 @@ const UserForm = () => {
           )}
         </div>
       ))}
+      <div className="input-content"> 
+        <label>User Type</label>
+        <select 
+          className="inputs-maped input-content"
+          {...register("userType", { required: true })}
+        >
+          <option value="" disabled selected>--Select option--</option>
+          <option value="Admin">Admin</option>
+          <option value="Analyst">Analyst</option>
+          <option value="Buyer">Buyer</option>
+          <option value="Depositor">Depositor</option>
+          <option value="Seller">Seller</option>
+        </select>
+        {errors["userType"] && (
+          <p className="error-input-message">
+            {errorMessages(errors["userType"])}
+          </p>
+        )}
+      </div>
       <div className="button-content">
         <p></p>
         <button type="submit" className="modal-button-add">
