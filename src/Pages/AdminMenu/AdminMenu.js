@@ -5,10 +5,9 @@ import { ROLES } from "../../Assets/Constants";
 import { Button, Table, Modal } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
-import { AddRoundedIcon } from "../../Assets/Icons";
+import { AddRoundedIcon,BorderColorIcon,DeleteForeverIcon } from "../../Assets/Icons";
 
 import "./AdminMenu.css";
-import icons from "../../Assets/Icons";
 import UserForm from "../../Components/UsersForm/UserForm";
 
 const AdminMenu = () => {
@@ -40,7 +39,7 @@ const AdminMenu = () => {
     Details: (
       <Button
         styles={"table-buttons details-icon"}
-        buttonIcon={<icons.BorderColorIcon />}
+        buttonIcon={<BorderColorIcon />}
       />
     ),
     Cancel:(
@@ -49,7 +48,7 @@ const AdminMenu = () => {
         buttonFunction={() => {
           console.log("delete user ", index);
         }}
-        buttonIcon={<icons.DeleteForeverIcon />}
+        buttonIcon={<DeleteForeverIcon />}
       />
     ),
   }));

@@ -2,11 +2,7 @@ export const useUserValidation = () => {
   
   
     const passValidate = (pass) => {
-<<<<<<< HEAD
         let expRegPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
-=======
-        let expRegPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/;
->>>>>>> main
         if( ! expRegPass.test(pass)){
             return "the password must have: Have at least one lowercase letter, one capital letter, one digit, one special character and Be between 8 and 12 characters long."
         }
@@ -22,29 +18,13 @@ export const useUserValidation = () => {
 
         return true;
     }
-    
-    const userTypeValidate = (ut) => {
-<<<<<<< HEAD
-        if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst" || ut === "Admin" || ut === "Depositor") ){
-=======
-        if( ! (ut === "Buyer" || ut === "Seller" || ut === "Analyst") ){
->>>>>>> main
-            return "invalid user type"
-        }
-
-        return true
-    }
 
     const requiredValidations = (formData) => {
       switch (formData) {
-<<<<<<< HEAD
         case "name" :
           return { required: true, maxLength: 50 };
         
         case "lastName" :
-=======
-        case "name" || "lastName" :
->>>>>>> main
           return { required: true, maxLength: 50 };
   
         case "email":
@@ -54,7 +34,7 @@ export const useUserValidation = () => {
             return { required: true, validate : passValidate };
 
         case "userType":
-          return { required: true, validate: userTypeValidate };
+          return { required: true};
   
         default:
           break;

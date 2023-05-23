@@ -1,17 +1,20 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useUserValidation } from "../../Hooks/Validations/useUserValidation";
+
+import StatesContext from "../../Contexts/StatesContext";
 import APIContext from "../../Contexts/APIContext";
 
 import { arrayUsersInputs } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons";
+import {AddRoundedIcon} from "../../Assets/Icons";
 
 
 const UserForm = () => {
 
   const { requiredValidations, errorMessages } = useUserValidation();
 
+  const { setAlert, setShowModal } = useContext(StatesContext);
   const { post } = useContext(APIContext);
 
   const {
@@ -23,7 +26,15 @@ const UserForm = () => {
 
   const onSubmitUser = async (data) => {
     await post("user/saveUser",data)
-    reset()
+      .then(()=>{
+        setAlert({
+          show: true,
+          message: "User added",
+          type: "success",
+        });
+        reset()
+        setShowModal(false)
+      })
   };
 
   return (
@@ -73,7 +84,7 @@ const UserForm = () => {
       <div className="button-content">
         <p></p>
         <button type="submit" className="modal-button-add">
-          {<icons.AddRoundedIcon />}
+          {<AddRoundedIcon />}
           <span>Add user</span>
         </button>
       </div>
