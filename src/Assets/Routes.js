@@ -5,17 +5,19 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Layout from "../Layout/Layout";
-import Login from "../Pages/Login/Login";
-import Dashboard from "../Pages/Dashboard/Dashboard";
-import Products from "../Pages/Products/Products";
-import PurchasesArea from "../Pages/PurchasesArea/PurchasesArea";
-import SalesArea from "../Pages/SalesArea/SalesArea";
-import StorageArea from "../Pages/StorageArea/StorageArea";
-import ReportsArea from "../Pages/ReportsArea/ReportsArea";
-import Settings from "../Pages/Settings/Settings";
-import Main from "../Components/Main/Main";
-import AdminMenu from "../Pages/AdminMenu/AdminMenu";
+import { Main } from "./Components";
+import {
+  AdminMenu,
+  Dashboard,
+  Layout,
+  Login,
+  Products,
+  PurchasesArea,
+  ReportsArea,
+  SalesArea,
+  Settings,
+  StorageArea,
+} from "../Assets/Pages";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

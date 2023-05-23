@@ -1,22 +1,21 @@
 import { useState, useContext, useEffect } from "react";
-
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import UserContext from "../../Contexts/UserContext";
-import APIContext from "../../Contexts/APIContext";
-import StatesContext from "../../Contexts/StatesContext";
-
 import Cookies from "universal-cookie";
-import { COOKIENAME } from "../../Assets/Constants";
+import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
 
-import icons from "../../Assets/Icons";
+import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+import {
+  PersonOutlineTwoToneIcon,
+  HttpsTwoToneIcon,
+  VisibilityIcon,
+  VisibilityOffIcon,
+} from "../../Assets/Icons";
+
 import "./Login.css";
 
 const Login = () => {
-  const emailRegex = /\S+@\S+\.\S+/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$/;
-
   const { setUserData } = useContext(UserContext);
   const { login, getToken } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
@@ -24,9 +23,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [visibilityPassword, setVisibilityPassword] = useState("password");
-  const [visibilityButton, setvisibilityButton] = useState(
-    <icons.VisibilityIcon />
-  );
+  const [visibilityButton, setvisibilityButton] = useState(<VisibilityIcon />);
 
   const {
     register,
@@ -43,17 +40,17 @@ const Login = () => {
   const handlerButtonPassword = () => {
     if (visibilityPassword === "password") {
       setVisibilityPassword("text");
-      setvisibilityButton(<icons.VisibilityOffIcon />);
+      setvisibilityButton(<VisibilityOffIcon />);
     } else {
       setVisibilityPassword("password");
-      setvisibilityButton(<icons.VisibilityIcon />);
+      setvisibilityButton(<VisibilityIcon />);
     }
   };
 
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    await login(data).then((res) => {
+    login(data).then((res) => {
       if (res.success) {
         setUserData({
           avatar: res.avatar,
@@ -87,13 +84,13 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="formlogin">
             <div className="inputs">
               <div className="input-icons">
-                <icons.PersonOutlineTwoToneIcon className="icon" />
+                <PersonOutlineTwoToneIcon className="icon" />
                 <input
                   type="text"
                   placeholder="Email"
                   {...register("email", {
                     required: true,
-                    pattern: emailRegex,
+                    pattern: EMAILREGEX,
                   })}
                 />
               </div>
@@ -110,13 +107,13 @@ const Login = () => {
             </div>
             <div className="inputs">
               <div className="input-icons">
-                <icons.HttpsTwoToneIcon className="icon" />
+                <HttpsTwoToneIcon className="icon" />
                 <input
                   type={visibilityPassword}
                   placeholder="Password"
                   {...register("password", {
                     required: true,
-                    pattern: passwordRegex,
+                    pattern: PASSWORDREGEX,
                   })}
                 />
                 <button

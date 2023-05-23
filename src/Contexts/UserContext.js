@@ -15,19 +15,16 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (getToken()) {
-      const getUserData = async () => {
-        await post("authentication/getLoggedUser", {}).then((res) => {
-          if (res.success) {
-            setUserData({
-              avatar: res.avatar,
-              fullName: res.fullName,
-              email: res.email,
-              userType: res.userType,
-            });
-          }
-        });
-      };
-      getUserData();
+      post("authentication/getLoggedUser", {}).then((res) => {
+        if (res.success) {
+          setUserData({
+            avatar: res.avatar,
+            fullName: res.fullName,
+            email: res.email,
+            userType: res.userType,
+          });
+        }
+      });
     }
   }, [getToken, post]);
 

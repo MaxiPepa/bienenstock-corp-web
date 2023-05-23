@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useUserValidation } from "../../Hooks/Validations/useUserValidation";
 import APIContext from "../../Contexts/APIContext";
@@ -10,7 +10,6 @@ import icons from "../../Assets/Icons";
 
 const UserForm = () => {
 
-  const {option,setOption} = useState()
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { post } = useContext(APIContext);
@@ -23,7 +22,6 @@ const UserForm = () => {
   } = useForm();
 
   const onSubmitUser = async (data) => {
-    console.log(data)
     await post("user/saveUser",data)
     reset()
   };

@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
 import { ROLES } from "../../Assets/Constants";
 
-import UserContext from "../../Contexts/UserContext";
+import { UserContext } from "../../Assets/Contexts";
+import { useRedirect } from "../../Assets/Hooks";
 
 import "./StorageArea.css";
 

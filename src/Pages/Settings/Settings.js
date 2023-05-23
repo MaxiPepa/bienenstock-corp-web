@@ -1,9 +1,16 @@
-import React from "react";
+import { SettingInfoBox, SettingPasswordBox } from "../../Assets/Components";
+
+import "./Settings.css";
 
 const Settings = () => {
   return (
-    <div>
+    <div className="settings-area">
       <h2 className="area-title">Settings</h2>
+      <hr className="division-horizontal-hr" />
+      <div className="general-settings-container">
+        <SettingInfoBox />
+        <SettingPasswordBox />
+      </div>
     </div>
   );
 };

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import StatesContext from "../../Contexts/StatesContext";
-import Button from "../Button/Button";
+import { useContext } from "react";
+
+import { Button } from "../../Assets/Components";
+import { StatesContext } from "../../Assets/Contexts";
+import { CloseRoundedIcon } from "../../Assets/Icons";
 
 import "./Modal.css";
 import "../Input/Input.css";
-import icons from "../../Assets/Icons";
 
 const Modal = ({
   modalTitle,
@@ -32,7 +33,7 @@ const Modal = ({
               <Button
                 styles="modal-close-button"
                 buttonFunction={closeModalHandler}
-                buttonIcon={<icons.CloseRoundedIcon />}
+                buttonIcon={<CloseRoundedIcon />}
               />
             </div>
             <div className="modal-body">{children}</div>

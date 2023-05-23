@@ -1,5 +1,7 @@
 header {
-  background: rgba(0, 0, 0, 0.226);
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.222);
   height: 70px;
   line-height: 60px;
   padding: 0 20px;
@@ -10,6 +12,7 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 header > a {

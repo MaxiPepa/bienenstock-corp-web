@@ -1,5 +1,5 @@
-import Button from "../Components/Button/Button";
-import icons from "./Icons";
+import { Button } from "./Components";
+import { VisibilityIcon, RemoveShoppingCartRoundedIcon } from "./Icons";
 
 export const parsingDate = (isoString) => {
   const fecha = new Date(isoString);
@@ -31,7 +31,7 @@ export const purchaseHistoryTableContent = (
           buttonFunction={() => {
             openPurchaseHistoryCartModal(index);
           }}
-          buttonIcon={<icons.VisibilityIcon />}
+          buttonIcon={<VisibilityIcon />}
         />
       ),
       Cancel:
@@ -41,9 +41,18 @@ export const purchaseHistoryTableContent = (
             buttonFunction={() => {
               console.log("cancel purchase ", index);
             }}
-            buttonIcon={<icons.RemoveShoppingCartRoundedIcon />}
+            buttonIcon={<RemoveShoppingCartRoundedIcon />}
           />
         ) : null,
     };
   });
+};
+
+export const parsingEachFirstLetterToUppercase = (string) => {
+  const stringSplitted = string.split(" ");
+  const stringSplittedUppercase = stringSplitted.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+  const stringJoined = stringSplittedUppercase.join(" ");
+  return stringJoined;
 };

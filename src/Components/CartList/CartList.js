@@ -1,4 +1,4 @@
-import Table from "../Tables/Table";
+import { Table } from "../../Assets/Components";
 
 const CartList = ({ cartData }) => {
   return (

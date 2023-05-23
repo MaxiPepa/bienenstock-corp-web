@@ -1,12 +1,13 @@
 import React from "react";
 
-import "./Header.css";
-import Burgerbutton from "../BurgerButton/BurgerButton";
+import { BurgerButton } from "../../Assets/Components";
 
-const Header = ({ showSideBar, setShowSideBar }) => {
+import "./Header.css";
+
+const Header = () => {
   return (
     <header>
-      <Burgerbutton showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
+      <BurgerButton />
       <a
         href="https://github.com/MaxiPepa/bienenstock-corp-web"
         target="_blanck"
