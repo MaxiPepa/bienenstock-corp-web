@@ -9,7 +9,11 @@ const Table = ({ content, thead }) => {
         <thead>
           <tr>
             {thead.map((attr, key) => {
-              return <th key={key}>{attr}</th>;
+              return (
+                <th key={key} data-column={attr}>
+                  {attr}
+                </th>
+              );
             })}
           </tr>
         </thead>
@@ -18,8 +22,9 @@ const Table = ({ content, thead }) => {
             return (
               <tr key={index}>
                 {Object.keys(attr).map((item, key) => {
+                  console.log(attr[item]);
                   return (
-                    <td key={index + key}>
+                    <td key={index + key} data-column={typeof attr[item]}>
                       <p>{attr[item]}</p>
                     </td>
                   );

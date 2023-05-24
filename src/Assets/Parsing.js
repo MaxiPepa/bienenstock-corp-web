@@ -1,5 +1,9 @@
 import { Button } from "./Components";
-import { VisibilityIcon, RemoveShoppingCartRoundedIcon } from "./Icons";
+import {
+  VisibilityIcon,
+  RemoveShoppingCartRoundedIcon,
+  CheckCircleOutlineRoundedIcon,
+} from "./Icons";
 
 export const parsingDate = (isoString) => {
   const fecha = new Date(isoString);
@@ -12,6 +16,15 @@ export const parsingDate = (isoString) => {
 
   const fechaFormateada = `${dia}/${mes}/${año} ${horas}:${minutos}`;
   return fechaFormateada;
+};
+
+export const parsingEachFirstLetterToUppercase = (string) => {
+  const stringSplitted = string.split(" ");
+  const stringSplittedUppercase = stringSplitted.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+  const stringJoined = stringSplittedUppercase.join(" ");
+  return stringJoined;
 };
 
 export const purchaseHistoryTableContent = (
@@ -48,11 +61,24 @@ export const purchaseHistoryTableContent = (
   });
 };
 
-export const parsingEachFirstLetterToUppercase = (string) => {
-  const stringSplitted = string.split(" ");
-  const stringSplittedUppercase = stringSplitted.map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+export const purchaseEntryTableContent = (
+  pendingEntry,
+  confirmEntryProduct
+) => {
+  return pendingEntry.map((item, index) => {
+    const { products, pending, ...newObj } = item;
+
+    return {
+      ...newObj,
+      Details: (
+        <Button
+          styles={"table-buttons details-icon"}
+          buttonFunction={() => {
+            confirmEntryProduct(index);
+          }}
+          buttonIcon={<CheckCircleOutlineRoundedIcon />}
+        />
+      ),
+    };
   });
-  const stringJoined = stringSplittedUppercase.join(" ");
-  return stringJoined;
 };
