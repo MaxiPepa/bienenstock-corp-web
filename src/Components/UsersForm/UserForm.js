@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useUserValidation } from "../../Hooks/Validations/useUserValidation";
+import { useUserValidation } from "../../Assets/Hooks";
 
 import { APIContext, StatesContext } from "../../Assets/Contexts";
 
