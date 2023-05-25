@@ -16,7 +16,7 @@ import UserForm from "../../Components/UsersForm/UserForm";
 
 const AdminMenu = () => {
   const [users, setUsers] = useState([]);
-  const { get } = useContext(APIContext);
+  const { get,post } = useContext(APIContext);
   const { userData } = useContext(UserContext);
   const { setShowModal } = useContext(StatesContext);
 
@@ -38,20 +38,39 @@ const AdminMenu = () => {
     setShowModal(true);
   };
 
+  const deleteUser = (index) => {
+
+    console.log("delete user ", index);
+
+    //Hacer modal para confirmar delete user.
+
+    // post("user/deleteUser",index).
+    //   then(()=>{
+    //     setAlert({
+    //       show: true,
+    //       message: "User deleted",
+    //       type: "success",
+    //     });
+    //   })
+  };
+
+  const modifyUser = async (index) => {
+    console.log(usersContent[index])
+  }
+
   const usersContent = users.map((item, index) => ({
     ...item,
-    Details: (
+    Edit: (
       <Button
         styles={"table-buttons details-icon"}
         buttonIcon={<BorderColorIcon />}
+        buttonFunction={() => modifyUser(index) }
       />
     ),
-    Cancel: (
+    Delete:(
       <Button
         styles={"table-buttons cancel-icon"}
-        buttonFunction={() => {
-          console.log("delete user ", index);
-        }}
+        buttonFunction={() => deleteUser(index) }
         buttonIcon={<DeleteForeverIcon />}
       />
     ),
