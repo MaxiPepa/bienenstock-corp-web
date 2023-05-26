@@ -8,8 +8,9 @@ table {
   font-family: "Exo";
   font-size: 15px;
   font-weight: 500;
-  border-radius: 5px;
   text-align: left;
+  border-radius: 5px;
+  overflow: hidden; /* Agregado para ocultar los bordes superiores */
 }
 
 table > thead > tr {
@@ -76,4 +77,23 @@ tbody > tr:hover {
 
 .cancel-icon {
   color: #990e0e;
+}
+
+/* Nuevos estilos para bordes superiores redondeados */
+thead::before,
+thead::after {
+  content: "";
+  display: table-row;
+}
+
+thead::after {
+  border-bottom: 1px solid #b8b8b8;
+}
+
+thead > tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+
+thead > tr:first-child th:last-child {
+  border-top-right-radius: 5px;
 }

@@ -16,11 +16,11 @@ const Products = () => {
         data.products.map((res) => ({
           productCode: "#" + res.productCode,
           name: res.name,
+          quantity: res.quantity,
           expirationDate:
             res.expirationDate === null
               ? "No expiration date"
               : parsingDate(res.expirationDate),
-          quantity: res.quantity,
         }))
       );
     });
@@ -34,7 +34,7 @@ const Products = () => {
       <hr className="division-horizontal-hr" />
       <section>
         <Table
-          thead={["Product Code", "Name", "Expiration Date", "Quantity"]}
+          thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
           content={products ? products : []}
         />
       </section>
