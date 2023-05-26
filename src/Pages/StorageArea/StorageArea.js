@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { ROLES } from "../../Assets/Constants";
 import { parsingDate, purchaseEntryTableContent } from "../../Assets/Parsing";
 
-import { Table } from "../../Assets/Components";
-import { UserContext, APIContext } from "../../Assets/Contexts";
+import { Modal, Table } from "../../Assets/Components";
+import { UserContext, APIContext, StatesContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
 
 import "./StorageArea.css";
@@ -11,10 +11,14 @@ import "./StorageArea.css";
 const StorageArea = () => {
   const { userData } = useContext(UserContext);
   const { get } = useContext(APIContext);
+  const { setShowModal } = useContext(StatesContext);
 
   useRedirect(userData.userType, ROLES.DEPOSITOR);
 
   const [pendingEntry, setPendingEntry] = useState([]);
+  const [cartByIndex, setCartByIndex] = useState([]);
+  const [expiration, setExpiration] = useState([]);
+  const [expirationDate, setExpirationDate] = useState([]);
 
   useEffect(() => {
     get("purchase/getPurchases").then((data) => {
@@ -41,8 +45,26 @@ const StorageArea = () => {
     });
   }, [get]);
 
+  const cartByIndexWithExpiration = (cart) => {
+    const falseArray = Array(cart.length).fill(false);
+    setExpiration(falseArray);
+    console.log(cart.length);
+
+    return cart.map((p, index) => ({
+      ...p,
+      expiration: (
+        <input
+          type="checkbox"
+          className="expiration-checkbox"
+          checked={expiration[index]}
+        />
+      ),
+    }));
+  };
+
   const confirmEntryProduct = (index) => {
-    console.log(pendingEntry[index].products);
+    setCartByIndex(cartByIndexWithExpiration(pendingEntry[index].products));
+    setShowModal(true);
   };
 
   const purchaseEntryDataTable = purchaseEntryTableContent(
@@ -73,6 +95,18 @@ const StorageArea = () => {
       <section>
         <h3 className="area-subtitle">Pending products release</h3>
       </section>
+      <Modal modalTitle="Confirm Products Entry">
+        <Table
+          thead={[
+            "Product Code",
+            "Name",
+            "Quantity",
+            "Unit Price",
+            "Expiration?",
+          ]}
+          content={cartByIndex}
+        />
+      </Modal>
     </div>
   );
 };

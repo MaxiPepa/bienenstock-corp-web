@@ -72,7 +72,7 @@ export const purchaseEntryTableContent = (
       ...newObj,
       Details: (
         <Button
-          styles={"table-buttons details-icon"}
+          styles={"entry-product-button"}
           buttonFunction={() => {
             confirmEntryProduct(index);
           }}

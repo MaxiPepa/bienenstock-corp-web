@@ -34,6 +34,8 @@ table > tbody {
 
 th[data-column="Details"],
 th[data-column="Confirm Entry"],
+th[data-column="Expiration?"],
+th[data-column="Cancel"],
 td[data-column="object"] {
   text-align: center;
 }
