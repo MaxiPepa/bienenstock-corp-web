@@ -125,7 +125,7 @@ const PurchansingArea = () => {
         ) : null}
         {showCartModal ? (
           <Table
-            thead={["Product Code", "Product", "Quantity", "Price"]}
+            thead={["Product Code", "Product", "Quantity", "Unit Price"]}
             content={cartByIndex}
           />
         ) : null}
