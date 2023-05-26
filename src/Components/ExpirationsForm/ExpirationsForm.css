@@ -1,0 +1,18 @@
+.inputs-maped {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#input-content-expiration {
+  width: 50%;
+}
+
+#input-content-expiration > label {
+  width: 85%;
+}
+
+#error-input-message-expiration {
+  width: 85%;
+}
