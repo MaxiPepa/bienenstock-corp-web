@@ -74,12 +74,12 @@ const PurchansingArea = () => {
   );
 
   return (
-    <div className="purchase-area">
-      <div className="purchase-header">
+    <div className="area-container">
+      <div className="area-header">
         <h2 className="area-title">Purchases Area</h2>
         {userData.userType === ROLES.BUYER ? (
           <Button
-            styles="purchase-button"
+            styles="area-button"
             buttonFunction={openInputsModal}
             buttonIcon={<AddRoundedIcon />}
             buttonText="New Purchase"

@@ -1,3 +1,5 @@
+import { ROLES } from "../Assets/Constants";
+
 import { Button } from "./Components";
 import {
   VisibilityIcon,
@@ -6,16 +8,16 @@ import {
 } from "./Icons";
 
 export const parsingDate = (isoString) => {
-  const fecha = new Date(isoString);
+  const date = new Date(isoString);
 
-  const dia = fecha.getDate().toString().padStart(2, "0");
-  const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
-  const año = fecha.getFullYear().toString();
-  const horas = fecha.getHours().toString().padStart(2, "0");
-  const minutos = fecha.getMinutes().toString().padStart(2, "0");
+  const dd = date.getDate().toString().padStart(2, "0");
+  const mm = (date.getMonth() + 1).toString().padStart(2, "0");
+  const yy = date.getFullYear().toString();
+  const hs = date.getHours().toString().padStart(2, "0");
+  const ms = date.getMinutes().toString().padStart(2, "0");
 
-  const fechaFormateada = `${dia}/${mes}/${año} ${horas}:${minutos}`;
-  return fechaFormateada;
+  const formatedDate = `${dd}/${mm}/${yy} ${hs}:${ms}`;
+  return formatedDate;
 };
 
 export const parsingEachFirstLetterToUppercase = (string) => {
@@ -30,8 +32,7 @@ export const parsingEachFirstLetterToUppercase = (string) => {
 export const purchaseHistoryTableContent = (
   purchaseHistory,
   openPurchaseHistoryCartModal,
-  userData,
-  ROLES
+  userData
 ) => {
   return purchaseHistory.map((item, index) => {
     const { products, ...newObj } = item;
@@ -63,22 +64,24 @@ export const purchaseHistoryTableContent = (
 
 export const purchaseEntryTableContent = (
   pendingEntry,
-  confirmEntryProduct
+  confirmEntryProduct,
+  userData
 ) => {
   return pendingEntry.map((item, index) => {
     const { products, pending, ...newObj } = item;
 
     return {
       ...newObj,
-      Details: (
-        <Button
-          styles={"entry-product-button"}
-          buttonFunction={() => {
-            confirmEntryProduct(index);
-          }}
-          buttonIcon={<CheckCircleOutlineRoundedIcon />}
-        />
-      ),
+      Details:
+        userData.userType === ROLES.DEPOSITOR ? (
+          <Button
+            styles={"entry-product-button"}
+            buttonFunction={() => {
+              confirmEntryProduct(index);
+            }}
+            buttonIcon={<CheckCircleOutlineRoundedIcon />}
+          />
+        ) : null,
     };
   });
 };

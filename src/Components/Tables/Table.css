@@ -36,6 +36,8 @@ th[data-column="Details"],
 th[data-column="Confirm Entry"],
 th[data-column="Expiration?"],
 th[data-column="Cancel"],
+th[data-column="Modify user"],
+th[data-column="Delete user"],
 td[data-column="object"] {
   text-align: center;
 }

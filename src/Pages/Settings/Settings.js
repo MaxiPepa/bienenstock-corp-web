@@ -4,7 +4,7 @@ import "./Settings.css";
 
 const Settings = () => {
   return (
-    <div className="settings-area">
+    <div className="area-container">
       <h2 className="area-title">Settings</h2>
       <hr className="division-horizontal-hr" />
       <div className="general-settings-container">

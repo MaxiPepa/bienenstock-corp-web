@@ -5,7 +5,11 @@ import { ROLES } from "../../Assets/Constants";
 import { Button, Table, Modal } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
-import { AddRoundedIcon,BorderColorIcon,DeleteForeverIcon } from "../../Assets/Icons";
+import {
+  AddRoundedIcon,
+  BorderColorIcon,
+  DeleteForeverIcon,
+} from "../../Assets/Icons";
 
 import "./AdminMenu.css";
 import UserForm from "../../Components/UsersForm/UserForm";
@@ -42,7 +46,7 @@ const AdminMenu = () => {
         buttonIcon={<BorderColorIcon />}
       />
     ),
-    Cancel:(
+    Cancel: (
       <Button
         styles={"table-buttons cancel-icon"}
         buttonFunction={() => {
@@ -54,20 +58,23 @@ const AdminMenu = () => {
   }));
 
   return (
-    <div className="admin-menu">
-      <div className="admin-header">
+    <div className="area-container">
+      <div className="area-header">
         <h2 className="area-title">Admin Menu</h2>
         <Button
-          styles="admin-button"
+          styles="area-button"
           buttonFunction={openModal}
           buttonIcon={<AddRoundedIcon />}
           buttonText="New User"
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <Table content={usersContent} thead={["Full Name", "Email", "UserType","Modify user","Delete user"]} />
+      <Table
+        content={usersContent}
+        thead={["Full Name", "Email", "UserType", "Modify user", "Delete user"]}
+      />
       <Modal modalTitle="New User">
-        <UserForm/>
+        <UserForm />
       </Modal>
     </div>
   );

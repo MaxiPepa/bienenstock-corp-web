@@ -168,5 +168,5 @@ export const arrayUsersInputs = [
     type: "password",
     placeholder: "********",
     formData: "password",
-  }
+  },
 ];

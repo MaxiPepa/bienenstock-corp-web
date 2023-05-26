@@ -15,6 +15,7 @@ import SettingPasswordBox from "../Components/SettingPasswordBox/SettingPassword
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Table from "../Components/Tables/Table";
 import UserCard from "../Components/UserCard/UserCard";
+import ExpirationsForm from "../Components/ExpirationsForm/ExpirationsForm";
 
 export {
   Alert,
@@ -34,4 +35,5 @@ export {
   Sidebar,
   Table,
   UserCard,
+  ExpirationsForm,
 };
