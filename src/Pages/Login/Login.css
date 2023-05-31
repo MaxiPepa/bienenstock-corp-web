@@ -103,22 +103,25 @@
 .error-login-message {
   color: rgb(109, 11, 11);
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .signInButton {
   width: 100%;
-  background-color: white;
-  border-radius: 5px;
-  height: 35px;
+  height: 40px;
+  background: var(--c-color-1);
   border: none;
-  color: var(--c-color-1);
-  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .signInButton:hover {
-  cursor: pointer;
-  background-color: var(--c-color-1);
-  color: white;
+  background: #7f8108;
+  transform: scale(1.05);
 }
 
 #copyright {
