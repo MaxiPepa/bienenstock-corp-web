@@ -8,14 +8,18 @@ import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { AddRoundedIcon,BorderColorIcon,DeleteForeverIcon } from "../../Assets/Icons";
 
 import "./AdminMenu.css";
-import UserForm from "../../Components/UsersForm/UserForm";
+import UserForm  from "../../Components/UsersForm/UserForm";
+import {UserModifyForm} from "../../Components/UsersForm/UserModifyForm";
+
 import ConfirmationForm from "../../Components/ConfirmationForm/ConfirmationForm";
 
 const AdminMenu = () => {
 
+  const [index,setIndex] = useState();
+  const [idUser,setIdUser] = useState();
   const [users, setUsers] = useState([]);
-  const [modalConfirm,setModalConfirm] = useState(false)
-  const [idUser,setIdUser] = useState()
+  const [modalConfirm,setModalConfirm] = useState(false);
+  const [completeInputValue,setCompleteInputValue] = useState(false);
 
   const { get,post } = useContext(APIContext);
   const { userData } = useContext(UserContext);
@@ -28,7 +32,9 @@ const AdminMenu = () => {
     get("user/getUsers").then((data) => {
       setUsers(
         data.users.map((r) => ({
-          fullName: r.fullName,
+          userId: r.userId,
+          name: r.name, 
+          lastName: r.lastName,
           email: r.email,
           userType: r.userType,
         }))
@@ -49,7 +55,7 @@ const AdminMenu = () => {
 
   const deleteUser = () => {
     
-    console.log(users[idUser])
+    console.log("el Id del user a eliminar es:" + users[idUser].userId)
     console.log(idUser)
     // post("user/deleteUser",index)
     //   .then(()=>{
@@ -62,8 +68,14 @@ const AdminMenu = () => {
   };
 
   const modifyUser = async (index) => {
-    console.log(usersContent[index])
-     //Hacer modal para confirmar modify user.
+    openModal()
+    setModalConfirm(false)
+    setCompleteInputValue(true)
+    setIndex(index)
+    console.log(users[index])
+    //Hacer modal para confirmar modify user.
+
+
   }
 
   const usersContent = users.map((item, index) => ({
@@ -96,9 +108,12 @@ const AdminMenu = () => {
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <Table content={usersContent} thead={["Full Name", "Email", "UserType","Modify user","Delete user"]} />
+      <Table content={usersContent} thead={["ID","Name", "Last Name", "Email", "UserType","Modify user","Delete user"]} />
       <Modal modalTitle="User">
-        {modalConfirm ? <ConfirmationForm functionFather={deleteUser} /> : <UserForm/>}
+        { 
+          modalConfirm ? <ConfirmationForm functionFather={deleteUser} /> : 
+          completeInputValue? <UserModifyForm user={users[index]} /> : <UserForm/>
+        }
       </Modal>
     </div>
   );

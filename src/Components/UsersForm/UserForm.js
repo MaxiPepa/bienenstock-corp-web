@@ -50,7 +50,7 @@ const UserForm = () => {
               className={input.styles}
               type={input.type}
               placeholder={input.placeholder}
-              maxLength={input.maxLength ? input.maxLength : null}
+              maxLength={input.maxLength ? input.maxLength : null}              
               {...register(input.formData,requiredValidations(input.formData))}
             />
           </div>
@@ -91,4 +91,4 @@ const UserForm = () => {
   )
 }
 
-export default UserForm
+export default UserForm;
