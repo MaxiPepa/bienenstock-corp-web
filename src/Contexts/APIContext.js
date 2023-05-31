@@ -50,15 +50,18 @@ const APIProvider = ({ children }) => {
   );
 
   const get = useCallback(
-    async (url) => {
+    async (url, request = {}) => {
       setShowLoader(true);
-      return await fetch(APIURL.local + url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-        },
-      })
+      return await fetch(
+        `${APIURL.local}${url}?${new URLSearchParams(request)}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      )
         .then((res) => successHandler(res))
         .catch((err) => errorAlert(err));
     },

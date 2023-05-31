@@ -84,6 +84,10 @@
   gap: 20px;
 }
 
+.modal-body > form {
+  width: 100%;
+}
+
 .left-content {
   width: 49%;
   height: 100%;

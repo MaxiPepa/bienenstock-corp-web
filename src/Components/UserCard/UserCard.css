@@ -31,6 +31,7 @@
   cursor: pointer;
   object-fit: cover;
   object-position: center;
+  border: 2px solid #cacaca;
 }
 
 .user-card-img > svg {

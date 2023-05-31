@@ -11,6 +11,7 @@ const Modal = ({
   modalTitle,
   setShowCartModal,
   setShowInputsModal,
+  setExpiration,
   setCartData,
   children,
 }) => {
@@ -20,6 +21,7 @@ const Modal = ({
     setShowModal(false);
     setShowCartModal?.(false);
     setShowInputsModal?.(false);
+    setExpiration?.([]);
     setCartData?.([]);
   };
 

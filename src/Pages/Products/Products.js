@@ -35,6 +35,7 @@ const Products = () => {
       <section>
         <Table
           thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
+          mapKeys={["productCode", "name", "quantity", "expirationDate"]}
           content={products ? products : []}
         />
       </section>
