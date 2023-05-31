@@ -5,7 +5,7 @@ import { StatesContext } from "../../Assets/Contexts";
 import { CheckCircleOutlineRoundedIcon } from "../../Assets/Icons";
 
 const ConfirmPurchaseButton = ({
-  setCartByIndex,
+  setProductsById,
   products,
   register,
   setCurrentPurchaseId,
@@ -14,7 +14,7 @@ const ConfirmPurchaseButton = ({
   const { setShowModal } = useContext(StatesContext);
 
   const confirmEntryProduct = () => {
-    setCartByIndex(
+    setProductsById(
       products.map((p) => ({
         productId: p.productId,
         productCode: "#" + p.productCode,
@@ -37,7 +37,7 @@ const ConfirmPurchaseButton = ({
   return (
     <>
       <Button
-        styles={"entry-product-button"}
+        styles={"table-button-style confirm-style"}
         buttonFunction={confirmEntryProduct}
         buttonIcon={<CheckCircleOutlineRoundedIcon />}
       />

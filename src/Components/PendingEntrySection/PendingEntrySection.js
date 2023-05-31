@@ -18,7 +18,7 @@ const PendingEntrySection = () => {
   const { validateDate, validateEmpty } = useStorageValidations();
 
   const [pendingEntry, setPendingEntry] = useState([]);
-  const [cartByIndex, setCartByIndex] = useState([]);
+  const [productsById, setProductsById] = useState([]);
   const [currentPurchaseId, setCurrentPurchaseId] = useState();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const PendingEntrySection = () => {
           confirmButton: (
             <ConfirmPurchaseButton
               products={r.products}
-              setCartByIndex={setCartByIndex}
+              setProductsById={setProductsById}
               register={register}
               setCurrentPurchaseId={() => setCurrentPurchaseId(r.purchaseId)}
               resetField={resetField}
@@ -65,10 +65,13 @@ const PendingEntrySection = () => {
       const rq = {
         purchaseId: currentPurchaseId,
         enterDate: new Date().toISOString(),
-        products: Object.values(data).filter((x) => x !== undefined),
+        expirationDates: Object.entries(data)
+          .filter(([key, value]) => value !== undefined)
+          .map(([key, value]) => ({
+            productId: parseInt(key),
+            expirationDate: new Date(value).toISOString(),
+          })),
       };
-
-      console.log(rq);
 
       post("purchase/completePurchase", rq).then((res) => {
         setAlert({
@@ -85,25 +88,31 @@ const PendingEntrySection = () => {
   return (
     <section>
       <h3 className="area-subtitle">Pending products entry</h3>
-      <Table
-        thead={[
-          "ID",
-          "Buyer",
-          "Supplier",
-          "Total Price",
-          "Purchase Date",
-          userData.userType === ROLES.DEPOSITOR && "Confirm Entry",
-        ]}
-        mapKeys={[
-          "purchaseId",
-          "userFullName",
-          "supplier",
-          "totalPrice",
-          "date",
-          userData.userType === ROLES.DEPOSITOR && "confirmButton",
-        ]}
-        content={pendingEntry}
-      />
+      {pendingEntry?.length === 0 ? (
+        <h3 className="no-table-message">
+          There are no pending products entry
+        </h3>
+      ) : (
+        <Table
+          thead={[
+            "ID",
+            "Buyer",
+            "Supplier",
+            "Total Price",
+            "Purchase Date",
+            userData.userType === ROLES.DEPOSITOR && "Confirm Entry",
+          ]}
+          mapKeys={[
+            "purchaseId",
+            "userFullName",
+            "supplier",
+            "totalPrice",
+            "date",
+            userData.userType === ROLES.DEPOSITOR && "confirmButton",
+          ]}
+          content={pendingEntry}
+        />
+      )}
       <Modal modalTitle="Confirm Products Entry">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Table
@@ -121,7 +130,7 @@ const PendingEntrySection = () => {
               "unitPrice",
               "expiration",
             ]}
-            content={cartByIndex}
+            content={productsById}
           />
           <div className="button-content">
             <button type="submit" className="modal-button-add">

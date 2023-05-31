@@ -26,3 +26,10 @@ main {
   font-weight: 700;
   color: #242424;
 }
+
+.no-table-message {
+  font-family: "Exo";
+  font-size: 20px;
+  font-weight: 700;
+  color: #990404;
+}

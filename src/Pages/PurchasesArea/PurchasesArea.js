@@ -63,7 +63,7 @@ const PurchansingArea = () => {
           })),
           details: (
             <Button
-              styles={"table-buttons details-icon"}
+              styles={"table-button-style info-style"}
               buttonFunction={() => {
                 openPurchaseHistoryCartModal(r.products);
               }}
@@ -73,7 +73,7 @@ const PurchansingArea = () => {
           cancel:
             r.pending && userData.userType === ROLES.BUYER ? (
               <Button
-                styles={"table-buttons cancel-icon"}
+                styles={"table-button-style cancel-style"}
                 buttonFunction={() => {
                   console.log("cancel purchase ", r.purchaseId);
                 }}
@@ -106,29 +106,33 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      <Table
-        thead={[
-          "ID",
-          "Buyer",
-          "Supplier",
-          "Total Price",
-          "Purchase date",
-          "Income status",
-          "Details",
-          userData.userType === ROLES.BUYER ? "Cancel" : null,
-        ]}
-        mapKeys={[
-          "purchaseId",
-          "userFullName",
-          "supplier",
-          "totalPrice",
-          "date",
-          "pending",
-          "details",
-          "cancel",
-        ]}
-        content={purchaseHistory}
-      />
+      {purchaseHistory?.length === 0 ? (
+        <p className="no-table-message">No purchases yet</p>
+      ) : (
+        <Table
+          thead={[
+            "ID",
+            "Buyer",
+            "Supplier",
+            "Total Price",
+            "Purchase date",
+            "Income status",
+            "Details",
+            userData.userType === ROLES.BUYER ? "Cancel" : null,
+          ]}
+          mapKeys={[
+            "purchaseId",
+            "userFullName",
+            "supplier",
+            "totalPrice",
+            "date",
+            "pending",
+            "details",
+            "cancel",
+          ]}
+          content={purchaseHistory}
+        />
+      )}
       <Modal
         modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
         setShowCartModal={setShowCartModal}
