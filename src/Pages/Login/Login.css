@@ -81,11 +81,15 @@
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   color: var(--c-color-1);
+  font-size: 1rem;
+  font-weight: 600;
   padding-left: 2rem;
 }
 
 .inputs input::placeholder {
   color: rgb(233, 233, 233);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 /*so as not to change the style of the suggestion list*/
