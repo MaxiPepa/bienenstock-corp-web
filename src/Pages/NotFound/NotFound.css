@@ -1,0 +1,40 @@
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.page-not-found > h2 {
+  font-size: 6rem;
+  font-weight: 600;
+  color: var(--c-color-1);
+}
+
+.page-not-found > h3 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.page-not-found > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--c-color-1);
+  border: 2px solid var(--c-color-1);
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.page-not-found > a:hover {
+  background-color: var(--c-color-1);
+  color: var(--c-color-2);
+  cursor: pointer;
+}

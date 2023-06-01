@@ -8,6 +8,7 @@ import ReportsArea from "../Pages/ReportsArea/ReportsArea";
 import SalesArea from "../Pages/SalesArea/SalesArea";
 import Settings from "../Pages/Settings/Settings";
 import StorageArea from "../Pages/StorageArea/StorageArea";
+import NotFound from "../Pages/NotFound/NotFound";
 
 export {
   AdminMenu,
@@ -20,4 +21,5 @@ export {
   SalesArea,
   Settings,
   StorageArea,
+  NotFound,
 };

@@ -17,6 +17,7 @@ import {
   SalesArea,
   Settings,
   StorageArea,
+  NotFound,
 } from "../Assets/Pages";
 
 export const router = createBrowserRouter(
@@ -47,6 +48,7 @@ export const router = createBrowserRouter(
       />
       <Route path="/admin-menu" element={<Main render={<AdminMenu />} />} />
       <Route path="/settings" element={<Main render={<Settings />} />} />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
