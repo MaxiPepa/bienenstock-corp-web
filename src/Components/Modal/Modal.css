@@ -84,6 +84,10 @@
   gap: 20px;
 }
 
+.modal-body > form {
+  width: 100%;
+}
+
 .left-content {
   width: 49%;
   height: 100%;
@@ -108,13 +112,6 @@
   height: 100%;
 }
 
-.error-input-message {
-  color: #990e0e;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-left: 15px;
-}
-
 .button-content {
   display: flex;
   flex-direction: row;
@@ -123,7 +120,7 @@
   flex-wrap: wrap;
   width: 100%;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .right-content {

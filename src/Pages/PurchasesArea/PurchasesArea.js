@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 
 import { ROLES } from "../../Assets/Constants";
-import { parsingDate, purchaseHistoryTableContent } from "../../Assets/Parsing";
+import { parsingDate } from "../../Assets/Parsing";
 
 import {
   Button,
@@ -13,7 +13,11 @@ import {
 } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
-import { AddRoundedIcon } from "../../Assets/Icons";
+import {
+  AddRoundedIcon,
+  VisibilityIcon,
+  RemoveShoppingCartRoundedIcon,
+} from "../../Assets/Icons";
 
 import "./PurchasesArea.css";
 
@@ -29,7 +33,17 @@ const PurchansingArea = () => {
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
 
-  const [cartByIndex, setCartByIndex] = useState([]);
+  const [productsDetails, setProductsDetails] = useState([]);
+
+  const openPurchaseHistoryCartModal = useCallback(
+    (products) => {
+      setProductsDetails(products);
+      setShowModal(true);
+      setShowInputsModal(false);
+      setShowCartModal(true);
+    },
+    [setShowModal]
+  );
 
   useEffect(() => {
     get("purchase/getPurchases").then((data) => {
@@ -47,10 +61,29 @@ const PurchansingArea = () => {
             quantity: p.quantity,
             unitPrice: "$" + p.unitPrice,
           })),
+          details: (
+            <Button
+              styles={"table-button-style info-style"}
+              buttonFunction={() => {
+                openPurchaseHistoryCartModal(r.products);
+              }}
+              buttonIcon={<VisibilityIcon />}
+            />
+          ),
+          cancel:
+            r.pending && userData.userType === ROLES.BUYER ? (
+              <Button
+                styles={"table-button-style cancel-style"}
+                buttonFunction={() => {
+                  console.log("cancel purchase ", r.purchaseId);
+                }}
+                buttonIcon={<RemoveShoppingCartRoundedIcon />}
+              />
+            ) : null,
         }))
       );
     });
-  }, [get]);
+  }, [get, openPurchaseHistoryCartModal, userData.userType]);
 
   const openInputsModal = () => {
     setShowModal(true);
@@ -58,28 +91,13 @@ const PurchansingArea = () => {
     setShowInputsModal(true);
   };
 
-  const openPurchaseHistoryCartModal = (index) => {
-    const productObj = purchaseHistory[index].products;
-    setCartByIndex(productObj);
-    setShowModal(true);
-    setShowInputsModal(false);
-    setShowCartModal(true);
-  };
-
-  const purchaseHistoryDataTable = purchaseHistoryTableContent(
-    purchaseHistory,
-    openPurchaseHistoryCartModal,
-    userData,
-    ROLES
-  );
-
   return (
-    <div className="purchase-area">
-      <div className="purchase-header">
+    <div className="area-container">
+      <div className="area-header">
         <h2 className="area-title">Purchases Area</h2>
         {userData.userType === ROLES.BUYER ? (
           <Button
-            styles="purchase-button"
+            styles="area-button"
             buttonFunction={openInputsModal}
             buttonIcon={<AddRoundedIcon />}
             buttonText="New Purchase"
@@ -88,19 +106,33 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      <Table
-        thead={[
-          "ID",
-          "Buyer",
-          "Supplier",
-          "Total Price",
-          "Purchase date",
-          "Income status",
-          "Details",
-          userData.userType === ROLES.BUYER ? "Cancel" : null,
-        ]}
-        content={purchaseHistoryDataTable}
-      />
+      {purchaseHistory?.length === 0 ? (
+        <p className="no-table-message">No purchases yet</p>
+      ) : (
+        <Table
+          thead={[
+            "ID",
+            "Buyer",
+            "Supplier",
+            "Total Price",
+            "Purchase date",
+            "Income status",
+            "Details",
+            userData.userType === ROLES.BUYER ? "Cancel" : null,
+          ]}
+          mapKeys={[
+            "purchaseId",
+            "userFullName",
+            "supplier",
+            "totalPrice",
+            "date",
+            "pending",
+            "details",
+            "cancel",
+          ]}
+          content={purchaseHistory}
+        />
+      )}
       <Modal
         modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
         setShowCartModal={setShowCartModal}
@@ -125,8 +157,9 @@ const PurchansingArea = () => {
         ) : null}
         {showCartModal ? (
           <Table
-            thead={["Product Code", "Product", "Quantity", "Price"]}
-            content={cartByIndex}
+            thead={["Product Code", "Product", "Quantity", "Unit Price"]}
+            mapKeys={["productCode", "name", "quantity", "unitPrice"]}
+            content={productsDetails}
           />
         ) : null}
       </Modal>

@@ -10,11 +10,15 @@ const UserCard = () => {
   return (
     <>
       <div className="user-card">
-        {userData.avatar ? (
-          <img src={userData.avatar} alt="user avatar" />
-        ) : (
-          <AccountCircleSharpIcon />
-        )}
+        <div className="user-card-img">
+          {userData.avatar ? (
+            <div className="user-card-img-avatar">
+              <img src={userData.avatar} alt="user avatar" />
+            </div>
+          ) : (
+            <AccountCircleSharpIcon />
+          )}
+        </div>
         <div className="user-profile">
           <p>{userData.fullName}</p>
           <span>{userData.userType}</span>

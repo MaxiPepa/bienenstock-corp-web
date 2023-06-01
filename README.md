@@ -22,7 +22,7 @@ The Seller role is responsible for carrying out sales for the company. Its respo
 - Viewing the complete sales history of the company.
 - Managing the sales and invoicing process.
 
-### 3. Warehouse
+### 3. Depositor
 
 The Warehouse role is responsible for receiving products and managing inventory. Its main functions are:
 
@@ -62,7 +62,7 @@ If you wish to set up a local development environment to work with the Bienensto
 2. Clone the project repository from [repository URL](repository URL).
 3. Navigate to the project directory in your terminal or command line.
 4. Run the following command to install the frontend dependencies:
-   > npm start
+   > npm install
 5. After the installations are complete, run the following command to start the frontend development server:
    > npm start
 6. To set up the backend, ensure you have Visual Studio installed with support for C# and .NET application development. You can download Visual Studio from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com).

@@ -60,6 +60,7 @@ const Login = () => {
         });
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),
+          path: "/",
         });
         navigate("/dashboard");
       } else {

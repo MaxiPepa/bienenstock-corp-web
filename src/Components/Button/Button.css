@@ -1,0 +1,48 @@
+.table-button-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+  color: #242424;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.table-button-style:hover {
+  transform: scale(1.1);
+}
+
+.info-style {
+  background-color: #61affe;
+}
+
+.info-style:hover {
+  background-color: #4d8ff7;
+}
+
+.confirm-style {
+  background-color: #49cc90;
+}
+
+.confirm-style:hover {
+  background-color: #2fbf71;
+}
+
+.cancel-style {
+  background-color: #ff3c4e;
+}
+
+.cancel-style:hover {
+  background-color: #f02e3e;
+}
