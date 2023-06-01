@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  width: 100px;
+  width: 50px;
   height: 100%;
   margin: 0 auto;
   background-color: transparent;
@@ -45,4 +45,12 @@
 
 .cancel-style:hover {
   background-color: #f02e3e;
+}
+
+.edit-style {
+  background-color: #f7b924;
+}
+
+.edit-style:hover {
+  background-color: #f0a500;
 }

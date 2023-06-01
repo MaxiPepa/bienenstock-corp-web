@@ -1,14 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserValidation } from "../../Assets/Hooks";
 
+import { BorderColorIcon } from "../../Assets/Icons";
+import { arrayModifyUsersInputs } from "../../Assets/Constants";
+
 import { APIContext, StatesContext } from "../../Assets/Contexts";
 
-import { arrayUsersInputs } from "../../Assets/Constants";
+export const UserModifyForm = ({ user }) => {
+  const [userContent, setUserContent] = useState(Object.values(user));
 
-import { AddRoundedIcon } from "../../Assets/Icons";
-
-const UserForm = () => {
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -22,7 +23,7 @@ const UserForm = () => {
   } = useForm();
 
   const onSubmitUser = async (data) => {
-    await post("user/saveUser", data).then(() => {
+    await post("user/modifyUser", { id: user.userId, ...data }).then(() => {
       setAlert({
         show: true,
         message: "User added",
@@ -39,7 +40,7 @@ const UserForm = () => {
       className="inputs-content"
       noValidate
     >
-      {arrayUsersInputs.map((input, index) => (
+      {arrayModifyUsersInputs.map((input, index) => (
         <div className="inputs-maped" key={index}>
           <div className="input-content">
             <label>{input.labelName}</label>
@@ -48,11 +49,15 @@ const UserForm = () => {
               type={input.type}
               placeholder={input.placeholder}
               maxLength={input.maxLength ? input.maxLength : null}
+              value={userContent[index + 1]}
+              onClick={() => {
+                setUserContent("");
+              }}
               {...register(input.formData, requiredValidations(input.formData))}
             />
           </div>
           {errors[input.formData] && (
-            <p className="error-input-message" id="errors-user-form">
+            <p className="error-input-message">
               {errorMessages(errors[input.formData])}
             </p>
           )}
@@ -82,12 +87,10 @@ const UserForm = () => {
       </div>
       <div className="button-content">
         <button type="submit" className="modal-button-add">
-          {<AddRoundedIcon />}
-          <span>Add user</span>
+          {<BorderColorIcon />}
+          <span>Modify user</span>
         </button>
       </div>
     </form>
   );
 };
-
-export default UserForm;

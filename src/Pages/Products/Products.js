@@ -33,15 +33,12 @@ const Products = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <section>
-        {products?.length === 0 ? (
-          <h3 className="no-table-message">No products in stock</h3>
-        ) : (
-          <Table
-            thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
-            mapKeys={["productCode", "name", "quantity", "expirationDate"]}
-            content={products}
-          />
-        )}
+        <Table
+          thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
+          mapKeys={["productCode", "name", "quantity", "expirationDate"]}
+          content={products}
+          entity="products"
+        />
       </section>
     </div>
   );

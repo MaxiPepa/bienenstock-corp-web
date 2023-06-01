@@ -170,3 +170,29 @@ export const arrayUsersInputs = [
     formData: "password",
   },
 ];
+
+export const arrayModifyUsersInputs = [
+  {
+    labelName: "Name: ",
+    styles: "input",
+    type: "text",
+    maxLength: 50,
+    placeholder: "John",
+    formData: "name",
+  },
+  {
+    labelName: "Last name: ",
+    styles: "input",
+    type: "text",
+    maxLength: 50,
+    placeholder: "Doe",
+    formData: "lastName",
+  },
+  {
+    labelName: "Email: ",
+    styles: "input",
+    type: "email",
+    placeholder: "Example@Xmail.com",
+    formData: "email",
+  }
+];

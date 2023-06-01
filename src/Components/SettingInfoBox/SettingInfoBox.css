@@ -151,10 +151,6 @@
   gap: 10px;
 }
 
-.input-content > input {
-  width: 85%;
-}
-
 .input-and-button > input {
   width: 100%;
   height: 100%;

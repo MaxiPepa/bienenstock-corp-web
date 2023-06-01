@@ -12,19 +12,19 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de desplazamiento */
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {
-  background: #2e2e2e; /* Color de fondo de la barra de desplazamiento */
+  background: #2e2e2e;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #252525; /* Color del pulgar de la barra de desplazamiento */
+  background: #252525;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: #333333; /* Color del pulgar de la barra de desplazamiento al pasar el cursor */
+  background: #333333;
 }
 
 .error-input-message {
@@ -32,6 +32,10 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 1rem;
   font-weight: 600;
   margin-left: 5px;
+}
+
+#errors-user-form {
+  margin-left: 15px;
 }
 
 /*
