@@ -83,7 +83,6 @@ const PurchansingArea = () => {
         }))
       );
     });
-    console.log("loop");
   }, [get, openPurchaseHistoryCartModal, userData.userType]);
 
   const openInputsModal = () => {
