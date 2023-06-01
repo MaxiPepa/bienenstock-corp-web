@@ -10,7 +10,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 50px 200px;
+  padding: 50px 100px;
 }
 
 .area-title {
