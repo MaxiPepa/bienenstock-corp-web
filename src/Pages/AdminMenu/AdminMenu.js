@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 
 import { ROLES } from "../../Assets/Constants";
 
@@ -15,7 +15,7 @@ import ConfirmationForm from "../../Components/ConfirmationForm/ConfirmationForm
 
 const AdminMenu = () => {
 
-  const [index,setIndex] = useState();
+  const [modifyUser,setModifyUser] = useState();
   const [idUser,setIdUser] = useState();
   const [users, setUsers] = useState([]);
   const [modalConfirm,setModalConfirm] = useState(false);
@@ -23,12 +23,26 @@ const AdminMenu = () => {
 
   const { get,post } = useContext(APIContext);
   const { userData } = useContext(UserContext);
-  const { setShowModal } = useContext(StatesContext);
-  
+  const { setShowModal,setAlert } = useContext(StatesContext);
   
   useRedirect(userData.userType, ROLES.ADMIN);
 
+  const openConfirmationModal = useCallback((userId) =>{
+    setIdUser(userId)
+    setShowModal(true)
+    setModalConfirm(true)  
+  },[setShowModal])
+
+  const modifyUserHandler = useCallback((userId) => {
+    setShowModal(true)
+    setModalConfirm(false)
+    setCompleteInputValue(true)
+    setModifyUser(users.find((user)=> user.userId === userId))
+//    Hacer modal para confirmar modify user.
+  },[setShowModal])
+
   useEffect(() => {
+    console.log("loop en AdminMenu")
     get("user/getUsers").then((data) => {
       setUsers(
         data.users.map((r) => ({
@@ -37,64 +51,36 @@ const AdminMenu = () => {
           lastName: r.lastName,
           email: r.email,
           userType: r.userType,
+          edit: (
+            <Button
+              styles={"table-button-style info-style"}
+              buttonIcon={<BorderColorIcon />}
+              buttonFunction={() => modifyUserHandler(r.userId) }
+            />
+          ),
+          delete:(
+            <Button
+              styles={"table-button-style cancel-style"}
+              buttonFunction={() => openConfirmationModal(r.userId)}
+              buttonIcon={<DeleteForeverIcon />}
+            />
+          )
         }))
       );
     });
-  }, [get]);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const openConfirmationModal = (index) =>{
-    setIdUser(index)
-    openModal()
-    setModalConfirm(true)  
-
-  }
+  }, [get,openConfirmationModal,modifyUserHandler]);
 
   const deleteUser = () => {
-    
-    console.log("el Id del user a eliminar es:" + users[idUser].userId)
-    console.log(idUser)
-    // post("user/deleteUser",index)
-    //   .then(()=>{
-    //     setAlert({
-    //       show: true,
-    //       message: "User deleted",
-    //       type: "success",
-    //     });
-    // })  
+    const rq = { userId : idUser}    
+    post("user/deleteUser",rq)
+      .then((rs)=>{
+        setAlert({
+          show: true,
+          message: rs.message,
+          type: rs.success?"success":"error",
+        });
+    })  
   };
-
-  const modifyUser = async (index) => {
-    openModal()
-    setModalConfirm(false)
-    setCompleteInputValue(true)
-    setIndex(index)
-    console.log(users[index])
-    //Hacer modal para confirmar modify user.
-
-
-  }
-
-  const usersContent = users.map((item, index) => ({
-    ...item,
-    Edit: (
-      <Button
-        styles={"table-buttons details-icon"}
-        buttonIcon={<BorderColorIcon />}
-        buttonFunction={() => modifyUser(index) }
-      />
-    ),
-    Delete:(
-      <Button
-        styles={"table-buttons cancel-icon"}
-        buttonFunction={() => openConfirmationModal(index)}
-        buttonIcon={<DeleteForeverIcon />}
-      />
-    ),
-  }));
 
   return (
     <div className="area-container">
@@ -102,17 +88,21 @@ const AdminMenu = () => {
         <h2 className="area-title">Admin Menu</h2>
         <Button
           styles="area-button"
-          buttonFunction={openModal}
+          buttonFunction={()=>setShowModal(true)}
           buttonIcon={<AddRoundedIcon />}
           buttonText="New User"
         />
       </div>
       <hr className="division-horizontal-hr" />
-      <Table content={usersContent} thead={["ID","Name", "Last Name", "Email", "UserType","Modify user","Delete user"]} />
+      <Table 
+        content={users} 
+        thead={["ID","Name", "Last Name", "Email", "UserType","Modify user","Delete user"]} 
+        mapKeys={["userId","name","lastName","email","userType","edit","delete"]}
+      />
       <Modal modalTitle="User">
         { 
           modalConfirm ? <ConfirmationForm functionFather={deleteUser} /> : 
-          completeInputValue? <UserModifyForm user={users[index]} /> : <UserForm/>
+          completeInputValue? <UserModifyForm user={modifyUser} /> : <UserForm/>
         }
       </Modal>
     </div>
