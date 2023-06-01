@@ -66,8 +66,9 @@ const UserForm = () => {
         <select 
           className="inputs-maped input-content"
           {...register("userType", { required: true })}
+          defaultValue=""
         >
-          <option value="" disabled selected>--Select option--</option>
+          <option value="" disabled>--Select option--</option>
           <option value="Admin">Admin</option>
           <option value="Analyst">Analyst</option>
           <option value="Buyer">Buyer</option>
@@ -81,7 +82,6 @@ const UserForm = () => {
         )}
       </div>
       <div className="button-content">
-        <p></p>
         <button type="submit" className="modal-button-add">
           {<AddRoundedIcon />}
           <span>Add user</span>

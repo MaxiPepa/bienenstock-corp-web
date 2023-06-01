@@ -23,8 +23,6 @@ export const UserModifyForm = ({user}) => {
         formState: { errors },
     } = useForm();
 
-    console.log(userContent)
-
     const onSubmitUser = async (data) => {
         console.log({id:user.userId, ...data})
         await post("user/modifyUser",{id:user.userId, ...data})
@@ -54,7 +52,7 @@ export const UserModifyForm = ({user}) => {
                     type={input.type}
                     placeholder={input.placeholder}
                     maxLength={input.maxLength ? input.maxLength : null}
-                    value={user ? userContent[index+1] : null}
+                    value={userContent[index+1]}
                     onClick={()=>{setUserContent("")}}
                     
                     {...register(input.formData,requiredValidations(input.formData))}
@@ -72,8 +70,9 @@ export const UserModifyForm = ({user}) => {
             <select 
                 className="inputs-maped input-content"
                 {...register("userType", { required: true })}
+                defaultValue=""
             >
-                <option value="" disabled selected>--Select option--</option>
+                <option value="" disabled>--Select option--</option>
                 <option value="Admin">Admin</option>
                 <option value="Analyst">Analyst</option>
                 <option value="Buyer">Buyer</option>
@@ -87,7 +86,6 @@ export const UserModifyForm = ({user}) => {
             )}
             </div>
             <div className="button-content">
-            <p></p>
             <button type="submit" className="modal-button-add">
                 {<BorderColorIcon />}
                 <span>Modify user</span>
