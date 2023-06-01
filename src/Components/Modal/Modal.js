@@ -13,6 +13,8 @@ const Modal = ({
   setShowInputsModal,
   setExpiration,
   setCartData,
+  setModalConfirm,
+  setCompleteInputValue,
   children,
 }) => {
   const { showModal, setShowModal } = useContext(StatesContext);
@@ -23,6 +25,8 @@ const Modal = ({
     setShowInputsModal?.(false);
     setExpiration?.([]);
     setCartData?.([]);
+    setModalConfirm?.(false);
+    setCompleteInputValue?.(false);
   };
 
   return (

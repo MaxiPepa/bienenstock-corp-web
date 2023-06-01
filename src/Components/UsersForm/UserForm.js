@@ -8,9 +8,7 @@ import { arrayUsersInputs } from "../../Assets/Constants";
 
 import { AddRoundedIcon } from "../../Assets/Icons";
 
-
 const UserForm = () => {
-
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -24,16 +22,15 @@ const UserForm = () => {
   } = useForm();
 
   const onSubmitUser = async (data) => {
-    await post("user/saveUser",data)
-      .then(()=>{
-        setAlert({
-          show: true,
-          message: "User added",
-          type: "success",
-        });
-        reset()
-        setShowModal(false)
-      })
+    await post("user/saveUser", data).then(() => {
+      setAlert({
+        show: true,
+        message: "User added",
+        type: "success",
+      });
+      reset();
+      setShowModal(false);
+    });
   };
 
   return (
@@ -50,25 +47,27 @@ const UserForm = () => {
               className={input.styles}
               type={input.type}
               placeholder={input.placeholder}
-              maxLength={input.maxLength ? input.maxLength : null}              
-              {...register(input.formData,requiredValidations(input.formData))}
+              maxLength={input.maxLength ? input.maxLength : null}
+              {...register(input.formData, requiredValidations(input.formData))}
             />
           </div>
           {errors[input.formData] && (
-            <p className="error-input-message">
+            <p className="error-input-message" id="errors-user-form">
               {errorMessages(errors[input.formData])}
             </p>
           )}
         </div>
       ))}
-      <div className="input-content"> 
+      <div className="input-content">
         <label>User Type</label>
-        <select 
+        <select
           className="inputs-maped input-content"
           {...register("userType", { required: true })}
           defaultValue=""
         >
-          <option value="" disabled>--Select option--</option>
+          <option value="" disabled>
+            --Select option--
+          </option>
           <option value="Admin">Admin</option>
           <option value="Analyst">Analyst</option>
           <option value="Buyer">Buyer</option>
@@ -88,7 +87,7 @@ const UserForm = () => {
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default UserForm;

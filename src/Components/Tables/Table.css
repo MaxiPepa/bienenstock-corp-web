@@ -67,7 +67,6 @@ tbody > tr:hover {
   background-color: #dfdede;
 }
 
-/* Estilos adicionales para el contenedor */
 .table-container thead th {
   position: sticky;
   top: 0;
@@ -82,4 +81,11 @@ tbody > tr:hover {
 
 .table-container thead th:last-child {
   border-top-right-radius: 5px;
+}
+
+.no-table-message {
+  font-family: "Exo";
+  font-size: 20px;
+  font-weight: 700;
+  color: #990404;
 }

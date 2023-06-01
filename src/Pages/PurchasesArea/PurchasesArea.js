@@ -52,14 +52,14 @@ const PurchansingArea = () => {
           purchaseId: "#" + r.purchaseId,
           userFullName: r.userFullName,
           supplier: r.supplier,
-          totalPrice: "$" + r.totalPrice,
+          totalPrice: "$ " + r.totalPrice,
           date: parsingDate(r.date),
           pending: r.pending ? "Pending" : "Delivered",
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,
             quantity: p.quantity,
-            unitPrice: "$" + p.unitPrice,
+            unitPrice: "$ " + p.unitPrice,
           })),
           details: (
             <Button
@@ -106,33 +106,30 @@ const PurchansingArea = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <h3 className="area-subtitle">Purchases History</h3>
-      {purchaseHistory?.length === 0 ? (
-        <p className="no-table-message">No purchases yet</p>
-      ) : (
-        <Table
-          thead={[
-            "ID",
-            "Buyer",
-            "Supplier",
-            "Total Price",
-            "Purchase date",
-            "Income status",
-            "Details",
-            userData.userType === ROLES.BUYER ? "Cancel" : null,
-          ]}
-          mapKeys={[
-            "purchaseId",
-            "userFullName",
-            "supplier",
-            "totalPrice",
-            "date",
-            "pending",
-            "details",
-            "cancel",
-          ]}
-          content={purchaseHistory}
-        />
-      )}
+      <Table
+        thead={[
+          "ID",
+          "Buyer",
+          "Supplier",
+          "Total Price",
+          "Purchase date",
+          "Income status",
+          "Details",
+          userData.userType === ROLES.BUYER ? "Cancel" : null,
+        ]}
+        mapKeys={[
+          "purchaseId",
+          "userFullName",
+          "supplier",
+          "totalPrice",
+          "date",
+          "pending",
+          "details",
+          "cancel",
+        ]}
+        content={purchaseHistory}
+        entity="purchases"
+      />
       <Modal
         modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
         setShowCartModal={setShowCartModal}
@@ -160,6 +157,7 @@ const PurchansingArea = () => {
             thead={["Product Code", "Product", "Quantity", "Unit Price"]}
             mapKeys={["productCode", "name", "quantity", "unitPrice"]}
             content={productsDetails}
+            entity="products"
           />
         ) : null}
       </Modal>

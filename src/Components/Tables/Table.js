@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Table.css";
 
-const Table = ({ content, thead, mapKeys }) => {
+const Table = ({ content, thead, mapKeys, entity }) => {
   return (
     <div className="table-container">
       <table>
@@ -18,17 +18,25 @@ const Table = ({ content, thead, mapKeys }) => {
           </tr>
         </thead>
         <tbody>
-          {content.map((attr, index) => {
-            return (
-              <tr key={index}>
-                {mapKeys.map((key) => (
-                  <td key={index + key} data-column={typeof attr[key]}>
-                    <p>{attr[key]}</p>
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
+          {content.length > 0 ? (
+            content.map((attr, index) => {
+              return (
+                <tr key={index}>
+                  {mapKeys.map((key) => (
+                    <td key={index + key} data-column={typeof attr[key]}>
+                      <p>{attr[key]}</p>
+                    </td>
+                  ))}
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td>
+                <h3 className="no-table-message">No {entity} to show</h3>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
@@ -36,3 +44,10 @@ const Table = ({ content, thead, mapKeys }) => {
 };
 
 export default Table;
+
+Table.defaultProps = {
+  content: [],
+  thead: [],
+  mapKeys: [],
+  entity: "data",
+};
