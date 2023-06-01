@@ -10,21 +10,21 @@ const Products = () => {
 
   const [products, setProducts] = useState([]);
 
-  // useEffect(() => {
-  //   get("product/getProductsStock").then((data) => {
-  //     setProducts(
-  //       data.products.map((res) => ({
-  //         productCode: "#" + res.productCode,
-  //         name: res.name,
-  //         quantity: res.quantity,
-  //         expirationDate:
-  //           res.expirationDate === null
-  //             ? "No expiration date"
-  //             : parsingDate(res.expirationDate),
-  //       }))
-  //     );
-  //   });
-  // }, [get]);
+  useEffect(() => {
+    get("product/getProductsStock").then((data) => {
+      setProducts(
+        data.products.map((res) => ({
+          productCode: "#" + res.productCode,
+          name: res.name,
+          quantity: res.quantity,
+          expirationDate:
+            res.expirationDate === null
+              ? "No expiration date"
+              : parsingDate(res.expirationDate),
+        }))
+      );
+    });
+  }, [get]);
 
   return (
     <div className="area-container">

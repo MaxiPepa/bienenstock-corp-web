@@ -49,7 +49,6 @@ const AdminMenu = () => {
   );
 
   useEffect(() => {
-    console.log("loop en AdminMenu");
     get("user/getUsers").then((data) => {
       setUsers(
         data.users.map((r) => ({
