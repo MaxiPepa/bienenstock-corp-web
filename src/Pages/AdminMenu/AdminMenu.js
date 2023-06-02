@@ -1,9 +1,16 @@
 import { useEffect, useState, useContext, useCallback } from "react";
 
 import { ROLES } from "../../Assets/Constants";
+import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
 
+import {
+  Button,
+  Table,
+  Modal,
+  ConfirmationForm,
+  UserForm,
+} from "../../Assets/Components";
 import { useRedirect } from "../../Assets/Hooks";
-import { Button, Table, Modal } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import {
   AddRoundedIcon,
@@ -12,10 +19,6 @@ import {
 } from "../../Assets/Icons";
 
 import "./AdminMenu.css";
-import UserForm from "../../Components/UsersForm/UserForm";
-import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
-
-import ConfirmationForm from "../../Components/ConfirmationForm/ConfirmationForm";
 
 const AdminMenu = () => {
   const [modifyUser, setModifyUser] = useState({});
