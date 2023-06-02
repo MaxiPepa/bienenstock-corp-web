@@ -10,6 +10,7 @@ import {
   ProductForm,
   AditionalInfoForm,
   CartList,
+  ConfirmationForm,
 } from "../../Assets/Components";
 import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
 import { useRedirect } from "../../Assets/Hooks";
@@ -22,8 +23,8 @@ import {
 import "./PurchasesArea.css";
 
 const PurchansingArea = () => {
-  const { get } = useContext(APIContext);
-  const { setShowModal } = useContext(StatesContext);
+  const { get, post } = useContext(APIContext);
+  const { setShowModal, setAlert } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
 
   useRedirect(userData.userType, ROLES.BUYER);
@@ -32,6 +33,7 @@ const PurchansingArea = () => {
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [cancelPurchaseId, setCancelPurchaseId] = useState();
 
   const [productsDetails, setProductsDetails] = useState([]);
 
@@ -45,6 +47,14 @@ const PurchansingArea = () => {
     [setShowModal]
   );
 
+  const openConfirmationModal = useCallback(
+    (userId) => {
+      setCancelPurchaseId(userId);
+      setShowModal(true);
+    },
+    [setShowModal]
+  );
+
   useEffect(() => {
     get("purchase/getPurchases").then((data) => {
       setPurchaseHistory(
@@ -54,7 +64,11 @@ const PurchansingArea = () => {
           supplier: r.supplier,
           totalPrice: "$ " + r.totalPrice,
           date: parsingDate(r.date),
-          pending: r.pending ? "Pending" : "Delivered",
+          status: r.pending
+            ? "Pending"
+            : r.cancelled
+            ? "Cancelled"
+            : "Completed",
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,
@@ -75,7 +89,7 @@ const PurchansingArea = () => {
               <Button
                 styles={"table-button-style cancel-style"}
                 buttonFunction={() => {
-                  console.log("cancel purchase ", r.purchaseId);
+                  openConfirmationModal(r.purchaseId);
                 }}
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
@@ -83,12 +97,30 @@ const PurchansingArea = () => {
         }))
       );
     });
-  }, [get, openPurchaseHistoryCartModal, userData.userType]);
+  }, [
+    get,
+    openConfirmationModal,
+    openPurchaseHistoryCartModal,
+    userData.userType,
+  ]);
 
   const openInputsModal = () => {
     setShowModal(true);
     setShowCartModal(false);
     setShowInputsModal(true);
+  };
+
+  const cancelPurchase = () => {
+    const rq = {
+      purchaseId: cancelPurchaseId,
+    };
+    post("purchase/cancelPurchase", rq).then((rs) => {
+      setAlert({
+        show: true,
+        message: rs.message,
+        type: rs.success ? "success" : "error",
+      });
+    });
   };
 
   return (
@@ -123,7 +155,7 @@ const PurchansingArea = () => {
           "supplier",
           "totalPrice",
           "date",
-          "pending",
+          "status",
           "details",
           "cancel",
         ]}
@@ -151,15 +183,16 @@ const PurchansingArea = () => {
             </div>
             <CartList cartData={cartData} />
           </>
-        ) : null}
-        {showCartModal ? (
+        ) : showCartModal ? (
           <Table
             thead={["Product Code", "Product", "Quantity", "Unit Price"]}
             mapKeys={["productCode", "name", "quantity", "unitPrice"]}
             content={productsDetails}
             entity="products"
           />
-        ) : null}
+        ) : (
+          <ConfirmationForm functionFather={cancelPurchase} />
+        )}
       </Modal>
     </div>
   );
