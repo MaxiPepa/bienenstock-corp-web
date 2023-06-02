@@ -1,8 +1,21 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { APIContext } from "../../Assets/Contexts";
 
 import "./Dashboard.css";
 
 const Dashboard = () => {
+  const { get } = useContext(APIContext);
+
+  const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    get("log/getLogs").then((data) => {
+      console.log(data);
+      setLogs(data);
+    });
+  }, [get]);
+
   return (
     <>
       <div className="area-header">

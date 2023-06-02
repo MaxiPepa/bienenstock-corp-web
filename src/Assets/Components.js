@@ -19,6 +19,8 @@ import ExpirationsForm from "../Components/ExpirationsForm/ExpirationsForm";
 import ExpirationInput from "../Components/ExpirationInput/ExpirationInput";
 import ConfirmPurchaseButton from "../Components/ConfirmPurchaseButton/ConfirmPurchaseButton";
 import PendingEntrySection from "../Components/PendingEntrySection/PendingEntrySection";
+import ConfirmationForm from "../Components/ConfirmationForm/ConfirmationForm";
+import UserForm from "../Components/UsersForm/UserForm";
 
 export {
   Alert,
@@ -42,4 +44,6 @@ export {
   ExpirationInput,
   ConfirmPurchaseButton,
   PendingEntrySection,
+  ConfirmationForm,
+  UserForm,
 };
