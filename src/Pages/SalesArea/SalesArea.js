@@ -122,12 +122,12 @@ const SalesArea = () => {
   };
 
   return (
-    <div className="sales-area">
-      <div className="sales-header">
+    <div className="area-container">
+      <div className="area-header">
         <h2 className="area-title">Sales Area</h2>
         {userData.userType === ROLES.SELLER ? (
           <Button
-            styles="sales-button"
+            styles="area-button"
             buttonFunction={openInputsModal}
             buttonIcon={<AddRoundedIcon />}
             buttonText="New Sale"
