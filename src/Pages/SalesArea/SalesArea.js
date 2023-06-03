@@ -57,7 +57,7 @@ const SalesArea = () => {
             <ClearIcon className="cancel-icon" />
           ),
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
-          Details: (
+          details: (
             <Button
               styles={"table-buttons details-icon"}
               buttonFunction={() => {
@@ -66,7 +66,7 @@ const SalesArea = () => {
               buttonIcon={<VisibilityIcon />}
             />
           ),
-          Cancel:
+          cancel:
             !r.dispatched && userData.userType === ROLES.SELLER ? (
               <Button
                 styles={"table-buttons cancel-icon"}
@@ -128,7 +128,18 @@ const SalesArea = () => {
           "Details",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
         ]}
+        mapKeys={[
+          "saleId",
+          "userFullName",
+          "totalPrice",
+          "date",
+          "dispatched",
+          "dispatchDate",
+          "details",
+          "cancel",
+        ]}
         content={saleHistoryDataTable}
+        entity={"sales"}
       />
       <Modal
         modalTitle={showInputsModal ? "New Sale" : "Sale Details"}
@@ -155,7 +166,9 @@ const SalesArea = () => {
         {showCartModal ? (
           <Table
             thead={["Product Code", "Product", "Quantity", "Price"]}
+            mapKeys={[]}
             content={cartByIndex}
+            entity={"products"}
           />
         ) : null}
       </Modal>
