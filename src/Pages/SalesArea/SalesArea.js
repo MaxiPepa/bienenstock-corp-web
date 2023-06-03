@@ -14,9 +14,14 @@ import {
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
 
-import { AddRoundedIcon } from "Assets/Icons";
+import {
+  AddRoundedIcon,
+  CheckIcon,
+  ClearIcon,
+  VisibilityIcon,
+} from "Assets/Icons";
 
-import "./SalesArea.css"
+import "./SalesArea.css";
 
 const SalesArea = () => {
   const { get } = useContext(APIContext);
