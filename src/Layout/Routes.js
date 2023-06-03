@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { Main } from "./Components";
+import { Main } from "Components";
 import {
   AdminMenu,
   Dashboard,
@@ -18,7 +18,7 @@ import {
   Settings,
   StorageArea,
   NotFound,
-} from "../Assets/Pages";
+} from "Pages";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

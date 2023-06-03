@@ -1,4 +1,4 @@
-import { PASSWORDREGEX } from "../../Assets/Constants";
+import { PASSWORDREGEX } from "Assets/Constants";
 
 export const usePasswordValidation = () => {
   const validateNewAndConfirmPassword = (value, values) => {

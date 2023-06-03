@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import { NAVLINKS, COOKIENAME } from "../../Assets/Constants";
+import { NAVLINKS, COOKIENAME } from "Assets/Constants";
 
-import { NavLink, UserCard } from "../../Assets/Components";
-import { StatesContext, UserContext } from "../../Assets/Contexts";
+import { NavLink, UserCard } from "Components";
+import { StatesContext, UserContext } from "Contexts";
 import {
   DashboardIcon,
   BackupTableRoundedIcon,
   BuildRoundedIcon,
   ExitToAppIcon,
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./Sidebar.css";
 

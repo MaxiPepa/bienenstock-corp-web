@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { UserContext } from "../../Assets/Contexts";
-import { AccountCircleSharpIcon } from "../../Assets/Icons";
+import { UserContext } from "Contexts";
+import { AccountCircleSharpIcon } from "Assets/Icons";
 
 import "./UserCard.css";
 

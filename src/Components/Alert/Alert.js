@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import { StatesContext } from "../../Assets/Contexts";
+import { StatesContext } from "Contexts";
 import {
   CheckCircleOutlineRoundedIcon,
   ErrorOutlineRoundedIcon,
   WarningAmberRoundedIcon,
   InfoOutlinedIcon,
   CloseRoundedIcon,
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./Alert.css";
 

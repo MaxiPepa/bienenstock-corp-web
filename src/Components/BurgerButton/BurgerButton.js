@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { StatesContext } from "../../Assets/Contexts";
-import { MenuRoundedIcon, MenuOpenRoundedIcon } from "../../Assets/Icons";
+import { StatesContext } from "Contexts";
+import { MenuRoundedIcon, MenuOpenRoundedIcon } from "Assets/Icons";
 
 import "./BurgerButton.css";
 

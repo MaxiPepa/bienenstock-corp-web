@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { StatesContext } from "../../Assets/Contexts";
+import { StatesContext } from "Contexts";
 
 import "./Loader.css";
 

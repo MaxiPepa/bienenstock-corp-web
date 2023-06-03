@@ -1,5 +1,5 @@
 import { useContext, useCallback } from "react";
-import { APIURL, COOKIENAME } from "../Assets/Constants";
+import { APIURL, COOKIENAME } from "Assets/Constants";
 import { createContext } from "react";
 import Cookies from "universal-cookie";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BurgerButton } from "../../Assets/Components";
+import { BurgerButton } from "Components";
 
 import "./Header.css";
 

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 
-import { parsingDate } from "../../Assets/Parsing";
+import { parsingDate } from "Assets/Parsing";
 
-import { Table } from "../../Assets/Components";
-import { APIContext } from "../../Assets/Contexts";
+import { Table } from "Components";
+import { APIContext } from "Contexts";
 
 const Products = () => {
   const { get } = useContext(APIContext);

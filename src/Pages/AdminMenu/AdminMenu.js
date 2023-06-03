@@ -1,22 +1,16 @@
 import { useEffect, useState, useContext, useCallback } from "react";
 
-import { ROLES } from "../../Assets/Constants";
+import { ROLES } from "Assets/Constants";
 import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
 
-import {
-  Button,
-  Table,
-  Modal,
-  ConfirmationForm,
-  UserForm,
-} from "../../Assets/Components";
-import { useRedirect } from "../../Assets/Hooks";
-import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
+import { useRedirect } from "Hooks";
+import { APIContext, StatesContext, UserContext } from "Contexts";
 import {
   AddRoundedIcon,
   BorderColorIcon,
   DeleteForeverIcon,
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./AdminMenu.css";
 

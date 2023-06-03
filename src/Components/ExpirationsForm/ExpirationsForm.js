@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { APIContext, StatesContext } from "../../Assets/Contexts";
-import { AddRoundedIcon } from "../../Assets/Icons";
+import { APIContext, StatesContext } from "Contexts";
+import { AddRoundedIcon } from "Assets/Icons";
 
 import "./ExpirationsForm.css";
 

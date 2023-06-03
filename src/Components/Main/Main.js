@@ -1,4 +1,4 @@
-import { Sidebar, Header } from "../../Assets/Components";
+import { Sidebar, Header } from "Components";
 
 import "./Main.css";
 

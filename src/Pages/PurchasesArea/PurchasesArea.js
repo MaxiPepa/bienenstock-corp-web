@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useCallback } from "react";
 
-import { ROLES } from "../../Assets/Constants";
-import { parsingDate } from "../../Assets/Parsing";
+import { ROLES } from "Assets/Constants";
+import { parsingDate } from "Assets/Parsing";
 
 import {
   Button,
@@ -11,14 +11,14 @@ import {
   AditionalInfoForm,
   CartList,
   ConfirmationForm,
-} from "../../Assets/Components";
-import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
-import { useRedirect } from "../../Assets/Hooks";
+} from "Components";
+import { APIContext, StatesContext, UserContext } from "Contexts";
+import { useRedirect } from "Hooks";
 import {
   AddRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./PurchasesArea.css";
 
