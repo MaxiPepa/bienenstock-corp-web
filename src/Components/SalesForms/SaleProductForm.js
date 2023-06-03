@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 
+import { selectStyles } from "Assets/Constants";
 import { APIContext } from "Contexts";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
@@ -12,13 +13,14 @@ const SaleProductForm = ({ setCartData }) => {
   const [stockProductSelected, setStockProductSelected] = useState();
   const [quantityProductSelected, setQuantityProductSelected] = useState();
 
+
   const {
     register: registerCart,
     handleSubmit: handleSubmitCart,
     reset: resetCart,
     formState: { errors: errorsCart },
   } = useForm();
-  
+
   useEffect(() => {
     get("Product/GetProductsStock").then((data) => {
       setArrayStockProduct(
@@ -64,7 +66,8 @@ const SaleProductForm = ({ setCartData }) => {
           defaultValue={{ label: "Select product", value: "" }}
           options={arraySelect}
           onChange={handleChangeSelect}
-          noOptionsMessage={()=>"No products in stock"}
+          noOptionsMessage={() => "No products in stock"}
+          styles={selectStyles}
         />
         <label>Product Quantity</label>
         <input
