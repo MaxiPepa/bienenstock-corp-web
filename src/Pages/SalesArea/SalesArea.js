@@ -40,18 +40,41 @@ const SalesArea = () => {
           userFullName: r.userFullName,
           totalPrice: "$" + r.totalPrice,
           date: parsingDate(r.date),
-          dispatched: r.dispatched,
-          dispatchDate: parsingDate(r.dispatchDate),
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,
             quantity: p.quantity,
             unitPrice: "$" + p.unitPrice,
           })),
+          dispatched: r.dispatched ? (
+            <CheckIcon className="check-icon" />
+          ) : (
+            <ClearIcon className="cancel-icon" />
+          ),
+          dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
+          Details: (
+            <Button
+              styles={"table-buttons details-icon"}
+              buttonFunction={() => {
+                openSaleHistoryCartModal(r.products);
+              }}
+              buttonIcon={<VisibilityIcon />}
+            />
+          ),
+          Cancel:
+            !r.dispatched && userData.userType === ROLES.SELLER ? (
+              <Button
+                styles={"table-buttons cancel-icon"}
+                buttonFunction={() => {
+                  console.log("cancel Sale ", r.saleId);
+                }}
+                buttonIcon={<RemoveShoppingCartRoundedIcon />}
+              />
+            ) : null,
         }))
       );
     });
-  }, [get]);
+  }, [get, openSaleHistoryCartModal, userData.userType ]);
 
   const openInputsModal = () => {
     setShowModal(true);
