@@ -21,7 +21,7 @@ import ConfirmPurchaseButton from "./ConfirmPurchaseButton/ConfirmPurchaseButton
 import PendingEntrySection from "./PendingEntrySection/PendingEntrySection";
 import ConfirmationForm from "./ConfirmationForm/ConfirmationForm";
 import UserForm from "./UsersForm/UserForm";
-import Activities from "./Activities/Activities";
+import Activity from "./Activity/Activity";
 
 export {
   Alert,
@@ -47,5 +47,5 @@ export {
   PendingEntrySection,
   ConfirmationForm,
   UserForm,
-  Activities,
+  Activity,
 };

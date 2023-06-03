@@ -21,3 +21,7 @@ header > a {
   font-weight: 900;
   text-decoration: none;
 }
+
+header > a > span {
+  color: var(--c-color-1);
+}

@@ -4,9 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(
-    100vh - 260px
-  ); /* 80px is the height of the header, so the dashboard will take the rest of the screen */
+  height: calc(100vh - 260px);
   gap: 30px;
 }
 
@@ -16,17 +14,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 70%;
   height: 100%;
-  background-color: rgb(163, 0, 0);
-}
-
-.activities-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  height: 100%;
-  background-color: rgb(5, 163, 0);
 }
