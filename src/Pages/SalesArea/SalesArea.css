@@ -5,3 +5,10 @@
 .nodispatched-icon {
   color: #990404;
 }
+
+.saleCancelled{
+  color: #e7b2b2;
+  background-color: #990404;
+  padding: 5px;
+  border-radius: 5px;
+}

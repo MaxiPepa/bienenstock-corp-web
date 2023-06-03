@@ -36,7 +36,7 @@ const SalesArea = () => {
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
-  const [cancelPurchaseId, setCancelPurchaseId] = useState();
+  const [cancelSaleId, setCancelSaleId] = useState();
 
   const [productsDetails, setProductsDetails] = useState([]);
 
@@ -52,7 +52,7 @@ const SalesArea = () => {
 
   const openConfirmationModal = useCallback(
     (userId) => {
-      setCancelPurchaseId(userId);
+      setCancelSaleId(userId);
       setShowModal(true);
     },
     [setShowModal]
@@ -88,14 +88,18 @@ const SalesArea = () => {
             />
           ),
           cancel:
-            !r.dispatched && userData.userType === ROLES.SELLER ? (
+            !r.dispatched &&
+            userData.userType === ROLES.SELLER &&
+            !r.cancelled ? (
               <Button
                 styles={"table-buttons cancel-icon"}
                 buttonFunction={() => {
-                  console.log("cancel Sale ", r.saleId);
+                  openConfirmationModal(r.saleId);
                 }}
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
+            ) : r.cancelled ? (
+              <span className="saleCancelled">SALE CANCELLED</span>
             ) : null,
         }))
       );
@@ -108,11 +112,11 @@ const SalesArea = () => {
     setShowInputsModal(true);
   };
 
-  const cancelPurchase = () => {
+  const cancelSale = () => {
     const rq = {
-      purchaseId: cancelPurchaseId,
+      saleId: cancelSaleId,
     };
-    post("purchase/cancelPurchase", rq).then((rs) => {
+    post("Sale/CancelSale", rq).then((rs) => {
       setAlert({
         show: true,
         message: rs.message,
@@ -189,7 +193,7 @@ const SalesArea = () => {
             entity={"products"}
           />
         ) : (
-          <ConfirmationForm functionFather={cancelPurchase} />
+          <ConfirmationForm functionFather={cancelSale} />
         )}
       </Modal>
     </div>
