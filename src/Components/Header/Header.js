@@ -12,7 +12,7 @@ const Header = () => {
         href="https://github.com/MaxiPepa/bienenstock-corp-web"
         target="_blanck"
       >
-        Bienenstock Corp.
+        Bienen<span>stock</span> Corp.
       </a>
     </header>
   );
