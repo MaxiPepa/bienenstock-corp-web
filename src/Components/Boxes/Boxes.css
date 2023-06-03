@@ -1,0 +1,19 @@
+.dashboard-boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 70%;
+  height: 100%;
+  padding: 80px 20px 20px 20px;
+}
+
+.boxes-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+}

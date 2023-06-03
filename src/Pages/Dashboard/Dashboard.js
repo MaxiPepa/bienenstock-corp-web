@@ -1,4 +1,4 @@
-import { Activity } from "Components";
+import { Activity, Boxes } from "Components";
 
 import "./Dashboard.css";
 
@@ -10,9 +10,7 @@ const Dashboard = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <div className="dashboard-container">
-        <div className="dashboard-cards">
-          <div className="dashboard-card"></div>
-        </div>
+        <Boxes />
         <Activity />
       </div>
     </>

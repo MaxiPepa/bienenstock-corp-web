@@ -23,10 +23,11 @@ import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlin
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCartRounded";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
+import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 
 export {
   DashboardIcon,
@@ -57,5 +58,6 @@ export {
   DeleteForeverIcon,
   BorderColorIcon,
   CheckIcon,
-  ClearIcon
+  ClearIcon,
+  ArrowCircleRightRoundedIcon,
 };

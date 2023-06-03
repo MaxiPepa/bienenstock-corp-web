@@ -14,36 +14,46 @@ export const ROLES = {
   ANALYST: "Analyst",
 };
 
-export const NAVLINKS = [
+export const NAVIGATIONSLINKS = [
+  {
+    roles: [ROLES.ADMIN],
+    navigation: "/admin-menu",
+    icon: <GroupIcon />,
+    navItemName: "Admin Menu",
+    dashboardItemName: "Total Users",
+    color: "#aa33d9",
+  },
   {
     roles: [ROLES.BUYER, ROLES.ADMIN],
     navigation: "/dashboard/purchases-area",
     icon: <ShoppingCartRoundedIcon />,
     navItemName: "Purchases",
+    dashboardItemName: "Total Purchases",
+    color: "#00b8e9",
   },
   {
     roles: [ROLES.SELLER, ROLES.ADMIN],
     navigation: "/dashboard/sales-area",
     icon: <ReceiptRoundedIcon />,
     navItemName: "Sales",
+    dashboardItemName: "Total Sales",
+    color: "#019c52",
   },
   {
     roles: [ROLES.DEPOSITOR, ROLES.ADMIN],
     navigation: "/dashboard/storage-area",
     icon: <ArchiveRoundedIcon />,
     navItemName: "Storage",
+    dashboardItemName: "Pending Products",
+    color: "#f0911a",
   },
   {
     roles: [ROLES.ANALYST, ROLES.ADMIN],
     navigation: "/dashboard/reports-area",
     icon: <LeaderboardRoundedIcon />,
     navItemName: "Reports",
-  },
-  {
-    roles: [ROLES.ADMIN],
-    navigation: "/admin-menu",
-    icon: <GroupIcon />,
-    navItemName: "Admin Menu",
+    dashboardItemName: "Total Reports",
+    color: "#0064e9",
   },
 ];
 
