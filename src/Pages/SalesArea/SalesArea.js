@@ -7,10 +7,10 @@ import {
   Button,
   Table,
   Modal,
-  ProductForm,
-  AditionalInfoForm,
   CartList,
   ConfirmationForm,
+  SaleProductForm,
+  SaleAditionalInfoForm,
 } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
@@ -174,11 +174,11 @@ const SalesArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <ProductForm setCartData={setCartData} />
+              <SaleProductForm setCartData={setCartData}/>
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
-              <AditionalInfoForm
+              <SaleAditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}
               />

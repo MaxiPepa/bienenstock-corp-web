@@ -10,6 +10,8 @@ import Modal from "./Modal/Modal";
 import NavLink from "./NavLink/NavLink";
 import AditionalInfoForm from "./PurchasesForms/AditionalInfoForm";
 import ProductForm from "./PurchasesForms/ProductForm";
+import SaleProductForm from "./SalesForms/SaleProductForm";
+import SaleAditionalInfoForm from "./SalesForms/SaleAditionalInfoForm";
 import SettingInfoBox from "./SettingInfoBox/SettingInfoBox";
 import SettingPasswordBox from "./SettingPasswordBox/SettingPasswordBox";
 import Sidebar from "./Sidebar/Sidebar";
@@ -36,6 +38,8 @@ export {
   NavLink,
   AditionalInfoForm,
   ProductForm,
+  SaleProductForm,
+  SaleAditionalInfoForm,
   SettingInfoBox,
   SettingPasswordBox,
   Sidebar,
