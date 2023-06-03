@@ -194,5 +194,5 @@ export const arrayModifyUsersInputs = [
     type: "email",
     placeholder: "Example@Xmail.com",
     formData: "email",
-  }
+  },
 ];

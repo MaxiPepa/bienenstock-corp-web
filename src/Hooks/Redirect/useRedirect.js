@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ROLES } from "../../Assets/Constants";
+import { ROLES } from "Assets/Constants";
 import { useEffect } from "react";
 
 const useRedirect = (currentRole, requiredRole) => {

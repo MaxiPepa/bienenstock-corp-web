@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import { Button, ExpirationInput } from "../../Assets/Components";
-import { StatesContext } from "../../Assets/Contexts";
-import { CheckCircleOutlineRoundedIcon } from "../../Assets/Icons";
+import { Button, ExpirationInput } from "Components";
+import { StatesContext } from "Contexts";
+import { CheckCircleOutlineRoundedIcon } from "Assets/Icons";
 
 const ConfirmPurchaseButton = ({
   setProductsById,

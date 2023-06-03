@@ -24,7 +24,7 @@ const Table = ({ content, thead, mapKeys, entity }) => {
                 <tr key={index}>
                   {mapKeys.map((key) => (
                     <td key={index + key} data-column={typeof attr[key]}>
-                      <p>{attr[key]}</p>
+                      {attr[key]}
                     </td>
                   ))}
                 </tr>

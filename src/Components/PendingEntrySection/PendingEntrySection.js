@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { ROLES } from "../../Assets/Constants";
-import { parsingDate } from "../../Assets/Parsing";
+import { ROLES } from "Assets/Constants";
+import { parsingDate } from "Assets/Parsing";
 
-import { Table, ConfirmPurchaseButton, Modal } from "../../Assets/Components";
-import { UserContext, APIContext, StatesContext } from "../../Assets/Contexts";
-import { useStorageValidations } from "../../Assets/Hooks";
-import { AddRoundedIcon } from "../../Assets/Icons";
+import { Table, ConfirmPurchaseButton, Modal } from "Components";
+import { UserContext, APIContext, StatesContext } from "Contexts";
+import { useStorageValidations } from "Hooks";
+import { AddRoundedIcon } from "Assets/Icons";
 
 const PendingEntrySection = () => {
   const { register, handleSubmit, resetField } = useForm();

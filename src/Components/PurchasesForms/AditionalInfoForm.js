@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { arrayPurchaseAditionalInputs } from "../../Assets/Constants";
+import { arrayPurchaseAditionalInputs } from "Assets/Constants";
 
-import { useProductsValidation } from "../../Assets/Hooks";
-import { APIContext, StatesContext } from "../../Assets/Contexts";
-import { AddRoundedIcon } from "../../Assets/Icons";
+import { useProductsValidation } from "Hooks";
+import { APIContext, StatesContext } from "Contexts";
+import { AddRoundedIcon } from "Assets/Icons";
 
 const AditionalInfoForm = ({ cartData, setCartData }) => {
   const { setAlert, setShowModal } = useContext(StatesContext);

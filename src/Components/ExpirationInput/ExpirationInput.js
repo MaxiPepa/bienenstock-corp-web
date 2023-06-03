@@ -7,7 +7,7 @@ const ExpirationInput = ({ register, expirationKey, resetField }) => {
 
   return (
     <div className="expiration-input-container">
-      <label class="cl-checkbox">
+      <label className="cl-checkbox">
         <input
           type="checkbox"
           className="expiration-checkbox"

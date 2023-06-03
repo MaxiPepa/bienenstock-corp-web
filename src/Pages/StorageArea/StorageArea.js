@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { ROLES } from "../../Assets/Constants";
+import { ROLES } from "Assets/Constants";
 
-import { PendingEntrySection } from "../../Assets/Components";
-import { UserContext } from "../../Assets/Contexts";
-import { useRedirect } from "../../Assets/Hooks";
+import { PendingEntrySection } from "Components";
+import { UserContext } from "Contexts";
+import { useRedirect } from "Hooks";
 
 import "./StorageArea.css";
 

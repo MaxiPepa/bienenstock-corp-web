@@ -1,4 +1,4 @@
-import { SettingInfoBox, SettingPasswordBox } from "../../Assets/Components";
+import { SettingInfoBox, SettingPasswordBox } from "Components";
 
 import "./Settings.css";
 

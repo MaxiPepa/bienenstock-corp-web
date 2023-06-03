@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useUserValidation } from "../../Assets/Hooks";
+import { useUserValidation } from "Hooks";
 
-import { APIContext, StatesContext } from "../../Assets/Contexts";
+import { APIContext, StatesContext } from "Contexts";
 
-import { arrayUsersInputs } from "../../Assets/Constants";
+import { arrayUsersInputs } from "Assets/Constants";
 
-import { AddRoundedIcon } from "../../Assets/Icons";
+import { AddRoundedIcon } from "Assets/Icons";
 
 const UserForm = () => {
   const { requiredValidations, errorMessages } = useUserValidation();

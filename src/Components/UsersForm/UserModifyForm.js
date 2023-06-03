@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useUserValidation } from "../../Assets/Hooks";
+import { useUserValidation } from "Hooks";
 
-import { BorderColorIcon } from "../../Assets/Icons";
-import { arrayModifyUsersInputs } from "../../Assets/Constants";
+import { BorderColorIcon } from "Assets/Icons";
+import { arrayModifyUsersInputs } from "Assets/Constants";
 
-import { APIContext, StatesContext } from "../../Assets/Contexts";
+import { APIContext, StatesContext } from "Contexts";
 
 export const UserModifyForm = ({ user }) => {
   const [userContent, setUserContent] = useState(Object.values(user));

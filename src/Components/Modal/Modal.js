@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import { Button } from "../../Assets/Components";
-import { StatesContext } from "../../Assets/Contexts";
-import { CloseRoundedIcon } from "../../Assets/Icons";
+import { Button } from "Components";
+import { StatesContext } from "Contexts";
+import { CloseRoundedIcon } from "Assets/Icons";
 
 import "./Modal.css";
 import "../Input/Input.css";

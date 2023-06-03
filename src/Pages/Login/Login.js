@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import Cookies from "universal-cookie";
-import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "../../Assets/Constants";
+import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "Assets/Constants";
 
-import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
+import { APIContext, StatesContext, UserContext } from "Contexts";
 import {
   PersonOutlineTwoToneIcon,
   HttpsTwoToneIcon,
   VisibilityIcon,
   VisibilityOffIcon,
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./Login.css";
 
