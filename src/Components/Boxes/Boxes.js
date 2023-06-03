@@ -1,11 +1,7 @@
 import { NAVIGATIONSLINKS } from "Assets/Constants";
 
 import BoxItem from "./BoxItem/BoxItem";
-import {
-  BackupTableRoundedIcon,
-  ShoppingCartRoundedIcon,
-  BuildRoundedIcon,
-} from "Assets/Icons";
+import { BackupTableRoundedIcon, BuildRoundedIcon } from "Assets/Icons";
 
 import "./Boxes.css";
 
