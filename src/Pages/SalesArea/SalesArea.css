@@ -44,3 +44,11 @@
   color: #fff;
   cursor: pointer;
 }
+
+.check-icon {
+  color: green;
+}
+
+.nodispatched-icon {
+  color: red;
+}

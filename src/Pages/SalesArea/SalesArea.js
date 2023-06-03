@@ -1,9 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
 
-import { Button, Table, Modal, AditionalInfoForm, CartList } from "Components";
+import {
+  Button,
+  Table,
+  Modal,
+  ProductForm,
+  AditionalInfoForm,
+  CartList,
+  ConfirmationForm,
+} from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
 
@@ -18,8 +26,8 @@ import {
 import "./SalesArea.css";
 
 const SalesArea = () => {
-  const { get } = useContext(APIContext);
-  const { setShowModal } = useContext(StatesContext);
+  const { get, post } = useContext(APIContext);
+  const { setShowModal, setAlert } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
 
   useRedirect(userData.userType, ROLES.SELLER);
@@ -28,8 +36,27 @@ const SalesArea = () => {
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [cancelPurchaseId, setCancelPurchaseId] = useState();
 
-  const [cartByIndex, setCartByIndex] = useState([]);
+  const [productsDetails, setProductsDetails] = useState([]);
+
+  const openSaleHistoryCartModal = useCallback(
+    (products) => {
+      setProductsDetails(products);
+      setShowModal(true);
+      setShowInputsModal(false);
+      setShowCartModal(true);
+    },
+    [setShowModal]
+  );
+
+  const openConfirmationModal = useCallback(
+    (userId) => {
+      setCancelPurchaseId(userId);
+      setShowModal(true);
+    },
+    [setShowModal]
+  );
 
   useEffect(() => {
     get("sale/getSales").then((data) => {
@@ -48,7 +75,7 @@ const SalesArea = () => {
           dispatched: r.dispatched ? (
             <CheckIcon className="check-icon" />
           ) : (
-            <ClearIcon className="cancel-icon" />
+            <ClearIcon className="nodispatched-icon" />
           ),
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
           details: (
@@ -73,7 +100,7 @@ const SalesArea = () => {
         }))
       );
     });
-  }, [get, openSaleHistoryCartModal, userData.userType]);
+  }, [get, openSaleHistoryCartModal, openConfirmationModal, userData.userType]);
 
   const openInputsModal = () => {
     setShowModal(true);
@@ -81,12 +108,17 @@ const SalesArea = () => {
     setShowInputsModal(true);
   };
 
-  const openSaleHistoryCartModal = (index) => {
-    const productObj = saleHistory[index].products;
-    setCartByIndex(productObj);
-    setShowModal(true);
-    setShowInputsModal(false);
-    setShowCartModal(true);
+  const cancelPurchase = () => {
+    const rq = {
+      purchaseId: cancelPurchaseId,
+    };
+    post("purchase/cancelPurchase", rq).then((rs) => {
+      setAlert({
+        show: true,
+        message: rs.message,
+        type: rs.success ? "success" : "error",
+      });
+    });
   };
 
   return (
@@ -138,6 +170,7 @@ const SalesArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
+              <ProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
@@ -148,15 +181,16 @@ const SalesArea = () => {
             </div>
             <CartList cartData={cartData} />
           </>
-        ) : null}
-        {showCartModal ? (
+        ) : showCartModal ? (
           <Table
             thead={["Product Code", "Product", "Quantity", "Price"]}
             mapKeys={["productCode", "name", "quantity", "unitPrice"]}
-            content={cartByIndex}
+            content={productsDetails}
             entity={"products"}
           />
-        ) : null}
+        ) : (
+          <ConfirmationForm functionFather={cancelPurchase} />
+        )}
       </Modal>
     </div>
   );
