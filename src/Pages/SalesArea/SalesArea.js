@@ -1,22 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import useRedirect from "../../Hooks/Redirect/useRedirect";
 
-import { ROLES } from "../../Assets/Constants";
-import { parsingDate, saleHistoryTableContent } from "../../Assets/Parsing";
+import { ROLES } from "Assets/Constants";
+import { parsingDate } from "Assets/Parsing";
 
 import {
+  Button,
   Table,
   Modal,
-  Button,
   AditionalInfoForm,
   CartList,
   SaleProductForm,
-} from "../../Assets/Components";
-import { APIContext, StatesContext, UserContext } from "../../Assets/Contexts";
-import { AddRoundedIcon } from "../../Assets/Icons";
-
-import { UserContext } from "Contexts";
+} from "Components";
+import { APIContext, StatesContext, UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
+
+import { AddRoundedIcon } from "Assets/Icons";
+
+import "./SalesArea.css"
 
 const SalesArea = () => {
   const { get } = useContext(APIContext);
@@ -74,7 +74,7 @@ const SalesArea = () => {
         }))
       );
     });
-  }, [get, openSaleHistoryCartModal, userData.userType ]);
+  }, [get, openSaleHistoryCartModal, userData.userType]);
 
   const openInputsModal = () => {
     setShowModal(true);
