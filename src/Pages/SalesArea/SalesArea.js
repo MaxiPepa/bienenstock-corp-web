@@ -3,14 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
 
-import {
-  Button,
-  Table,
-  Modal,
-  AditionalInfoForm,
-  CartList,
-  SaleProductForm,
-} from "Components";
+import { Button, Table, Modal, AditionalInfoForm, CartList } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
 
@@ -19,6 +12,7 @@ import {
   CheckIcon,
   ClearIcon,
   VisibilityIcon,
+  RemoveShoppingCartRoundedIcon,
 } from "Assets/Icons";
 
 import "./SalesArea.css";
@@ -95,13 +89,6 @@ const SalesArea = () => {
     setShowCartModal(true);
   };
 
-  const saleHistoryDataTable = saleHistoryTableContent(
-    saleHistory,
-    openSaleHistoryCartModal,
-    userData,
-    ROLES
-  );
-
   return (
     <div className="sales-area">
       <div className="sales-header">
@@ -138,7 +125,7 @@ const SalesArea = () => {
           "details",
           "cancel",
         ]}
-        content={saleHistoryDataTable}
+        content={saleHistory}
         entity={"sales"}
       />
       <Modal
@@ -151,7 +138,6 @@ const SalesArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <SaleProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
@@ -166,7 +152,7 @@ const SalesArea = () => {
         {showCartModal ? (
           <Table
             thead={["Product Code", "Product", "Quantity", "Price"]}
-            mapKeys={[]}
+            mapKeys={["productCode", "name", "quantity", "unitPrice"]}
             content={cartByIndex}
             entity={"products"}
           />
