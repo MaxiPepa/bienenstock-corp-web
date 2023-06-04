@@ -7,7 +7,7 @@ import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
 import { AddRoundedIcon } from "Assets/Icons";
 
-const AditionalInfoForm = ({ postData, setCartData, setPostData }) => {
+const AditionalInfoForm = ({ cartData, setCartData }) => {
   const { setAlert, setShowModal } = useContext(StatesContext);
   const { post } = useContext(APIContext);
 
@@ -21,7 +21,7 @@ const AditionalInfoForm = ({ postData, setCartData, setPostData }) => {
   } = useForm();
 
   const onSububmitSale = (data) => {
-    if (postData.length === 0) {
+    if (cartData.length === 0) {
       setAlert({
         show: true,
         message: "You must add at least one product to the cart",
@@ -34,8 +34,14 @@ const AditionalInfoForm = ({ postData, setCartData, setPostData }) => {
 
       const rq = {
         ...data,
-        products: postData,
+        products: cartData.map((i) => ({
+          productId: i.productId,
+          productName: i.name,
+          quantity: i.quantity,
+          unitPrice: i.unitPrice,
+        })),
       };
+      console.log(rq);
       post("Sale/SaveSale", rq).then((res) => {
         setAlert({
           show: true,
@@ -43,7 +49,6 @@ const AditionalInfoForm = ({ postData, setCartData, setPostData }) => {
           type: res.success ? "success" : "error",
         });
         setCartData([]);
-        setPostData([]);
         setShowModal(false);
         resetSale();
       });

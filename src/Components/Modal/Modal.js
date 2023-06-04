@@ -13,7 +13,6 @@ const Modal = ({
   setShowInputsModal,
   setExpiration,
   setCartData,
-  setPostData,
   setModalConfirm,
   setCompleteInputValue,
   children,
@@ -26,7 +25,6 @@ const Modal = ({
     setShowInputsModal?.(false);
     setExpiration?.([]);
     setCartData?.([]);
-    setPostData?.([]);
     setModalConfirm?.(false);
     setCompleteInputValue?.(false);
   };

@@ -43,12 +43,13 @@ const SaleProductForm = ({ setCartData, setPostData }) => {
     setProductSelected(productSelectedLocal);
     setStockProductSelected(productSelectedLocal.quantity);
   };
-
   const onSubmitCart = (data) => {
     const sendToCart = {
+      productId: productSelected.productId,
       productCode: productSelected.productCode,
       name: productSelected.name,
     };
+    
     const sendPost = {
       productId: productSelected.productId,
       productName: productSelected.name,
@@ -58,7 +59,7 @@ const SaleProductForm = ({ setCartData, setPostData }) => {
     setCartData((prevState) => [...prevState, sendProductsObjet]);
     const sendPostProductsObjet = { ...sendPost, ...data };
     setPostData((prevState) => [...prevState, sendPostProductsObjet]);
-    console.log()
+    console.log();
     resetCart();
   };
 
