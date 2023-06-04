@@ -1,24 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
 import Select from "react-select";
 
 import { selectStyles } from "Assets/Constants";
 import { APIContext } from "Contexts";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
-
 const SaleProductForm = ({ setCartData }) => {
   const { get } = useContext(APIContext);
-  const [arrayStockProduct, setArrayStockProduct] = useState([]);
-  const [stockProductSelected, setStockProductSelected] = useState();
-  const [quantityProductSelected, setQuantityProductSelected] = useState();
 
+  const [arrayStockProduct, setArrayStockProduct] = useState([]);
+  const [stockProductSelected, setStockProductSelected] = useState("");
+  const [productSelected, setProductSelected] = useState(null);
 
   const {
-    register: registerCart,
-    handleSubmit: handleSubmitCart,
+    register,
+    formState: { errors },
     reset: resetCart,
-    formState: { errors: errorsCart },
+    handleSubmit,
   } = useForm();
 
   useEffect(() => {
@@ -37,15 +37,20 @@ const SaleProductForm = ({ setCartData }) => {
 
   const handleChangeSelect = ({ value }) => {
     const productID = Number(value);
-    const quantityProductIndex = arrayStockProduct.find(
+    const productSelectedLocal = arrayStockProduct.find(
       (item) => item.productId === productID
     );
-    setStockProductSelected(quantityProductIndex.quantity);
-    setQuantityProductSelected("");
+    setProductSelected(productSelectedLocal);
+    setStockProductSelected(productSelectedLocal.quantity);
   };
 
   const onSubmitCart = (data) => {
-    setCartData((prevState) => [...prevState, data]);
+    const sendToCart = {
+      productCode: productSelected.productCode,
+      name: productSelected.name,
+    };
+    const sendProductsObjet = {...sendToCart, ...data}
+    setCartData((prevState) => [...prevState, sendProductsObjet]);
     resetCart();
   };
 
@@ -56,32 +61,69 @@ const SaleProductForm = ({ setCartData }) => {
 
   return (
     <form
-      onSubmit={handleSubmitCart(onSubmitCart)}
+      onSubmit={handleSubmit(onSubmitCart)}
       className="inputs-content"
       noValidate
     >
       <div className="input-content">
         <label>Product name - Product code </label>
         <Select
-          defaultValue={{ label: "Select product", value: "" }}
           options={arraySelect}
           onChange={handleChangeSelect}
           noOptionsMessage={() => "No products in stock"}
           styles={selectStyles}
         />
-        <label>Product Quantity</label>
+        <label>
+          Product Quantity
+          {stockProductSelected ? (
+            <span className="quantityStockProduct">
+              (Stock: {stockProductSelected})
+            </span>
+          ) : null}
+        </label>
         <input
           type="number"
-          min={0}
-          max={stockProductSelected}
-          value={quantityProductSelected}
+          min={1}
+          max={stockProductSelected ? stockProductSelected : null}
           placeholder={
-            stockProductSelected ? "Stock: " + stockProductSelected : null
+            stockProductSelected ? "Máx. " + stockProductSelected : null
           }
-          onChange={(e) => setQuantityProductSelected(e.target.value)}
+          {...register("quantity", {
+            required: true,
+            min: 1,
+            max: stockProductSelected,
+          })}
         />
+        {errors.quantity?.type === "required" && (
+          <p className="error-input-message">This field is required.</p>
+        )}
+        {errors.quantity?.type === "min" && (
+          <p className="error-input-message">
+            The value must be greater than 0.
+          </p>
+        )}
+        {errors.quantity?.type === "max" && (
+          <p className="error-input-message">
+            The quantity entered cannot exceed the stock of the product.
+          </p>
+        )}
+
         <label>Product unit price:</label>
-        <input type="number" step={0.01} min={0.01} placeholder="$X.XXX,XX" />
+        <input
+          type="number"
+          step={0.01}
+          min={0.01}
+          placeholder="$X.XXX,XX"
+          {...register("unitPrice", { required: true, min: 0.01 })}
+        />
+        {errors.unitPrice?.type === "required" && (
+          <p className="error-input-message">This field is required.</p>
+        )}
+        {errors.unitPrice?.type === "required" && (
+          <p className="error-input-message">
+            The value must be greater than 0.01.
+          </p>
+        )}
       </div>
 
       <div className="button-content">
