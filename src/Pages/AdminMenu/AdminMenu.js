@@ -10,14 +10,16 @@ import {
   AddRoundedIcon,
   BorderColorIcon,
   DeleteForeverIcon,
-} from "Assets/Icons";
+  ArrowCircleUpIcon
+} from "../../Assets/Icons";
 
 import "./AdminMenu.css";
 
 const AdminMenu = () => {
   const [modifyUser, setModifyUser] = useState({});
-  const [deleteUserId, setDeleteUserId] = useState();
+  const [UserId, setUserId] = useState();
   const [users, setUsers] = useState([]);
+  const [inactiveUsers,setInactivateUser] = useState([])
   const [modalConfirm, setModalConfirm] = useState(false);
   const [completeInputValue, setCompleteInputValue] = useState(false);
 
@@ -29,7 +31,7 @@ const AdminMenu = () => {
 
   const openConfirmationModal = useCallback(
     (userId) => {
-      setDeleteUserId(userId);
+      setUserId(userId);
       setShowModal(true);
       setModalConfirm(true);
     },
@@ -46,7 +48,7 @@ const AdminMenu = () => {
   );
 
   useEffect(() => {
-    get("user/getUsers").then((data) => {
+    get("user/getUsers",{Inactive:false}).then((data) => {
       setUsers(
         data.users.map((r) => ({
           userId: r.userId,
@@ -71,10 +73,31 @@ const AdminMenu = () => {
         }))
       );
     });
+
+    get("user/getUsers",{Inactive:true}).then((data) => {
+      setInactivateUser(
+        data.users.map((r) => ({
+          userId: r.userId,
+          name: r.name,
+          lastName: r.lastName,
+          email: r.email,
+          userType: r.userType,
+          state: "Inactive",
+          active: (
+            <Button
+              styles={"table-button-style info-style"}
+              buttonFunction={() => activateUser(r.userId)}
+              buttonIcon={<ArrowCircleUpIcon />}
+            />
+          ),
+        }))
+      );
+    });
+
   }, [get, modifyUserHandler, openConfirmationModal]);
 
   const deleteUser = () => {
-    const rq = { userId: deleteUserId };
+    const rq = { userId: UserId };
     post("user/deleteUser", rq).then((rs) => {
       setAlert({
         show: true,
@@ -83,6 +106,16 @@ const AdminMenu = () => {
       });
     });
   };
+
+  const activateUser = (id) => {
+    post("user/activateUser", {id}).then((rs) => {
+      setAlert({
+        show: true,
+        message: rs.message,
+        type: rs.success ? "success" : "error",
+      });
+    });
+  }
 
   return (
     <div className="area-container">
@@ -116,6 +149,14 @@ const AdminMenu = () => {
           "edit",
           "delete",
         ]}
+        entity="users"
+      />
+      <hr className="division-horizontal-hr" />
+      <h2>Inactive Users</h2>
+      <Table 
+        content={inactiveUsers} 
+        thead={[ "ID","Name","Last Name","Email","UserType","State","active"]}
+        mapKeys={["userId","name","lastName","email","userType","state","active"]}
         entity="users"
       />
       <Modal
