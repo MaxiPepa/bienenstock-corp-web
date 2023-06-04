@@ -37,6 +37,7 @@ const SalesArea = () => {
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
   const [cancelSaleId, setCancelSaleId] = useState();
+  const [postData, setPostData] = useState([]);
 
   const [productsDetails, setProductsDetails] = useState([]);
 
@@ -169,17 +170,22 @@ const SalesArea = () => {
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
         setCartData={setCartData}
+        setPostData={setPostData}
       >
         {showInputsModal ? (
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <SaleProductForm setCartData={setCartData}/>
+              <SaleProductForm
+                setCartData={setCartData}
+                setPostData={setPostData}
+              />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
               <SaleAditionalInfoForm
-                cartData={cartData}
+                postData={postData}
+                setPostData={setPostData}
                 setCartData={setCartData}
               />
             </div>
