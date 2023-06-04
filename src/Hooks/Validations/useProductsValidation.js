@@ -38,6 +38,9 @@ export const useProductsValidation = () => {
       case "purchaseDate":
         return { required: true, validate: validateDate };
 
+      case "saleDate":
+        return { required: true, validate: validateDate };
+
       default:
         break;
     }
