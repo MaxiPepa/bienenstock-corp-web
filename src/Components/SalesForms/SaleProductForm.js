@@ -7,7 +7,7 @@ import { selectStyles } from "Assets/Constants";
 import { APIContext } from "Contexts";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
-const SaleProductForm = ({ setCartData, setPostData }) => {
+const SaleProductForm = ({ setCartData }) => {
   const { get } = useContext(APIContext);
 
   const [arrayStockProduct, setArrayStockProduct] = useState([]);
@@ -43,23 +43,15 @@ const SaleProductForm = ({ setCartData, setPostData }) => {
     setProductSelected(productSelectedLocal);
     setStockProductSelected(productSelectedLocal.quantity);
   };
+
   const onSubmitCart = (data) => {
     const sendToCart = {
       productId: productSelected.productId,
       productCode: productSelected.productCode,
       name: productSelected.name,
     };
-    
-    const sendPost = {
-      productId: productSelected.productId,
-      productName: productSelected.name,
-    };
-
     const sendProductsObjet = { ...sendToCart, ...data };
     setCartData((prevState) => [...prevState, sendProductsObjet]);
-    const sendPostProductsObjet = { ...sendPost, ...data };
-    setPostData((prevState) => [...prevState, sendPostProductsObjet]);
-    console.log();
     resetCart();
   };
 

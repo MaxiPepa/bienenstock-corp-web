@@ -41,7 +41,6 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
           unitPrice: i.unitPrice,
         })),
       };
-      console.log(rq);
       post("Sale/SaveSale", rq).then((res) => {
         setAlert({
           show: true,
