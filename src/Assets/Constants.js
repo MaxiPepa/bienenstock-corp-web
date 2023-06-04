@@ -114,6 +114,16 @@ export const arrayPurchaseAditionalInputs = [
   },
 ];
 
+export const arraySaleAditionalInputs = [
+  {
+    labelName: "Sale date: ",
+    styles: "input",
+    type: "datetime-local",
+    placeholder: "dd/mm/aaaa",
+    formData: "saleDate",
+  },
+];
+
 export const arrayPasswordInputs = [
   {
     labelName: "Current password: ",
