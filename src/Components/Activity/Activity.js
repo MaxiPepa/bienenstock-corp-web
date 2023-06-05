@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import * as Reader from "Assets/Reader";
 
 import { APIContext } from "Contexts";
 import { parsingDate } from "Assets/Parsing";
@@ -9,9 +10,10 @@ import "./Activity.css";
 const Activity = () => {
   const { get } = useContext(APIContext);
 
+  const [connection, setConnection] = useState(null);
   const [logs, setLogs] = useState([]);
 
-  useEffect(() => {
+  const getLogs = useCallback(() => {
     get("log/getLogs").then((data) => {
       setLogs(
         data.logs.map((r) => {
@@ -26,6 +28,17 @@ const Activity = () => {
       );
     });
   }, [get]);
+
+  useEffect(() => {
+    getLogs();
+    setConnection(Reader.listen(getLogs, "log", "logHub", "LogUpdate"));
+  }, [getLogs]);
+
+  useEffect(() => {
+    return () => {
+      Reader.stop(connection);
+    };
+  }, [connection]);
 
   return (
     <div className="activities-container">
