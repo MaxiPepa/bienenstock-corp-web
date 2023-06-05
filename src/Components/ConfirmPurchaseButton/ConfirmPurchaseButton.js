@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { ROLES } from "Assets/Constants";
 
 import { Button, ExpirationInput } from "Components";
 import { StatesContext } from "Contexts";
@@ -10,6 +11,7 @@ const ConfirmPurchaseButton = ({
   register,
   setCurrentPurchaseId,
   resetField,
+  role,
 }) => {
   const { setShowModal } = useContext(StatesContext);
 
@@ -21,7 +23,7 @@ const ConfirmPurchaseButton = ({
         name: p.name,
         quantity: p.quantity,
         unitPrice: "$" + p.unitPrice,
-        expiration: (
+        expiration: role === ROLES.BUYER && (
           <ExpirationInput
             register={register}
             expirationKey={p.productId.toString()}
@@ -37,7 +39,11 @@ const ConfirmPurchaseButton = ({
   return (
     <>
       <Button
-        styles={"table-button-style confirm-style"}
+        styles={
+          role === ROLES.BUYER
+            ? "table-button-style confirm-style"
+            : "table-button-style info-style"
+        }
         buttonFunction={confirmEntryProduct}
         buttonIcon={<CheckCircleOutlineRoundedIcon />}
       />

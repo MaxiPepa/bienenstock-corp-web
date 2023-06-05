@@ -38,12 +38,13 @@ const PendingEntrySection = () => {
               register={register}
               setCurrentPurchaseId={() => setCurrentPurchaseId(r.purchaseId)}
               resetField={resetField}
+              role={userData.userType}
             />
           ),
         }))
       );
     });
-  }, [get, register, resetField]);
+  }, [get, register, resetField, userData.userType]);
 
   const onSubmit = (data) => {
     if (!validateEmpty(Object.values(data).filter((x) => x !== undefined))) {
@@ -100,7 +101,7 @@ const PendingEntrySection = () => {
             "Supplier",
             "Total Price",
             "Purchase Date",
-            userData.userType === ROLES.DEPOSITOR && "Confirm Entry",
+            userData.userType === ROLES.DEPOSITOR ? "Confirm Entry" : "Details",
           ]}
           mapKeys={[
             "purchaseId",
@@ -108,7 +109,7 @@ const PendingEntrySection = () => {
             "supplier",
             "totalPrice",
             "date",
-            userData.userType === ROLES.DEPOSITOR && "confirmButton",
+            "confirmButton",
           ]}
           content={pendingEntry}
         />
@@ -121,23 +122,25 @@ const PendingEntrySection = () => {
               "Name",
               "Quantity",
               "Unit Price",
-              "Expiration",
+              userData.userType === ROLES.DEPOSITOR && "Expiration",
             ]}
             mapKeys={[
               "productCode",
               "name",
               "quantity",
               "unitPrice",
-              "expiration",
+              userData.userType === ROLES.DEPOSITOR && "expiration",
             ]}
             content={productsById}
           />
-          <div className="button-content">
-            <button type="submit" className="modal-button-add">
-              {<AddRoundedIcon />}
-              <span>Add to Stock</span>
-            </button>
-          </div>
+          {userData.userType === ROLES.DEPOSITOR && (
+            <div className="button-content">
+              <button type="submit" className="modal-button-add">
+                {<AddRoundedIcon />}
+                <span>Add to Stock</span>
+              </button>
+            </div>
+          )}
         </form>
       </Modal>
     </section>

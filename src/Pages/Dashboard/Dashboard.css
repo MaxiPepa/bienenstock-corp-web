@@ -7,13 +7,3 @@
   height: calc(100vh - 260px);
   gap: 30px;
 }
-
-.dashboard-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 100%;
-}

@@ -20,7 +20,7 @@ const StorageArea = () => {
       <hr className="division-horizontal-hr" />
       <PendingEntrySection />
       <section>
-        <h3 className="area-subtitle">Pending products release</h3>
+        <h3 className="area-subtitle">Pending products dispatch</h3>
       </section>
     </div>
   );

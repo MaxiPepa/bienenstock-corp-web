@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import { NAVLINKS, COOKIENAME } from "Assets/Constants";
+import { NAVIGATIONSLINKS, COOKIENAME } from "Assets/Constants";
 
 import { NavLink, UserCard } from "Components";
 import { StatesContext, UserContext } from "Contexts";
@@ -47,7 +47,7 @@ const Sidebar = () => {
             icon={<BackupTableRoundedIcon />}
             navItemName={"Products"}
           />
-          {NAVLINKS.map((navlink, index) => {
+          {NAVIGATIONSLINKS.map((navlink, index) => {
             return navlink.roles.includes(userData.userType) ? (
               <NavLink
                 key={index}

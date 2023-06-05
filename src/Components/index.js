@@ -24,6 +24,7 @@ import PendingEntrySection from "./PendingEntrySection/PendingEntrySection";
 import ConfirmationForm from "./ConfirmationForm/ConfirmationForm";
 import UserForm from "./UsersForm/UserForm";
 import Activity from "./Activity/Activity";
+import Boxes from "./Boxes/Boxes";
 
 export {
   Alert,
@@ -52,4 +53,5 @@ export {
   ConfirmationForm,
   UserForm,
   Activity,
+  Boxes,
 };
