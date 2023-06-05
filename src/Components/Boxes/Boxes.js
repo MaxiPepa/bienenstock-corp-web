@@ -15,7 +15,6 @@ const Boxes = () => {
 
   useEffect(() => {
     get("report/getCompanyStats").then((data) => {
-      console.log(data);
       setCompanyStats(data);
     });
   }, [get]);

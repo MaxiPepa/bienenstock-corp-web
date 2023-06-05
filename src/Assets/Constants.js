@@ -28,7 +28,7 @@ export const NAVIGATIONSLINKS = [
     navigation: "/dashboard/purchases-area",
     icon: <ShoppingCartRoundedIcon />,
     navItemName: "Purchases",
-    dashboardItemName: "Total Purchases",
+    dashboardItemName: "Completed Purchases",
     color: "#00b8e9",
   },
   {
@@ -36,7 +36,7 @@ export const NAVIGATIONSLINKS = [
     navigation: "/dashboard/sales-area",
     icon: <ReceiptRoundedIcon />,
     navItemName: "Sales",
-    dashboardItemName: "Total Sales",
+    dashboardItemName: "Completed Sales",
     color: "#019c52",
   },
   {
@@ -44,7 +44,7 @@ export const NAVIGATIONSLINKS = [
     navigation: "/dashboard/storage-area",
     icon: <ArchiveRoundedIcon />,
     navItemName: "Storage",
-    dashboardItemName: "Pending Products",
+    dashboardItemName: "Pending Transactions",
     color: "#f0911a",
   },
   {
