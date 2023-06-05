@@ -1,0 +1,23 @@
+.check-icon {
+  color: #0e990e;
+}
+
+.nodispatched-icon {
+  color: #990404;
+}
+
+.saleCancelled{
+  color: #e7b2b2;
+  background-color: #990404;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.quantityStockProduct{
+  font-weight: 400;
+  background-color: #363535;
+  border-radius: 3px;
+  color: white;
+  margin-left: 7px;
+  padding: 0 3px;
+}

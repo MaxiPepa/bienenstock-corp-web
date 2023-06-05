@@ -114,6 +114,16 @@ export const arrayPurchaseAditionalInputs = [
   },
 ];
 
+export const arraySaleAditionalInputs = [
+  {
+    labelName: "Sale date: ",
+    styles: "input",
+    type: "datetime-local",
+    placeholder: "dd/mm/aaaa",
+    formData: "saleDate",
+  },
+];
+
 export const arrayPasswordInputs = [
   {
     labelName: "Current password: ",
@@ -196,3 +206,40 @@ export const arrayModifyUsersInputs = [
     formData: "email",
   },
 ];
+
+export const selectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    border: state.isFocused ? "2px solid black" : "1px solid black",
+    boxShadow: "none",
+    "&:hover": {
+      border: state.isFocused ? "2px solid black" : "1px solid black",
+    },
+    fontSize: "1rem",
+    fontWeight: 600,
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    color: "black",
+  }),
+  indicatorSeparator: (provided, state) => ({
+    ...provided,
+    backgroundColor: "black",
+    width: state.isFocused || state.isOpen ? "2px" : "1px",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? "white" : "#141414",
+    backgroundColor: state.isSelected ? "gray" : "white",
+    "&:hover": {
+      backgroundColor: "#141414",
+      color: "white",
+    },
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "black",
+    fontSize: "1rem",
+    fontWeight: 600,
+  }),
+};

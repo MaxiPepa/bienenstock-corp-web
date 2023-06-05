@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { arrayPurchaseAditionalInputs } from "Assets/Constants";
+import { arraySaleAditionalInputs } from "Assets/Constants";
 
 import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
@@ -14,13 +14,13 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
   const { requiredValidations, errorMessages } = useProductsValidation();
 
   const {
-    register: registerPurchase,
-    handleSubmit: handleSubmitPurchase,
-    reset: resetPurchase,
-    formState: { errors: errorsPurchase },
+    register: registerSale,
+    handleSubmit: handleSubmitSale,
+    reset: resetSale,
+    formState: { errors: errorsSale },
   } = useForm();
 
-  const onSubmitPurchase = (data) => {
+  const onSubmitSale = (data) => {
     if (cartData.length === 0) {
       setAlert({
         show: true,
@@ -30,10 +30,15 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
     } else {
       const rq = {
         ...data,
-        purchaseDate: new Date(data.purchaseDate).toISOString(),
-        products: cartData,
+        saleDate: new Date(data.saleDate).toISOString(),
+        products: cartData.map((i) => ({
+          productId: i.productId,
+          productName: i.name,
+          quantity: i.quantity,
+          unitPrice: i.unitPrice,
+        })),
       };
-      post("purchase/savePurchase", rq).then((res) => {
+      post("Sale/SaveSale", rq).then((res) => {
         setAlert({
           show: true,
           message: res.message,
@@ -41,18 +46,18 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         });
         setCartData([]);
         setShowModal(false);
-        resetPurchase();
+        resetSale();
       });
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmitPurchase(onSubmitPurchase)}
+      onSubmit={handleSubmitSale(onSubmitSale)}
       className="inputs-content"
       noValidate
     >
-      {arrayPurchaseAditionalInputs.map((input, index) => (
+      {arraySaleAditionalInputs.map((input, index) => (
         <div className="inputs-maped" key={index}>
           <div className="input-content">
             <label>{input.labelName}</label>
@@ -60,15 +65,15 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
               className={input.styles}
               type={input.type}
               placeholder={input.placeholder}
-              {...registerPurchase(
+              {...registerSale(
                 input.formData,
                 requiredValidations(input.formData)
               )}
             />
           </div>
-          {errorsPurchase[input.formData] && (
+          {errorsSale[input.formData] && (
             <p className="error-input-message">
-              {errorMessages(errorsPurchase[input.formData])}
+              {errorMessages(errorsSale[input.formData])}
             </p>
           )}
         </div>
@@ -76,7 +81,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
       <div className="button-content">
         <button type="submit" className="modal-button-add">
           {<AddRoundedIcon />}
-          <span>Finish Purchase</span>
+          <span>Finish Sale</span>
         </button>
       </div>
     </form>

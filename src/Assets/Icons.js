@@ -25,6 +25,8 @@ import RemoveShoppingCartRoundedIcon from "@mui/icons-material/RemoveShoppingCar
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export {
   DashboardIcon,
@@ -53,5 +55,7 @@ export {
   RemoveShoppingCartRoundedIcon,
   ChangeCircleIcon,
   DeleteForeverIcon,
-  BorderColorIcon
+  BorderColorIcon,
+  CheckIcon,
+  ClearIcon
 };
