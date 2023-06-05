@@ -20,7 +20,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
     formState: { errors: errorsSale },
   } = useForm();
 
-  const onSububmitSale = (data) => {
+  const onSubmitSale = (data) => {
     if (cartData.length === 0) {
       setAlert({
         show: true,
@@ -28,12 +28,9 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         type: "error",
       });
     } else {
-      const date = new Date(data.saleDate);
-      const isoSaleDate = date.toISOString();
-      data.saleDate = isoSaleDate;
-
       const rq = {
         ...data,
+        saleDate: new Date(data.saleDate).toISOString(),
         products: cartData.map((i) => ({
           productId: i.productId,
           productName: i.name,
@@ -56,7 +53,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
 
   return (
     <form
-      onSubmit={handleSubmitSale(onSububmitSale)}
+      onSubmit={handleSubmitSale(onSubmitSale)}
       className="inputs-content"
       noValidate
     >

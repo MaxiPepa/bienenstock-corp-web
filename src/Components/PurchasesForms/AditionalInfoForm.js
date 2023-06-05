@@ -20,7 +20,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
     formState: { errors: errorsPurchase },
   } = useForm();
 
-  const onSbubmitPurchase = (data) => {
+  const onSubmitPurchase = (data) => {
     if (cartData.length === 0) {
       setAlert({
         show: true,
@@ -28,12 +28,9 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
         type: "error",
       });
     } else {
-      const date = new Date(data.purchaseDate);
-      const isoPurchaseDate = date.toISOString();
-      data.purchaseDate = isoPurchaseDate;
-
       const rq = {
         ...data,
+        purchaseDate: new Date(data.purchaseDate).toISOString(),
         products: cartData,
       };
       post("purchase/savePurchase", rq).then((res) => {
@@ -51,7 +48,7 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
 
   return (
     <form
-      onSubmit={handleSubmitPurchase(onSbubmitPurchase)}
+      onSubmit={handleSubmitPurchase(onSubmitPurchase)}
       className="inputs-content"
       noValidate
     >

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import Select from "react-select";
 
@@ -11,21 +11,22 @@ const SaleProductForm = ({ setCartData }) => {
   const { get } = useContext(APIContext);
 
   const [arrayStockProduct, setArrayStockProduct] = useState([]);
-  const [stockProductSelected, setStockProductSelected] = useState("");
-  const [productSelected, setProductSelected] = useState(null);
+  const [currentStock, setCurrentStock] = useState(null);
 
   const {
     register,
     formState: { errors },
-    reset: resetCart,
+    reset,
     handleSubmit,
+    control,
   } = useForm();
 
   useEffect(() => {
     get("Product/GetProductsStock").then((data) => {
       setArrayStockProduct(
         data.products.map((item) => ({
-          productId: item.productId,
+          value: item.productId,
+          label: item.name + " - " + item.productCode,
           name: item.name,
           productCode: item.productCode,
           expirationDate: item.expirationDate,
@@ -35,30 +36,25 @@ const SaleProductForm = ({ setCartData }) => {
     });
   }, [get]);
 
-  const handleChangeSelect = ({ value }) => {
-    const productID = Number(value);
-    const productSelectedLocal = arrayStockProduct.find(
-      (item) => item.productId === productID
+  const resetCart = (productId) => {
+    setArrayStockProduct(
+      arrayStockProduct.filter((x) => x.value !== productId)
     );
-    setProductSelected(productSelectedLocal);
-    setStockProductSelected(productSelectedLocal.quantity);
+    setCurrentStock(null);
+    reset();
   };
 
   const onSubmitCart = (data) => {
-    const sendToCart = {
-      productId: productSelected.productId,
-      productCode: productSelected.productCode,
-      name: productSelected.name,
+    const newProduct = {
+      productId: data.product.value,
+      productCode: data.product.productCode,
+      name: data.product.name,
+      quantity: data.quantity,
+      unitPrice: data.unitPrice,
     };
-    const sendProductsObjet = { ...sendToCart, ...data };
-    setCartData((prevState) => [...prevState, sendProductsObjet]);
-    resetCart();
+    setCartData((prevState) => [...prevState, newProduct]);
+    resetCart(newProduct.productId);
   };
-
-  const arraySelect = arrayStockProduct.map((item) => ({
-    label: item.name + " - " + item.productCode,
-    value: item.productId,
-  }));
 
   return (
     <form
@@ -68,31 +64,48 @@ const SaleProductForm = ({ setCartData }) => {
     >
       <div className="input-content">
         <label>Product name - Product code </label>
-        <Select
-          options={arraySelect}
-          onChange={handleChangeSelect}
-          noOptionsMessage={() => "No products in stock"}
-          styles={selectStyles}
+        <Controller
+          control={control}
+          name="product"
+          rules={{ required: true }}
+          render={({ field: { onChange, value, name, ref } }) => (
+            <Select
+              options={arrayStockProduct}
+              noOptionsMessage={() => "No products in stock"}
+              styles={selectStyles}
+              inputRef={ref}
+              value={
+                value ? arrayStockProduct.find((e) => e.value === value) : null
+              }
+              onChange={(val) => {
+                onChange(val);
+                setCurrentStock(val.quantity);
+              }}
+              name={name}
+            />
+          )}
         />
+        {errors.product?.type === "required" && (
+          <p className="error-input-message">This field is required.</p>
+        )}
+
         <label>
           Product Quantity
-          {stockProductSelected ? (
+          {currentStock ? (
             <span className="quantityStockProduct">
-              (Stock: {stockProductSelected})
+              (Stock: {currentStock})
             </span>
           ) : null}
         </label>
         <input
           type="number"
           min={1}
-          max={stockProductSelected ? stockProductSelected : null}
-          placeholder={
-            stockProductSelected ? "Máx. " + stockProductSelected : null
-          }
+          max={currentStock ? currentStock : null}
+          placeholder={currentStock ? "Máx. " + currentStock : null}
           {...register("quantity", {
             required: true,
             min: 1,
-            max: stockProductSelected,
+            max: currentStock,
           })}
         />
         {errors.quantity?.type === "required" && (
