@@ -30,6 +30,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 export {
   ArrowCircleUpIcon,
@@ -64,4 +65,5 @@ export {
   ClearIcon,
   ArrowCircleRightRoundedIcon,
   QuestionAnswerIcon,
+  SendRoundedIcon,
 };
