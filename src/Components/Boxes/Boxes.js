@@ -24,11 +24,11 @@ const Boxes = () => {
       case ROLES.ADMIN:
         return companyStats.totalUsers;
       case ROLES.BUYER:
-        return companyStats.totalPurchases;
+        return companyStats.completedPurchases;
       case ROLES.SELLER:
-        return companyStats.totalSales;
+        return companyStats.completedSales;
       case ROLES.DEPOSITOR:
-        return companyStats.totalPendingProducts;
+        return companyStats.pendingTransactions;
       case ROLES.ANALYST:
         return companyStats.totalReports;
       default:
