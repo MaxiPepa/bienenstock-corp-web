@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "Components";
 import { APIContext, UserContext, StatesContext } from "Contexts";
 import { AccountCircleSharpIcon, SendRoundedIcon } from "Assets/Icons";
+import { parsingDate } from "Assets/Parsing";
 
 import "./ChatComponent.css";
 import Message from "./Message/Message";
@@ -56,7 +57,7 @@ const ChatComponent = () => {
             key={index}
             avatar={message.avatar}
             message={message.description}
-            date={message.date}
+            date={parsingDate(message.date)}
             author={message.fullName}
           />
         ))}
