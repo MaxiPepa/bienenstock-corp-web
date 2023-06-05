@@ -54,3 +54,35 @@
 .edit-style:hover {
   background-color: #f0a500;
 }
+
+.chat-button {
+  background-color: #0099ff;
+  border: none;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chat-button > svg {
+  width: 30px;
+  height: 30px;
+}
+
+.chat-button:hover {
+  background-color: #007acc;
+}
+
+.chat-button:active {
+  background-color: #0061a8;
+}
