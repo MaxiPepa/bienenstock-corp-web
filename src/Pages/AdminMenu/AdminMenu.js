@@ -1,27 +1,25 @@
 import { useEffect, useState, useContext, useCallback } from "react";
 
-import { ROLES } from "Assets/Constants";
 import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
 
-import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
 import { useRedirect } from "Hooks";
+import { ROLES } from "Assets/Constants";
+import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import {
   AddRoundedIcon,
   BorderColorIcon,
   DeleteForeverIcon,
   ArrowCircleUpIcon
-} from "../../Assets/Icons";
+} from "Assets/Icons";
 
 import "./AdminMenu.css";
 
 const AdminMenu = () => {
-  let auxUser = {};
 
   const [modifyUser, setModifyUser] = useState({});
-  const [UserId, setUserId] = useState();
+  const [userId, setUserId] = useState();
   const [users, setUsers] = useState([]);
-  const [inactiveUsers,setInactivateUser] = useState([])
   const [modalConfirm, setModalConfirm] = useState(false);
   const [completeInputValue, setCompleteInputValue] = useState(false);
 
@@ -53,7 +51,7 @@ const AdminMenu = () => {
     get("user/getUsers").then((data) => {
       setUsers( 
         data.users.map((r) => { 
-          auxUser = {
+          const auxUser = {
             userId: r.userId,
             name: r.name,
             lastName: r.lastName,
@@ -93,7 +91,7 @@ const AdminMenu = () => {
   }, [get, modifyUserHandler, openConfirmationModal]);
 
   const deleteUser = () => {
-    const rq = { userId: UserId };
+    const rq = { userId: userId };
     post("user/deleteUser", rq).then((rs) => {
       setAlert({
         show: true,
