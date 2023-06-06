@@ -28,8 +28,10 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 export {
+  ArrowCircleUpIcon,
   DashboardIcon,
   BackupTableRoundedIcon,
   BuildRoundedIcon,

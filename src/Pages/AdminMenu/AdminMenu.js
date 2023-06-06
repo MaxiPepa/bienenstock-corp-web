@@ -1,22 +1,23 @@
 import { useEffect, useState, useContext, useCallback } from "react";
 
-import { ROLES } from "Assets/Constants";
 import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
 
-import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
 import { useRedirect } from "Hooks";
+import { ROLES } from "Assets/Constants";
+import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import {
   AddRoundedIcon,
   BorderColorIcon,
   DeleteForeverIcon,
+  ArrowCircleUpIcon
 } from "Assets/Icons";
 
 import "./AdminMenu.css";
 
 const AdminMenu = () => {
   const [modifyUser, setModifyUser] = useState({});
-  const [deleteUserId, setDeleteUserId] = useState();
+  const [userId, setUserId] = useState();
   const [users, setUsers] = useState([]);
   const [modalConfirm, setModalConfirm] = useState(false);
   const [completeInputValue, setCompleteInputValue] = useState(false);
@@ -29,7 +30,7 @@ const AdminMenu = () => {
 
   const openConfirmationModal = useCallback(
     (userId) => {
-      setDeleteUserId(userId);
+      setUserId(userId);
       setShowModal(true);
       setModalConfirm(true);
     },
@@ -47,35 +48,49 @@ const AdminMenu = () => {
 
   useEffect(() => {
     get("user/getUsers").then((data) => {
-      setUsers(
-        data.users.map((r) => ({
-          userId: r.userId,
-          name: r.name,
-          lastName: r.lastName,
-          email: r.email,
-          userType: r.userType,
+      setUsers( 
+        data.users.map((r) => { 
+          const auxUser = {
+            userId: r.userId,
+            name: r.name,
+            lastName: r.lastName,
+            email: r.email,
+            userType: r.userType,
+          }
+          return r.active?{
+            ...auxUser,
           edit: (
-            <Button
-              styles={"table-button-style edit-style"}
-              buttonIcon={<BorderColorIcon />}
-              buttonFunction={() => modifyUserHandler(r)}
-            />
-          ),
-          delete: (
-            <Button
-              styles={"table-button-style cancel-style"}
-              buttonFunction={() => openConfirmationModal(r.userId)}
-              buttonIcon={<DeleteForeverIcon />}
-            />
-          ),
-        }))
-      );
+              <Button
+                styles={"table-button-style edit-style"}
+                buttonIcon={<BorderColorIcon />}
+                buttonFunction={() => modifyUserHandler(r)}
+              />
+            ),
+            delete: (
+              <Button
+                styles={"table-button-style cancel-style"}
+                buttonFunction={() => openConfirmationModal(r.userId)}
+                buttonIcon={<DeleteForeverIcon />}
+              />
+            )
+          }:
+          {
+            ...auxUser,
+            active: (
+              <Button
+                styles={"table-button-style info-style"}
+                buttonFunction={() => activateUser(r.userId)}
+                buttonIcon={<ArrowCircleUpIcon />}
+              />
+            )
+          }
+        })
+      )
     });
   }, [get, modifyUserHandler, openConfirmationModal]);
 
   const deleteUser = () => {
-    const rq = { userId: deleteUserId };
-    post("user/deleteUser", rq).then((rs) => {
+    post("user/deleteUser", { userId: userId }).then((rs) => {
       setAlert({
         show: true,
         message: rs.message,
@@ -83,6 +98,16 @@ const AdminMenu = () => {
       });
     });
   };
+
+  const activateUser = (id) => {
+    post("user/activateUser", { userId: id }).then((rs) => {
+      setAlert({
+        show: true,
+        message: rs.message,
+        type: rs.success ? "success" : "error",
+      });
+    });
+  }
 
   return (
     <div className="area-container">
@@ -97,25 +122,17 @@ const AdminMenu = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <Table
-        content={users}
-        thead={[
-          "ID",
-          "Name",
-          "Last Name",
-          "Email",
-          "UserType",
-          "Modify user",
-          "Delete user",
-        ]}
-        mapKeys={[
-          "userId",
-          "name",
-          "lastName",
-          "email",
-          "userType",
-          "edit",
-          "delete",
-        ]}
+        content={users.filter((u) => u.edit )}
+        thead={[ "ID","Name","Last Name","Email","UserType","Modify user","Delete user"]}
+        mapKeys={["userId","name","lastName","email","userType","edit","delete"]}
+        entity="users"
+      />
+      <hr className="division-horizontal-hr" />
+      <h2>Inactive Users</h2>
+      <Table 
+        content={users.filter((u) => u.active )}
+        thead={[ "ID","Name","Last Name","Email","UserType","active"]}
+        mapKeys={["userId","name","lastName","email","userType","active"]}
         entity="users"
       />
       <Modal
