@@ -1,27 +1,17 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "Components";
 import { APIContext, UserContext, StatesContext } from "Contexts";
-import { AccountCircleSharpIcon, SendRoundedIcon } from "Assets/Icons";
-import { parsingDate } from "Assets/Parsing";
+import { SendRoundedIcon } from "Assets/Icons";
 
 import "./ChatComponent.css";
 import Message from "./Message/Message";
 
-const ChatComponent = () => {
+const ChatComponent = ({ messages }) => {
   const { userData } = useContext(UserContext);
-  const { get, post } = useContext(APIContext);
+  const { post } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
-
-  const [currentMessage, setCurrentMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    get("message/getMessages").then((data) => {
-      setMessages(data.messages);
-    });
-  }, [get]);
 
   const {
     register,
@@ -32,21 +22,18 @@ const ChatComponent = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(getValues("description"));
-    // post(
-    //   "message/saveMessage",
-    //   { description: getValues("description") }.then((res) => {
-    //     if (!res.success) {
-    //       setAlert({
-    //         show: true,
-    //         type: "error",
-    //         message: res.message,
-    //       });
-    //     }
-    //     reset();
-    //   })
-    // );
+    // console.log(data);
+    // console.log(getValues("description"));
+    post("message/saveMessage", data).then((res) => {
+      if (!res.success) {
+        setAlert({
+          show: true,
+          type: "error",
+          message: res.message,
+        });
+      }
+      reset();
+    });
   };
 
   return (
@@ -58,16 +45,16 @@ const ChatComponent = () => {
             key={index}
             avatar={message.avatar}
             message={message.description}
-            date={parsingDate(message.date)}
+            date={message.date}
             author={message.fullName}
           />
         ))}
-        <Message
+        {/* <Message
           avatar={userData.avatar}
           message={getValues("description")}
           date="05/06/2023 15:52"
           author={userData.fullName}
-        />
+        /> */}
       </div>
       <form className="chat-input" onSubmit={handleSubmit(onSubmit)}>
         <textarea
