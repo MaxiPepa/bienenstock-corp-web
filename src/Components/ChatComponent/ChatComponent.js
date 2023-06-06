@@ -1,6 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import "transition-style";
+
 import { Button } from "Components";
 import { APIContext, UserContext, StatesContext } from "Contexts";
 import { AccountCircleSharpIcon, SendRoundedIcon } from "Assets/Icons";
@@ -50,7 +52,7 @@ const ChatComponent = () => {
   };
 
   return (
-    <div className="chat-component">
+    <div className="chat-component" transition-style="in:wipe:up">
       <span className="chat-title">General chat</span>
       <div className="messages-container">
         {messages.map((message, index) => (
