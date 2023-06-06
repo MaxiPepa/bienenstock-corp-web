@@ -16,7 +16,6 @@ import {
 import "./AdminMenu.css";
 
 const AdminMenu = () => {
-
   const [modifyUser, setModifyUser] = useState({});
   const [userId, setUserId] = useState();
   const [users, setUsers] = useState([]);
@@ -91,8 +90,7 @@ const AdminMenu = () => {
   }, [get, modifyUserHandler, openConfirmationModal]);
 
   const deleteUser = () => {
-    const rq = { userId: userId };
-    post("user/deleteUser", rq).then((rs) => {
+    post("user/deleteUser", { userId: userId }).then((rs) => {
       setAlert({
         show: true,
         message: rs.message,
@@ -102,7 +100,7 @@ const AdminMenu = () => {
   };
 
   const activateUser = (id) => {
-    post("user/activateUser", {userId:id}).then((rs) => {
+    post("user/activateUser", { userId: id }).then((rs) => {
       setAlert({
         show: true,
         message: rs.message,
