@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect, useCallback } from "react";
+import * as Reader from "Assets/Reader";
 
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
@@ -34,8 +35,8 @@ const PurchansingArea = () => {
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
   const [cancelPurchaseId, setCancelPurchaseId] = useState();
-
   const [productsDetails, setProductsDetails] = useState([]);
+  const [connection, setConnection] = useState(null);
 
   const openPurchaseHistoryCartModal = useCallback(
     (products) => {
@@ -55,7 +56,7 @@ const PurchansingArea = () => {
     [setShowModal]
   );
 
-  useEffect(() => {
+  const getPurchaseHistory = useCallback(() => {
     get("purchase/getPurchases").then((data) => {
       setPurchaseHistory(
         data.purchases.map((r) => ({
@@ -97,12 +98,20 @@ const PurchansingArea = () => {
         }))
       );
     });
-  }, [
-    get,
-    openConfirmationModal,
-    openPurchaseHistoryCartModal,
-    userData.userType,
-  ]);
+  }, [get, openConfirmationModal, openPurchaseHistoryCartModal, userData]);
+
+  useEffect(() => {
+    getPurchaseHistory();
+    setConnection(
+      Reader.listen(getPurchaseHistory, "page", "buyHub", "PurchaseUpdate")
+    );
+  }, [getPurchaseHistory]);
+
+  useEffect(() => {
+    return () => {
+      Reader.stop(connection);
+    };
+  }, [connection]);
 
   const openInputsModal = () => {
     setShowModal(true);

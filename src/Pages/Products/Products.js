@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import * as Reader from "Assets/Reader";
 
 import { parsingDate } from "Assets/Parsing";
 
@@ -9,8 +10,9 @@ const Products = () => {
   const { get } = useContext(APIContext);
 
   const [products, setProducts] = useState([]);
+  const [connection, setConnection] = useState(null);
 
-  useEffect(() => {
+  const getProducts = useCallback(() => {
     get("product/getProductsStock").then((data) => {
       setProducts(
         data.products.map((res) => ({
@@ -25,6 +27,19 @@ const Products = () => {
       );
     });
   }, [get]);
+
+  useEffect(() => {
+    getProducts();
+    setConnection(
+      Reader.listen(getProducts, "page", "productHub", "ProductUpdate")
+    );
+  }, [getProducts]);
+
+  useEffect(() => {
+    return () => {
+      Reader.stop(connection);
+    };
+  }, [connection]);
 
   return (
     <div className="area-container">

@@ -31,7 +31,7 @@ const Activity = () => {
 
   useEffect(() => {
     getLogs();
-    setConnection(Reader.listen(getLogs, "log", "logHub", "LogUpdate"));
+    setConnection(Reader.listen(getLogs, "page", "logHub", "LogUpdate"));
   }, [getLogs]);
 
   useEffect(() => {
