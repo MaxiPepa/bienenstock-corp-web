@@ -16,6 +16,8 @@ import {
 import "./AdminMenu.css";
 
 const AdminMenu = () => {
+  let auxUser = {};
+
   const [modifyUser, setModifyUser] = useState({});
   const [UserId, setUserId] = useState();
   const [users, setUsers] = useState([]);
@@ -48,52 +50,46 @@ const AdminMenu = () => {
   );
 
   useEffect(() => {
-    get("user/getUsers",{Inactive:false}).then((data) => {
-      setUsers(
-        data.users.map((r) => ({
-          userId: r.userId,
-          name: r.name,
-          lastName: r.lastName,
-          email: r.email,
-          userType: r.userType,
+    get("user/getUsers").then((data) => {
+      setUsers( 
+        data.users.map((r) => { 
+          auxUser = {
+            userId: r.userId,
+            name: r.name,
+            lastName: r.lastName,
+            email: r.email,
+            userType: r.userType,
+          }
+          return r.active?{
+            ...auxUser,
           edit: (
-            <Button
-              styles={"table-button-style edit-style"}
-              buttonIcon={<BorderColorIcon />}
-              buttonFunction={() => modifyUserHandler(r)}
-            />
-          ),
-          delete: (
-            <Button
-              styles={"table-button-style cancel-style"}
-              buttonFunction={() => openConfirmationModal(r.userId)}
-              buttonIcon={<DeleteForeverIcon />}
-            />
-          ),
-        }))
-      );
+              <Button
+                styles={"table-button-style edit-style"}
+                buttonIcon={<BorderColorIcon />}
+                buttonFunction={() => modifyUserHandler(r)}
+              />
+            ),
+            delete: (
+              <Button
+                styles={"table-button-style cancel-style"}
+                buttonFunction={() => openConfirmationModal(r.userId)}
+                buttonIcon={<DeleteForeverIcon />}
+              />
+            )
+          }:
+          {
+            ...auxUser,
+            active: (
+              <Button
+                styles={"table-button-style info-style"}
+                buttonFunction={() => activateUser(r.userId)}
+                buttonIcon={<ArrowCircleUpIcon />}
+              />
+            )
+          }
+        })
+      )
     });
-
-    get("user/getUsers",{Inactive:true}).then((data) => {
-      setInactivateUser(
-        data.users.map((r) => ({
-          userId: r.userId,
-          name: r.name,
-          lastName: r.lastName,
-          email: r.email,
-          userType: r.userType,
-          state: "Inactive",
-          active: (
-            <Button
-              styles={"table-button-style info-style"}
-              buttonFunction={() => activateUser(r.userId)}
-              buttonIcon={<ArrowCircleUpIcon />}
-            />
-          ),
-        }))
-      );
-    });
-
   }, [get, modifyUserHandler, openConfirmationModal]);
 
   const deleteUser = () => {
@@ -108,7 +104,7 @@ const AdminMenu = () => {
   };
 
   const activateUser = (id) => {
-    post("user/activateUser", {id}).then((rs) => {
+    post("user/activateUser", {userId:id}).then((rs) => {
       setAlert({
         show: true,
         message: rs.message,
@@ -130,33 +126,17 @@ const AdminMenu = () => {
       </div>
       <hr className="division-horizontal-hr" />
       <Table
-        content={users}
-        thead={[
-          "ID",
-          "Name",
-          "Last Name",
-          "Email",
-          "UserType",
-          "Modify user",
-          "Delete user",
-        ]}
-        mapKeys={[
-          "userId",
-          "name",
-          "lastName",
-          "email",
-          "userType",
-          "edit",
-          "delete",
-        ]}
+        content={users.filter((u) => u.edit )}
+        thead={[ "ID","Name","Last Name","Email","UserType","Modify user","Delete user"]}
+        mapKeys={["userId","name","lastName","email","userType","edit","delete"]}
         entity="users"
       />
       <hr className="division-horizontal-hr" />
       <h2>Inactive Users</h2>
       <Table 
-        content={inactiveUsers} 
-        thead={[ "ID","Name","Last Name","Email","UserType","State","active"]}
-        mapKeys={["userId","name","lastName","email","userType","state","active"]}
+        content={users.filter((u) => u.active )}
+        thead={[ "ID","Name","Last Name","Email","UserType","active"]}
+        mapKeys={["userId","name","lastName","email","userType","active"]}
         entity="users"
       />
       <Modal
