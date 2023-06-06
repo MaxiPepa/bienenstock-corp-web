@@ -22,7 +22,6 @@ const PendingEntrySection = ({ reload }) => {
   const [currentPurchaseId, setCurrentPurchaseId] = useState();
 
   useEffect(() => {
-    console.log("loop");
     get("purchase/getPurchases", { pending: true }).then((data) => {
       setPendingEntry(
         data.purchases.map((r) => ({
