@@ -31,7 +31,8 @@ const ChatComponent = () => {
     reset,
   } = useForm();
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    console.log(data);
     console.log(getValues("description"));
     // post(
     //   "message/saveMessage",

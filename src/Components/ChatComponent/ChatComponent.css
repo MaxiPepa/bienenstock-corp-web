@@ -26,7 +26,8 @@
 .messages-container {
   position: relative;
   flex: 1;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -52,6 +53,7 @@
   outline: none;
   resize: none;
   white-space: pre-wrap;
+  overflow-y: auto;
 }
 
 .chat-input > textarea:focus {

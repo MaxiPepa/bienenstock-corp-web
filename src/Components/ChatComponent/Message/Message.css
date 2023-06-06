@@ -50,11 +50,11 @@
 
 .message-info {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
   border-radius: 10px;
   width: auto;
+  height: auto;
   background-color: #f1f0f0;
 }
 
