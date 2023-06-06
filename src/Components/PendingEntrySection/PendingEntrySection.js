@@ -8,7 +8,7 @@ import { UserContext, APIContext, StatesContext } from "Contexts";
 import { useStorageValidations } from "Hooks";
 import { AddRoundedIcon } from "Assets/Icons";
 
-const PendingEntrySection = () => {
+const PendingEntrySection = ({ reload }) => {
   const { register, handleSubmit, resetField } = useForm();
 
   const { userData } = useContext(UserContext);
@@ -44,7 +44,7 @@ const PendingEntrySection = () => {
         }))
       );
     });
-  }, [get, register, resetField, userData.userType]);
+  }, [get, register, reload, resetField, userData.userType]);
 
   const onSubmit = (data) => {
     if (!validateEmpty(Object.values(data).filter((x) => x !== undefined))) {

@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
+import * as Reader from "Assets/Reader";
 
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
@@ -37,8 +38,8 @@ const SalesArea = () => {
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
   const [cancelSaleId, setCancelSaleId] = useState();
-
   const [productsDetails, setProductsDetails] = useState([]);
+  const [connection, setConnection] = useState(null);
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
@@ -58,7 +59,7 @@ const SalesArea = () => {
     [setShowModal]
   );
 
-  useEffect(() => {
+  const getSaleHistory = useCallback(() => {
     get("sale/getSales").then((data) => {
       setSaleHistory(
         data.sales.map((r) => ({
@@ -105,6 +106,19 @@ const SalesArea = () => {
       );
     });
   }, [get, openSaleHistoryCartModal, openConfirmationModal, userData.userType]);
+
+  useEffect(() => {
+    getSaleHistory();
+    setConnection(
+      Reader.listen(getSaleHistory, "page", "saleHub", "SaleUpdate")
+    );
+  }, [getSaleHistory]);
+
+  useEffect(() => {
+    return () => {
+      Reader.stop(connection);
+    };
+  }, [connection]);
 
   const openInputsModal = () => {
     setShowModal(true);
@@ -174,9 +188,7 @@ const SalesArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <SaleProductForm
-                setCartData={setCartData}
-              />
+              <SaleProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>
