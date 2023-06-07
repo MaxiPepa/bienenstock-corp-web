@@ -10,6 +10,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  z-index: 20;
 }
 
 .chat-title {
@@ -34,6 +35,23 @@
   gap: 10px;
 }
 
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background-color: #0099ff34;
+  border-radius: 10px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background-color: #0099ff52;
+}
+
 .chat-input {
   display: flex;
   justify-content: center;
@@ -54,6 +72,11 @@
   resize: none;
   white-space: pre-wrap;
   overflow-y: auto;
+  background-color: #e3f4ff;
+}
+
+.chat-input > textarea::-webkit-scrollbar {
+  width: 0;
 }
 
 .chat-input > textarea:focus {

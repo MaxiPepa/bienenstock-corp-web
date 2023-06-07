@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useRef } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 import { Button } from "Components";
 import { APIContext, UserContext, StatesContext } from "Contexts";
@@ -14,16 +14,14 @@ const ChatComponent = ({ messages }) => {
   const { setAlert } = useContext(StatesContext);
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
-    getValues,
     reset,
   } = useForm();
+  const textareaRef = useRef();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    // console.log(getValues("description"));
     post("message/saveMessage", data).then((res) => {
       if (!res.success) {
         setAlert({
@@ -34,6 +32,16 @@ const ChatComponent = ({ messages }) => {
       }
       reset();
     });
+  };
+
+  const handleInput = (event) => {
+    if (event.key === "Enter") {
+      const maxHeight = 100;
+      const textarea = textareaRef.current;
+      textarea.style.height = "auto";
+      const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+      textarea.style.height = newHeight + "px";
+    }
   };
 
   return (
@@ -49,19 +57,28 @@ const ChatComponent = ({ messages }) => {
             author={message.fullName}
           />
         ))}
-        {/* <Message
-          avatar={userData.avatar}
-          message={getValues("description")}
-          date="05/06/2023 15:52"
-          author={userData.fullName}
-        /> */}
       </div>
       <form className="chat-input" onSubmit={handleSubmit(onSubmit)}>
-        <textarea
-          type="text"
-          placeholder="Type your message here..."
-          maxLength={240}
-          {...register("description", { required: true, maxLength: 240 })}
+        <Controller
+          name="description"
+          control={control}
+          defaultValue=""
+          rules={{ required: true, maxLength: 240 }}
+          render={({ field }) => (
+            <textarea
+              {...field}
+              ref={(el) => {
+                field.ref(el);
+                textareaRef.current = el;
+              }}
+              type="text"
+              placeholder="Type your message here..."
+              maxLength={240}
+              onKeyPress={(event) => {
+                handleInput(event);
+              }}
+            />
+          )}
         />
         <Button type={"submit"} buttonIcon={<SendRoundedIcon />} />
       </form>

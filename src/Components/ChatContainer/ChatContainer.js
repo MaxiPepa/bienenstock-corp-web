@@ -4,15 +4,21 @@ import * as Reader from "Assets/Reader";
 import { parsingDate } from "Assets/Parsing";
 
 import { Button, ChatComponent } from "Components";
-import { APIContext } from "Contexts";
+import { APIContext, UserContext } from "Contexts";
 import { QuestionAnswerIcon } from "Assets/Icons";
+
+import "./ChatContainer.css";
 
 const ChatContainer = () => {
   const { get } = useContext(APIContext);
+  const { userData } = useContext(UserContext);
 
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
   const [connection, setConnection] = useState(null);
+
+  const [countMessages, setCountMessages] = useState(0);
+  const [lastCount, setLastCount] = useState(messages.length);
 
   const handleChatButtonClick = () => {
     setShowChat(!showChat);
@@ -32,8 +38,6 @@ const ChatContainer = () => {
     });
   }, [get]);
 
-  console.log(messages);
-
   useEffect(() => {
     getMessages();
     setConnection(Reader.listen(getMessages, "chat", "chatHub", "ChatUpdate"));
@@ -44,75 +48,48 @@ const ChatContainer = () => {
       Reader.stop(connection);
     };
   }, [connection]);
+
+  // useEffect(() => {
+  //   const lastUserMessageIndex = messages.findLastIndex(
+  //     (message) => message.fullName === userData.fullName
+  //   );
+  //   console.log(lastUserMessageIndex);
+
+  //   if (lastUserMessageIndex !== messages.length - 1) {
+  //     const messagesAfterLastUserMessage =
+  //       messages.length - lastUserMessageIndex - 1;
+  //     setCountMessages(messagesAfterLastUserMessage);
+  //   }
+
+  //   if (showChat) {
+  //     setCountMessages(0);
+  //     setLastCount(messages.length);
+  //   }
+
+  //   if (
+  //     !showChat &&
+  //     messages.length > lastCount &&
+  //     messages[messages.length - 1].fullName !== userData.fullName
+  //   ) {
+  //     setCountMessages(messages.length - lastCount);
+  //   }
+  // }, [lastCount, messages, showChat, userData.fullName]);
+
   return (
     <>
       {showChat && <ChatComponent messages={messages} />}
-      <Button
-        styles="chat-button"
-        buttonFunction={handleChatButtonClick}
-        buttonIcon={<QuestionAnswerIcon />}
-      />
+      <div className="chat-button-container">
+        {!showChat && countMessages >= 0 && (
+          <div className="unread-messages-counter">{countMessages}</div>
+        )}
+        <Button
+          styles="chat-button"
+          buttonFunction={handleChatButtonClick}
+          buttonIcon={<QuestionAnswerIcon />}
+        />
+      </div>
     </>
   );
 };
 
 export default ChatContainer;
-
-/*
-
-```HTML
-<CustomMessage 
-  maxWidth="350px" 
-  position="relative"
-  backgroundColor="#dcf8c6"
-  padding="10px"
-  borderRadius="10px"
-  marginBottom="10px"
-  user="Juan"
-  message="Mensaje de prueba."
-/>
-```
-
-```JS
-function CustomMessage({ 
-  maxWidth, 
-  position, 
-  backgroundColor, 
-  padding, 
-  borderRadius, 
-  marginBottom, 
-  user, 
-  message 
-}) {
-  return (
-    <div style={{
-      maxWidth,
-      position,
-      backgroundColor,
-      padding,
-      borderRadius,
-      marginBottom
-    }}>
-      <p style={{ margin: "0 0 5px 0", fontSize:"14px", color:"#444" }}>
-        {user}
-      </p>
-      <p style={{ margin: "0", fontSize:"16px", color:"#000" }}>
-        {message}
-      </p>
-      <div style={{
-        position: "absolute",
-        right: "-10px",
-        bottom: "0",
-        width: "0",
-        height: "0", 
-        borderTop: "20px solid transparent",
-        borderLeft: `20px solid ${backgroundColor}`,
-        borderBottom: "20px solid transparent"
-      }}>
-      </div>
-    </div>
-  );
-}
-```
-
-*/
