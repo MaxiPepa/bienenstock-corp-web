@@ -23,7 +23,7 @@ const ConfirmPurchaseButton = ({
         name: p.name,
         quantity: p.quantity,
         unitPrice: "$" + p.unitPrice,
-        expiration: role === ROLES.BUYER && (
+        expiration: role === ROLES.DEPOSITOR && (
           <ExpirationInput
             register={register}
             expirationKey={p.productId.toString()}
