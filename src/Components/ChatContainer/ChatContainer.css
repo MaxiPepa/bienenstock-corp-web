@@ -41,14 +41,19 @@
 
 .unread-messages-counter {
   position: fixed;
+  display: grid;
+  place-items: center;
   bottom: 90px;
   right: 30px;
-  /* Estilos adicionales para el contador, como color de fondo, tamaño de fuente, etc. */
   background-color: red;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 2px 6px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   z-index: 105;
+}
+
+.unread-messages-counter > span {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
 }

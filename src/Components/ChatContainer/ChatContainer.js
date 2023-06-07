@@ -2,23 +2,34 @@ import { useContext, useState, useEffect, useCallback } from "react";
 import * as Reader from "Assets/Reader";
 
 import { parsingDate } from "Assets/Parsing";
+import tone from "Assets/Tone.mp3";
 
 import { Button, ChatComponent } from "Components";
-import { APIContext, UserContext } from "Contexts";
+import { APIContext } from "Contexts";
 import { QuestionAnswerIcon } from "Assets/Icons";
 
 import "./ChatContainer.css";
 
 const ChatContainer = () => {
   const { get } = useContext(APIContext);
-  const { userData } = useContext(UserContext);
 
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
   const [connection, setConnection] = useState(null);
 
-  const [countMessages, setCountMessages] = useState(0);
-  const [lastCount, setLastCount] = useState(messages.length);
+  const localLastMessageView = () => {
+    const lastMessageView = localStorage.getItem("LASTMESSAGEVIEW");
+    if (lastMessageView === null) {
+      localStorage.setItem("LASTMESSAGEVIEW", messages.length);
+      return messages.length;
+    } else {
+      return lastMessageView;
+    }
+  };
+
+  const [lastMessageView, setLastMessageView] = useState(
+    localLastMessageView()
+  );
 
   const handleChatButtonClick = () => {
     setShowChat(!showChat);
@@ -41,7 +52,7 @@ const ChatContainer = () => {
   useEffect(() => {
     getMessages();
     setConnection(Reader.listen(getMessages, "chat", "chatHub", "ChatUpdate"));
-  }, [getMessages]);
+  }, [getMessages, messages.length]);
 
   useEffect(() => {
     return () => {
@@ -49,39 +60,32 @@ const ChatContainer = () => {
     };
   }, [connection]);
 
-  // useEffect(() => {
-  //   const lastUserMessageIndex = messages.findLastIndex(
-  //     (message) => message.fullName === userData.fullName
-  //   );
-  //   console.log(lastUserMessageIndex);
+  const playNotificationSound = () => {
+    const audio = new Audio(tone);
+    audio.play();
+  };
 
-  //   if (lastUserMessageIndex !== messages.length - 1) {
-  //     const messagesAfterLastUserMessage =
-  //       messages.length - lastUserMessageIndex - 1;
-  //     setCountMessages(messagesAfterLastUserMessage);
-  //   }
-
-  //   if (showChat) {
-  //     setCountMessages(0);
-  //     setLastCount(messages.length);
-  //   }
-
-  //   if (
-  //     !showChat &&
-  //     messages.length > lastCount &&
-  //     messages[messages.length - 1].fullName !== userData.fullName
-  //   ) {
-  //     setCountMessages(messages.length - lastCount);
-  //   }
-  // }, [lastCount, messages, showChat, userData.fullName]);
+  useEffect(() => {
+    if (showChat) {
+      localStorage.setItem("LASTMESSAGEVIEW", messages.length);
+      setLastMessageView(messages.length);
+    }
+    if (!showChat && messages.length !== lastMessageView) {
+      playNotificationSound();
+    }
+  }, [lastMessageView, messages.length, showChat]);
 
   return (
     <>
       {showChat && <ChatComponent messages={messages} />}
       <div className="chat-button-container">
-        {!showChat && countMessages >= 0 && (
-          <div className="unread-messages-counter">{countMessages}</div>
-        )}
+        {!showChat &&
+          messages.length !== lastMessageView &&
+          messages.length - lastMessageView > 0 && (
+            <div className="unread-messages-counter">
+              <span>{messages.length - lastMessageView}</span>
+            </div>
+          )}
         <Button
           styles="chat-button"
           buttonFunction={handleChatButtonClick}
