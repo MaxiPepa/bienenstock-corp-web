@@ -2,14 +2,13 @@ import { useContext, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import { Button } from "Components";
-import { APIContext, UserContext, StatesContext } from "Contexts";
+import { APIContext, StatesContext } from "Contexts";
 import { SendRoundedIcon } from "Assets/Icons";
 
 import "./ChatComponent.css";
 import Message from "./Message/Message";
 
 const ChatComponent = ({ messages }) => {
-  const { userData } = useContext(UserContext);
   const { post } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
 
