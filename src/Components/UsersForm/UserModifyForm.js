@@ -34,6 +34,8 @@ export const UserModifyForm = ({ user }) => {
     });
   };
 
+  console.log(userContent)
+
   return (
     <form
       onSubmit={handleSubmit(onSubmitUser)}
@@ -68,7 +70,7 @@ export const UserModifyForm = ({ user }) => {
         <select
           className="inputs-maped input-content"
           {...register("userType", { required: true })}
-          defaultValue=""
+          defaultValue={userContent[4]}
         >
           <option value="" disabled>
             --Select option--
@@ -84,7 +86,7 @@ export const UserModifyForm = ({ user }) => {
             {errorMessages(errors["userType"])}
           </p>
         )}
-      </div>
+      </div>      
       <div className="button-content">
         <button type="submit" className="modal-button-add">
           {<BorderColorIcon />}
