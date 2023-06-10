@@ -34,8 +34,10 @@ const APIProvider = ({ children }) => {
   }, []);
 
   const get = useCallback(
-    async (url, request = {}) => {
-      setShowLoader(true);
+    async (url, request = {}, useLoader = true) => {
+      if (useLoader === true) {
+        setShowLoader(true);
+      }
       return await fetch(
         `${APIURL.local}${url}?${new URLSearchParams(request)}`,
         {
@@ -53,8 +55,8 @@ const APIProvider = ({ children }) => {
   );
 
   const post = useCallback(
-    async (url, request) => {
-      if (url !== "message/saveMessage") {
+    async (url, request, useLoader = true) => {
+      if (useLoader === true) {
         setShowLoader(true);
       }
       return await fetch(APIURL.local + url, {

@@ -11,7 +11,7 @@ import { QuestionAnswerIcon } from "Assets/Icons";
 import "./ChatContainer.css";
 
 const ChatContainer = () => {
-  const { getChatMessages } = useContext(APIContext);
+  const { get } = useContext(APIContext);
   const { userData } = useContext(UserContext);
 
   const [showChat, setShowChat] = useState(false);
@@ -57,7 +57,7 @@ const ChatContainer = () => {
   );
 
   const getMessages = useCallback(() => {
-    getChatMessages().then((data) => {
+    get("message/getMessages", {}, false).then((data) => {
       setMessages(
         data.messages.map((message) => ({
           messageId: message.messageId,
@@ -72,7 +72,7 @@ const ChatContainer = () => {
         setCookieChatHandler(data.messages.length);
       }
     });
-  }, [getChatMessages, lastMessageView, setCookieChatHandler]);
+  }, [get, setCookieChatHandler]);
 
   useEffect(() => {
     getMessages();

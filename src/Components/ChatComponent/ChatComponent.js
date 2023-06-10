@@ -16,7 +16,7 @@ const ChatComponent = React.forwardRef(({ messages, setMessageRef }, ref) => {
   const textareaRef = useRef();
 
   const onSubmit = (data) => {
-    post("message/saveMessage", data).then((res) => {
+    post("message/saveMessage", data, false).then((res) => {
       if (!res.success) {
         setAlert({
           show: true,
