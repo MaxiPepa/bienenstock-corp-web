@@ -8,7 +8,6 @@ import { arrayModifyUsersInputs } from "Assets/Constants";
 import { APIContext, StatesContext } from "Contexts";
 
 export const UserModifyForm = ({ user }) => {
-  const [userContent, setUserContent] = useState(Object.values(user));
 
   const { requiredValidations, errorMessages } = useUserValidation();
 
@@ -49,10 +48,7 @@ export const UserModifyForm = ({ user }) => {
               type={input.type}
               placeholder={input.placeholder}
               maxLength={input.maxLength ? input.maxLength : null}
-              value={userContent[index + 1]}
-              onClick={() => {
-                setUserContent("");
-              }}
+              defaultValue={user[input.formData]}
               {...register(input.formData, requiredValidations(input.formData))}
             />
           </div>
@@ -68,7 +64,7 @@ export const UserModifyForm = ({ user }) => {
         <select
           className="inputs-maped input-content"
           {...register("userType", { required: true })}
-          defaultValue=""
+          defaultValue={user.userType}
         >
           <option value="" disabled>
             --Select option--
@@ -84,7 +80,7 @@ export const UserModifyForm = ({ user }) => {
             {errorMessages(errors["userType"])}
           </p>
         )}
-      </div>
+      </div>      
       <div className="button-content">
         <button type="submit" className="modal-button-add">
           {<BorderColorIcon />}

@@ -131,7 +131,7 @@ const AdminMenu = () => {
       <h2>Inactive Users</h2>
       <Table 
         content={users.filter((u) => u.active )}
-        thead={[ "ID","Name","Last Name","Email","UserType","active"]}
+        thead={[ "ID","Name","Last Name","Email","UserType","Active"]}
         mapKeys={["userId","name","lastName","email","userType","active"]}
         entity="users"
       />
