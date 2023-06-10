@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useUserValidation } from "Hooks";
 
@@ -8,7 +8,6 @@ import { arrayModifyUsersInputs } from "Assets/Constants";
 import { APIContext, StatesContext } from "Contexts";
 
 export const UserModifyForm = ({ user }) => {
-
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -80,7 +79,7 @@ export const UserModifyForm = ({ user }) => {
             {errorMessages(errors["userType"])}
           </p>
         )}
-      </div>      
+      </div>
       <div className="button-content">
         <button type="submit" className="modal-button-add">
           {<BorderColorIcon />}
