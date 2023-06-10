@@ -33,25 +33,11 @@ const APIProvider = ({ children }) => {
     return new Cookies().get(COOKIENAME.session);
   }, []);
 
-  const login = useCallback(
-    async (userData) => {
-      setShowLoader(true);
-      return await fetch(APIURL.local + "authentication/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      })
-        .then((res) => successHandler(res))
-        .catch((err) => errorAlert(err));
-    },
-    [errorAlert, setShowLoader, successHandler]
-  );
-
   const get = useCallback(
-    async (url, request = {}) => {
-      setShowLoader(true);
+    async (url, request = {}, useLoader = true) => {
+      if (useLoader === true) {
+        setShowLoader(true);
+      }
       return await fetch(
         `${APIURL.local}${url}?${new URLSearchParams(request)}`,
         {
@@ -69,8 +55,10 @@ const APIProvider = ({ children }) => {
   );
 
   const post = useCallback(
-    async (url, request) => {
-      setShowLoader(true);
+    async (url, request, useLoader = true) => {
+      if (useLoader === true) {
+        setShowLoader(true);
+      }
       return await fetch(APIURL.local + url, {
         method: "POST",
         headers: {
@@ -83,6 +71,22 @@ const APIProvider = ({ children }) => {
         .catch((err) => errorAlert(err));
     },
     [errorAlert, getToken, setShowLoader, successHandler]
+  );
+
+  const login = useCallback(
+    async (userData) => {
+      setShowLoader(true);
+      return await fetch(APIURL.local + "authentication/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      })
+        .then((res) => successHandler(res))
+        .catch((err) => errorAlert(err));
+    },
+    [errorAlert, setShowLoader, successHandler]
   );
 
   return (

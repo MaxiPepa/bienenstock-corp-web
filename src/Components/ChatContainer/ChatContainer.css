@@ -1,0 +1,59 @@
+.chat-button-container {
+  position: relative;
+}
+
+.chat-button {
+  background-color: #0099ff;
+  border: none;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  transition: all 0.2s ease-in-out;
+}
+
+.chat-button > svg {
+  width: 30px;
+  height: 30px;
+}
+
+.chat-button:hover {
+  background-color: #007acc;
+}
+
+.chat-button:active {
+  background-color: #0061a8;
+}
+
+.chat-button:hover > svg {
+  transform: scale(1.1);
+}
+
+.unread-messages-counter {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  bottom: 90px;
+  right: 30px;
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  z-index: 105;
+}
+
+.unread-messages-counter > span {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}

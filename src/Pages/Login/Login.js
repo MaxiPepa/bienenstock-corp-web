@@ -57,6 +57,7 @@ const Login = () => {
           fullName: res.fullName,
           email: res.email,
           userType: res.userType,
+          userId: res.userId,
         });
         cookies.set(COOKIENAME.session, res.token, {
           expires: new Date(res.expiration),

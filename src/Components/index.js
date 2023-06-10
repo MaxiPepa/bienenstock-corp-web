@@ -25,6 +25,8 @@ import ConfirmationForm from "./ConfirmationForm/ConfirmationForm";
 import UserForm from "./UsersForm/UserForm";
 import Activity from "./Activity/Activity";
 import Boxes from "./Boxes/Boxes";
+import ChatComponent from "./ChatComponent/ChatComponent";
+import ChatContainer from "./ChatContainer/ChatContainer";
 
 export {
   Alert,
@@ -54,4 +56,6 @@ export {
   UserForm,
   Activity,
   Boxes,
+  ChatComponent,
+  ChatContainer,
 };

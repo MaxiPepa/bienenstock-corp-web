@@ -1,0 +1,125 @@
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+  width: auto;
+  max-width: 60%;
+  height: auto;
+  word-wrap: break-word;
+  gap: 5px;
+}
+
+.me {
+  align-self: flex-end;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.message-content.me {
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.user-img-chat {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-img-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.chat-img-avatar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid #0099ff;
+}
+
+.user-img-chat > svg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0099ff;
+  color: white;
+}
+
+.bubble-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #595a06;
+}
+
+.message-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+  background-color: #dcf8c6;
+  z-index: 5;
+}
+
+.message-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 18px solid transparent;
+  border-top: 18px solid #dcf8c6;
+  border-left: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  left: -14px;
+  top: 5px;
+  z-index: -1;
+}
+
+.message-arrow.me {
+  border-right: 18px solid transparent;
+  border-top: 18px solid #a3daff;
+  border-left: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  right: -14px;
+  top: 5px;
+  left: auto;
+}
+
+.message.me > .message-content.me > .bubble-container > .message-info {
+  background-color: #a3daff;
+}
+
+.message-text {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+
+.message-date {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  font-weight: 400;
+}

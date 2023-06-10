@@ -1,4 +1,4 @@
-import { Sidebar, Header } from "Components";
+import { Sidebar, Header, ChatContainer } from "Components";
 
 import "./Main.css";
 
@@ -8,6 +8,7 @@ const Main = ({ render }) => {
       <Header />
       <Sidebar />
       <div className="main-content">{render}</div>
+      <ChatContainer />
     </main>
   );
 };
