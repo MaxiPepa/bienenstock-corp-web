@@ -89,21 +89,21 @@
   position: absolute;
   width: 0;
   height: 0;
-  border-right: 20px solid transparent;
-  border-top: 20px solid #dcf8c6;
-  border-left: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  left: -10px;
+  border-right: 18px solid transparent;
+  border-top: 18px solid #dcf8c6;
+  border-left: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  left: -14px;
   top: 5px;
   z-index: -1;
 }
 
 .message-arrow.me {
-  border-right: 20px solid transparent;
-  border-top: 20px solid #a3daff;
-  border-left: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  right: -10px;
+  border-right: 18px solid transparent;
+  border-top: 18px solid #a3daff;
+  border-left: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  right: -14px;
   top: 5px;
   left: auto;
 }

@@ -33,22 +33,6 @@ const APIProvider = ({ children }) => {
     return new Cookies().get(COOKIENAME.session);
   }, []);
 
-  const login = useCallback(
-    async (userData) => {
-      setShowLoader(true);
-      return await fetch(APIURL.local + "authentication/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      })
-        .then((res) => successHandler(res))
-        .catch((err) => errorAlert(err));
-    },
-    [errorAlert, setShowLoader, successHandler]
-  );
-
   const get = useCallback(
     async (url, request = {}) => {
       setShowLoader(true);
@@ -70,7 +54,9 @@ const APIProvider = ({ children }) => {
 
   const post = useCallback(
     async (url, request) => {
-      setShowLoader(true);
+      if (url !== "message/saveMessage") {
+        setShowLoader(true);
+      }
       return await fetch(APIURL.local + url, {
         method: "POST",
         headers: {
@@ -85,6 +71,34 @@ const APIProvider = ({ children }) => {
     [errorAlert, getToken, setShowLoader, successHandler]
   );
 
+  const login = useCallback(
+    async (userData) => {
+      setShowLoader(true);
+      return await fetch(APIURL.local + "authentication/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      })
+        .then((res) => successHandler(res))
+        .catch((err) => errorAlert(err));
+    },
+    [errorAlert, setShowLoader, successHandler]
+  );
+
+  const getChatMessages = useCallback(async () => {
+    return await fetch(`${APIURL.local}message/getMessages`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => errorAlert(err));
+  }, [errorAlert, getToken]);
+
   return (
     <APIContext.Provider
       value={{
@@ -92,6 +106,7 @@ const APIProvider = ({ children }) => {
         get,
         post,
         getToken,
+        getChatMessages,
       }}
     >
       {children}

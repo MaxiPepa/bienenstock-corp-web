@@ -4,7 +4,7 @@ import APIContext from "./APIContext";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const { getToken, post } = useContext(APIContext);
+  const { getToken, get } = useContext(APIContext);
 
   const [userData, setUserData] = useState({
     avatar: null,
@@ -15,9 +15,10 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (getToken()) {
-      post("authentication/getLoggedUser", {}).then((res) => {
+      get("authentication/getLoggedUser").then((res) => {
         if (res.success) {
           setUserData({
+            userId: res.userId,
             avatar: res.avatar,
             fullName: res.fullName,
             email: res.email,
@@ -26,7 +27,7 @@ const UserProvider = ({ children }) => {
         }
       });
     }
-  }, [getToken, post]);
+  }, [getToken, get]);
 
   return (
     <UserContext.Provider

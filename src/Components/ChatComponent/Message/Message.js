@@ -1,14 +1,17 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 import { UserContext } from "Contexts";
 import { AccountCircleSharpIcon } from "Assets/Icons";
 
 import "./Message.css";
 
-const Message = ({ avatar, message, date, author }) => {
+const Message = React.forwardRef(({ avatar, message, date, author }, ref) => {
   const { userData } = useContext(UserContext);
   return (
-    <div className={author === userData.fullName ? "message me" : "message"}>
+    <div
+      className={author === userData.fullName ? "message me" : "message"}
+      ref={ref}
+    >
       <div
         className={
           author === userData.fullName
@@ -42,6 +45,6 @@ const Message = ({ avatar, message, date, author }) => {
       <div className="message-date">{date}</div>
     </div>
   );
-};
+});
 
 export default Message;

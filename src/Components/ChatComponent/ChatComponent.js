@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import { Button } from "Components";
@@ -8,16 +8,11 @@ import { SendRoundedIcon } from "Assets/Icons";
 import "./ChatComponent.css";
 import Message from "./Message/Message";
 
-const ChatComponent = ({ messages }) => {
+const ChatComponent = React.forwardRef(({ messages, setMessageRef }, ref) => {
   const { post } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { control, handleSubmit, reset } = useForm();
   const textareaRef = useRef();
 
   const onSubmit = (data) => {
@@ -46,10 +41,12 @@ const ChatComponent = ({ messages }) => {
   return (
     <div className="chat-component">
       <span className="chat-title">General chat</span>
-      <div className="messages-container">
+
+      <div className="messages-container" ref={ref}>
         {messages.map((message, index) => (
           <Message
             key={index}
+            ref={(el) => setMessageRef(el, index)}
             avatar={message.avatar}
             message={message.description}
             date={message.date}
@@ -81,15 +78,8 @@ const ChatComponent = ({ messages }) => {
         />
         <Button type={"submit"} buttonIcon={<SendRoundedIcon />} />
       </form>
-      {errors.description && (
-        <span className="error-input-message" id="error-input-message-chat">
-          {errors.description.type === "required"
-            ? "This field is required"
-            : "The message must be less than 240 characters"}
-        </span>
-      )}
     </div>
   );
-};
+});
 
 export default ChatComponent;

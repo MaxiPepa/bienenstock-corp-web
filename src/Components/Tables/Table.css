@@ -59,6 +59,7 @@ th[data-column="Expiration"],
 th[data-column="Cancel"],
 th[data-column="Modify user"],
 th[data-column="Delete user"],
+th[data-column="Active"],
 td[data-column="object"] {
   text-align: center;
 }
