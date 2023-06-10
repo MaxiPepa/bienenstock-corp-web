@@ -89,18 +89,6 @@ const APIProvider = ({ children }) => {
     [errorAlert, setShowLoader, successHandler]
   );
 
-  const getChatMessages = useCallback(async () => {
-    return await fetch(`${APIURL.local}message/getMessages`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
-      },
-    })
-      .then((res) => res.json())
-      .catch((err) => errorAlert(err));
-  }, [errorAlert, getToken]);
-
   return (
     <APIContext.Provider
       value={{
@@ -108,7 +96,6 @@ const APIProvider = ({ children }) => {
         get,
         post,
         getToken,
-        getChatMessages,
       }}
     >
       {children}
