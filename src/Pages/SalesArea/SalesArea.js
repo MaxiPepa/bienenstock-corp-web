@@ -81,7 +81,7 @@ const SalesArea = () => {
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
           details: (
             <Button
-              styles={"table-buttons details-icon"}
+              styles={"table-button-style info-style"}
               buttonFunction={() => {
                 openSaleHistoryCartModal(r.products);
               }}
@@ -93,7 +93,7 @@ const SalesArea = () => {
             userData.userType === ROLES.SELLER &&
             !r.cancelled ? (
               <Button
-                styles={"table-buttons cancel-icon"}
+                styles={"table-button-style cancel-style"}
                 buttonFunction={() => {
                   openConfirmationModal(r.saleId);
                 }}
@@ -195,6 +195,7 @@ const SalesArea = () => {
               <SaleAditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}
+                setShowInputsModal={setShowInputsModal}
               />
             </div>
             <CartList cartData={cartData} />

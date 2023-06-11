@@ -10,7 +10,10 @@ const ConfirmationForm = ({
 }) => {
   const { setShowModal } = useContext(StatesContext);
 
-  const handleConfirmation = () => functionFather();
+  const confirmationHandler = () => {
+    functionFather();
+    setShowModal(false);
+  };
 
   const closeModalHandler = () => {
     setShowModal(false);
@@ -27,10 +30,10 @@ const ConfirmationForm = ({
         <div className="buttons-confirmation-container">
           <button
             type="button"
-            onClick={() => handleConfirmation(true)}
+            onClick={confirmationHandler}
             className="table-button-style confirm-style"
           >
-            Confirm
+            Accept
           </button>
           <button
             type="button"

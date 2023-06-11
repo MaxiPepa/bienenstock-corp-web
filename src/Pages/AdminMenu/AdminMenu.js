@@ -20,8 +20,8 @@ const AdminMenu = () => {
   const [modifyUser, setModifyUser] = useState({});
   const [userId, setUserId] = useState();
   const [users, setUsers] = useState([]);
-  const [modalConfirm, setModalConfirm] = useState(false);
   const [completeInputValue, setCompleteInputValue] = useState(false);
+  const [userModal, setUserModal] = useState(false);
 
   const { get, post } = useContext(APIContext);
   const { userData } = useContext(UserContext);
@@ -34,7 +34,6 @@ const AdminMenu = () => {
     (userId) => {
       setUserId(userId);
       setShowModal(true);
-      setModalConfirm(true);
     },
     [setShowModal]
   );
@@ -126,13 +125,18 @@ const AdminMenu = () => {
     });
   };
 
+  const openUserModal = () => {
+    setShowModal(true);
+    setUserModal(true);
+  };
+
   return (
     <div className="area-container">
       <div className="area-header">
         <h2 className="area-title">Admin Menu</h2>
         <Button
           styles="area-button"
-          buttonFunction={() => setShowModal(true)}
+          buttonFunction={openUserModal}
           buttonIcon={<AddRoundedIcon />}
           buttonText="New User"
         />
@@ -169,20 +173,22 @@ const AdminMenu = () => {
         entity="users"
       />
       <Modal
-        modalTitle="User"
-        setModalConfirm={setModalConfirm}
+        modalTitle={
+          userModal
+            ? "New User"
+            : completeInputValue
+            ? "Modify User"
+            : "Delete User"
+        }
+        setUserModal={setUserModal}
         setCompleteInputValue={setCompleteInputValue}
       >
-        {modalConfirm ? (
-          <ConfirmationForm
-            functionFather={deleteUser}
-            setModalConfirm={setModalConfirm}
-            setCompleteInputValue={setCompleteInputValue}
-          />
+        {userModal ? (
+          <UserForm setUserModal={setUserModal} />
         ) : completeInputValue ? (
           <UserModifyForm user={modifyUser} />
         ) : (
-          <UserForm />
+          <ConfirmationForm functionFather={deleteUser} />
         )}
       </Modal>
     </div>

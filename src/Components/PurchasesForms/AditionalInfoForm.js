@@ -7,7 +7,7 @@ import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
 import { AddRoundedIcon } from "Assets/Icons";
 
-const AditionalInfoForm = ({ cartData, setCartData }) => {
+const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
   const { setAlert, setShowModal } = useContext(StatesContext);
   const { post } = useContext(APIContext);
 
@@ -39,9 +39,10 @@ const AditionalInfoForm = ({ cartData, setCartData }) => {
           message: res.message,
           type: res.success ? "success" : "error",
         });
+        resetPurchase();
         setCartData([]);
         setShowModal(false);
-        resetPurchase();
+        setShowInputsModal(false);
       });
     }
   };
