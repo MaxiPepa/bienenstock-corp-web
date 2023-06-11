@@ -8,7 +8,7 @@ import { arrayUsersInputs } from "Assets/Constants";
 
 import { AddRoundedIcon } from "Assets/Icons";
 
-const UserForm = () => {
+const UserForm = ({ setUserModal }) => {
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -30,6 +30,7 @@ const UserForm = () => {
       });
       reset();
       setShowModal(false);
+      setUserModal(false);
     });
   };
 

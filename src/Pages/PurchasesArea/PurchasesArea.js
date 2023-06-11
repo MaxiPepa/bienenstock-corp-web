@@ -172,7 +172,13 @@ const PurchansingArea = () => {
         entity="purchases"
       />
       <Modal
-        modalTitle={showInputsModal ? "New Purchase" : "Purchase Details"}
+        modalTitle={
+          showInputsModal
+            ? "New Purchase"
+            : showCartModal
+            ? "Purchase Details"
+            : "Cancel Purchase"
+        }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
         setCartData={setCartData}
@@ -188,6 +194,7 @@ const PurchansingArea = () => {
               <AditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}
+                setShowInputsModal={setShowInputsModal}
               />
             </div>
             <CartList cartData={cartData} />
@@ -200,7 +207,7 @@ const PurchansingArea = () => {
             entity="products"
           />
         ) : (
-          <ConfirmationForm functionFather={cancelPurchase} />
+          <ConfirmationForm onConfirm={cancelPurchase} />
         )}
       </Modal>
     </div>
