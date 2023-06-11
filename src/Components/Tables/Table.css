@@ -92,3 +92,19 @@ tbody > tr:hover {
   font-weight: 700;
   color: #990404;
 }
+
+.status-icon {
+  font-size: 2.3rem !important;
+}
+
+.check-icon {
+  color: #0e990e;
+}
+
+.nodispatched-icon {
+  color: #990404;
+}
+
+.pending-icon {
+  color: #9c9a00;
+}
