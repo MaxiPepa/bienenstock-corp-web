@@ -19,6 +19,9 @@ import {
   AddRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
+  CheckIcon,
+  ClearIcon,
+  PendingActionsRoundedIcon,
 } from "Assets/Icons";
 
 import "./PurchasesArea.css";
@@ -65,11 +68,13 @@ const PurchansingArea = () => {
           supplier: r.supplier,
           totalPrice: "$ " + r.totalPrice,
           date: parsingDate(r.date),
-          status: r.pending
-            ? "Pending"
-            : r.cancelled
-            ? "Cancelled"
-            : "Completed",
+          status: r.pending ? (
+            <PendingActionsRoundedIcon className="pending-icon status-icon" />
+          ) : r.cancelled ? (
+            <ClearIcon className="nodispatched-icon status-icon" />
+          ) : (
+            <CheckIcon className="check-icon status-icon" />
+          ),
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,

@@ -60,6 +60,8 @@ th[data-column="Cancel"],
 th[data-column="Modify user"],
 th[data-column="Delete user"],
 th[data-column="Active"],
+th[data-column="Dispatch Status"],
+th[data-column="Income status"],
 td[data-column="object"] {
   text-align: center;
 }

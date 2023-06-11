@@ -1,3 +1,7 @@
+.status-icon {
+  font-size: 2.3rem;
+}
+
 .check-icon {
   color: #0e990e;
 }
@@ -6,14 +10,11 @@
   color: #990404;
 }
 
-.saleCancelled{
-  color: #e7b2b2;
-  background-color: #990404;
-  padding: 5px;
-  border-radius: 5px;
+.pending-icon {
+  color: #9c9a00;
 }
 
-.quantityStockProduct{
+.quantityStockProduct {
   font-weight: 400;
   background-color: #363535;
   border-radius: 3px;
