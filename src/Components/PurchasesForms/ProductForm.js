@@ -34,13 +34,14 @@ const ProductForm = ({ setCartData }) => {
     });
   }, [get]);
 
-  const onProductCodeChange = (event) => {
+  const onProductCodeBlur = (event) => {
     const productCode = event.target.value.toUpperCase();
     const product = productsCodes.find((p) => p.productCode === productCode);
     if (product) {
       setValue("name", product.productName);
       setProductNameDisabled(true);
     } else {
+      setValue("name", "");
       setProductNameDisabled(false);
     }
   };
@@ -73,10 +74,8 @@ const ProductForm = ({ setCartData }) => {
                 input.formData,
                 requiredValidations(input.formData)
               )}
-              onChange={
-                input.formData === "productCode"
-                  ? onProductCodeChange
-                  : undefined
+              onBlur={
+                input.formData === "productCode" ? onProductCodeBlur : undefined
               }
               disabled={
                 input.formData === "name" ? productNameDisabled : undefined
