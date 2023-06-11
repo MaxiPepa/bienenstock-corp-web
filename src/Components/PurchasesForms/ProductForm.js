@@ -1,21 +1,51 @@
+import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { arrayPurchaseProductInputs } from "Assets/Constants";
 
+import { APIContext } from "Contexts";
 import { useProductsValidation } from "Hooks";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
 const ProductForm = ({ setCartData }) => {
+  const { get } = useContext(APIContext);
   const { requiredValidations, errorMessages } = useProductsValidation();
+
+  const [productsCodes, setProductsCodes] = useState([]);
+  const [productNameDisabled, setProductNameDisabled] = useState(true);
 
   const {
     register: registerCart,
     handleSubmit: handleSubmitCart,
     reset: resetCart,
     formState: { errors: errorsCart },
+    setValue,
   } = useForm();
 
-  const onSbubmitCart = (data) => {
+  useEffect(() => {
+    get("product/getProductCodes").then((data) => {
+      setProductsCodes(
+        data.productCodes.map((res) => ({
+          productId: res.productId,
+          productCode: res.productCode,
+          productName: res.productName,
+        }))
+      );
+    });
+  }, [get]);
+
+  const onProductCodeChange = (event) => {
+    const productCode = event.target.value.toUpperCase();
+    const product = productsCodes.find((p) => p.productCode === productCode);
+    if (product) {
+      setValue("name", product.productName);
+      setProductNameDisabled(true);
+    } else {
+      setProductNameDisabled(false);
+    }
+  };
+
+  const onSubmitCart = (data) => {
     data.productCode = data.productCode.toUpperCase();
     setCartData((prevState) => [...prevState, data]);
     resetCart();
@@ -23,7 +53,7 @@ const ProductForm = ({ setCartData }) => {
 
   return (
     <form
-      onSubmit={handleSubmitCart(onSbubmitCart)}
+      onSubmit={handleSubmitCart(onSubmitCart)}
       className="inputs-content"
       noValidate
     >
@@ -43,6 +73,14 @@ const ProductForm = ({ setCartData }) => {
                 input.formData,
                 requiredValidations(input.formData)
               )}
+              onChange={
+                input.formData === "productCode"
+                  ? onProductCodeChange
+                  : undefined
+              }
+              disabled={
+                input.formData === "name" ? productNameDisabled : undefined
+              }
             />
           </div>
           {errorsCart[input.formData] && (
