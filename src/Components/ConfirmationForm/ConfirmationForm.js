@@ -4,14 +4,14 @@ import { StatesContext } from "Contexts";
 import "./ConfirmationForm.css";
 
 const ConfirmationForm = ({
-  functionFather,
+  onConfirm,
   setModalConfirm,
   setCompleteInputValue,
 }) => {
   const { setShowModal } = useContext(StatesContext);
 
   const confirmationHandler = () => {
-    functionFather();
+    onConfirm();
     setShowModal(false);
   };
 

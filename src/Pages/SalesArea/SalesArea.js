@@ -208,7 +208,7 @@ const SalesArea = () => {
             entity={"products"}
           />
         ) : (
-          <ConfirmationForm functionFather={cancelSale} />
+          <ConfirmationForm onConfirm={cancelSale} />
         )}
       </Modal>
     </div>

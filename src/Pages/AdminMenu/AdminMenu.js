@@ -188,7 +188,7 @@ const AdminMenu = () => {
         ) : completeInputValue ? (
           <UserModifyForm user={modifyUser} />
         ) : (
-          <ConfirmationForm functionFather={deleteUser} />
+          <ConfirmationForm onConfirm={deleteUser} />
         )}
       </Modal>
     </div>

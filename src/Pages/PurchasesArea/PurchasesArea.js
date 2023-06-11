@@ -207,7 +207,7 @@ const PurchansingArea = () => {
             entity="products"
           />
         ) : (
-          <ConfirmationForm functionFather={cancelPurchase} />
+          <ConfirmationForm onConfirm={cancelPurchase} />
         )}
       </Modal>
     </div>
