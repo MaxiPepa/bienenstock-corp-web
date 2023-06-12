@@ -21,6 +21,7 @@ const PendingDispatchSection = ({ reload }) => {
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm();
 
   const [pendingDispatch, setPendingDispatch] = useState([]);
@@ -93,6 +94,9 @@ const PendingDispatchSection = ({ reload }) => {
         <Modal
           modalTitle="Confirm Products Dispatch"
           setDispatchModal={setDispatchModal}
+          reset={() => {
+            resetField("sectionDate");
+          }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Table

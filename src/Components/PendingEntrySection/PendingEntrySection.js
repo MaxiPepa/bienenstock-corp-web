@@ -5,17 +5,23 @@ import { parsingDate } from "Assets/Parsing";
 
 import { Table, ConfirmStorageButton, Modal } from "Components";
 import { UserContext, APIContext, StatesContext } from "Contexts";
-import { useStorageValidations } from "Hooks";
+import { useStorageValidations, useProductsValidation } from "Hooks";
 import { AddRoundedIcon } from "Assets/Icons";
 
 const PendingEntrySection = ({ reload }) => {
-  const { register, handleSubmit, resetField } = useForm();
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
   const { userData } = useContext(UserContext);
   const { get, post } = useContext(APIContext);
   const { setAlert, setShowModal } = useContext(StatesContext);
 
   const { validateExpirationDate, validateEmpty } = useStorageValidations();
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const [pendingEntry, setPendingEntry] = useState([]);
   const [productsById, setProductsById] = useState([]);
@@ -50,16 +56,18 @@ const PendingEntrySection = ({ reload }) => {
   }, [get, register, reload, resetField, userData.userType]);
 
   const onSubmit = (data) => {
-    if (!validateEmpty(Object.values(data).filter((x) => x !== undefined))) {
+    const expirations = Object.entries(data)
+      .filter(([key, value]) => key !== "sectionDate" && value !== undefined)
+      .map(([key, value]) => value);
+
+    if (!validateEmpty(expirations.filter((x) => x !== undefined))) {
       setAlert({
         show: true,
         type: "error",
         message: "Please complete all the fields.",
       });
     } else if (
-      !validateExpirationDate(
-        Object.values(data).filter((x) => x !== undefined)
-      )
+      !validateExpirationDate(expirations.filter((x) => x !== undefined))
     ) {
       setAlert({
         show: true,
@@ -70,15 +78,16 @@ const PendingEntrySection = ({ reload }) => {
     } else {
       const rq = {
         purchaseId: currentPurchaseId,
-        enterDate: new Date().toISOString(),
+        enterDate: data.sectionDate,
         expirationDates: Object.entries(data)
-          .filter(([key, value]) => value !== undefined)
+          .filter(
+            ([key, value]) => key !== "sectionDate" && value !== undefined
+          )
           .map(([key, value]) => ({
             productId: parseInt(key),
             expirationDate: new Date(value).toISOString(),
           })),
       };
-
       post("purchase/completePurchase", rq).then((res) => {
         setAlert({
           show: true,
@@ -119,6 +128,9 @@ const PendingEntrySection = ({ reload }) => {
         <Modal
           modalTitle="Confirm Products Entry"
           setEntryModal={setEntryModal}
+          reset={() => {
+            resetField("sectionDate");
+          }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Table
@@ -141,6 +153,25 @@ const PendingEntrySection = ({ reload }) => {
             />
             {userData.userType === ROLES.DEPOSITOR && (
               <div className="button-content">
+                <div className="dispatch-date-input">
+                  <div className="input-content">
+                    <label>Entry Date:</label>
+                    <input
+                      className="input"
+                      type="datetime-local"
+                      placeholder="dd/mm/aaaa"
+                      {...register(
+                        "sectionDate",
+                        requiredValidations("sectionDate")
+                      )}
+                    />
+                  </div>
+                  {errors.sectionDate && (
+                    <span className="error-input-message">
+                      {errorMessages(errors["sectionDate"])}
+                    </span>
+                  )}
+                </div>
                 <button type="submit" className="modal-button-add">
                   {<AddRoundedIcon />}
                   <span>Add to Stock</span>

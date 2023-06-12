@@ -17,6 +17,7 @@ const Modal = ({
   setCompleteInputValue,
   setEntryModal,
   setDispatchModal,
+  reset,
   children,
 }) => {
   const { showModal, setShowModal } = useContext(StatesContext);
@@ -31,6 +32,7 @@ const Modal = ({
     setCompleteInputValue?.(false);
     setEntryModal?.(false);
     setDispatchModal?.(false);
+    reset?.();
   };
 
   return (
