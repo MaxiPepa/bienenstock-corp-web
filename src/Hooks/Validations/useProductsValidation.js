@@ -35,7 +35,7 @@ export const useProductsValidation = () => {
       case "supplier":
         return { required: true, maxLength: 100 };
 
-      case "purchaseDate":
+      case "sectionDate":
         return { required: true, validate: validateDate };
 
       case "saleDate":

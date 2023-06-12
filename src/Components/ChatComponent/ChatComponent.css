@@ -10,7 +10,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  z-index: 20;
+  z-index: 140;
   animation: 0.5s fade-in;
 }
 

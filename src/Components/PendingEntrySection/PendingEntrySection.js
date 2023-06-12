@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
 
-import { Table, ConfirmPurchaseButton, Modal } from "Components";
+import { Table, ConfirmStorageButton, Modal } from "Components";
 import { UserContext, APIContext, StatesContext } from "Contexts";
 import { useStorageValidations } from "Hooks";
 import { AddRoundedIcon } from "Assets/Icons";
@@ -15,11 +15,12 @@ const PendingEntrySection = ({ reload }) => {
   const { get, post } = useContext(APIContext);
   const { setAlert, setShowModal } = useContext(StatesContext);
 
-  const { validateDate, validateEmpty } = useStorageValidations();
+  const { validateExpirationDate, validateEmpty } = useStorageValidations();
 
   const [pendingEntry, setPendingEntry] = useState([]);
   const [productsById, setProductsById] = useState([]);
   const [currentPurchaseId, setCurrentPurchaseId] = useState();
+  const [entryModal, setEntryModal] = useState(false);
 
   useEffect(() => {
     get("purchase/getPurchases", { pending: true }).then((data) => {
@@ -32,13 +33,15 @@ const PendingEntrySection = ({ reload }) => {
           date: parsingDate(r.date),
           pending: "Pending",
           confirmButton: (
-            <ConfirmPurchaseButton
+            <ConfirmStorageButton
               products={r.products}
               setProductsById={setProductsById}
               register={register}
-              setCurrentPurchaseId={() => setCurrentPurchaseId(r.purchaseId)}
+              setCurrentId={() => setCurrentPurchaseId(r.purchaseId)}
               resetField={resetField}
               role={userData.userType}
+              showExpiration={true}
+              setSectionModal={setEntryModal}
             />
           ),
         }))
@@ -54,7 +57,9 @@ const PendingEntrySection = ({ reload }) => {
         message: "Please complete all the fields.",
       });
     } else if (
-      !validateDate(Object.values(data).filter((x) => x !== undefined))
+      !validateExpirationDate(
+        Object.values(data).filter((x) => x !== undefined)
+      )
     ) {
       setAlert({
         show: true,
@@ -80,7 +85,7 @@ const PendingEntrySection = ({ reload }) => {
           message: res.message,
           type: res.success ? "success" : "error",
         });
-
+        setEntryModal(false);
         setShowModal(false);
       });
     }
@@ -89,7 +94,6 @@ const PendingEntrySection = ({ reload }) => {
   return (
     <section>
       <h3 className="area-subtitle">Pending products entry</h3>
-
       <Table
         thead={[
           "ID",
@@ -111,35 +115,41 @@ const PendingEntrySection = ({ reload }) => {
         entity="pending products entry"
       />
 
-      <Modal modalTitle="Confirm Products Entry">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Table
-            thead={[
-              "Product Code",
-              "Name",
-              "Quantity",
-              "Unit Price",
-              userData.userType === ROLES.DEPOSITOR && "Expiration",
-            ]}
-            mapKeys={[
-              "productCode",
-              "name",
-              "quantity",
-              "unitPrice",
-              userData.userType === ROLES.DEPOSITOR && "expiration",
-            ]}
-            content={productsById}
-          />
-          {userData.userType === ROLES.DEPOSITOR && (
-            <div className="button-content">
-              <button type="submit" className="modal-button-add">
-                {<AddRoundedIcon />}
-                <span>Add to Stock</span>
-              </button>
-            </div>
-          )}
-        </form>
-      </Modal>
+      {entryModal && (
+        <Modal
+          modalTitle="Confirm Products Entry"
+          setEntryModal={setEntryModal}
+        >
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Table
+              thead={[
+                "Product Code",
+                "Name",
+                "Quantity",
+                "Unit Price",
+                userData.userType === ROLES.DEPOSITOR && "Expiration",
+              ]}
+              mapKeys={[
+                "productCode",
+                "name",
+                "quantity",
+                "unitPrice",
+                userData.userType === ROLES.DEPOSITOR && "expiration",
+              ]}
+              content={productsById}
+              entity="product"
+            />
+            {userData.userType === ROLES.DEPOSITOR && (
+              <div className="button-content">
+                <button type="submit" className="modal-button-add">
+                  {<AddRoundedIcon />}
+                  <span>Add to Stock</span>
+                </button>
+              </div>
+            )}
+          </form>
+        </Modal>
+      )}
     </section>
   );
 };

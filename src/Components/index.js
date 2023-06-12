@@ -19,7 +19,6 @@ import Table from "./Tables/Table";
 import UserCard from "./UserCard/UserCard";
 import ExpirationsForm from "./ExpirationsForm/ExpirationsForm";
 import ExpirationInput from "./ExpirationInput/ExpirationInput";
-import ConfirmPurchaseButton from "./ConfirmPurchaseButton/ConfirmPurchaseButton";
 import PendingEntrySection from "./PendingEntrySection/PendingEntrySection";
 import ConfirmationForm from "./ConfirmationForm/ConfirmationForm";
 import UserForm from "./UsersForm/UserForm";
@@ -27,6 +26,8 @@ import Activity from "./Activity/Activity";
 import Boxes from "./Boxes/Boxes";
 import ChatComponent from "./ChatComponent/ChatComponent";
 import ChatContainer from "./ChatContainer/ChatContainer";
+import PendingDispatchSection from "./PendingDispatchSection/PendingDispatchSection";
+import ConfirmStorageButton from "./ConfirmStorageButton/ConfirmStorageButton";
 
 export {
   Alert,
@@ -50,7 +51,6 @@ export {
   UserCard,
   ExpirationsForm,
   ExpirationInput,
-  ConfirmPurchaseButton,
   PendingEntrySection,
   ConfirmationForm,
   UserForm,
@@ -58,4 +58,6 @@ export {
   Boxes,
   ChatComponent,
   ChatContainer,
+  PendingDispatchSection,
+  ConfirmStorageButton,
 };
