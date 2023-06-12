@@ -60,6 +60,8 @@ th[data-column="Cancel"],
 th[data-column="Modify user"],
 th[data-column="Delete user"],
 th[data-column="Active"],
+th[data-column="Dispatch Status"],
+th[data-column="Income status"],
 td[data-column="object"] {
   text-align: center;
 }
@@ -89,4 +91,20 @@ tbody > tr:hover {
   font-size: 20px;
   font-weight: 700;
   color: #990404;
+}
+
+.status-icon {
+  font-size: 2.3rem !important;
+}
+
+.check-icon {
+  color: #0e990e;
+}
+
+.nodispatched-icon {
+  color: #990404;
+}
+
+.pending-icon {
+  color: #9c9a00;
 }

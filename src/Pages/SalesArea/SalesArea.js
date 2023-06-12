@@ -20,6 +20,7 @@ import {
   AddRoundedIcon,
   CheckIcon,
   ClearIcon,
+  PendingActionsRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
 } from "Assets/Icons";
@@ -73,11 +74,14 @@ const SalesArea = () => {
             quantity: p.quantity,
             unitPrice: "$" + p.unitPrice,
           })),
-          dispatched: r.dispatched ? (
-            <CheckIcon className="check-icon" />
+          status: r.dispatched ? (
+            <CheckIcon className="check-icon status-icon" />
+          ) : r.cancelled ? (
+            <ClearIcon className="nodispatched-icon status-icon" />
           ) : (
-            <ClearIcon className="nodispatched-icon" />
+            <PendingActionsRoundedIcon className="pending-icon status-icon" />
           ),
+
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
           details: (
             <Button
@@ -88,10 +92,9 @@ const SalesArea = () => {
               buttonIcon={<VisibilityIcon />}
             />
           ),
-          cancel:
-            !r.dispatched &&
+          cancel: !r.dispatched &&
             userData.userType === ROLES.SELLER &&
-            !r.cancelled ? (
+            !r.cancelled && (
               <Button
                 styles={"table-button-style cancel-style"}
                 buttonFunction={() => {
@@ -99,9 +102,7 @@ const SalesArea = () => {
                 }}
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
-            ) : r.cancelled ? (
-              <span className="saleCancelled">SALE CANCELLED</span>
-            ) : null,
+            ),
         }))
       );
     });
@@ -160,7 +161,7 @@ const SalesArea = () => {
           "Seller",
           "Total Price",
           "Sale Date",
-          "Dispatched",
+          "Dispatch Status",
           "DispatchDate",
           "Details",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
@@ -170,7 +171,7 @@ const SalesArea = () => {
           "userFullName",
           "totalPrice",
           "date",
-          "dispatched",
+          "status",
           "dispatchDate",
           "details",
           "cancel",

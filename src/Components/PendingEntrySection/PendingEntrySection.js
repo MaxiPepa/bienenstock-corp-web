@@ -89,31 +89,28 @@ const PendingEntrySection = ({ reload }) => {
   return (
     <section>
       <h3 className="area-subtitle">Pending products entry</h3>
-      {pendingEntry?.length === 0 ? (
-        <h3 className="no-table-message">
-          There are no pending products entry
-        </h3>
-      ) : (
-        <Table
-          thead={[
-            "ID",
-            "Buyer",
-            "Supplier",
-            "Total Price",
-            "Purchase Date",
-            userData.userType === ROLES.DEPOSITOR ? "Confirm Entry" : "Details",
-          ]}
-          mapKeys={[
-            "purchaseId",
-            "userFullName",
-            "supplier",
-            "totalPrice",
-            "date",
-            "confirmButton",
-          ]}
-          content={pendingEntry}
-        />
-      )}
+
+      <Table
+        thead={[
+          "ID",
+          "Buyer",
+          "Supplier",
+          "Total Price",
+          "Purchase Date",
+          userData.userType === ROLES.DEPOSITOR ? "Confirm Entry" : "Details",
+        ]}
+        mapKeys={[
+          "purchaseId",
+          "userFullName",
+          "supplier",
+          "totalPrice",
+          "date",
+          "confirmButton",
+        ]}
+        content={pendingEntry}
+        entity="pending products entry"
+      />
+
       <Modal modalTitle="Confirm Products Entry">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Table
