@@ -3,7 +3,7 @@ import * as Reader from "Assets/Reader";
 
 import { ROLES } from "Assets/Constants";
 
-import { PendingEntrySection } from "Components";
+import { PendingEntrySection, PendingDispatchSection } from "Components";
 import { UserContext } from "Contexts";
 import { useRedirect } from "Hooks";
 
@@ -40,10 +40,8 @@ const StorageArea = () => {
         <h2 className="area-title">StorageArea</h2>
       </div>
       <hr className="division-horizontal-hr" />
-      <PendingEntrySection reload={reload} setReload={setReload} />
-      <section>
-        <h3 className="area-subtitle">Pending products dispatch</h3>
-      </section>
+      <PendingEntrySection reload={reload} />
+      <PendingDispatchSection reload={reload} />
     </div>
   );
 };

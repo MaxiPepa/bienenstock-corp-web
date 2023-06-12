@@ -55,6 +55,7 @@ td {
 
 th[data-column="Details"],
 th[data-column="Confirm Entry"],
+th[data-column="Confirm Dispatch"],
 th[data-column="Expiration"],
 th[data-column="Cancel"],
 th[data-column="Modify user"],

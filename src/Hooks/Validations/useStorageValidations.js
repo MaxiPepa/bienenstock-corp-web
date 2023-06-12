@@ -1,5 +1,5 @@
 export const useStorageValidations = () => {
-  const validateDate = (values) => {
+  const validateExpirationDate = (values) => {
     let valid = true;
     values.forEach((value) => {
       const selectedDate = new Date(value);
@@ -21,7 +21,7 @@ export const useStorageValidations = () => {
     return valid;
   };
   return {
-    validateDate,
+    validateExpirationDate,
     validateEmpty,
   };
 };

@@ -30,7 +30,7 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
     } else {
       const rq = {
         ...data,
-        purchaseDate: new Date(data.purchaseDate).toISOString(),
+        purchaseDate: new Date(data.sectionDate).toISOString(),
         products: cartData,
       };
       post("purchase/savePurchase", rq).then((res) => {

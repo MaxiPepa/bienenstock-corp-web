@@ -69,11 +69,20 @@ const PurchansingArea = () => {
           totalPrice: "$ " + r.totalPrice,
           date: parsingDate(r.date),
           status: r.pending ? (
-            <PendingActionsRoundedIcon className="pending-icon status-icon" />
+            <div className="icon-container">
+              <PendingActionsRoundedIcon className="pending-icon status-icon" />
+              <div className="tooltip">Pending</div>
+            </div>
           ) : r.cancelled ? (
-            <ClearIcon className="nodispatched-icon status-icon" />
+            <div className="icon-container">
+              <ClearIcon className="nodispatched-icon status-icon" />
+              <div className="tooltip">Canceled</div>
+            </div>
           ) : (
-            <CheckIcon className="check-icon status-icon" />
+            <div className="icon-container">
+              <CheckIcon className="check-icon status-icon" />
+              <div className="tooltip">Completed</div>
+            </div>
           ),
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,

@@ -32,6 +32,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import PendingActionsRoundedIcon from "@mui/icons-material/PendingActionsRounded";
+import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
 
 export {
   ArrowCircleUpIcon,
@@ -68,4 +69,5 @@ export {
   QuestionAnswerIcon,
   SendRoundedIcon,
   PendingActionsRoundedIcon,
+  LocalShippingRoundedIcon,
 };

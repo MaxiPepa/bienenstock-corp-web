@@ -120,7 +120,7 @@ export const arrayPurchaseAditionalInputs = [
     styles: "input",
     type: "datetime-local",
     placeholder: "dd/mm/aaaa",
-    formData: "purchaseDate",
+    formData: "sectionDate",
   },
 ];
 

@@ -75,11 +75,20 @@ const SalesArea = () => {
             unitPrice: "$" + p.unitPrice,
           })),
           status: r.dispatched ? (
-            <CheckIcon className="check-icon status-icon" />
+            <div className="icon-container">
+              <CheckIcon className="check-icon status-icon" />
+              <div className="tooltip">Completed</div>
+            </div>
           ) : r.cancelled ? (
-            <ClearIcon className="nodispatched-icon status-icon" />
+            <div className="icon-container">
+              <ClearIcon className="nodispatched-icon status-icon" />
+              <div className="tooltip">Canceled</div>
+            </div>
           ) : (
-            <PendingActionsRoundedIcon className="pending-icon status-icon" />
+            <div className="icon-container">
+              <PendingActionsRoundedIcon className="pending-icon status-icon" />
+              <div className="tooltip">Pending</div>
+            </div>
           ),
 
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
