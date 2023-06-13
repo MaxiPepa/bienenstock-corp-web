@@ -1,9 +1,9 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
 import Cookies from "universal-cookie";
-import { COOKIENAME, EMAILREGEX, PASSWORDREGEX } from "Assets/Constants";
+
+import { EMAILREGEX, PASSWORDREGEX } from "Assets/Constants";
 
 import { APIContext, StatesContext, UserContext } from "Contexts";
 import {
@@ -17,7 +17,7 @@ import "./Login.css";
 
 const Login = () => {
   const { setUserData } = useContext(UserContext);
-  const { login, getToken } = useContext(APIContext);
+  const { post } = useContext(APIContext);
   const { setAlert } = useContext(StatesContext);
 
   const navigate = useNavigate();
@@ -30,12 +30,6 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
-  useEffect(() => {
-    if (getToken()) {
-      navigate("/dashboard");
-    }
-  }, [getToken, navigate]);
 
   const handlerButtonPassword = () => {
     if (visibilityPassword === "password") {
@@ -50,7 +44,7 @@ const Login = () => {
   const cookies = new Cookies();
 
   const onSubmit = async (data) => {
-    login(data).then((res) => {
+    post("authentication/login", data).then((res) => {
       if (res.success) {
         setUserData({
           avatar: res.avatar,
@@ -59,7 +53,7 @@ const Login = () => {
           userType: res.userType,
           userId: res.userId,
         });
-        cookies.set(COOKIENAME.session, res.token, {
+        cookies.set("login_cookie", true, {
           expires: new Date(res.expiration),
           path: "/",
         });

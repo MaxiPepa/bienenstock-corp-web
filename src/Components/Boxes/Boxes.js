@@ -44,7 +44,7 @@ const Boxes = () => {
           title="Total Products"
           icon={<BackupTableRoundedIcon />}
           color={"#d94233"}
-          navigation={"/dashboard/products"}
+          navigation={"/products"}
         />
         {NAVIGATIONSLINKS.map((box, index) => {
           return box.roles.includes(userData.userType) ? (

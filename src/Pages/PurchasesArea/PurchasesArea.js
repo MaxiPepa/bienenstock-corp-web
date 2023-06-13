@@ -14,7 +14,6 @@ import {
   ConfirmationForm,
 } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
-import { useRedirect } from "Hooks";
 import {
   AddRoundedIcon,
   VisibilityIcon,
@@ -30,8 +29,6 @@ const PurchansingArea = () => {
   const { get, post } = useContext(APIContext);
   const { setShowModal, setAlert } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
-
-  useRedirect(userData.userType, ROLES.BUYER);
 
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [cartData, setCartData] = useState([]);

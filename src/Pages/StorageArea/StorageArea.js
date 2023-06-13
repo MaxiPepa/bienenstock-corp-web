@@ -1,19 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Reader from "Assets/Reader";
 
-import { ROLES } from "Assets/Constants";
-
 import { PendingEntrySection, PendingDispatchSection } from "Components";
-import { UserContext } from "Contexts";
-import { useRedirect } from "Hooks";
 
 import "./StorageArea.css";
 
 const StorageArea = () => {
-  const { userData } = useContext(UserContext);
-
-  useRedirect(userData.userType, ROLES.DEPOSITOR);
-
   const [reload, setReload] = useState(false);
   const [connection, setConnection] = useState(null);
 

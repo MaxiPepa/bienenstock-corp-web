@@ -14,7 +14,6 @@ import {
   SaleAditionalInfoForm,
 } from "Components";
 import { APIContext, StatesContext, UserContext } from "Contexts";
-import { useRedirect } from "Hooks";
 
 import {
   AddRoundedIcon,
@@ -31,8 +30,6 @@ const SalesArea = () => {
   const { get, post } = useContext(APIContext);
   const { setShowModal, setAlert } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
-
-  useRedirect(userData.userType, ROLES.SELLER);
 
   const [saleHistory, setSaleHistory] = useState([]);
   const [cartData, setCartData] = useState([]);

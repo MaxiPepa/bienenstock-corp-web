@@ -12,6 +12,7 @@ export const ROLES = {
   SELLER: "Seller",
   DEPOSITOR: "Depositor",
   ANALYST: "Analyst",
+  ALL: ["Admin", "Buyer", "Seller", "Depositor", "Analyst"],
 };
 
 export const NAVIGATIONSLINKS = [
@@ -25,7 +26,7 @@ export const NAVIGATIONSLINKS = [
   },
   {
     roles: [ROLES.BUYER, ROLES.ADMIN],
-    navigation: "/dashboard/purchases-area",
+    navigation: "/purchases-area",
     icon: <ShoppingCartRoundedIcon />,
     navItemName: "Purchases",
     dashboardItemName: "Completed Purchases",
@@ -33,7 +34,7 @@ export const NAVIGATIONSLINKS = [
   },
   {
     roles: [ROLES.SELLER, ROLES.ADMIN],
-    navigation: "/dashboard/sales-area",
+    navigation: "/sales-area",
     icon: <ReceiptRoundedIcon />,
     navItemName: "Sales",
     dashboardItemName: "Completed Sales",
@@ -41,7 +42,7 @@ export const NAVIGATIONSLINKS = [
   },
   {
     roles: [ROLES.DEPOSITOR, ROLES.ADMIN],
-    navigation: "/dashboard/storage-area",
+    navigation: "/storage-area",
     icon: <ArchiveRoundedIcon />,
     navItemName: "Storage",
     dashboardItemName: "Pending Transactions",
@@ -49,7 +50,7 @@ export const NAVIGATIONSLINKS = [
   },
   {
     roles: [ROLES.ANALYST, ROLES.ADMIN],
-    navigation: "/dashboard/reports-area",
+    navigation: "/reports-area",
     icon: <LeaderboardRoundedIcon />,
     navItemName: "Reports",
     dashboardItemName: "Total Reports",
@@ -59,10 +60,6 @@ export const NAVIGATIONSLINKS = [
 
 export const APIURL = {
   local: "https://localhost:7040/",
-};
-
-export const COOKIENAME = {
-  session: "bienenstockSessionToken",
 };
 
 export const EMAILREGEX = /\S+@\S+\.\S+/;
