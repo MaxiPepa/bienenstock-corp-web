@@ -1,12 +1,15 @@
 import { useEffect, useState, useContext, useCallback } from "react";
 import * as Reader from "Assets/Reader";
-import { useRedirect } from "Hooks";
 
-import { UserModifyForm } from "../../Components/UsersForm/UserModifyForm";
-import { ROLES } from "Assets/Constants";
-
-import { Button, Table, Modal, ConfirmationForm, UserForm } from "Components";
-import { APIContext, StatesContext, UserContext } from "Contexts";
+import {
+  Button,
+  Table,
+  Modal,
+  ConfirmationForm,
+  UserForm,
+  UserModifyForm,
+} from "Components";
+import { APIContext, StatesContext } from "Contexts";
 import {
   AddRoundedIcon,
   BorderColorIcon,
@@ -24,11 +27,8 @@ const AdminMenu = () => {
   const [userModal, setUserModal] = useState(false);
 
   const { get, post } = useContext(APIContext);
-  const { userData } = useContext(UserContext);
   const { setShowModal, setAlert } = useContext(StatesContext);
   const [connection, setConnection] = useState(null);
-
-  useRedirect(userData.userType, ROLES.ADMIN);
 
   const openConfirmationModal = useCallback(
     (userId) => {

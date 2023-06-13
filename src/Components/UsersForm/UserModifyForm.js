@@ -7,7 +7,7 @@ import { arrayModifyUsersInputs } from "Assets/Constants";
 
 import { APIContext, StatesContext } from "Contexts";
 
-export const UserModifyForm = ({ user }) => {
+const UserModifyForm = ({ user }) => {
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -89,3 +89,5 @@ export const UserModifyForm = ({ user }) => {
     </form>
   );
 };
+
+export default UserModifyForm;

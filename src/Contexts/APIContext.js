@@ -1,7 +1,6 @@
 import { useContext, useCallback } from "react";
-import { APIURL, COOKIENAME } from "Assets/Constants";
+import { APIURL } from "Assets/Constants";
 import { createContext } from "react";
-import Cookies from "universal-cookie";
 
 import StatesContext from "./StatesContext";
 
@@ -29,10 +28,6 @@ const APIProvider = ({ children }) => {
     [setShowLoader]
   );
 
-  const getToken = useCallback(() => {
-    return new Cookies().get(COOKIENAME.session);
-  }, []);
-
   const get = useCallback(
     async (url, request = {}, useLoader = true) => {
       if (useLoader === true) {
@@ -44,14 +39,14 @@ const APIProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${getToken()}`,
           },
+          credentials: "include",
         }
       )
         .then((res) => successHandler(res))
         .catch((err) => errorAlert(err));
     },
-    [errorAlert, getToken, setShowLoader, successHandler]
+    [errorAlert, setShowLoader, successHandler]
   );
 
   const post = useCallback(
@@ -63,25 +58,9 @@ const APIProvider = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
         },
+        credentials: "include",
         body: JSON.stringify(request),
-      })
-        .then((res) => successHandler(res))
-        .catch((err) => errorAlert(err));
-    },
-    [errorAlert, getToken, setShowLoader, successHandler]
-  );
-
-  const login = useCallback(
-    async (userData) => {
-      setShowLoader(true);
-      return await fetch(APIURL.local + "authentication/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
       })
         .then((res) => successHandler(res))
         .catch((err) => errorAlert(err));
@@ -92,10 +71,8 @@ const APIProvider = ({ children }) => {
   return (
     <APIContext.Provider
       value={{
-        login,
         get,
         post,
-        getToken,
       }}
     >
       {children}

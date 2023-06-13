@@ -1,38 +1,29 @@
-import { useContext, useEffect, useState } from "react";
-import * as Reader from "Assets/Reader";
-
-import { ROLES } from "Assets/Constants";
+import { useEffect, useState, useContext } from "react";
 
 import { PendingEntrySection, PendingDispatchSection } from "Components";
-import { UserContext } from "Contexts";
-import { useRedirect } from "Hooks";
+import { ReaderContext } from "Contexts";
 
 import "./StorageArea.css";
 
 const StorageArea = () => {
-  const { userData } = useContext(UserContext);
-
-  useRedirect(userData.userType, ROLES.DEPOSITOR);
+  const { startPageConnection, stopPageConnection } = useContext(ReaderContext);
 
   const [reload, setReload] = useState(false);
-  const [connection, setConnection] = useState(null);
 
   useEffect(() => {
-    setConnection(
-      Reader.listen(
-        () => setReload(!reload),
-        "page",
-        "depositHub",
-        "DepositUpdate"
-      )
+    startPageConnection(
+      () => setReload(!reload),
+      "page",
+      "depositHub",
+      "DepositUpdate"
     );
-  }, [reload]);
+  }, [reload, startPageConnection]);
 
   useEffect(() => {
     return () => {
-      Reader.stop(connection);
+      stopPageConnection();
     };
-  }, [connection]);
+  }, [stopPageConnection]);
 
   return (
     <div className="area-container">

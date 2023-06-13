@@ -1,6 +1,11 @@
 import { RouterProvider } from "react-router-dom";
-import { router } from "Layout/Routes";
-import { StatesProvider, APIProvider, UserProvider } from "Contexts";
+import { router } from "Routes/Routes";
+import {
+  StatesProvider,
+  APIProvider,
+  UserProvider,
+  ReaderProvider,
+} from "Contexts";
 
 import "./App.css";
 
@@ -10,7 +15,9 @@ function App() {
       <StatesProvider>
         <APIProvider>
           <UserProvider>
-            <RouterProvider router={router} />
+            <ReaderProvider>
+              <RouterProvider router={router} />
+            </ReaderProvider>
           </UserProvider>
         </APIProvider>
       </StatesProvider>

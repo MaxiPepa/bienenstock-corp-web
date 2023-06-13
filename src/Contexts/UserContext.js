@@ -1,20 +1,24 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import APIContext from "./APIContext";
+import Cookies from "universal-cookie";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const { getToken, get } = useContext(APIContext);
+  const { get } = useContext(APIContext);
 
   const [userData, setUserData] = useState({
     avatar: null,
     email: null,
     fullName: null,
     userType: null,
+    userId: null,
   });
 
   useEffect(() => {
-    if (getToken()) {
+    const cookies = new Cookies();
+
+    if (cookies.get("user_role")) {
       get("authentication/getLoggedUser").then((res) => {
         if (res.success) {
           setUserData({
@@ -27,7 +31,7 @@ const UserProvider = ({ children }) => {
         }
       });
     }
-  }, [getToken, get]);
+  }, [get]);
 
   return (
     <UserContext.Provider

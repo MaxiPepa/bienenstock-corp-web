@@ -40,11 +40,11 @@ const Boxes = () => {
     <div className="dashboard-boxes">
       <div className="boxes-container">
         <BoxItem
-          quantity={companyStats.totalProducts}
+          quantity={companyStats.totalProducts ? companyStats.totalProducts : 0}
           title="Total Products"
           icon={<BackupTableRoundedIcon />}
           color={"#d94233"}
-          navigation={"/dashboard/products"}
+          navigation={"/products"}
         />
         {NAVIGATIONSLINKS.map((box, index) => {
           return box.roles.includes(userData.userType) ? (

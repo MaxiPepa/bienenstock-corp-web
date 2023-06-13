@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
 
-import { NAVIGATIONSLINKS, COOKIENAME } from "Assets/Constants";
+import { NAVIGATIONSLINKS } from "Assets/Constants";
 
 import { NavLink, UserCard } from "Components";
-import { StatesContext, UserContext } from "Contexts";
+import { StatesContext, UserContext, APIContext } from "Contexts";
 import {
   DashboardIcon,
   BackupTableRoundedIcon,
@@ -15,19 +15,24 @@ import {
 import "./Sidebar.css";
 
 const Sidebar = () => {
-  const cookies = new Cookies();
   const { userData } = useContext(UserContext);
   const { showSideBar, setShowSideBar } = useContext(StatesContext);
+  const { get } = useContext(APIContext);
 
   const hideSidebar = () => {
     setShowSideBar(!showSideBar);
   };
 
+  const cookies = new Cookies();
+
   const logoutHandler = () => {
-    cookies.remove(COOKIENAME.session, {
-      path: "/",
+    get("authentication/logout").then(() => {
+      cookies.remove("user_role", {
+        path: "/",
+      });
     });
     hideSidebar();
+    window.location.reload(true);
   };
 
   return (
@@ -42,7 +47,7 @@ const Sidebar = () => {
             navItemName={"Dashboard"}
           />
           <NavLink
-            navigation={"/dashboard/products"}
+            navigation={"/products"}
             aditionalFunction={hideSidebar}
             icon={<BackupTableRoundedIcon />}
             navItemName={"Products"}

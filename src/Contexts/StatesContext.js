@@ -6,6 +6,7 @@ const StatesProvider = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+
   const [alert, setAlert] = useState({
     show: false,
     type: null,
