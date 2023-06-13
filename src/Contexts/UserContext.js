@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const cookies = new Cookies();
 
-    if (cookies.get("login_cookie")) {
+    if (cookies.get("user_role")) {
       get("authentication/getLoggedUser").then((res) => {
         if (res.success) {
           setUserData({

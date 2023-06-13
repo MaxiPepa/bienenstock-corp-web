@@ -1,11 +1,10 @@
 import { useContext, useState, useEffect, useCallback, useRef } from "react";
-import * as Reader from "Assets/Reader";
 import Cookies from "universal-cookie";
 
 import { parsingDate } from "Assets/Parsing";
 
 import { Button, ChatComponent } from "Components";
-import { APIContext, UserContext } from "Contexts";
+import { APIContext, UserContext, ReaderContext } from "Contexts";
 import { QuestionAnswerIcon } from "Assets/Icons";
 
 import "./ChatContainer.css";
@@ -13,10 +12,10 @@ import "./ChatContainer.css";
 const ChatContainer = () => {
   const { get } = useContext(APIContext);
   const { userData } = useContext(UserContext);
+  const { startChatConnection } = useContext(ReaderContext);
 
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [connection, setConnection] = useState(null);
 
   const bottomRef = useRef(null);
   const messageRefs = useRef([]);
@@ -76,14 +75,8 @@ const ChatContainer = () => {
 
   useEffect(() => {
     getMessages();
-    setConnection(Reader.listen(getMessages, "chat", "chatHub", "ChatUpdate"));
-  }, [getMessages]);
-
-  useEffect(() => {
-    return () => {
-      Reader.stop(connection);
-    };
-  }, [connection]);
+    startChatConnection(getMessages);
+  }, [getMessages, startChatConnection]);
 
   useEffect(() => {
     if (showChat) {

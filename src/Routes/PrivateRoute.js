@@ -1,16 +1,13 @@
-import { useContext } from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-
-import { UserContext } from "Contexts";
+import Cookies from "universal-cookie";
 
 const PrivateRoute = ({ roles }) => {
-  const { userData } = useContext(UserContext);
-
   const location = useLocation();
+  const role = new Cookies().get("user_role");
 
-  return roles.includes(userData?.userType) ? (
+  return roles.includes(role) ? (
     <Outlet />
-  ) : userData?.userId ? (
+  ) : role ? (
     <Navigate to={"/dashboard"} state={{ from: location }} replace />
   ) : (
     <Navigate to={"/login"} state={{ from: location }} replace />

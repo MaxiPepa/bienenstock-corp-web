@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import * as Reader from "Assets/Reader";
 
-import { APIContext } from "Contexts";
+import { APIContext, ReaderContext } from "Contexts";
 import { parsingDate } from "Assets/Parsing";
 import ActivityItem from "./ActivityItem/ActivityItem";
 
@@ -9,8 +8,8 @@ import "./Activity.css";
 
 const Activity = () => {
   const { get } = useContext(APIContext);
+  const { startPageConnection, stopPageConnection } = useContext(ReaderContext);
 
-  const [connection, setConnection] = useState(null);
   const [logs, setLogs] = useState([]);
 
   const getLogs = useCallback(() => {
@@ -31,14 +30,14 @@ const Activity = () => {
 
   useEffect(() => {
     getLogs();
-    setConnection(Reader.listen(getLogs, "page", "logHub", "LogUpdate"));
-  }, [getLogs]);
+    startPageConnection(getLogs, "page", "logHub", "LogUpdate");
+  }, [getLogs, startPageConnection]);
 
   useEffect(() => {
     return () => {
-      Reader.stop(connection);
+      stopPageConnection();
     };
-  }, [connection]);
+  }, [stopPageConnection]);
 
   return (
     <div className="activities-container">

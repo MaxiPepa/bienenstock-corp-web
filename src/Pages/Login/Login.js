@@ -53,7 +53,7 @@ const Login = () => {
           userType: res.userType,
           userId: res.userId,
         });
-        cookies.set("login_cookie", true, {
+        cookies.set("user_role", res.userType, {
           expires: new Date(res.expiration),
           path: "/",
         });

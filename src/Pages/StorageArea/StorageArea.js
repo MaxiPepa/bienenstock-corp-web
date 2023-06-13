@@ -1,30 +1,29 @@
-import { useEffect, useState } from "react";
-import * as Reader from "Assets/Reader";
+import { useEffect, useState, useContext } from "react";
 
 import { PendingEntrySection, PendingDispatchSection } from "Components";
+import { ReaderContext } from "Contexts";
 
 import "./StorageArea.css";
 
 const StorageArea = () => {
+  const { startPageConnection, stopPageConnection } = useContext(ReaderContext);
+
   const [reload, setReload] = useState(false);
-  const [connection, setConnection] = useState(null);
 
   useEffect(() => {
-    setConnection(
-      Reader.listen(
-        () => setReload(!reload),
-        "page",
-        "depositHub",
-        "DepositUpdate"
-      )
+    startPageConnection(
+      () => setReload(!reload),
+      "page",
+      "depositHub",
+      "DepositUpdate"
     );
-  }, [reload]);
+  }, [reload, startPageConnection]);
 
   useEffect(() => {
     return () => {
-      Reader.stop(connection);
+      stopPageConnection();
     };
-  }, [connection]);
+  }, [stopPageConnection]);
 
   return (
     <div className="area-container">

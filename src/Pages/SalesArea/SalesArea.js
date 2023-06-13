@@ -1,5 +1,4 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import * as Reader from "Assets/Reader";
 
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
@@ -13,7 +12,12 @@ import {
   SaleProductForm,
   SaleAditionalInfoForm,
 } from "Components";
-import { APIContext, StatesContext, UserContext } from "Contexts";
+import {
+  APIContext,
+  StatesContext,
+  UserContext,
+  ReaderContext,
+} from "Contexts";
 
 import {
   AddRoundedIcon,
@@ -30,6 +34,7 @@ const SalesArea = () => {
   const { get, post } = useContext(APIContext);
   const { setShowModal, setAlert } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
+  const { startPageConnection, stopPageConnection } = useContext(ReaderContext);
 
   const [saleHistory, setSaleHistory] = useState([]);
   const [cartData, setCartData] = useState([]);
@@ -37,7 +42,6 @@ const SalesArea = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [cancelSaleId, setCancelSaleId] = useState();
   const [productsDetails, setProductsDetails] = useState([]);
-  const [connection, setConnection] = useState(null);
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
@@ -116,16 +120,14 @@ const SalesArea = () => {
 
   useEffect(() => {
     getSaleHistory();
-    setConnection(
-      Reader.listen(getSaleHistory, "page", "saleHub", "SaleUpdate")
-    );
-  }, [getSaleHistory]);
+    startPageConnection(getSaleHistory, "page", "saleHub", "SaleUpdate");
+  }, [getSaleHistory, startPageConnection]);
 
   useEffect(() => {
     return () => {
-      Reader.stop(connection);
+      stopPageConnection();
     };
-  }, [connection]);
+  }, [stopPageConnection]);
 
   const openInputsModal = () => {
     setShowModal(true);

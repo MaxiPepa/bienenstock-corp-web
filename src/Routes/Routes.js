@@ -28,7 +28,10 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<Navigate replace to="/login" />} />
-      <Route path="/login" element={<Login />} />
+
+      <Route element={<PrivateRoute roles={[undefined]} />}>
+        <Route path="/login" element={<Login />} />
+      </Route>
 
       <Route element={<PrivateRoute roles={ROLES.ALL} />}>
         <Route path="/dashboard" element={<Main render={<Dashboard />} />} />

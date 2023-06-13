@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import * as Reader from "Assets/Reader";
 import Cookies from "universal-cookie";
 
 import { NAVIGATIONSLINKS } from "Assets/Constants";
@@ -28,12 +27,12 @@ const Sidebar = () => {
 
   const logoutHandler = () => {
     get("authentication/logout").then(() => {
-      cookies.remove("login_cookie", {
+      cookies.remove("user_role", {
         path: "/",
       });
     });
     hideSidebar();
-    Reader.stop();
+    window.location.reload(true);
   };
 
   return (
