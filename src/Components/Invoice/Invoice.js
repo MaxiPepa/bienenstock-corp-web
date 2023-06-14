@@ -9,7 +9,7 @@ const Invoice = ({ data }) => {
           <View style={[styles.dataContainer, styles.sector1]}>
             <Text>ORIGINAL</Text>
           </View>
-          <View style={[styles.dataContainer, {height:"14%"}]}>
+          <View style={[styles.dataContainer, { height: "14%" }]}>
             <View style={styles.dataInvoice}>
               <View style={styles.dataCompany}>
                 <Image src="./logo.jpg" style={styles.image} />
@@ -36,9 +36,12 @@ const Invoice = ({ data }) => {
               Nombre y Apellido: "Harcodeado con d"
             </Text>
             <Text style={styles.text}>DNI: Harcodeado por dos</Text>
-            <Text style={styles.text}>Domicilio: Y esto tambien papa que te hace pensar que no lo iba a estar</Text>
+            <Text style={styles.text}>
+              Domicilio: Y esto tambien papa que te hace pensar que no lo iba a
+              estar
+            </Text>
           </View>
-          <View style={[styles.dataContainer, {height: "73%"}]}>
+          <View style={[styles.dataContainer, { height: "73%" }]}>
             <View
               style={[
                 styles.tableContainer,
@@ -52,20 +55,23 @@ const Invoice = ({ data }) => {
               <Text style={styles.subtotal}>SUBTOTAL</Text>
             </View>
             {data.products.map((item, index) => (
-              <View style={[styles.tableContainer,{fontSize:10}]} key={index}>
+              <View
+                style={[styles.tableContainer, { fontSize: 10 }]}
+                key={index}
+              >
                 <Text style={styles.code}>{item.productCode}</Text>
                 <Text style={styles.description}>{item.name}</Text>
                 <Text style={styles.quantity}>{item.quantity}</Text>
-                <Text style={styles.unitPrice}>{item.unitPrice}</Text>
+                <Text style={styles.unitPrice}>${(item.unitPrice).toFixed(2)}</Text>
                 <Text style={styles.subtotal}>
-                  ${(item.quantity * item.price).toFixed(2)}
+                  ${(item.quantity * item.unitPrice).toFixed(2)}
                 </Text>
               </View>
             ))}
           </View>
           <View style={[styles.dataContainer, styles.total]}>
-            <Text >TOTAL</Text>
-            <Text >{data.totalPrice}</Text>
+            <Text>TOTAL</Text>
+            <Text>${(data.totalPrice).toFixed(2)}</Text>
           </View>
         </View>
       </Page>

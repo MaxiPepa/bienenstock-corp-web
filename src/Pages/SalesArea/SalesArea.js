@@ -124,7 +124,7 @@ const SalesArea = () => {
                 buttonIcon={<ReceiptIcon />}
                 styles={"table-button-style invoice-style"}
                 buttonFunction={() => {
-                  openPdfInvoiceModal(r.saleId);
+                  openPdfInvoiceModal(r);
                 }}
               />
             ) : null,
@@ -151,14 +151,10 @@ const SalesArea = () => {
     setShowPdfModal(false);
   };
 
-  const openPdfInvoiceModal = (id) => {
-    const searchId = "#" + id;
-    console.log(searchId);
-    const invoiceData = saleHistory.find((item) => item.saleId === searchId);
+  const openPdfInvoiceModal = (objetInvoiceData) => {
+    console.log(objetInvoiceData);
     console.log(saleHistory);
-    console.log("abrir pdf ", id);
-    console.log(invoiceData);
-    setInvoiceData(invoiceData);
+    setInvoiceData(objetInvoiceData);
     setShowModal(true);
     setShowPdfModal(true);
     setShowCartModal(false);
