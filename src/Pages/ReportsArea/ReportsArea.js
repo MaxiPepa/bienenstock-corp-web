@@ -6,6 +6,8 @@ import { useRedirect } from "Hooks";
 
 import { Table } from "Components";
 
+import  "./ReportsArea.css";
+
 const ReportsArea = () => {
 
   const [products,setProducts] = useState();
@@ -30,9 +32,9 @@ const ReportsArea = () => {
   }, [getProducts]);
 
   return (
-    <>
+    <div>
       <h2 className="area-title">ReportsArea</h2>
-      <div>
+      <div className="box">
         <div>
           <h3>List products</h3>
           <Table
@@ -42,11 +44,14 @@ const ReportsArea = () => {
             entity="products"
           />
         </div>
-        <div>
-
+        <div className="Charts">
+          <p>sdfh ajshlfkasklf askfjaklsfjabsfjsfajbñf <br></br>
+            asjfbkasbfkjas askjfbkasbfkjbaskbf askjbfkjasfjksfkas<br></br> 
+            asjhfkahskfjhaksjf asjfhkjashfjahskf 
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
