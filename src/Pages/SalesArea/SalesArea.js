@@ -26,6 +26,7 @@ import {
   PendingActionsRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
+  ReceiptIcon,
 } from "Assets/Icons";
 
 import "./SalesArea.css";
@@ -91,7 +92,6 @@ const SalesArea = () => {
               <div className="tooltip">Pending</div>
             </div>
           ),
-
           dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
           details: (
             <Button
@@ -113,6 +113,10 @@ const SalesArea = () => {
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
             ),
+          invoice:
+            userData.userType === ROLES.SELLER && !r.cancelled ? (
+              <Button buttonIcon={<ReceiptIcon />} styles={"table-button-style invoice-style"} />
+            ) : null,
         }))
       );
     });
@@ -173,6 +177,7 @@ const SalesArea = () => {
           "DispatchDate",
           "Details",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
+          userData.userType === ROLES.SELLER ? "Invoice" : null,
         ]}
         mapKeys={[
           "saleId",
@@ -183,6 +188,7 @@ const SalesArea = () => {
           "dispatchDate",
           "details",
           "cancel",
+          "invoice",
         ]}
         content={saleHistory}
         entity={"sales"}

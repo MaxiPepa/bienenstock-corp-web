@@ -63,3 +63,13 @@
   color: #ff9113;
   filter: drop-shadow(0 0 15px #ff9113);
 }
+
+.invoice-style{
+  transform: scale(1.5);
+  color: #626311;
+}
+
+.invoice-style:hover{
+  transform: scale(1.7);
+  color: #9c5100;
+}
