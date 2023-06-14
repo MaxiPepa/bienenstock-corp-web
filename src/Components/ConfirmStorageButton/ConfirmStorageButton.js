@@ -3,7 +3,7 @@ import { ROLES } from "Assets/Constants";
 
 import { Button, ExpirationInput } from "Components";
 import { StatesContext } from "Contexts";
-import { CheckCircleOutlineRoundedIcon } from "Assets/Icons";
+import { CheckCircleOutlineRoundedIcon, VisibilityIcon } from "Assets/Icons";
 
 const ConfirmStorageButton = ({
   setProductsById,
@@ -48,7 +48,13 @@ const ConfirmStorageButton = ({
             : "table-button-style info-style"
         }
         buttonFunction={confirmStorageProduct}
-        buttonIcon={<CheckCircleOutlineRoundedIcon />}
+        buttonIcon={
+          role === ROLES.DEPOSITOR ? (
+            <CheckCircleOutlineRoundedIcon />
+          ) : (
+            <VisibilityIcon />
+          )
+        }
       />
     </>
   );

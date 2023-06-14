@@ -10,47 +10,56 @@
   background-color: transparent;
   color: #242424;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   padding: 10px;
   font-family: "Exo";
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.table-button-style > svg {
+  font-size: 2.3rem;
   transition: all 0.2s ease-in-out;
 }
 
-.table-button-style:hover {
+.table-button-style:hover > svg {
   transform: scale(1.1);
 }
 
-.info-style {
-  background-color: #61affe;
+.info-style > svg {
+  color: #363636;
 }
 
-.info-style:hover {
-  background-color: #4d8ff7;
+.info-style:hover > svg {
+  color: #242424;
+  filter: drop-shadow(0 0 15px #00000086);
 }
 
-.confirm-style {
-  background-color: #49cc90;
+.confirm-style > svg {
+  color: #49cc90;
 }
 
-.confirm-style:hover {
-  background-color: #2fbf71;
+.confirm-style:hover > svg {
+  color: #2fbf71;
+  filter: drop-shadow(0 0 15px #00ff00);
 }
 
-.cancel-style {
-  background-color: #ff3c4e;
+.cancel-style > svg {
+  color: #ff3c4e;
 }
 
-.cancel-style:hover {
-  background-color: #f02e3e;
+.cancel-style:hover > svg {
+  color: #f02e3e;
+  filter: drop-shadow(0 0 15px #ff0000);
 }
 
-.edit-style {
-  background-color: #f7b924;
+.edit-style > svg {
+  color: #fe9f32;
 }
 
-.edit-style:hover {
-  background-color: #f0a500;
+.edit-style:hover > svg {
+  color: #ff9113;
+  filter: drop-shadow(0 0 15px #ff9113);
 }
