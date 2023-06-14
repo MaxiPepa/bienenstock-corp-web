@@ -37,11 +37,7 @@
   background-color: transparent;
   border: none;
   outline: none;
-  color: #990e0e;
-}
-
-.alert-content > button:hover {
-  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
 }
 
 .alert-content > svg {
@@ -60,7 +56,8 @@
   background-color: #fbe7e8;
 }
 
-.error > .alert-content > svg {
+.error > .alert-content > svg,
+.error > .alert-content > .close-alert-button {
   color: #fc4342;
 }
 
@@ -69,7 +66,8 @@
   background-color: #e7f6ef;
 }
 
-.success > .alert-content > svg {
+.success > .alert-content > svg,
+.success > .alert-content > .close-alert-button {
   color: #49cc90;
 }
 
@@ -78,7 +76,8 @@
   background-color: #fbf1e7;
 }
 
-.warning > .alert-content > svg {
+.warning > .alert-content > svg,
+.warning > .alert-content > .close-alert-button {
   color: #fe9f32;
 }
 
@@ -87,6 +86,12 @@
   background-color: #ebf4fb;
 }
 
-.info > .alert-content > svg {
+.info > .alert-content > svg,
+.info > .alert-content > .close-alert-button {
   color: #60b0ff;
+}
+
+.close-alert-button:hover {
+  color: #990e0e !important;
+  transform: scale(1.1);
 }
