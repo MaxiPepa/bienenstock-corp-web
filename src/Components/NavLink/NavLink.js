@@ -5,7 +5,7 @@ import "./NavLink.css";
 const NavLink = ({ navigation, aditionalFunction, icon, navItemName }) => {
   return (
     <li>
-      <Link to={navigation} onClick={aditionalFunction}>
+      <Link to={navigation} onClick={aditionalFunction} className="navlink">
         {icon}
         <span>{navItemName}</span>
       </Link>

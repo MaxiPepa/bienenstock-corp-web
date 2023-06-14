@@ -26,6 +26,11 @@ const ReaderProvider = ({ children }) => {
     Reader.stop(chatConnection);
   }, [chatConnection]);
 
+  const stopAllConnections = () => {
+    stopPageConnection();
+    stopChatConnection();
+  };
+
   return (
     <ReaderContext.Provider
       value={{
@@ -33,6 +38,7 @@ const ReaderProvider = ({ children }) => {
         startChatConnection,
         stopPageConnection,
         stopChatConnection,
+        stopAllConnections,
       }}
     >
       {children}
