@@ -1,5 +1,4 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "Routes/Routes";
+import RouterProvider from "Routes/Routes";
 import {
   StatesProvider,
   APIProvider,
@@ -16,7 +15,7 @@ function App() {
         <APIProvider>
           <UserProvider>
             <ReaderProvider>
-              <RouterProvider router={router} />
+              <RouterProvider />
             </ReaderProvider>
           </UserProvider>
         </APIProvider>
