@@ -30,7 +30,9 @@
   gap: 15px;
 }
 
-.alert-content > button {
+.close-alert-button {
+  display: grid;
+  place-items: center;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -50,39 +52,41 @@
 .alert-content > p {
   font-size: 1.2rem;
   font-weight: 400;
+  color: #333c43;
 }
 
 .error {
-  background-color: #c21f1fc0;
+  border: 2px solid #ae5e5f;
+  background-color: #fbe7e8;
 }
 
-.alert-content > p {
-  color: rgb(203, 203, 203);
-}
 .error > .alert-content > svg {
-  color: rgb(255, 0, 0);
+  color: #fc4342;
 }
 
 .success {
-  background-color: #1fc21fad;
+  border: 2px solid #7eaf98;
+  background-color: #e7f6ef;
 }
 
 .success > .alert-content > svg {
-  color: rgb(0, 146, 0);
+  color: #49cc90;
 }
 
 .warning {
-  background-color: #c2c21f9d;
+  border: 2px solid #d0a77f;
+  background-color: #fbf1e7;
 }
 
 .warning > .alert-content > svg {
-  color: rgb(121, 113, 0);
+  color: #fe9f32;
 }
 
 .info {
-  background-color: #148d8db8;
+  border: 2px solid #87a7c9;
+  background-color: #ebf4fb;
 }
 
 .info > .alert-content > svg {
-  color: rgb(12, 191, 219);
+  color: #60b0ff;
 }
