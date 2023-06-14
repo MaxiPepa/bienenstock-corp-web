@@ -1,0 +1,8 @@
+.box{
+    background: #000;
+    display: flex;
+}
+
+.charts{
+    border:#000 1px solid;
+}
