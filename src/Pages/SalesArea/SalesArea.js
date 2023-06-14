@@ -28,7 +28,7 @@ import {
   PendingActionsRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
-  ReceiptIcon,
+  PictureAsPdfRoundedIcon,
 } from "Assets/Icons";
 
 import "./SalesArea.css";
@@ -66,6 +66,14 @@ const SalesArea = () => {
     },
     [setShowModal]
   );
+
+  const openPdfInvoiceModal = useCallback((objetInvoiceData) => {
+    setInvoiceData(objetInvoiceData);
+    setShowModal(true);
+    setShowPdfModal(true);
+    setShowCartModal(false);
+    setShowInputsModal(false);
+  },[setShowModal]);
 
   const getSaleHistory = useCallback(() => {
     get("sale/getSales").then((data) => {
@@ -121,7 +129,7 @@ const SalesArea = () => {
           invoice:
             userData.userType === ROLES.SELLER && !r.cancelled ? (
               <Button
-                buttonIcon={<ReceiptIcon />}
+                buttonIcon={<PictureAsPdfRoundedIcon />}
                 styles={"table-button-style invoice-style"}
                 buttonFunction={() => {
                   openPdfInvoiceModal(r);
@@ -131,7 +139,13 @@ const SalesArea = () => {
         }))
       );
     });
-  }, [get, openSaleHistoryCartModal, openConfirmationModal, userData.userType]);
+  }, [
+    get,
+    openSaleHistoryCartModal,
+    openConfirmationModal,
+    openPdfInvoiceModal,
+    userData.userType,
+  ]);
 
   useEffect(() => {
     getSaleHistory();
@@ -149,14 +163,6 @@ const SalesArea = () => {
     setShowCartModal(false);
     setShowInputsModal(true);
     setShowPdfModal(false);
-  };
-
-  const openPdfInvoiceModal = (objetInvoiceData) => {
-    setInvoiceData(objetInvoiceData);
-    setShowModal(true);
-    setShowPdfModal(true);
-    setShowCartModal(false);
-    setShowInputsModal(false);
   };
 
   const cancelSale = () => {

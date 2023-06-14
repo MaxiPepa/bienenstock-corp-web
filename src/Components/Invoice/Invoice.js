@@ -2,6 +2,8 @@ import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import styles from "./Styles";
 
 const Invoice = ({ data }) => {
+  const divDate = data.date.split("T")[0].split("-");
+  const showDate = divDate[2] + "/" + divDate[1] + "/" + divDate[0];
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -12,7 +14,11 @@ const Invoice = ({ data }) => {
           <View style={[styles.dataContainer, { height: "14%" }]}>
             <View style={styles.dataInvoice}>
               <View style={styles.dataCompany}>
-                <Image src={process.env.PUBLIC_URL + '/Logo.png'} style={styles.image} />
+                <Image
+                  src={process.env.PUBLIC_URL + "/LogoInvoice.png"}
+                  style={styles.image}
+                />
+                <Text> </Text>
                 <Text style={styles.text}>
                   Zeballos 1341 - Rosario - Argentina
                 </Text>
@@ -20,7 +26,7 @@ const Invoice = ({ data }) => {
               <View style={styles.dataCompanyInvoice}>
                 <Text style={styles.title}>FACTURA</Text>
                 <Text style={styles.text}>N°: {data.saleId}</Text>
-                <Text style={styles.text}>FECHA: {data.date}</Text>
+                <Text style={styles.text}>FECHA: {showDate}</Text>
                 <Text> </Text>
                 <Text style={styles.text}>CUIT: 30-55555555-9</Text>
                 <Text style={styles.text}>INICIO ACTIVIDADES: 27/04/2023 </Text>
@@ -61,7 +67,9 @@ const Invoice = ({ data }) => {
                 <Text style={styles.code}>{item.productCode}</Text>
                 <Text style={styles.description}>{item.name}</Text>
                 <Text style={styles.quantity}>{item.quantity}</Text>
-                <Text style={styles.unitPrice}>${(item.unitPrice).toFixed(2)}</Text>
+                <Text style={styles.unitPrice}>
+                  ${item.unitPrice.toFixed(2)}
+                </Text>
                 <Text style={styles.subtotal}>
                   ${(item.quantity * item.unitPrice).toFixed(2)}
                 </Text>
@@ -70,7 +78,7 @@ const Invoice = ({ data }) => {
           </View>
           <View style={[styles.dataContainer, styles.total]}>
             <Text>TOTAL</Text>
-            <Text>${(data.totalPrice).toFixed(2)}</Text>
+            <Text>${data.totalPrice.toFixed(2)}</Text>
           </View>
         </View>
       </Page>
