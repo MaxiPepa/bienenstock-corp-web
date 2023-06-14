@@ -239,7 +239,7 @@ const SalesArea = () => {
               <SaleProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
-              <h3>Additional Information</h3>
+              <h3>Information Invoice</h3>
               <SaleAditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}

@@ -129,6 +129,27 @@ export const arraySaleAditionalInputs = [
     placeholder: "dd/mm/aaaa",
     formData: "saleDate",
   },
+  {
+    labelName: "Business Name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "John Doe",
+    formData: "name",
+  },
+  {
+    labelName: "Address: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Wall Street 123",
+    formData: "address",
+  },
+  {
+    labelName: "Identifier: ",
+    styles: "input",
+    type: "number",
+    placeholder: "99.999.999",
+    formData: "identifier",
+  },
 ];
 
 export const arrayPasswordInputs = [
