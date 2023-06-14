@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
+import { PDFViewer } from "@react-pdf/renderer";
 
 import { ROLES } from "Assets/Constants";
 import { parsingDate } from "Assets/Parsing";
@@ -11,6 +12,7 @@ import {
   ConfirmationForm,
   SaleProductForm,
   SaleAditionalInfoForm,
+  Invoice,
 } from "Components";
 import {
   APIContext,
@@ -41,14 +43,17 @@ const SalesArea = () => {
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [showPdfModal, setShowPdfModal] = useState(false);
   const [cancelSaleId, setCancelSaleId] = useState();
   const [productsDetails, setProductsDetails] = useState([]);
+  const [invoiceData, setInvoiceData] = useState([]);
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
       setProductsDetails(products);
       setShowModal(true);
       setShowInputsModal(false);
+      setShowPdfModal(false);
       setShowCartModal(true);
     },
     [setShowModal]
@@ -115,7 +120,13 @@ const SalesArea = () => {
             ),
           invoice:
             userData.userType === ROLES.SELLER && !r.cancelled ? (
-              <Button buttonIcon={<ReceiptIcon />} styles={"table-button-style invoice-style"} />
+              <Button
+                buttonIcon={<ReceiptIcon />}
+                styles={"table-button-style invoice-style"}
+                buttonFunction={() => {
+                  openPdfInvoiceModal(r.saleId);
+                }}
+              />
             ) : null,
         }))
       );
@@ -137,6 +148,21 @@ const SalesArea = () => {
     setShowModal(true);
     setShowCartModal(false);
     setShowInputsModal(true);
+    setShowPdfModal(false);
+  };
+
+  const openPdfInvoiceModal = (id) => {
+    const searchId = "#" + id;
+    console.log(searchId);
+    const invoiceData = saleHistory.find((item) => item.saleId === searchId);
+    console.log(saleHistory);
+    console.log("abrir pdf ", id);
+    console.log(invoiceData);
+    setInvoiceData(invoiceData);
+    setShowModal(true);
+    setShowPdfModal(true);
+    setShowCartModal(false);
+    setShowInputsModal(false);
   };
 
   const cancelSale = () => {
@@ -194,10 +220,17 @@ const SalesArea = () => {
         entity={"sales"}
       />
       <Modal
-        modalTitle={showInputsModal ? "New Sale" : "Sale Details"}
+        modalTitle={
+          showInputsModal
+            ? "New Sale"
+            : showCartModal
+            ? "Sale Details"
+            : "Invoice"
+        }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
         setCartData={setCartData}
+        setShowPdfModal={setShowPdfModal}
       >
         {showInputsModal ? (
           <>
@@ -222,6 +255,12 @@ const SalesArea = () => {
             content={productsDetails}
             entity={"products"}
           />
+        ) : showPdfModal ? (
+          <>
+            <PDFViewer width={"100%"} height={"1000"}>
+              <Invoice data={invoiceData} />
+            </PDFViewer>
+          </>
         ) : (
           <ConfirmationForm onConfirm={cancelSale} />
         )}

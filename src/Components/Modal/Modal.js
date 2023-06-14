@@ -11,6 +11,7 @@ const Modal = ({
   modalTitle,
   setShowCartModal,
   setShowInputsModal,
+  setShowPdfModal,
   setExpiration,
   setCartData,
   setUserModal,
@@ -32,6 +33,7 @@ const Modal = ({
     setCompleteInputValue?.(false);
     setEntryModal?.(false);
     setDispatchModal?.(false);
+    setShowPdfModal?.(false)
     reset?.();
   };
 
