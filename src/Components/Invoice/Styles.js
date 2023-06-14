@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   image: {
-    height: 60,
-    width: 60,
+    height: 70,
+    width: 70,
     left: 45,
   },
   dataCompany: {

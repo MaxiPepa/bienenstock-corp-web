@@ -12,8 +12,7 @@ const Invoice = ({ data }) => {
           <View style={[styles.dataContainer, { height: "14%" }]}>
             <View style={styles.dataInvoice}>
               <View style={styles.dataCompany}>
-                <Image src="./logo.jpg" style={styles.image} />
-                <Text style={styles.title}>BienenStock Corp.</Text>
+                <Image src={process.env.PUBLIC_URL + '/Logo.png'} style={styles.image} />
                 <Text style={styles.text}>
                   Zeballos 1341 - Rosario - Argentina
                 </Text>
