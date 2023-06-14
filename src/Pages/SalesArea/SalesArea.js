@@ -152,8 +152,6 @@ const SalesArea = () => {
   };
 
   const openPdfInvoiceModal = (objetInvoiceData) => {
-    console.log(objetInvoiceData);
-    console.log(saleHistory);
     setInvoiceData(objetInvoiceData);
     setShowModal(true);
     setShowPdfModal(true);
