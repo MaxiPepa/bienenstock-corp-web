@@ -4,53 +4,56 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   invoiceContainer: {
-    border: "1px solid black",
-    height: "100%",
+    borderRadius: 20,
+    fontFamily: "Helvetica",
+    height: "90vh",
     display: "flex",
     flexDirection: "column",
   },
-  dataContainer: {
-    borderTop: 0,
-    borderLeft: 0,
-    borderRight: 0,
-    borderBottom: "1px solid black",
-    margin: 0,
+
+  sectorInfoInvoice: {
+    height: "16.5vh",
+    backgroundColor: "#1f1f1f",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
-  sector1: {
-    textAlign: "center",
-    padding: 2,
-    textTransform: "uppercase",
-    fontSize: 12,
-    height:"2.5%"
-  },
-  dataInvoice: {
+  relativeInfoInvoice: {
     display: "flex",
     flexDirection: "row",
     height: 110,
     position: "relative",
   },
   image: {
-    height: 100,
-    width: 100,
-    left: 20,
+    height: "100vh",
+    width: "25vw",
+    transform: "scale(1.2)",
+    top: 13,
+    left: 45,
   },
-  dataCompany: {
-    borderRight: "1px solid black",
-    width: "50%",
+  leftInfoInvoice: {
+    width: "50vw",
+  },
+  rigthInfoInvoice: {
+    width: "50vw",
     paddingLeft: 45,
     paddingTop: 10,
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+    color: "#fefebe",
   },
-  dataCompanyInvoice: {
-    width: "50%",
-    paddingLeft: 45,
-    paddingTop: 10,
+  textInfoInvoice: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
   },
-
-  typeInvoice: {
+  absoluteInfoInvoice: {
     position: "absolute",
-    border: "1px solid black",
+    borderRadius: 10,
     borderTop: "none",
-    backgroundColor: "white",
+    backgroundColor: "black",
+    color: "white",
+    fontFamily: "Helvetica-Bold",
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 20,
@@ -59,18 +62,30 @@ const styles = StyleSheet.create({
     left: 235,
   },
   text: {
-    fontSize: 10,
+    fontSize: 12,
+  },
+  textBold: {
+    fontFamily: "Helvetica-Bold",
   },
   title: {
     fontSize: 20,
   },
-  dataClient: {
+
+  sectorDataClient: {
     padding: 5,
-    height:"7%",
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"space-between",
+    height: "7vh",
+    backgroundColor: "#efefef",
+    display: "flex",
+    flexDirection: "row",
   },
+  sectorLeftandRightDataClient: {
+    paddingTop: 5,
+    width: "50vw",
+    display: "flex",
+    flexDirection: "colum",
+    gap: 10,
+  },
+
   tableContainer: {
     display: "flex",
     flexDirection: "row",
@@ -79,33 +94,36 @@ const styles = StyleSheet.create({
   },
   code: {
     width: "20%",
-    textAlign: "center"
+    textAlign: "center",
   },
   description: {
     width: "30%",
-    textAlign: "center"
+    textAlign: "center",
   },
   quantity: {
     width: "10%",
-    textAlign: "center"
+    textAlign: "center",
   },
   unitPrice: {
     width: "20%",
-    textAlign: "center"
+    textAlign: "center",
   },
   subtotal: {
     width: "20%",
-    textAlign: "center"
+    textAlign: "center",
   },
   total: {
     borderBottom: "none",
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"flex-end",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
     padding: 5,
-    height:"auto",
     fontSize: 15,
-    gap:20,
+    gap: 20,
+    color: "white",
+    backgroundColor: "#1f1f1f",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
 

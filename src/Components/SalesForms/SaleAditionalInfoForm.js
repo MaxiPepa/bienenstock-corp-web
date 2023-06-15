@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { arraySaleAditionalInputs } from "Assets/Constants";
+import { arraySaleAditionalInputs, paymentTypeTranslator } from "Assets/Constants";
 
 import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
@@ -40,7 +40,7 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
         billingInformation: {
           businessName: data.businessName,
           billType: data.billType,
-          paymentType: data.paymentType,
+          paymentType: paymentTypeTranslator(data.paymentType),
           consumerAddress: data.address,
           consumerIdentifier: data.identifier,
         },

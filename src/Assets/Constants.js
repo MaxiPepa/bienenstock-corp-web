@@ -271,3 +271,20 @@ export const selectStyles = {
     fontWeight: 600,
   }),
 };
+
+export const paymentTypeTranslator = (type) => {
+  switch (type) {
+    case "cash":
+      return "Efectivo";
+    case "creditCard":
+      return "Tarjeta de Crédito";
+    case "currentAccount":
+      return "Cuenta Corriente";
+    case "paycheck":
+      return "Cheque";
+    default:
+      break;
+  }
+};
+
+
