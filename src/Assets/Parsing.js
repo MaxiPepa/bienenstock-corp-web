@@ -1,4 +1,4 @@
-export const parsingDate = (isoString) => {
+export const parsingDateTime = (isoString) => {
   const date = new Date(isoString);
 
   const dd = date.getDate().toString().padStart(2, "0");
@@ -10,7 +10,16 @@ export const parsingDate = (isoString) => {
   const formatedDate = `${dd}/${mm}/${yy} ${hs}:${ms}`;
   return formatedDate;
 };
+export const parsingDate = (isoString) => {
+  const date = new Date(isoString);
 
+  const dd = date.getDate().toString().padStart(2, "0");
+  const mm = (date.getMonth() + 1).toString().padStart(2, "0");
+  const yy = date.getFullYear().toString();
+
+  const formatedDate = `${dd}/${mm}/${yy}`;
+  return formatedDate;
+};
 export const parsingEachFirstLetterToUppercase = (string) => {
   const stringSplitted = string.split(" ");
   const stringSplittedUppercase = stringSplitted.map((word) => {

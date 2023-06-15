@@ -1,20 +1,22 @@
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import styles from "./Styles";
+import { parsingDate } from "Assets/Parsing";
 
 const Invoice = ({ data }) => {
-  const divDateSale = data.date.split("T")[0].split("-");
-  const showDateSale =
-    divDateSale[2] + "/" + divDateSale[1] + "/" + divDateSale[0];
-  const divDateCompanyStart = data.bill.companyStart.split("T")[0].split("-");
-  const showDateCompanyStart =
-    divDateCompanyStart[2] +
-    "/" +
-    divDateCompanyStart[1] +
-    "/" +
-    divDateCompanyStart[0];
-
-  const showBillId = data.bill.billId.toString().padStart(8, "0");
-
+  const bill = {
+    billId: data.bill.billId.toString().padStart(8, "0"),
+    saleDate: parsingDate(data.date),
+    companyStartDate: parsingDate(data.bill.companyStart),
+    companyIdentifier: data.bill.companyIdentifier,
+    companyAddress: data.bill.companyAddress,
+    billType: data.bill.billType,
+    businessName: data.bill.businessName,
+    consumerIdentifier: data.bill.consumerIdentifier,
+    consumerAddress: data.bill.consumerAddress,
+    paymentType: data.bill.paymentType,
+    products: data.products,
+    totalPrice: data.totalPrice
+  }
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -23,7 +25,7 @@ const Invoice = ({ data }) => {
             <View style={styles.relativeInfoInvoice}>
               <View style={styles.leftInfoInvoice}>
                 <Image
-                  src={process.env.PUBLIC_URL + "/LogoInvoice.png"}
+                  src={process.env.PUBLIC_URL + "/invoiceLogo.png"}
                   style={styles.image}
                 />
               </View>
@@ -40,49 +42,49 @@ const Invoice = ({ data }) => {
                 <Text> </Text>
                 <View style={[styles.textInfoInvoice, styles.text]}>
                   <Text style={styles.textBold}>N°:</Text>
-                  <Text>{showBillId}</Text>
+                  <Text>{bill.billId}</Text>
                 </View>
                 <View style={[styles.textInfoInvoice, styles.text]}>
                   <Text style={styles.textBold}>FECHA:</Text>
-                  <Text>{showDateSale}</Text>
+                  <Text>{bill.saleDate}</Text>
                 </View>
                 <Text> </Text>
                 <View style={[styles.textInfoInvoice, styles.text]}>
                   <Text style={styles.textBold}>CUIT:</Text>
-                  <Text>{data.bill.companyIdentifier}</Text>
+                  <Text>{bill.companyIdentifier}</Text>
                 </View>
                 <View style={[styles.textInfoInvoice, styles.text]}>
                   <Text style={styles.textBold}>INICIO ACTIVIDADES:</Text>
-                  <Text>{showDateCompanyStart}</Text>
+                  <Text>{bill.companyStartDate}</Text>
                 </View>
                 <Text> </Text>
                 <Text> </Text>
-                <Text style={{ fontSize: 10 }}>{data.bill.companyAddress}</Text>
+                <Text style={{ fontSize: 10 }}>{bill.companyAddress}</Text>
               </View>
             </View>
             <View style={styles.absoluteInfoInvoice}>
-              <Text>{data.bill.billType}</Text>
+              <Text>{bill.billType}</Text>
             </View>
           </View>
           <View style={styles.sectorDataClient}>
             <View style={styles.sectorLeftandRightDataClient}>
               <View style={[styles.textInfoInvoice, styles.text]}>
                 <Text style={styles.textBold}>Nombre y Apellido:</Text>
-                <Text>{data.bill.businessName}</Text>
+                <Text>{bill.businessName}</Text>
               </View>
               <View style={[styles.textInfoInvoice, styles.text]}>
                 <Text style={styles.textBold}>DNI:</Text>
-                <Text>{data.bill.consumerIdentifier}</Text>
+                <Text>{bill.consumerIdentifier}</Text>
               </View>
             </View>
             <View style={styles.sectorLeftandRightDataClient}>
               <View style={[styles.textInfoInvoice, styles.text]}>
                 <Text style={styles.textBold}>Domicilio:</Text>
-                <Text>{data.bill.consumerAddress}</Text>
+                <Text>{bill.consumerAddress}</Text>
               </View>
               <View style={[styles.textInfoInvoice, styles.text]}>
                 <Text style={styles.textBold}>Tipo pago: </Text>
-                <Text>{data.bill.paymentType}</Text>
+                <Text>{bill.paymentType}</Text>
               </View>
             </View>
           </View>
@@ -101,7 +103,7 @@ const Invoice = ({ data }) => {
               <Text style={styles.unitPrice}>PRECIO UNIT.</Text>
               <Text style={styles.subtotal}>SUBTOTAL</Text>
             </View>
-            {data.products.map((item, index) => (
+            {bill.products.map((item, index) => (
               <View
                 style={[styles.tableContainer, { fontSize: 11 }]}
                 key={index}
@@ -121,7 +123,7 @@ const Invoice = ({ data }) => {
 
           <View style={styles.total}>
             <Text style={styles.textBold}>TOTAL</Text>
-            <Text>${data.totalPrice.toFixed(2)}</Text>
+            <Text>${bill.totalPrice.toFixed(2)}</Text>
           </View>
         </View>
       </Page>

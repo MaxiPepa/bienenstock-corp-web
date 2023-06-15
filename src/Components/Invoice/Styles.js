@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: "100vh",
-    width: "23vw",
+    width: "20vw",
     transform: "scale(1.2)",
     top: 13,
     left: 45,
@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
   },
   absoluteInfoInvoice: {
     position: "absolute",
-    borderRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    border: "1px solid white",
     borderTop: "none",
     backgroundColor: "black",
     color: "white",
@@ -124,6 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1f1f1f",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    paddingRight:15,
   },
 });
 

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ROLES } from "Assets/Constants";
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import { Table, ConfirmStorageButton, Modal } from "Components";
 import { UserContext, APIContext, StatesContext } from "Contexts";
@@ -36,7 +36,7 @@ const PendingEntrySection = ({ reload }) => {
           userFullName: r.userFullName,
           supplier: r.supplier,
           totalPrice: "$" + r.totalPrice,
-          date: parsingDate(r.date),
+          date: parsingDateTime(r.date),
           pending: "Pending",
           confirmButton: (
             <ConfirmStorageButton

@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { PDFViewer } from "@react-pdf/renderer";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -82,7 +82,7 @@ const SalesArea = () => {
           saleId: "#" + r.saleId,
           userFullName: r.userFullName,
           totalPrice: "$" + r.totalPrice,
-          date: parsingDate(r.date),
+          date: parsingDateTime(r.date),
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,
@@ -105,7 +105,7 @@ const SalesArea = () => {
               <div className="tooltip">Pending</div>
             </div>
           ),
-          dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
+          dispatchDate: r.dispatched ? parsingDateTime(r.dispatchDate) : "-",
           details: (
             <Button
               styles={"table-button-style info-style"}
@@ -127,7 +127,7 @@ const SalesArea = () => {
               />
             ),
           invoice:
-            userData.userType === ROLES.SELLER && !r.cancelled ? (
+            userData.userType === ROLES.SELLER ? (
               <Button
                 buttonIcon={<PictureAsPdfRoundedIcon />}
                 styles={"table-button-style invoice-style"}

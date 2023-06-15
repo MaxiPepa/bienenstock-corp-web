@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 import { ROLES } from "Assets/Constants";
 
 import { Table, Modal, ConfirmStorageButton } from "Components";
@@ -36,7 +36,7 @@ const PendingDispatchSection = ({ reload }) => {
           saleId: "#" + r.saleId,
           userFullName: r.userFullName,
           totalPrice: "$" + r.totalPrice,
-          date: parsingDate(r.date),
+          date: parsingDateTime(r.date),
           confirmButton: (
             <ConfirmStorageButton
               products={r.products}

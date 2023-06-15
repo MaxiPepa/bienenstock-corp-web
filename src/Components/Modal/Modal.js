@@ -33,7 +33,7 @@ const Modal = ({
     setCompleteInputValue?.(false);
     setEntryModal?.(false);
     setDispatchModal?.(false);
-    setShowPdfModal?.(false)
+    setShowPdfModal?.(false);
     reset?.();
   };
 
