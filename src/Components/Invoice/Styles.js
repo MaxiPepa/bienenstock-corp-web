@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
   },
   image: {
     height: "100vh",
-    width: "20vw",
+    width: "23vw",
     transform: "scale(1.2)",
     top: 13,
-    left: 60,
+    left: 45,
   },
   leftInfoInvoice: {
     width: "50vw",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     fontSize: 30,
-    left: 235,
+    left: 225,
   },
   text: {
     fontSize: 12,
