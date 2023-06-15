@@ -21,5 +21,29 @@
   height: 50px;
   font-size: 25px;
   font-weight: 500;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.buttons-confirmation-container > button:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.accept-button {
+  background-color: #49cc90;
+  color: #fff;
+}
+
+.accept-button:hover {
+  background-color: #21e68d;
+}
+
+.cancel-button {
+  background-color: #fc4342;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #ff2828;
 }

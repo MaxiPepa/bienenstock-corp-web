@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  height: calc(100vh - 260px);
+  min-height: calc(100vh - 260px);
+  height: auto;
   gap: 30px;
+}
+
+.activity-container-max-height {
+  max-height: calc(var(--dashboard-boxes-height) * 1vh);
 }

@@ -2,9 +2,9 @@ import React from "react";
 
 import "./Table.css";
 
-const Table = ({ content, thead, mapKeys, entity }) => {
+const Table = ({ content, thead, mapKeys, entity, idTable }) => {
   return (
-    <div className="table-container">
+    <div className="table-container" id={idTable ? idTable : null}>
       <table>
         <thead>
           <tr>

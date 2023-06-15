@@ -8,7 +8,7 @@
   padding: 10px 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-  z-index: 150;
+  z-index: 200;
 }
 
 @keyframes fade-in {

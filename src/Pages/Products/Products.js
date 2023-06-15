@@ -5,6 +5,8 @@ import { parsingDateTime } from "Assets/Parsing";
 import { Table } from "Components";
 import { APIContext, ReaderContext } from "Contexts";
 
+import "./Products.css";
+
 const Products = () => {
   const { get } = useContext(APIContext);
   const { startPageConnection, stopPageConnection } = useContext(ReaderContext);
@@ -49,6 +51,7 @@ const Products = () => {
           thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
           mapKeys={["productCode", "name", "quantity", "expirationDate"]}
           content={products}
+          idTable={"products-table"}
           entity="products"
         />
       </section>

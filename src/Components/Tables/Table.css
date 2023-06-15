@@ -109,3 +109,9 @@ tbody > tr:hover {
 .pending-icon {
   color: #9c9a00;
 }
+
+@media (width < 768px) {
+  table {
+    font-size: 10px;
+  }
+}

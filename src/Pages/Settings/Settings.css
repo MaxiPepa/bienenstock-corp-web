@@ -34,3 +34,53 @@
   height: auto;
   padding: 15px 0;
 }
+
+@media (1024px <= width < 1280px) {
+  .general-settings-container {
+    padding-bottom: 70px;
+  }
+  .settings-container {
+    width: 100%;
+  }
+  .basic-settings {
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+  }
+}
+
+@media (768px <= width < 1024px) {
+  .general-settings-container {
+    padding-bottom: 70px;
+  }
+  .settings-container {
+    width: 100%;
+  }
+  .basic-settings {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+  }
+}
+
+@media (width < 768px) {
+  .general-settings-container {
+    padding-bottom: 80px;
+  }
+  .settings-container {
+    width: 100%;
+  }
+  .basic-settings {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+  }
+}

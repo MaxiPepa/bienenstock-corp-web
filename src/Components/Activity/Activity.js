@@ -43,18 +43,22 @@ const Activity = () => {
     <div className="activities-container">
       <h2 className="area-subtitle">Activity</h2>
       <div className="activities">
-        {logs.map((log) => {
-          return (
-            <div key={log.logId} className="activity-container">
-              <ActivityItem
-                name={log.name}
-                description={log.description}
-                date={log.date}
-                avatar={log.avatar}
-              />
-            </div>
-          );
-        })}
+        {logs.length > 0 ? (
+          logs.map((log) => {
+            return (
+              <div key={log.logId} className="activity-container">
+                <ActivityItem
+                  name={log.name}
+                  description={log.description}
+                  date={log.date}
+                  avatar={log.avatar}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <h3 className="no-activities">No recent activities</h3>
+        )}
       </div>
     </div>
   );

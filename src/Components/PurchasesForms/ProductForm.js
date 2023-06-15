@@ -7,7 +7,7 @@ import { APIContext } from "Contexts";
 import { useProductsValidation } from "Hooks";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
-const ProductForm = ({ setCartData }) => {
+const ProductForm = ({ setCartData, cartData }) => {
   const { get } = useContext(APIContext);
   const { requiredValidations, errorMessages } = useProductsValidation();
 
@@ -36,9 +36,16 @@ const ProductForm = ({ setCartData }) => {
 
   const onProductCodeBlur = (event) => {
     const productCode = event.target.value.toUpperCase();
-    const product = productsCodes.find((p) => p.productCode === productCode);
-    if (product) {
-      setValue("name", product.productName);
+    const productStock = productsCodes.find(
+      (p) => p.productCode === productCode
+    );
+    const productCart = cartData.find((p) => p.productCode === productCode);
+
+    if (productStock) {
+      setValue("name", productStock.productName);
+      setProductNameDisabled(true);
+    } else if (productCart) {
+      setValue("name", productCart.name);
       setProductNameDisabled(true);
     } else {
       setValue("name", "");

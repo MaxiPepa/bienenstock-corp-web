@@ -253,6 +253,7 @@ const SalesArea = () => {
             thead={["Product Code", "Product", "Quantity", "Price"]}
             mapKeys={["productCode", "name", "quantity", "unitPrice"]}
             content={productsDetails}
+            idTable={"cart-purchase-table"}
             entity={"products"}
           />
         ) : showPdfModal ? (

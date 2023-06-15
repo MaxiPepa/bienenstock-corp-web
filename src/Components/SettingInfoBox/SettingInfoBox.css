@@ -173,3 +173,50 @@
   background-color: rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
+
+@media (768px <= width < 1024px) {
+  .basic-settings-img-container {
+    width: 100%;
+  }
+
+  .basic-settings-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .basic-settings-avatar > svg {
+    font-size: 200px;
+  }
+
+  .basic-settings-inputs {
+    width: 100%;
+  }
+}
+
+@media (width < 768px) {
+  .basic-settings-img-container {
+    width: 100%;
+  }
+
+  .basic-settings-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .basic-settings-avatar > svg {
+    font-size: 150px;
+  }
+
+  .basic-settings-avatar > button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .basic-settings-avatar > button > svg {
+    font-size: 30px;
+  }
+
+  .basic-settings-inputs {
+    width: 100%;
+  }
+}

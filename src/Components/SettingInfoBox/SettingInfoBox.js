@@ -123,7 +123,7 @@ const SettingInfoBox = () => {
   return (
     <>
       <div className="settings-container">
-        <h3 className="area-subtitle">Basic Settings</h3>
+        <h3 className="area-title">Basic Settings</h3>
         <div className="basic-settings">
           <div className="basic-settings-img-container">
             <div className="basic-settings-img">

@@ -53,3 +53,60 @@ main {
   visibility: visible;
   opacity: 1;
 }
+
+@media (1920px <= width < 2510px) {
+}
+
+@media (1024px <= width < 1920px) {
+  main {
+    height: 100%;
+  }
+
+  .main-content {
+    padding: 20px 50px;
+  }
+
+  .area-title {
+    font-size: 30px;
+  }
+
+  .area-subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (768px <= width < 1024px) {
+  main {
+    height: 100%;
+  }
+
+  .main-content {
+    padding: 50px 50px;
+  }
+
+  .area-title {
+    font-size: 30px;
+  }
+
+  .area-subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (width < 768px) {
+  main {
+    height: 100%;
+  }
+
+  .main-content {
+    padding: 10px 20px;
+  }
+
+  .area-title {
+    font-size: 20px;
+  }
+
+  .area-subtitle {
+    font-size: 10px;
+  }
+}

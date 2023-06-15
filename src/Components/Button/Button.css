@@ -64,11 +64,42 @@
   filter: drop-shadow(0 0 15px #ff9113);
 }
 
-.invoice-style > svg{
+.invoice-style > svg {
   color: #626311;
 }
 
-.invoice-style:hover > svg{
+.invoice-style:hover > svg {
   color: #9c5100;
   filter: drop-shadow(0 0 15px #9c5100);
+}
+@media (768px <= width < 1024px) {
+  .table-button-style {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+
+  .table-button-style > svg {
+    font-size: 1.8rem;
+  }
+  .icon-container > svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (width < 768px) {
+  .table-button-style {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+  }
+
+  .table-button-style > svg {
+    font-size: 1.5rem;
+  }
+  .icon-container > svg {
+    width: 20px;
+    height: 20px;
+  }
 }

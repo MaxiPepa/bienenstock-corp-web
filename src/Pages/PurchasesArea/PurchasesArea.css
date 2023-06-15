@@ -1,3 +1,7 @@
 .input-content {
   width: 90%;
 }
+
+#purchases-history-table {
+  max-height: calc(100vh - 360px);
+}
