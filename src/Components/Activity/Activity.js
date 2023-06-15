@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { APIContext, ReaderContext } from "Contexts";
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 import ActivityItem from "./ActivityItem/ActivityItem";
 
 import "./Activity.css";
@@ -20,7 +20,7 @@ const Activity = () => {
             logId: r.logId,
             name: r.userFullName,
             description: r.description,
-            date: parsingDate(r.date),
+            date: parsingDateTime(r.date),
             avatar: r.userAvatar,
           };
         })

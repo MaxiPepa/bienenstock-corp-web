@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useCallback, useRef } from "react";
 import Cookies from "universal-cookie";
 
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import { Button, ChatComponent } from "Components";
 import { APIContext, UserContext, ReaderContext } from "Contexts";
@@ -61,7 +61,7 @@ const ChatContainer = () => {
         data.messages.map((message) => ({
           messageId: message.messageId,
           description: message.description.replace(/\n/g, "\n"),
-          date: parsingDate(message.date),
+          date: parsingDateTime(message.date),
           fullName: message.fullName,
           avatar: message.avatar,
         }))

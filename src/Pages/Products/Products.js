@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import { Table } from "Components";
 import { APIContext, ReaderContext } from "Contexts";
@@ -21,7 +21,7 @@ const Products = () => {
           expirationDate:
             res.expirationDate === null
               ? "No expiration date"
-              : parsingDate(res.expirationDate),
+              : parsingDateTime(res.expirationDate),
         }))
       );
     });

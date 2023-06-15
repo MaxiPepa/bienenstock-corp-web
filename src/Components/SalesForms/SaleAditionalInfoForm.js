@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { arraySaleAditionalInputs } from "Assets/Constants";
+import { arraySaleAditionalInputs, paymentTypeTranslator } from "Assets/Constants";
 
 import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
@@ -37,6 +37,13 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
           quantity: i.quantity,
           unitPrice: i.unitPrice,
         })),
+        billingInformation: {
+          businessName: data.businessName,
+          billType: data.billType,
+          paymentType: paymentTypeTranslator(data.paymentType),
+          consumerAddress: data.address,
+          consumerIdentifier: data.identifier,
+        },
       };
       post("Sale/SaveSale", rq).then((res) => {
         setAlert({
@@ -79,6 +86,45 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
           )}
         </div>
       ))}
+      <div className="inputs-maped input-content">
+        <label>Payment Type</label>
+        <select
+          {...registerSale("paymentType", { required: true })}
+          defaultValue=""
+        >
+          <option value="" disabled>
+            --Select option--
+          </option>
+          <option value="cash">Cash</option>
+          <option value="creditCard">Credit Card</option>
+          <option value="currentAccount">Current Account</option>
+          <option value="paycheck">Paycheck</option>
+        </select>
+        {errorsSale["paymentType"] && (
+          <p className="error-input-message">
+            {errorMessages(errorsSale["paymentType"])}
+          </p>
+        )}
+      </div>
+      <div className="inputs-maped input-content">
+        <label>Bill Type</label>
+        <select
+          {...registerSale("billType", { required: true })}
+          defaultValue=""
+        >
+          <option value="" disabled>
+            --Select option--
+          </option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        {errorsSale["billType"] && (
+          <p className="error-input-message">
+            {errorMessages(errorsSale["billType"])}
+          </p>
+        )}
+      </div>
       <div className="button-content">
         <button type="submit" className="modal-button-add">
           {<AddRoundedIcon />}

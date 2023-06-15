@@ -129,6 +129,27 @@ export const arraySaleAditionalInputs = [
     placeholder: "dd/mm/aaaa",
     formData: "saleDate",
   },
+  {
+    labelName: "Business Name: ",
+    styles: "input",
+    type: "text",
+    placeholder: "John Doe",
+    formData: "businessName",
+  },
+  {
+    labelName: "Address: ",
+    styles: "input",
+    type: "text",
+    placeholder: "Wall Street 123",
+    formData: "address",
+  },
+  {
+    labelName: "Identifier: ",
+    styles: "input",
+    type: "number",
+    placeholder: "99.999.999",
+    formData: "identifier",
+  },
 ];
 
 export const arrayPasswordInputs = [
@@ -250,3 +271,20 @@ export const selectStyles = {
     fontWeight: 600,
   }),
 };
+
+export const paymentTypeTranslator = (type) => {
+  switch (type) {
+    case "cash":
+      return "Efectivo";
+    case "creditCard":
+      return "Tarjeta de Crédito";
+    case "currentAccount":
+      return "Cuenta Corriente";
+    case "paycheck":
+      return "Cheque";
+    default:
+      break;
+  }
+};
+
+

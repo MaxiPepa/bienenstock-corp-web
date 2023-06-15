@@ -29,6 +29,7 @@ import ChatContainer from "./ChatContainer/ChatContainer";
 import PendingDispatchSection from "./PendingDispatchSection/PendingDispatchSection";
 import ConfirmStorageButton from "./ConfirmStorageButton/ConfirmStorageButton";
 import UserModifyForm from "./UsersForm/UserModifyForm";
+import Invoice from "./Invoice/Invoice";
 
 export {
   Alert,
@@ -62,4 +63,5 @@ export {
   PendingDispatchSection,
   ConfirmStorageButton,
   UserModifyForm,
+  Invoice,
 };

@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect, useState } from "react";
+import { PDFViewer } from "@react-pdf/renderer";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -11,6 +12,7 @@ import {
   ConfirmationForm,
   SaleProductForm,
   SaleAditionalInfoForm,
+  Invoice,
 } from "Components";
 import {
   APIContext,
@@ -26,6 +28,7 @@ import {
   PendingActionsRoundedIcon,
   VisibilityIcon,
   RemoveShoppingCartRoundedIcon,
+  PictureAsPdfRoundedIcon,
 } from "Assets/Icons";
 
 import "./SalesArea.css";
@@ -40,14 +43,17 @@ const SalesArea = () => {
   const [cartData, setCartData] = useState([]);
   const [showInputsModal, setShowInputsModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [showPdfModal, setShowPdfModal] = useState(false);
   const [cancelSaleId, setCancelSaleId] = useState();
   const [productsDetails, setProductsDetails] = useState([]);
+  const [invoiceData, setInvoiceData] = useState([]);
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
       setProductsDetails(products);
       setShowModal(true);
       setShowInputsModal(false);
+      setShowPdfModal(false);
       setShowCartModal(true);
     },
     [setShowModal]
@@ -61,6 +67,14 @@ const SalesArea = () => {
     [setShowModal]
   );
 
+  const openPdfInvoiceModal = useCallback((objetInvoiceData) => {
+    setInvoiceData(objetInvoiceData);
+    setShowModal(true);
+    setShowPdfModal(true);
+    setShowCartModal(false);
+    setShowInputsModal(false);
+  },[setShowModal]);
+
   const getSaleHistory = useCallback(() => {
     get("sale/getSales").then((data) => {
       setSaleHistory(
@@ -68,7 +82,7 @@ const SalesArea = () => {
           saleId: "#" + r.saleId,
           userFullName: r.userFullName,
           totalPrice: "$" + r.totalPrice,
-          date: parsingDate(r.date),
+          date: parsingDateTime(r.date),
           products: r.products.map((p) => ({
             productCode: "#" + p.productCode,
             name: p.name,
@@ -91,8 +105,7 @@ const SalesArea = () => {
               <div className="tooltip">Pending</div>
             </div>
           ),
-
-          dispatchDate: r.dispatched ? parsingDate(r.dispatchDate) : "-",
+          dispatchDate: r.dispatched ? parsingDateTime(r.dispatchDate) : "-",
           details: (
             <Button
               styles={"table-button-style info-style"}
@@ -113,10 +126,26 @@ const SalesArea = () => {
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
             ),
+          invoice:
+            userData.userType === ROLES.SELLER ? (
+              <Button
+                buttonIcon={<PictureAsPdfRoundedIcon />}
+                styles={"table-button-style invoice-style"}
+                buttonFunction={() => {
+                  openPdfInvoiceModal(r);
+                }}
+              />
+            ) : null,
         }))
       );
     });
-  }, [get, openSaleHistoryCartModal, openConfirmationModal, userData.userType]);
+  }, [
+    get,
+    openSaleHistoryCartModal,
+    openConfirmationModal,
+    openPdfInvoiceModal,
+    userData.userType,
+  ]);
 
   useEffect(() => {
     getSaleHistory();
@@ -133,6 +162,7 @@ const SalesArea = () => {
     setShowModal(true);
     setShowCartModal(false);
     setShowInputsModal(true);
+    setShowPdfModal(false);
   };
 
   const cancelSale = () => {
@@ -173,6 +203,7 @@ const SalesArea = () => {
           "DispatchDate",
           "Details",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
+          userData.userType === ROLES.SELLER ? "Invoice" : null,
         ]}
         mapKeys={[
           "saleId",
@@ -183,15 +214,23 @@ const SalesArea = () => {
           "dispatchDate",
           "details",
           "cancel",
+          "invoice",
         ]}
         content={saleHistory}
         entity={"sales"}
       />
       <Modal
-        modalTitle={showInputsModal ? "New Sale" : "Sale Details"}
+        modalTitle={
+          showInputsModal
+            ? "New Sale"
+            : showCartModal
+            ? "Sale Details"
+            : "Invoice"
+        }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
         setCartData={setCartData}
+        setShowPdfModal={setShowPdfModal}
       >
         {showInputsModal ? (
           <>
@@ -200,7 +239,7 @@ const SalesArea = () => {
               <SaleProductForm setCartData={setCartData} />
             </div>
             <div className="right-content">
-              <h3>Additional Information</h3>
+              <h3>Information Invoice</h3>
               <SaleAditionalInfoForm
                 cartData={cartData}
                 setCartData={setCartData}
@@ -216,6 +255,12 @@ const SalesArea = () => {
             content={productsDetails}
             entity={"products"}
           />
+        ) : showPdfModal ? (
+          <>
+            <PDFViewer width={"100%"} height={"1000"}>
+              <Invoice data={invoiceData} />
+            </PDFViewer>
+          </>
         ) : (
           <ConfirmationForm onConfirm={cancelSale} />
         )}

@@ -63,3 +63,12 @@
   color: #ff9113;
   filter: drop-shadow(0 0 15px #ff9113);
 }
+
+.invoice-style > svg{
+  color: #626311;
+}
+
+.invoice-style:hover > svg{
+  color: #9c5100;
+  filter: drop-shadow(0 0 15px #9c5100);
+}

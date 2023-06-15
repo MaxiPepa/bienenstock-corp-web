@@ -18,6 +18,14 @@ export const useProductsValidation = () => {
     return true;
   };
 
+  const validateIdentifier = (value) => {
+    if (value < 1000000 || value > 99999999) {
+      return "The type of identification is invalid";
+    }
+
+    return true;
+  };
+
   const requiredValidations = (formData) => {
     switch (formData) {
       case "productCode":
@@ -41,6 +49,12 @@ export const useProductsValidation = () => {
       case "saleDate":
         return { required: true, validate: validateDate };
 
+      case "address":
+        return { required: true, maxLength: 100 };
+
+      case "identifier":
+        return { required: true, validate: validateIdentifier };
+
       default:
         break;
     }
@@ -58,7 +72,7 @@ export const useProductsValidation = () => {
         return "The value must be greater than 0";
 
       case "maxLength":
-        return "The value must be less than 10 characters";
+        return "The value must be less than 100 characters";
 
       case "validate":
         return errorType.message;

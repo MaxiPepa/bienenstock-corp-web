@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useCallback } from "react";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDate } from "Assets/Parsing";
+import { parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -68,7 +68,7 @@ const PurchansingArea = () => {
           userFullName: r.userFullName,
           supplier: r.supplier,
           totalPrice: "$ " + r.totalPrice,
-          date: parsingDate(r.date),
+          date: parsingDateTime(r.date),
           status: r.pending ? (
             <div className="icon-container">
               <PendingActionsRoundedIcon className="pending-icon status-icon" />
