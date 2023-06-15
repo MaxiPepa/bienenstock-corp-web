@@ -134,7 +134,7 @@ export const arraySaleAditionalInputs = [
     styles: "input",
     type: "text",
     placeholder: "John Doe",
-    formData: "name",
+    formData: "businessName",
   },
   {
     labelName: "Address: ",

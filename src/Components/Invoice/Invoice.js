@@ -20,30 +20,32 @@ const Invoice = ({ data }) => {
                 />
                 <Text> </Text>
                 <Text style={styles.text}>
-                  Zeballos 1341 - Rosario - Argentina
+                  {data.bill.companyAddress}
                 </Text>
               </View>
               <View style={styles.dataCompanyInvoice}>
                 <Text style={styles.title}>FACTURA</Text>
-                <Text style={styles.text}>N°: {data.saleId}</Text>
+                <Text style={styles.text}>N°: {data.bill.billId}</Text>
                 <Text style={styles.text}>FECHA: {showDate}</Text>
                 <Text> </Text>
-                <Text style={styles.text}>CUIT: 30-55555555-9</Text>
-                <Text style={styles.text}>INICIO ACTIVIDADES: 27/04/2023 </Text>
+                <Text style={styles.text}>CUIT: {data.bill.companyIdentifier}</Text>
+                <Text style={styles.text}>INICIO ACTIVIDADES: {data.bill.companyStart} </Text>
               </View>
             </View>
             <View style={styles.typeInvoice}>
-              <Text>C</Text>
+              <Text>{data.bill.billType}</Text>
             </View>
           </View>
           <View style={[styles.dataContainer, styles.dataClient]}>
             <Text style={styles.text}>
-              Nombre y Apellido: "Harcodeado con d"
+              Nombre y Apellido: {data.bill.businessName}
             </Text>
-            <Text style={styles.text}>DNI: Harcodeado por dos</Text>
+            <Text style={styles.text}>DNI: {data.bill.consumerIdentifier}</Text>
             <Text style={styles.text}>
-              Domicilio: Y esto tambien papa que te hace pensar que no lo iba a
-              estar
+              Domicilio: {data.bill.consumerAddress}
+            </Text>
+            <Text style={styles.text}>
+              Pago: {data.bill.paymentType}
             </Text>
           </View>
           <View style={[styles.dataContainer, { height: "73%" }]}>

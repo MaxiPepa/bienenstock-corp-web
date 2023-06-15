@@ -37,6 +37,13 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
           quantity: i.quantity,
           unitPrice: i.unitPrice,
         })),
+        billingInformation: {
+          businessName: data.businessName,
+          billType: data.billType,
+          paymentType: data.paymentType,
+          consumerAddress: data.address,
+          consumerIdentifier: data.identifier,
+        },
       };
       post("Sale/SaveSale", rq).then((res) => {
         setAlert({
