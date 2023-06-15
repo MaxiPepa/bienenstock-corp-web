@@ -72,7 +72,7 @@ export const useProductsValidation = () => {
         return "The value must be greater than 0";
 
       case "maxLength":
-        return "The value must be less than 10 characters";
+        return "The value must be less than 100 characters";
 
       case "validate":
         return errorType.message;
