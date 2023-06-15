@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
   },
   image: {
     height: "100vh",
-    width: "25vw",
+    width: "20vw",
     transform: "scale(1.2)",
     top: 13,
-    left: 45,
+    left: 60,
   },
   leftInfoInvoice: {
     width: "50vw",
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 12,
-    color: "#fefebe",
+    color: "white",
   },
   textInfoInvoice: {
     display: "flex",
