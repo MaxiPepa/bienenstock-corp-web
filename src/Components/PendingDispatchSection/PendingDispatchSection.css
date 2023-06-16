@@ -9,3 +9,23 @@
 .dispatch-date-input > .input-content {
   width: 100%;
 }
+
+#pending-products-table {
+  max-height: calc(50vh - 250px);
+}
+
+@media (1024px <= width < 1920px) {
+  #pending-products-table {
+    max-height: calc(50vh);
+  }
+}
+
+@media (width < 768px) {
+  #pending-products-table {
+    max-height: calc(50vh - 100px);
+  }
+  .dispatch-date-input {
+    width: 100%;
+    padding-bottom: 0px;
+  }
+}

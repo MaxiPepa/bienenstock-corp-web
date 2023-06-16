@@ -47,3 +47,20 @@
 .cancel-button:hover {
   background-color: #ff2828;
 }
+
+@media (width < 768px) {
+  .confirmation-container {
+    gap: 20px;
+  }
+
+  .buttons-confirmation-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .buttons-confirmation-container > button {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+  }
+}

@@ -61,3 +61,20 @@
   font-size: 1.2rem;
   font-weight: 500;
 }
+
+@media (1366px <= width < 1920px) {
+  .user-card-img-avatar {
+    width: 60px;
+    height: 60px;
+  }
+  .user-card-img > svg {
+    width: 60px;
+    height: 60px;
+  }
+  .user-profile > p {
+    font-size: 1.2rem;
+  }
+  .user-profile > span {
+    font-size: 1.1rem;
+  }
+}

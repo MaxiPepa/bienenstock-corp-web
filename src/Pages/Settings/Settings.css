@@ -50,9 +50,6 @@
 }
 
 @media (768px <= width < 1024px) {
-  .general-settings-container {
-    padding-bottom: 70px;
-  }
   .settings-container {
     width: 100%;
   }
@@ -68,9 +65,6 @@
 }
 
 @media (width < 768px) {
-  .general-settings-container {
-    padding-bottom: 80px;
-  }
   .settings-container {
     width: 100%;
   }

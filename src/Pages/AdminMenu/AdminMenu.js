@@ -163,14 +163,15 @@ const AdminMenu = () => {
           "delete",
         ]}
         entity="users"
+        idTable={"pending-products-table"}
       />
-      <hr className="division-horizontal-hr" />
       <h2>Inactive Users</h2>
       <Table
         content={users.filter((u) => u.active)}
         thead={["ID", "Name", "Last Name", "Email", "UserType", "Active"]}
         mapKeys={["userId", "name", "lastName", "email", "userType", "active"]}
-        entity="users"
+        entity="users inactive"
+        idTable={"pending-products-table"}
       />
       <Modal
         modalTitle={

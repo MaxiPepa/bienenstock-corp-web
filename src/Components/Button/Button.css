@@ -1,3 +1,32 @@
+.area-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  padding: 0 10px;
+  gap: 2px;
+  background-color: #363636;
+  color: #f3f7fe;
+  border: none;
+  border-radius: 5px;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.area-button svg {
+  font-size: 25px;
+}
+
+.area-button:hover {
+  background-color: #3d3d3d;
+  box-shadow: 0 0 0 5px #3d3d3d50;
+  color: #fff;
+  cursor: pointer;
+}
+
 .table-button-style {
   display: flex;
   flex-direction: row;
@@ -69,10 +98,11 @@
 }
 
 .invoice-style:hover > svg {
-  color: #9c5100;
-  filter: drop-shadow(0 0 15px #9c5100);
+  color: #929415;
+  filter: drop-shadow(0 0 15px #929415);
 }
-@media (768px <= width < 1024px) {
+
+@media (768px <= width < 1920px) {
   .table-button-style {
     width: 40px;
     height: 40px;
@@ -89,6 +119,14 @@
 }
 
 @media (width < 768px) {
+  .area-button {
+    font-size: 12px;
+  }
+
+  .area-button svg {
+    font-size: 20px;
+  }
+
   .table-button-style {
     width: 30px;
     height: 30px;

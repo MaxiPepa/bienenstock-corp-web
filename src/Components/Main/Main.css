@@ -99,14 +99,14 @@ main {
   }
 
   .main-content {
-    padding: 10px 20px;
+    padding: 10px 20px 90px 20px;
   }
 
   .area-title {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .area-subtitle {
-    font-size: 10px;
+    font-size: 20px;
   }
 }

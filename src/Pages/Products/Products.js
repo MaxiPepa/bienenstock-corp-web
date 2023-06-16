@@ -51,7 +51,6 @@ const Products = () => {
           thead={["Product Code", "Name", "Quantity", "Expiration Date"]}
           mapKeys={["productCode", "name", "quantity", "expirationDate"]}
           content={products}
-          idTable={"products-table"}
           entity="products"
         />
       </section>

@@ -182,7 +182,6 @@ const PurchansingArea = () => {
           "cancel",
         ]}
         content={purchaseHistory}
-        idTable={"purchases-history-table"}
         entity="purchases"
       />
       <Modal

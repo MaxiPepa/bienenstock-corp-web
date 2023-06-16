@@ -27,3 +27,22 @@ nav > ul > li > .navlink:hover {
   background: #f1f1f1;
   color: #2e2e2e;
 }
+
+@media (1366px <= width < 1920px) {
+  nav > ul > li > .navlink {
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (1280px <= width < 1366px) {
+}
+
+@media (1024px <= width < 1280px) {
+}
+
+@media (768px <= width < 1024px) {
+}
+
+@media (width < 768px) {
+}
