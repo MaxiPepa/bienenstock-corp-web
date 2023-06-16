@@ -31,7 +31,6 @@ const PendingDispatchSection = ({ reload }) => {
 
   useEffect(() => {
     get("sale/getSales", { pendingDispatch: true }).then((data) => {
-      console.log(data);
       setPendingDispatch(
         data.sales.map((r) => ({
           saleId: "#" + r.saleId,
