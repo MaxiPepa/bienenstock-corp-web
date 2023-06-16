@@ -91,7 +91,7 @@ const PendingDispatchSection = ({ reload }) => {
           "confirmButton",
         ]}
         content={pendingDispatch}
-        idTable={"pending-products-table"}
+        tableId={"pending-products-table"}
         entity="pending products entry"
       />
 

@@ -163,7 +163,7 @@ const AdminMenu = () => {
           "delete",
         ]}
         entity="users"
-        idTable={"pending-products-table"}
+        tableId={"pending-products-table"}
       />
       <h2>Inactive Users</h2>
       <Table
@@ -171,7 +171,7 @@ const AdminMenu = () => {
         thead={["ID", "Name", "Last Name", "Email", "UserType", "Active"]}
         mapKeys={["userId", "name", "lastName", "email", "userType", "active"]}
         entity="users inactive"
-        idTable={"pending-products-table"}
+        tableId={"pending-products-table"}
       />
       <Modal
         modalTitle={

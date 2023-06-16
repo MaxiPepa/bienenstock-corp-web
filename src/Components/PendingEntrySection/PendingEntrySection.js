@@ -123,7 +123,7 @@ const PendingEntrySection = ({ reload }) => {
           "confirmButton",
         ]}
         content={pendingEntry}
-        idTable={"pending-products-table"}
+        tableId={"pending-products-table"}
         entity="pending products entry"
       />
 
