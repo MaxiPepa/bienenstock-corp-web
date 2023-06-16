@@ -180,8 +180,6 @@ const SalesArea = () => {
     });
   };
 
-  console.log(window.innerHeight);
-
   return (
     <div className="area-container">
       <div className="area-header">
