@@ -15,13 +15,13 @@ header {
   backdrop-filter: blur(5px);
 }
 
-header > a {
+header > p {
   color: #242424;
   font-size: 1.5rem;
   font-weight: 900;
   text-decoration: none;
 }
 
-header > a > span {
+header > p > span {
   color: var(--c-color-1);
 }
