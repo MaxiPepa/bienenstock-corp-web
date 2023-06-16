@@ -29,6 +29,7 @@ import PendingDispatchSection from "./PendingDispatchSection/PendingDispatchSect
 import ConfirmStorageButton from "./ConfirmStorageButton/ConfirmStorageButton";
 import UserModifyForm from "./UsersForm/UserModifyForm";
 import Invoice from "./Invoice/Invoice";
+import LineCharts from "./Charts/LineCharts";
 
 export {
   Alert,
@@ -62,4 +63,5 @@ export {
   ConfirmStorageButton,
   UserModifyForm,
   Invoice,
+  LineCharts
 };

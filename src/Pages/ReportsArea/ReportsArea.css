@@ -1,8 +1,18 @@
-.box{
-    background: #000;
+.analyst-div{
     display: flex;
+    justify-content: space-between;
+}
+
+.analyst-table{
+    color:white;
+    width: 25%;
 }
 
 .charts{
-    border:#000 1px solid;
+    color:rgb(0, 0, 0);
+    width: 70%;
+}
+
+.lineChart {
+    margin: 25px 5px 5px 0px;
 }
