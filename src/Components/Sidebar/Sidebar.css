@@ -2,12 +2,13 @@
   position: fixed;
   width: 350px;
   height: 100%;
-  background: #2e2e2e;
-  padding: 80px 15px;
-  z-index: 45;
+  background: #3f3f3f;
+  padding: 80px 15px 15px 15px;
+  z-index: 150;
   transition: all 0.5s ease-in-out;
   transform: translateX(-100%);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar.open {
@@ -19,19 +20,19 @@
 }
 
 .sidebar::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de desplazamiento */
+  width: 8px;
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: #2e2e2e; /* Color de fondo de la barra de desplazamiento */
+  background: #2e2e2e;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #252525; /* Color del pulgar de la barra de desplazamiento */
+  background: #252525;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #333333; /* Color del pulgar de la barra de desplazamiento al pasar el cursor */
+  background: #333333;
 }
 
 nav {

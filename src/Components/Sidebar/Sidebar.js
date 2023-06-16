@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
@@ -28,8 +28,15 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
 
+  const [clickedOutside, setClickedOutside] = useState(false);
+
+  const sidebarRef = useRef(null);
+
   const hideSidebar = () => {
-    setShowSideBar(!showSideBar);
+    if (!clickedOutside) {
+      setShowSideBar(!showSideBar);
+    }
+    setClickedOutside(false);
   };
 
   const cookies = new Cookies();
@@ -48,8 +55,23 @@ const Sidebar = () => {
       });
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        // Clicked outside the sidebar, close it
+        setShowSideBar(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setShowSideBar]);
+
   return (
-    <div className={showSideBar ? "sidebar open" : "sidebar"}>
+    <div className={showSideBar ? "sidebar open" : "sidebar"} ref={sidebarRef}>
       <UserCard />
       <nav>
         <ul>

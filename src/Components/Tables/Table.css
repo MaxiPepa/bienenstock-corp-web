@@ -1,5 +1,6 @@
 .table-container {
   width: 100%;
+  max-height: calc(100vh - 360px);
   overflow: auto;
   position: relative;
 }
@@ -40,6 +41,7 @@ thead {
   top: 0;
   background-color: #242424;
   color: #b8b8b8;
+  z-index: 1;
 }
 
 tbody {
@@ -63,6 +65,7 @@ th[data-column="Delete user"],
 th[data-column="Active"],
 th[data-column="Dispatch Status"],
 th[data-column="Income status"],
+th[data-column="Invoice"],
 td[data-column="object"] {
   text-align: center;
 }
@@ -108,4 +111,16 @@ tbody > tr:hover {
 
 .pending-icon {
   color: #9c9a00;
+}
+
+@media (1024px <= width < 1920px) {
+  table {
+    font-size: 12px;
+  }
+}
+
+@media (width < 768px) {
+  table {
+    font-size: 12px;
+  }
 }

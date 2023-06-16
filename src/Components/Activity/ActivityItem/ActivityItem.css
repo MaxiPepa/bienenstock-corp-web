@@ -10,6 +10,13 @@
   transition: all 0.2s ease-in-out;
 }
 
+.no-activities {
+  width: 100%;
+  background-color: #797a09;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .user-img {
   display: grid;
   place-items: center;
@@ -78,4 +85,108 @@
 
 .activity-item:hover {
   transform: scale(1.02);
+}
+
+@media (1366px <= width < 1920px) {
+  .activity-img-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .user-img > svg {
+    width: 50px;
+    height: 50px;
+  }
+  .activity-info-name {
+    font-size: 1rem;
+  }
+  .activity-info-description {
+    font-size: 0.9rem;
+  }
+  .activity-item-date > p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (1280px <= width < 1366px) {
+  .activity-item {
+    gap: 20px;
+  }
+  .activity-img-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .user-img > svg {
+    width: 50px;
+    height: 50px;
+  }
+  .activity-info-name {
+    font-size: 1rem;
+  }
+  .activity-info-description {
+    font-size: 0.9rem;
+  }
+  .activity-item-date > p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (1024px <= width < 1280px) {
+  .activity-item {
+    gap: 20px;
+  }
+  .activity-img-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .user-img > svg {
+    width: 40px;
+    height: 40px;
+  }
+  .activity-info-name {
+    font-size: 0.8rem;
+  }
+  .activity-info-description {
+    font-size: 0.7rem;
+  }
+  .activity-item-date > p {
+    font-size: 0.6rem;
+  }
+}
+
+@media (768px <= width < 1024px) {
+  .activity-item {
+    gap: 20px;
+  }
+  .activity-info-name {
+    font-size: 1.4rem;
+  }
+  .activity-info-description {
+    font-size: 1.3rem;
+  }
+  .activity-item-date > p {
+    font-size: 1rem;
+  }
+}
+
+@media (width < 768px) {
+  .activity-item {
+    gap: 20px;
+  }
+  .activity-img-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .user-img > svg {
+    width: 50px;
+    height: 50px;
+  }
+  .activity-info-name {
+    font-size: 1rem;
+  }
+  .activity-info-description {
+    font-size: 0.8rem;
+  }
+  .activity-item-date > p {
+    font-size: 0.6rem;
+  }
 }

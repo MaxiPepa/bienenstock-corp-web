@@ -2,9 +2,9 @@ import React from "react";
 
 import "./Table.css";
 
-const Table = ({ content, thead, mapKeys, entity }) => {
+const Table = ({ content, thead, mapKeys, entity, tableId }) => {
   return (
-    <div className="table-container">
+    <div className="table-container" id={tableId ? tableId : null}>
       <table>
         <thead>
           <tr>
@@ -32,7 +32,7 @@ const Table = ({ content, thead, mapKeys, entity }) => {
             })
           ) : (
             <tr>
-              <td>
+              <td colSpan={thead.length}>
                 <h3 className="no-table-message">No {entity} to show</h3>
               </td>
             </tr>

@@ -31,14 +31,14 @@ const ConfirmationForm = ({
           <button
             type="button"
             onClick={confirmationHandler}
-            className="table-button-style confirm-style"
+            className="table-button-style accept-button"
           >
             Accept
           </button>
           <button
             type="button"
             onClick={closeModalHandler}
-            className="table-button-style cancel-style"
+            className="table-button-style cancel-button"
           >
             Cancel
           </button>

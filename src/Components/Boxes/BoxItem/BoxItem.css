@@ -78,3 +78,49 @@
   font-weight: 700;
   color: #ffffffd7;
 }
+
+@media (1280px <= width < 1920px) {
+  .box {
+    max-width: 300px;
+    height: 150px;
+  }
+  .box-quantity {
+    font-size: 2rem;
+  }
+  .box-title {
+    font-size: 0.9rem;
+  }
+  .box-main-content > svg {
+    width: 60px;
+    height: 60px;
+  }
+  .box-footer > svg {
+    width: 15px;
+  }
+  .box-footer > p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (1024px <= width < 1280px) {
+  .box {
+    max-width: 250px;
+    height: 125px;
+  }
+  .box-quantity {
+    font-size: 1.5rem;
+  }
+  .box-title {
+    font-size: 0.8rem;
+  }
+  .box-main-content > svg {
+    width: 50px;
+    height: 50px;
+  }
+  .box-footer > svg {
+    width: 15px;
+  }
+  .box-footer > p {
+    font-size: 0.7rem;
+  }
+}

@@ -200,7 +200,7 @@ const PurchansingArea = () => {
           <>
             <div className="left-content">
               <h3>Product</h3>
-              <ProductForm setCartData={setCartData} />
+              <ProductForm setCartData={setCartData} cartData={cartData} />
             </div>
             <div className="right-content">
               <h3>Additional Information</h3>

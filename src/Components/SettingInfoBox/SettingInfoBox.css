@@ -156,11 +156,19 @@
   height: 100%;
 }
 
-.input-and-button > button {
-  width: 15%;
+.change-email-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.change-email-buttons > button {
+  width: auto;
   height: 35px;
   border: none;
   border-radius: 10px;
+  padding: 5px;
   background-color: transparent;
   font-weight: 700;
   font-family: "Exo";
@@ -168,8 +176,59 @@
   transition: 0.3s;
 }
 
-.input-and-button > button:hover {
+.change-email-buttons > button:hover {
   transform: scale(1.2);
   background-color: rgba(0, 0, 0, 0.05);
   cursor: pointer;
+}
+
+@media (768px <= width < 1024px) {
+  .basic-settings-img-container {
+    width: 100%;
+  }
+
+  .basic-settings-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .basic-settings-avatar > svg {
+    font-size: 200px;
+  }
+
+  .basic-settings-inputs {
+    width: 100%;
+  }
+}
+
+@media (width < 768px) {
+  .basic-settings-img-container {
+    width: 100%;
+  }
+
+  .basic-settings-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .basic-settings-avatar > svg {
+    font-size: 150px;
+  }
+
+  .basic-settings-avatar > button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .basic-settings-avatar > button > svg {
+    font-size: 30px;
+  }
+
+  .basic-settings-inputs {
+    width: 100%;
+  }
+  .input-and-button {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }

@@ -19,11 +19,12 @@ const SettingInfoBox = () => {
   const { setAlert } = useContext(StatesContext);
 
   const [editButton, setEditButton] = useState(true);
+  const [cancelButton, setCancelButton] = useState(false);
 
   const compressImg = (img) => {
     const canvas = document.createElement("canvas");
-    const maxWidth = 800; // Tamaño máximo deseado para el ancho de la imagen
-    const maxHeight = 800; // Tamaño máximo deseado para la altura de la imagen
+    const maxWidth = 800;
+    const maxHeight = 800;
     let width = img.width;
     let height = img.height;
 
@@ -104,6 +105,7 @@ const SettingInfoBox = () => {
         ...prevState,
         email: data.email,
       }));
+      changeEmailButtonsHandler();
     });
   };
 
@@ -118,6 +120,11 @@ const SettingInfoBox = () => {
       default:
         return "You must enter a valid email address";
     }
+  };
+
+  const changeEmailButtonsHandler = () => {
+    setEditButton(!editButton);
+    setCancelButton(!cancelButton);
   };
 
   return (
@@ -185,13 +192,20 @@ const SettingInfoBox = () => {
                     pattern: /\S+@\S+\.\S+/,
                   })}
                 />
-                {editButton ? (
-                  <button type="button" onClick={() => setEditButton(false)}>
-                    Edit
-                  </button>
-                ) : (
-                  <button type="submit">Save</button>
-                )}
+                <div className="change-email-buttons">
+                  {editButton ? (
+                    <button type="button" onClick={changeEmailButtonsHandler}>
+                      Edit
+                    </button>
+                  ) : (
+                    <button type="submit">Save</button>
+                  )}
+                  {cancelButton && (
+                    <button type="button" onClick={changeEmailButtonsHandler}>
+                      cancel
+                    </button>
+                  )}
+                </div>
               </div>
               {errors.Email && (
                 <p className="error-input-message">

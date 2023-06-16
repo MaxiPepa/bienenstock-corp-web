@@ -148,3 +148,32 @@
   cursor: pointer;
   color: var(--c-color-1);
 }
+
+@media (768px <= width < 1024px) {
+  .login-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .left-login-container {
+    width: 90%;
+  }
+  .right-login-container {
+    width: 50%;
+  }
+}
+
+@media (width < 768px) {
+  .login-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .left-login-container {
+    width: 90%;
+  }
+  .left-login-container > h2 {
+    font-size: 35px;
+  }
+  .right-login-container {
+    width: 80%;
+  }
+}

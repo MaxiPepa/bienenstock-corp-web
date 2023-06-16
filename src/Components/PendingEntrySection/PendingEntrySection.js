@@ -8,6 +8,8 @@ import { UserContext, APIContext, StatesContext } from "Contexts";
 import { useStorageValidations, useProductsValidation } from "Hooks";
 import { AddRoundedIcon } from "Assets/Icons";
 
+import "../PendingDispatchSection/PendingDispatchSection.css";
+
 const PendingEntrySection = ({ reload }) => {
   const {
     register,
@@ -121,6 +123,7 @@ const PendingEntrySection = ({ reload }) => {
           "confirmButton",
         ]}
         content={pendingEntry}
+        tableId={"pending-products-table"}
         entity="pending products entry"
       />
 
@@ -135,18 +138,18 @@ const PendingEntrySection = ({ reload }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Table
               thead={[
+                userData.userType === ROLES.DEPOSITOR && "Expiration",
                 "Product Code",
                 "Name",
                 "Quantity",
                 "Unit Price",
-                userData.userType === ROLES.DEPOSITOR && "Expiration",
               ]}
               mapKeys={[
+                userData.userType === ROLES.DEPOSITOR && "expiration",
                 "productCode",
                 "name",
                 "quantity",
                 "unitPrice",
-                userData.userType === ROLES.DEPOSITOR && "expiration",
               ]}
               content={productsById}
               entity="product"

@@ -35,6 +35,7 @@ const PendingDispatchSection = ({ reload }) => {
         data.sales.map((r) => ({
           saleId: "#" + r.saleId,
           userFullName: r.userFullName,
+          businessName: r.bill.businessName,
           totalPrice: "$" + r.totalPrice,
           date: parsingDateTime(r.date),
           confirmButton: (
@@ -73,6 +74,7 @@ const PendingDispatchSection = ({ reload }) => {
         thead={[
           "ID",
           "Seller",
+          "Business Name",
           "Total Price",
           "Sale Date",
           userData.userType === ROLES.DEPOSITOR
@@ -82,11 +84,13 @@ const PendingDispatchSection = ({ reload }) => {
         mapKeys={[
           "saleId",
           "userFullName",
+          "businessName",
           "totalPrice",
           "date",
           "confirmButton",
         ]}
         content={pendingDispatch}
+        tableId={"pending-products-table"}
         entity="pending products entry"
       />
 

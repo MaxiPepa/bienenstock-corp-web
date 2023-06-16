@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 700;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
@@ -85,5 +85,31 @@
 
   50% {
     transform: scale(1.2, 1);
+  }
+}
+
+@media (1024px <= width < 1920px) {
+  .loader {
+    width: 70px;
+    height: 70px;
+  }
+
+  .loader:before {
+    width: 70px;
+    height: 5px;
+    top: 80px;
+  }
+}
+
+@media (width < 768px) {
+  .loader {
+    width: 50px;
+    height: 50px;
+  }
+
+  .loader:before {
+    width: 50px;
+    height: 5px;
+    top: 60px;
   }
 }

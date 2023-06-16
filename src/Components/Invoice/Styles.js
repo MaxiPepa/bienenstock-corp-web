@@ -1,12 +1,12 @@
 import { StyleSheet } from "@react-pdf/renderer";
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    padding: 20,
   },
   invoiceContainer: {
     borderRadius: 20,
     fontFamily: "Helvetica",
-    height: "90vh",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
   },
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   sectorInfoInvoice: {
     height: "16.5vh",
     backgroundColor: "#1f1f1f",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
   },
   relativeInfoInvoice: {
     display: "flex",
@@ -124,9 +124,9 @@ const styles = StyleSheet.create({
     gap: 20,
     color: "white",
     backgroundColor: "#1f1f1f",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    paddingRight:15,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    paddingRight: 15,
   },
 });
 

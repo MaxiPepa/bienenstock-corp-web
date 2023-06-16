@@ -8,12 +8,9 @@ const Header = () => {
   return (
     <header>
       <BurgerButton />
-      <a
-        href="https://github.com/MaxiPepa/bienenstock-corp-web"
-        target="_blanck"
-      >
+      <p>
         Bienen<span>stock</span> Corp.
-      </a>
+      </p>
     </header>
   );
 };

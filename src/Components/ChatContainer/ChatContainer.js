@@ -3,9 +3,11 @@ import Cookies from "universal-cookie";
 
 import { parsingDateTime } from "Assets/Parsing";
 
-import { Button, ChatComponent } from "Components";
+import { Button } from "Components";
 import { APIContext, UserContext, ReaderContext } from "Contexts";
 import { QuestionAnswerIcon } from "Assets/Icons";
+
+import ChatComponent from "./ChatComponent/ChatComponent";
 
 import "./ChatContainer.css";
 

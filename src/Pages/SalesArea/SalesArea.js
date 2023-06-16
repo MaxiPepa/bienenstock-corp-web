@@ -67,13 +67,16 @@ const SalesArea = () => {
     [setShowModal]
   );
 
-  const openPdfInvoiceModal = useCallback((objetInvoiceData) => {
-    setInvoiceData(objetInvoiceData);
-    setShowModal(true);
-    setShowPdfModal(true);
-    setShowCartModal(false);
-    setShowInputsModal(false);
-  },[setShowModal]);
+  const openPdfInvoiceModal = useCallback(
+    (objetInvoiceData) => {
+      setInvoiceData(objetInvoiceData);
+      setShowModal(true);
+      setShowPdfModal(true);
+      setShowCartModal(false);
+      setShowInputsModal(false);
+    },
+    [setShowModal]
+  );
 
   const getSaleHistory = useCallback(() => {
     get("sale/getSales").then((data) => {
@@ -115,6 +118,15 @@ const SalesArea = () => {
               buttonIcon={<VisibilityIcon />}
             />
           ),
+          invoice: (
+            <Button
+              buttonIcon={<PictureAsPdfRoundedIcon />}
+              styles={"table-button-style invoice-style"}
+              buttonFunction={() => {
+                openPdfInvoiceModal(r);
+              }}
+            />
+          ),
           cancel: !r.dispatched &&
             userData.userType === ROLES.SELLER &&
             !r.cancelled && (
@@ -126,16 +138,6 @@ const SalesArea = () => {
                 buttonIcon={<RemoveShoppingCartRoundedIcon />}
               />
             ),
-          invoice:
-            userData.userType === ROLES.SELLER ? (
-              <Button
-                buttonIcon={<PictureAsPdfRoundedIcon />}
-                styles={"table-button-style invoice-style"}
-                buttonFunction={() => {
-                  openPdfInvoiceModal(r);
-                }}
-              />
-            ) : null,
         }))
       );
     });
@@ -202,8 +204,8 @@ const SalesArea = () => {
           "Dispatch Status",
           "DispatchDate",
           "Details",
+          "Invoice",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
-          userData.userType === ROLES.SELLER ? "Invoice" : null,
         ]}
         mapKeys={[
           "saleId",
@@ -213,8 +215,8 @@ const SalesArea = () => {
           "status",
           "dispatchDate",
           "details",
-          "cancel",
           "invoice",
+          "cancel",
         ]}
         content={saleHistory}
         entity={"sales"}
@@ -257,7 +259,10 @@ const SalesArea = () => {
           />
         ) : showPdfModal ? (
           <>
-            <PDFViewer width={"100%"} height={"1000"}>
+            <PDFViewer
+              width={"100%"}
+              height={(window.innerHeight - 300).toString()}
+            >
               <Invoice data={invoiceData} />
             </PDFViewer>
           </>

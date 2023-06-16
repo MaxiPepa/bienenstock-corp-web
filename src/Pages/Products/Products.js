@@ -5,6 +5,8 @@ import { parsingDateTime } from "Assets/Parsing";
 import { Table } from "Components";
 import { APIContext, ReaderContext } from "Contexts";
 
+import "./Products.css";
+
 const Products = () => {
   const { get } = useContext(APIContext);
   const { startPageConnection, stopPageConnection } = useContext(ReaderContext);

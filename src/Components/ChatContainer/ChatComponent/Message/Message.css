@@ -123,3 +123,24 @@
   font-size: 0.8rem;
   font-weight: 400;
 }
+
+@media (1024px <= width < 1920px) {
+  .message {
+    max-width: 85%;
+  }
+
+  .message-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (width < 768px) {
+  .message {
+    max-width: 95%;
+    padding: 5px 0;
+  }
+
+  .message-text {
+    font-size: 0.9rem;
+  }
+}

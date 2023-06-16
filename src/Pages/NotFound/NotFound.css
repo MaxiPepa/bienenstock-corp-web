@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
 }
 
 .page-not-found > h2 {
@@ -37,4 +38,18 @@
   background-color: var(--c-color-1);
   color: var(--c-color-2);
   cursor: pointer;
+}
+
+@media (width < 768px) {
+  .page-not-found {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .page-not-found > h2 {
+    font-size: 4rem;
+  }
+  .page-not-found > h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 }

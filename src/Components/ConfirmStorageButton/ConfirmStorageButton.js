@@ -20,11 +20,6 @@ const ConfirmStorageButton = ({
   const confirmStorageProduct = () => {
     setProductsById(
       products.map((p) => ({
-        productId: p.productId,
-        productCode: "#" + p.productCode,
-        name: p.name,
-        quantity: p.quantity,
-        unitPrice: "$" + p.unitPrice,
         expiration: role === ROLES.DEPOSITOR && showExpiration && (
           <ExpirationInput
             register={register}
@@ -32,6 +27,11 @@ const ConfirmStorageButton = ({
             resetField={resetField}
           />
         ),
+        productId: p.productId,
+        productCode: "#" + p.productCode,
+        name: p.name,
+        quantity: p.quantity,
+        unitPrice: "$" + p.unitPrice,
       }))
     );
     setShowModal(true);

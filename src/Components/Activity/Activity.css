@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 100%;
+  height: auto;
+  max-height: 100vh;
   padding: 20px;
   gap: 20px;
 }
@@ -41,4 +42,42 @@
 
 .activity-container {
   width: 100%;
+}
+
+@media (width > 2510px) {
+  .activities-container {
+    max-height: calc(100vh - 260px);
+  }
+}
+
+@media (1920px <= width < 2510px) {
+  .activities-container {
+    max-height: calc(100vh - 120px);
+  }
+}
+
+@media (1366px <= width < 1920px) {
+  .activities-container {
+    max-height: calc(100vh + 80px);
+  }
+}
+
+@media (1024px <= width < 1280px) {
+  .activities-container {
+    max-height: calc(100vh - 100px);
+  }
+}
+
+@media (768px <= width < 1024px) {
+  .activities-container {
+    max-height: calc(100vh - 260px);
+    width: 100%;
+  }
+}
+
+@media (width < 768px) {
+  .activities-container {
+    max-height: calc(100vh - 180px);
+    width: 100%;
+  }
 }
