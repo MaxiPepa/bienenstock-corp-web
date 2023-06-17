@@ -9,10 +9,15 @@
 }
 
 .charts{
+    display: flex;
     color:rgb(0, 0, 0);
-    width: 70%;
+}
+
+.analyst-card{
+    margin-right:1%;
 }
 
 .lineChart {
+    width: 90%;
     margin: 25px 5px 5px 0px;
 }

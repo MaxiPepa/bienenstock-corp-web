@@ -30,6 +30,7 @@ import ConfirmStorageButton from "./ConfirmStorageButton/ConfirmStorageButton";
 import UserModifyForm from "./UsersForm/UserModifyForm";
 import Invoice from "./Invoice/Invoice";
 import LineCharts from "./Charts/LineCharts";
+import Bars from "./Charts/BarCharts";
 
 export {
   Alert,
@@ -63,5 +64,6 @@ export {
   ConfirmStorageButton,
   UserModifyForm,
   Invoice,
-  LineCharts
+  LineCharts,
+  Bars
 };
