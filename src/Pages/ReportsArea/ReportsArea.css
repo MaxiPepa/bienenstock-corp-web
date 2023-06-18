@@ -10,7 +10,11 @@
 
 .charts{
     display: flex;
-    color:rgb(0, 0, 0);
+}
+
+.analyst-boxes{
+    display: flex;
+    margin-bottom: 1%;
 }
 
 .analyst-card{
@@ -18,6 +22,6 @@
 }
 
 .lineChart {
-    width: 90%;
+    width: 80%;
     margin: 25px 5px 5px 0px;
 }

@@ -100,6 +100,8 @@ const ReportsArea = () => {
     return {dates,quantity}
   }
 
+  console.log(setBars())
+
   return (
     <div>
       <h2 className="area-title">ReportsArea</h2>
@@ -120,12 +122,16 @@ const ReportsArea = () => {
             <hr></hr>
             <Bars values={setBars()}/>
           </div>
-          <div className="analyst-card">
-            <BoxItem quantity={sales.length} title="Total completed Sales"  color="green" />
-            <BoxItem quantity={salesCancelled} title="Total cancelled Sales"  color="grey" />
-          </div>
-          <div className="analyst-card">
-            <BoxItem quantity={"$" + totalIncome} title="sales revenue"  color="green" />
+          <div>
+            <div className="analyst-boxes">
+              <div className="analyst-card">
+                <BoxItem quantity={sales.length} title="Total completed Sales"  color="rgba(40, 205, 54, 0.738)" />
+              </div>
+              <div className="analyst-card">
+                <BoxItem quantity={salesCancelled} title="Total cancelled Sales"  color="rgba(13, 13, 13, 0.699)" />
+              </div>
+            </div>
+            <BoxItem quantity={"$" + totalIncome} title="sales revenue"  color="rgba(0, 103, 199, 0.699)" />
           </div>
         </div>
         <div>
