@@ -1,16 +1,20 @@
 import { useContext,useCallback,useEffect,useState } from "react";
+import { Button, LineCharts,Bars } from "Components";
+import { DateRangePicker } from 'react-date-range';
+
+import BoxItem from "Components/Boxes/BoxItem/BoxItem";
 
 import { APIContext } from "Contexts";
 
-import { Button, LineCharts, Table,Bars } from "Components";
 
 import  "./ReportsArea.css";
-import BoxItem from "Components/Boxes/BoxItem/BoxItem";
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const ReportsArea = () => {
 
+  const [dates,setDates] = useState([{startDate:new Date("2023-01-01") ,endDate: new Date()}]);
   const [sales,setSales] = useState([]);
-  const [products,setProducts] = useState();
   const [purchases,setPurchases] = useState([]);
   const [totalIncome,setTotalIncome] = useState([]);
   const [changeChart,setChangeChart] = useState(false)
@@ -26,7 +30,6 @@ const ReportsArea = () => {
 
   const getSales = useCallback(()=>{
     get("sale/getSales").then((data) => {
-      console.log(data.sales)
       setSalesCancelled(data.sales.filter((r)=>r.cancelled === true).length)
       setSales(data.sales.filter((r)=> r.dispatched === true ))
       setTotalIncome(data.sales.reduce((sum, obj) => sum + obj.totalPrice, 0)); 
@@ -54,21 +57,10 @@ const ReportsArea = () => {
     });
   },[get]);
 
-  const getProducts = useCallback(() => {
-    get("product/getProductsStock").then((data) => {
-      setProducts(
-        data.products.map((res) => ({
-          name: res.name,
-        }))
-      );
-    });
-  }, [get]);
-
   useEffect(() => {
-    getProducts();
     getPurchases();
     getSales()
-  }, [getProducts,getPurchases,getSales]);
+  }, [getPurchases,getSales]);
 
   const changeChartHandler = () => {
     changeChart? setChangeChart(false) : setChangeChart(true) 
@@ -100,25 +92,28 @@ const ReportsArea = () => {
     return {dates,quantity}
   }
 
-  console.log(setBars())
+  const handleSelect = (date) => {
+    setDates(date.selection);
+  };
+
+  const selectionRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  }
 
   return (
     <div>
       <h2 className="area-title">ReportsArea</h2>
       <div className="analyst-div">
-        {/* <div className="analyst-table">
-          <h3>List products</h3>
-          <Table
-            thead={["name"]}
-            mapKeys={["name"]}
-            content={products}
-            entity="products"
-          />
-        </div> */}
         <div className="charts">          
           <div className="lineChart">
             <h2>{changeChart ? "Sales" : "Purchase"} evolution</h2>
-            <LineCharts axes={changeChart ? extracSalesData() : extracPurchasestData() } title={changeChart ? "Sales" : "Purchase"}/>
+            <DateRangePicker
+              ranges={[selectionRange]}
+              onChange={handleSelect}
+            />
+            <LineCharts axes={changeChart ? extracSalesData() : extracPurchasestData() } title={changeChart ? "Sales" : "Purchase"} dates={dates}/>
             <hr></hr>
             <Bars values={setBars()}/>
           </div>
