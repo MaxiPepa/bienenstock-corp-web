@@ -1,4 +1,4 @@
-import { useState,useEffect,useCallback } from 'react';
+import { optionsBarChart } from 'Assets/Constants';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -23,54 +23,28 @@ ChartJS.register(
     Filler
 );
 
-const label = ["Sales  -  Purchases"];
-var beneficios = [72];
-
-
-
-const Bars = ({values}) => {
+//AGREGAR A PROPS TITLE O LABEL
+const Bars = ({values,label}) => {
     
-    const [bars,setBars] = useState([]);
-    
-    const options = {
-        responsive : true,
-        animation : true,
-        plugins : {
-            legend : {display : false}
-        },
-        scales : {
-            y : {max : 100},
-            x: {ticks: { color: 'rgba(0, 220, 195)'}}
-        }
-    };
-
     const data = {
-        labels: label,
+        labels: ["Sales  -  Purchases"],
         datasets: [
             {
                 label: 'sales',
-                data: [bars.sales],
+                data: [values.sales],
                 backgroundColor: 'rgba(0, 220, 195, 0.5)'
             },        
             {
                 label: 'purchases',
-                data: [bars.purchases],
+                data: [values.purchases],
                 backgroundColor: 'rgba(0, 2, 195, 0.5)'
             }
-
         ]
     };
-    const valuesChart = useCallback(()=>{
-        setBars(values);
-    },[setBars])
-    
-    useEffect(()=>{
-        valuesChart()
-    },[valuesChart])
 
     return (
         <>
-            <Bar data={data} options={options} />
+            <Bar data={data} options={optionsBarChart} />
         </>
     )
 }

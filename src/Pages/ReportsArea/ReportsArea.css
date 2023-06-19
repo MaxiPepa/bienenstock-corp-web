@@ -1,27 +1,28 @@
 .analyst-div{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.analyst-table{
-    color:white;
-    width: 25%;
-}
-
-.charts{
-    display: flex;
+.lineChart {
+    width: 85%;
+    margin: 25px 5px 5px 0px;
 }
 
 .analyst-boxes{
     display: flex;
-    margin-bottom: 1%;
+    align-items: center;
 }
 
 .analyst-card{
     margin-right:1%;
 }
 
-.lineChart {
-    width: 80%;
-    margin: 25px 5px 5px 0px;
+.barChart{
+    text-align: center;
+    width: 100%;
+}
+
+.rdrDefinedRangesWrapper {
+    display: none;
 }
