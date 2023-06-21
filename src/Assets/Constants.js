@@ -59,7 +59,7 @@ export const NAVIGATIONSLINKS = [
 ];
 
 export const APIURL = {
-  local: "https://localhost:7040/",
+  local: "https://bienenstockcorp.somee.com/",
 };
 
 export const EMAILREGEX = /\S+@\S+\.\S+/;
