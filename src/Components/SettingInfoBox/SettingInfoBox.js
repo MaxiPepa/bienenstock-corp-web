@@ -12,6 +12,7 @@ const SettingInfoBox = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
 
   const { userData, setUserData } = useContext(UserContext);
@@ -45,7 +46,7 @@ const SettingInfoBox = () => {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0, width, height);
 
-    return canvas.toDataURL("image/jpeg", 0.7); // Calidad de compresión ajustable
+    return canvas.toDataURL("image/jpeg", 0.7);
   };
 
   const convert2base64 = (e) => {
@@ -61,7 +62,7 @@ const SettingInfoBox = () => {
           }).then((res) => {
             setAlert({
               show: true,
-              type: "success",
+              type: res.success ? "success" : "error",
               message: res.message,
             });
             setUserData((prevState) => ({
@@ -82,8 +83,8 @@ const SettingInfoBox = () => {
     }).then((res) => {
       setAlert({
         show: true,
-        type: "success",
         message: res.message,
+        type: res.success ? "success" : "error",
       });
       setUserData((prevState) => ({
         ...prevState,
@@ -96,16 +97,17 @@ const SettingInfoBox = () => {
     post("user/changeEmail", data).then((res) => {
       setAlert({
         show: true,
-        type: "success",
         message: res.message,
+        type: res.success ? "success" : "error",
       });
-      setEditButton(true);
-      reset();
-      setUserData((prevState) => ({
-        ...prevState,
-        email: data.email,
-      }));
-      changeEmailButtonsHandler();
+      if (res.success) {
+        reset();
+        setUserData((prevState) => ({
+          ...prevState,
+          email: data.email,
+        }));
+        changeEmailButtonsHandler();
+      }
     });
   };
 
@@ -125,6 +127,7 @@ const SettingInfoBox = () => {
   const changeEmailButtonsHandler = () => {
     setEditButton(!editButton);
     setCancelButton(!cancelButton);
+    setValue("email", "");
   };
 
   return (

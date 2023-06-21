@@ -72,7 +72,7 @@ export const arrayPurchaseProductInputs = [
     labelName: "Product code: ",
     styles: "input toUppercase",
     type: "text",
-    maxLength: 10,
+    maxLength: "10",
     placeholder: "XXXXXXXXXX",
     formData: "productCode",
   },
@@ -80,7 +80,7 @@ export const arrayPurchaseProductInputs = [
     labelName: "Product name: ",
     styles: "input",
     type: "text",
-    maxLength: 50,
+    maxLength: "50",
     placeholder: "Laptop, tablet, phone...",
     formData: "name",
   },
@@ -88,7 +88,8 @@ export const arrayPurchaseProductInputs = [
     labelName: "Product Quantity: ",
     styles: "input",
     type: "number",
-    min: 1,
+    step: "1",
+    min: "1",
     placeholder: "XXX",
     formData: "quantity",
   },
@@ -96,8 +97,8 @@ export const arrayPurchaseProductInputs = [
     labelName: "Product unit price: ",
     styles: "input",
     type: "number",
-    step: 0.01,
-    min: 0.01,
+    step: "0.01",
+    min: "0.01",
     placeholder: "$X.XXX,XX",
     formData: "unitPrice",
   },
@@ -286,5 +287,3 @@ export const paymentTypeTranslator = (type) => {
       break;
   }
 };
-
-

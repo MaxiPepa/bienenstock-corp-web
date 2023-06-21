@@ -4,8 +4,7 @@ import { APIURL } from "./Constants";
 export const listen = (onUpdate, hubUrl, hubCode, actionCode) => {
   const connection = new signalr.HubConnectionBuilder()
     .withUrl(`${APIURL.local}${hubUrl}?hubCode=${hubCode}`, {
-      skipNegotiation: true,
-      transport: signalr.HttpTransportType.WebSockets,
+      transport: signalr.HttpTransportType.LongPolling,
     })
     .withAutomaticReconnect()
     .build();

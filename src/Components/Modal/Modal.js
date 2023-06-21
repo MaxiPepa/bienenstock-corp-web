@@ -9,6 +9,7 @@ import "../Input/Input.css";
 
 const Modal = ({
   modalTitle,
+  modalId,
   setShowCartModal,
   setShowInputsModal,
   setShowPdfModal,
@@ -41,7 +42,7 @@ const Modal = ({
     <>
       {showModal ? (
         <div className="modal">
-          <div className="modal-content">
+          <div className="modal-content" id={modalId ? modalId : null}>
             <div className="modal-header">
               <h2>{modalTitle}</h2>
               <Button

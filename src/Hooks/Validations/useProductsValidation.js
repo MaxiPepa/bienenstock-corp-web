@@ -26,6 +26,16 @@ export const useProductsValidation = () => {
     return true;
   };
 
+  const validateInteger = (value) => {
+    const numberRegex = /^\d+$/;
+
+    if (numberRegex.test(value)) {
+      return true;
+    } else {
+      return "The value must be a valid number";
+    }
+  };
+
   const requiredValidations = (formData) => {
     switch (formData) {
       case "productCode":
@@ -38,7 +48,7 @@ export const useProductsValidation = () => {
         return { required: true, validate: validatePrice };
 
       case "quantity":
-        return { required: true, min: 1 };
+        return { required: true, min: 1, validate: validateInteger };
 
       case "supplier":
         return { required: true, maxLength: 100 };

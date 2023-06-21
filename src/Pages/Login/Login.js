@@ -72,8 +72,8 @@ const Login = () => {
     <div className="login-page">
       <div className="login-container">
         <div className="left-login-container">
-          <h2>
-            Bienen<span>stock</span> Corp
+          <h2 className="title">
+            Bienen<span>stock</span> Corp.
           </h2>
         </div>
         <div className="right-login-container">
@@ -84,6 +84,7 @@ const Login = () => {
                 <input
                   type="text"
                   placeholder="Email"
+                  className={errors.email ? "error-input" : ""}
                   {...register("email", {
                     required: true,
                     pattern: EMAILREGEX,
@@ -107,6 +108,7 @@ const Login = () => {
                 <input
                   type={visibilityPassword}
                   placeholder="Password"
+                  className={errors.password ? "error-input" : ""}
                   {...register("password", {
                     required: true,
                     pattern: PASSWORDREGEX,

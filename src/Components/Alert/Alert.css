@@ -1,24 +1,39 @@
-.alert-box {
+.alert-container {
   position: fixed;
-  top: 50px;
-  right: 60px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 600;
+  display: flex;
+  justify-content: center;
+}
+
+.alert-box {
+  position: relative;
+  top: 0;
   width: auto;
-  height: 50px;
+  max-width: 90%;
+  height: auto;
   border-radius: 5px;
   padding: 10px 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-  z-index: 600;
+  z-index: 610;
+  display: grid;
+  place-items: center;
+  animation: slide-down 0.6s ease-in-out forwards;
 }
 
-@keyframes fade-in {
+@keyframes slide-down {
   0% {
     opacity: 0;
     visibility: hidden;
+    top: 0;
   }
   100% {
     opacity: 1;
     visibility: visible;
+    top: 50px;
   }
 }
 
@@ -37,16 +52,18 @@
   background-color: transparent;
   border: none;
   outline: none;
+  z-index: 620;
   transition: all 0.2s ease-in-out;
 }
 
 .alert-content > svg {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
+  z-index: 620;
 }
 
 .alert-content > p {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: #333c43;
 }
@@ -94,4 +111,26 @@
 .close-alert-button:hover {
   color: #990e0e !important;
   transform: scale(1.1);
+}
+
+@media (1024px <= width < 1920px) {
+  .alert-content > svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .alert-content > p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (width < 768px) {
+  .alert-content > svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .alert-content > p {
+    font-size: 1.2rem;
+  }
 }
