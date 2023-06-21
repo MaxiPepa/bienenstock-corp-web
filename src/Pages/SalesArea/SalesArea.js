@@ -3,7 +3,7 @@ import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import { isMobile } from "react-device-detect";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDateTime } from "Assets/Parsing";
+import { parsingDate, parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -49,7 +49,7 @@ const SalesArea = () => {
   const [productsDetails, setProductsDetails] = useState([]);
   const [invoiceData, setInvoiceData] = useState([]);
   const [fileNameInvoice, setFileNameInvoice] = useState();
-  
+
   const openSaleHistoryCartModal = useCallback(
     (products) => {
       setProductsDetails(products);
@@ -72,7 +72,12 @@ const SalesArea = () => {
   const openPdfInvoiceModal = useCallback(
     (objetInvoiceData) => {
       setInvoiceData(objetInvoiceData);
-      setFileNameInvoice("invoice " + objetInvoiceData.saleId.toString().padStart(8, "0"))
+      setFileNameInvoice(
+        "invoice-" +
+          objetInvoiceData.saleId.toString().padStart(8, "0") +
+          "-" +
+          parsingDate(objetInvoiceData.date)
+      );
       setShowModal(true);
       setShowPdfModal(true);
       setShowCartModal(false);
@@ -187,7 +192,7 @@ const SalesArea = () => {
       });
     });
   };
-  
+
   return (
     <div className="area-container">
       <div className="area-header">
