@@ -5,10 +5,12 @@ import Select from "react-select";
 
 import { selectStyles } from "Assets/Constants";
 import { APIContext } from "Contexts";
+import { useProductsValidation } from "Hooks";
 import { ShoppingCartRoundedIcon } from "Assets/Icons";
 
 const SaleProductForm = ({ setCartData }) => {
   const { get } = useContext(APIContext);
+  const { requiredValidations, errorMessages } = useProductsValidation();
 
   const [arrayStockProduct, setArrayStockProduct] = useState([]);
   const [currentStock, setCurrentStock] = useState(null);
@@ -102,23 +104,12 @@ const SaleProductForm = ({ setCartData }) => {
           min={1}
           max={currentStock ? currentStock : null}
           placeholder={currentStock ? "Máx. " + currentStock : null}
-          {...register("quantity", {
-            required: true,
-            min: 1,
-            max: currentStock,
-          })}
+          {...register("quantity", requiredValidations("quantity"))}
         />
-        {errors.quantity?.type === "required" && (
-          <p className="error-input-message">This field is required.</p>
-        )}
-        {errors.quantity?.type === "min" && (
+
+        {errors.quantity && (
           <p className="error-input-message">
-            The value must be greater than 0.
-          </p>
-        )}
-        {errors.quantity?.type === "max" && (
-          <p className="error-input-message">
-            The quantity entered cannot exceed the stock of the product.
+            {errorMessages(errors.quantity)}
           </p>
         )}
 
@@ -128,14 +119,11 @@ const SaleProductForm = ({ setCartData }) => {
           step={0.01}
           min={0.01}
           placeholder="$X.XXX,XX"
-          {...register("unitPrice", { required: true, min: 0.01 })}
+          {...register("unitPrice", requiredValidations("unitPrice"))}
         />
-        {errors.unitPrice?.type === "required" && (
-          <p className="error-input-message">This field is required.</p>
-        )}
-        {errors.unitPrice?.type === "required" && (
+        {errors.unitPrice && (
           <p className="error-input-message">
-            The value must be greater than 0.01.
+            {errorMessages(errors.unitPrice)}
           </p>
         )}
       </div>

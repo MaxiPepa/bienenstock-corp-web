@@ -49,11 +49,11 @@ const AdminMenu = () => {
 
   const activateUser = useCallback(
     (id) => {
-      post("user/activateUser", { userId: id }).then((rs) => {
+      post("user/activateUser", { userId: id }).then((res) => {
         setAlert({
           show: true,
-          message: rs.message,
-          type: rs.success ? "success" : "error",
+          message: res.message,
+          type: res.success ? "success" : "error",
         });
       });
     },
@@ -93,7 +93,7 @@ const AdminMenu = () => {
                 ...auxUser,
                 active: (
                   <Button
-                    styles={"table-button-style info-style"}
+                    styles={"table-button-style confirm-style"}
                     buttonFunction={() => activateUser(r.userId)}
                     buttonIcon={<ArrowCircleUpIcon />}
                   />
@@ -116,11 +116,11 @@ const AdminMenu = () => {
   }, [connection]);
 
   const deleteUser = () => {
-    post("user/deleteUser", { userId: userId }).then((rs) => {
+    post("user/deleteUser", { userId: userId }).then((res) => {
       setAlert({
         show: true,
-        message: rs.message,
-        type: rs.success ? "success" : "error",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
     });
   };
@@ -145,31 +145,22 @@ const AdminMenu = () => {
       <Table
         content={users.filter((u) => u.edit)}
         thead={[
-          "ID",
           "Name",
           "Last Name",
           "Email",
-          "UserType",
+          "User Type",
           "Modify user",
           "Delete user",
         ]}
-        mapKeys={[
-          "userId",
-          "name",
-          "lastName",
-          "email",
-          "userType",
-          "edit",
-          "delete",
-        ]}
+        mapKeys={["name", "lastName", "email", "userType", "edit", "delete"]}
         entity="users"
         tableId={"pending-products-table"}
       />
       <h2>Inactive Users</h2>
       <Table
         content={users.filter((u) => u.active)}
-        thead={["ID", "Name", "Last Name", "Email", "UserType", "Active"]}
-        mapKeys={["userId", "name", "lastName", "email", "userType", "active"]}
+        thead={["Name", "Last Name", "Email", "User Type", "Activate"]}
+        mapKeys={["name", "lastName", "email", "userType", "active"]}
         entity="users inactive"
         tableId={"pending-products-table"}
       />
@@ -181,15 +172,24 @@ const AdminMenu = () => {
             ? "Modify User"
             : "Delete User"
         }
+        modalId={
+          !userModal && !completeInputValue ? "confirmation-modal" : null
+        }
         setUserModal={setUserModal}
         setCompleteInputValue={setCompleteInputValue}
       >
         {userModal ? (
           <UserForm setUserModal={setUserModal} />
         ) : completeInputValue ? (
-          <UserModifyForm user={modifyUser} />
+          <UserModifyForm
+            user={modifyUser}
+            setCompleteInputValue={setCompleteInputValue}
+          />
         ) : (
-          <ConfirmationForm onConfirm={deleteUser} />
+          <ConfirmationForm
+            onConfirm={deleteUser}
+            actionText={"delete this user"}
+          />
         )}
       </Modal>
     </div>

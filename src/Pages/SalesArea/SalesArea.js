@@ -92,6 +92,9 @@ const SalesArea = () => {
             quantity: p.quantity,
             unitPrice: "$" + p.unitPrice,
           })),
+          pending: !r.dispatched && !r.cancelled,
+          cancelled: r.cancelled,
+          completed: r.dispatched && !r.cancelled,
           status: r.dispatched ? (
             <div className="icon-container">
               <CheckIcon className="check-icon status-icon" />
@@ -100,7 +103,7 @@ const SalesArea = () => {
           ) : r.cancelled ? (
             <div className="icon-container">
               <ClearIcon className="nodispatched-icon status-icon" />
-              <div className="tooltip">Canceled</div>
+              <div className="tooltip">Cancelled</div>
             </div>
           ) : (
             <div className="icon-container">
@@ -171,11 +174,11 @@ const SalesArea = () => {
     const rq = {
       saleId: cancelSaleId,
     };
-    post("Sale/CancelSale", rq).then((rs) => {
+    post("Sale/CancelSale", rq).then((res) => {
       setAlert({
         show: true,
-        message: rs.message,
-        type: rs.success ? "success" : "error",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
     });
   };
@@ -202,7 +205,7 @@ const SalesArea = () => {
           "Total Price",
           "Sale Date",
           "Dispatch Status",
-          "DispatchDate",
+          "Dispatch Date",
           "Details",
           "Invoice",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
@@ -227,7 +230,14 @@ const SalesArea = () => {
             ? "New Sale"
             : showCartModal
             ? "Sale Details"
-            : "Invoice"
+            : showPdfModal
+            ? "Invoice"
+            : "Rescind Sale"
+        }
+        modalId={
+          !showInputsModal && !showCartModal && !showPdfModal
+            ? "confirmation-modal"
+            : null
         }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
@@ -267,7 +277,10 @@ const SalesArea = () => {
             </PDFViewer>
           </>
         ) : (
-          <ConfirmationForm onConfirm={cancelSale} />
+          <ConfirmationForm
+            onConfirm={cancelSale}
+            actionText={"rescind this sale"}
+          />
         )}
       </Modal>
     </div>

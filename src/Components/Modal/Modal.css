@@ -166,6 +166,9 @@
   height: auto;
   max-height: 400px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /*
@@ -219,6 +222,10 @@
   100% {
     box-shadow: 0 0 0 0 #da674400;
   }
+}
+
+#confirmation-modal {
+  width: 800px;
 }
 
 @media (768px <= width < 1920px) {

@@ -67,8 +67,11 @@ const PurchansingArea = () => {
           purchaseId: "#" + r.purchaseId,
           userFullName: r.userFullName,
           supplier: r.supplier,
-          totalPrice: "$ " + r.totalPrice,
+          totalPrice: "$" + r.totalPrice,
           date: parsingDateTime(r.date),
+          pending: r.pending,
+          cancelled: r.cancelled,
+          completed: !r.pending && !r.cancelled,
           status: r.pending ? (
             <div className="icon-container">
               <PendingActionsRoundedIcon className="pending-icon status-icon" />
@@ -77,7 +80,7 @@ const PurchansingArea = () => {
           ) : r.cancelled ? (
             <div className="icon-container">
               <ClearIcon className="nodispatched-icon status-icon" />
-              <div className="tooltip">Canceled</div>
+              <div className="tooltip">Cancelled</div>
             </div>
           ) : (
             <div className="icon-container">
@@ -89,7 +92,7 @@ const PurchansingArea = () => {
             productCode: "#" + p.productCode,
             name: p.name,
             quantity: p.quantity,
-            unitPrice: "$ " + p.unitPrice,
+            unitPrice: "$" + p.unitPrice,
           })),
           details: (
             <Button
@@ -136,11 +139,11 @@ const PurchansingArea = () => {
     const rq = {
       purchaseId: cancelPurchaseId,
     };
-    post("purchase/cancelPurchase", rq).then((rs) => {
+    post("purchase/cancelPurchase", rq).then((res) => {
       setAlert({
         show: true,
-        message: rs.message,
-        type: rs.success ? "success" : "error",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
     });
   };
@@ -190,7 +193,10 @@ const PurchansingArea = () => {
             ? "New Purchase"
             : showCartModal
             ? "Purchase Details"
-            : "Cancel Purchase"
+            : "Rescind Purchase"
+        }
+        modalId={
+          !showInputsModal && !showCartModal ? "confirmation-modal" : null
         }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
@@ -220,7 +226,10 @@ const PurchansingArea = () => {
             entity="products"
           />
         ) : (
-          <ConfirmationForm onConfirm={cancelPurchase} />
+          <ConfirmationForm
+            onConfirm={cancelPurchase}
+            actionText={"rescind this purchase"}
+          />
         )}
       </Modal>
     </div>

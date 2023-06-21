@@ -138,18 +138,18 @@ const PendingEntrySection = ({ reload }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Table
               thead={[
-                userData.userType === ROLES.DEPOSITOR && "Expiration",
                 "Product Code",
                 "Name",
                 "Quantity",
                 "Unit Price",
+                userData.userType === ROLES.DEPOSITOR && "Expiration",
               ]}
               mapKeys={[
-                userData.userType === ROLES.DEPOSITOR && "expiration",
                 "productCode",
                 "name",
                 "quantity",
                 "unitPrice",
+                userData.userType === ROLES.DEPOSITOR && "expiration",
               ]}
               content={productsById}
               entity="product"

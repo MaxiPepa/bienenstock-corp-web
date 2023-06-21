@@ -73,10 +73,16 @@ const ProductForm = ({ setCartData, cartData }) => {
               className={input.styles}
               type={input.type}
               placeholder={input.placeholder}
-              step={input.step ? input.step : null}
-              min={input.min ? input.min : null}
-              max={input.max ? input.max : null}
-              maxLength={input.maxLength ? input.maxLength : null}
+              step={
+                input.type === "number" && input.step ? input.step : undefined
+              }
+              min={input.type === "number" && input.min ? input.min : undefined}
+              max={input.type === "number" && input.max ? input.max : undefined}
+              maxLength={
+                input.type === "text" && input.maxLength
+                  ? input.maxLength
+                  : undefined
+              }
               {...registerCart(
                 input.formData,
                 requiredValidations(input.formData)

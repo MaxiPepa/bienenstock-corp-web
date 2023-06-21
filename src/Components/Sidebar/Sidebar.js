@@ -58,7 +58,6 @@ const Sidebar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        // Clicked outside the sidebar, close it
         setShowSideBar(false);
       }
     };
