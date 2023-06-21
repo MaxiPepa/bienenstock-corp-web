@@ -1,8 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import { PDFViewer } from "@react-pdf/renderer";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import { isMobile } from "react-device-detect";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDateTime } from "Assets/Parsing";
+import { parsingDate, parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -47,6 +48,7 @@ const SalesArea = () => {
   const [cancelSaleId, setCancelSaleId] = useState();
   const [productsDetails, setProductsDetails] = useState([]);
   const [invoiceData, setInvoiceData] = useState([]);
+  const [fileNameInvoice, setFileNameInvoice] = useState();
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
@@ -70,6 +72,12 @@ const SalesArea = () => {
   const openPdfInvoiceModal = useCallback(
     (objetInvoiceData) => {
       setInvoiceData(objetInvoiceData);
+      setFileNameInvoice(
+        "invoice-" +
+          objetInvoiceData.saleId.toString().padStart(8, "0") +
+          "-" +
+          parsingDate(objetInvoiceData.date)
+      );
       setShowModal(true);
       setShowPdfModal(true);
       setShowCartModal(false);
@@ -122,13 +130,15 @@ const SalesArea = () => {
             />
           ),
           invoice: (
-            <Button
-              buttonIcon={<PictureAsPdfRoundedIcon />}
-              styles={"table-button-style invoice-style"}
-              buttonFunction={() => {
-                openPdfInvoiceModal(r);
-              }}
-            />
+            <>
+              <Button
+                buttonIcon={<PictureAsPdfRoundedIcon />}
+                styles={"table-button-style invoice-style"}
+                buttonFunction={() => {
+                  openPdfInvoiceModal(r);
+                }}
+              />
+            </>
           ),
           cancel: !r.dispatched &&
             userData.userType === ROLES.SELLER &&
@@ -269,12 +279,24 @@ const SalesArea = () => {
           />
         ) : showPdfModal ? (
           <>
-            <PDFViewer
-              width={"100%"}
-              height={(window.innerHeight - 300).toString()}
-            >
-              <Invoice data={invoiceData} />
-            </PDFViewer>
+            {isMobile ? (
+              <>
+                <h3>You're on a mobile device</h3>
+                <PDFDownloadLink
+                  document={<Invoice data={invoiceData} />}
+                  fileName={fileNameInvoice}
+                >
+                  <button className="area-button">Click to download</button>
+                </PDFDownloadLink>
+              </>
+            ) : (
+              <PDFViewer
+                width={"100%"}
+                height={(window.innerHeight - 300).toString()}
+              >
+                <Invoice data={invoiceData} />
+              </PDFViewer>
+            )}
           </>
         ) : (
           <ConfirmationForm
