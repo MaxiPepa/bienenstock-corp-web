@@ -80,7 +80,6 @@ const LineCharts = ({axes,title,dates}) => {
   
   useEffect(()=>{
     configureAxes()
-    console.log("loop")
   },[configureAxes])
 
   return (

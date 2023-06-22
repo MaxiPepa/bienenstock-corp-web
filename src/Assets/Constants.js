@@ -297,7 +297,8 @@ export const optionsBarChart = {
   scales : {
       y : {max : 100},
       x: {ticks: { color: 'rgba(0, 220, 195)'}}
-  }
+  },
+  maintainAspectRatio: false,
 };
 
 export const optionsLineChart = {

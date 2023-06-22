@@ -1,28 +1,32 @@
 import { useContext,useCallback,useEffect,useState } from "react";
-import { Button, LineCharts, Bars } from "Components";
+import { Button, LineCharts, Bars,BoxParameters,Table} from "Components";
+import { ArrowCircleUpIcon,ArrowCircleDownIcon, RemoveShoppingCartRoundedIcon, ShoppingCartRoundedIcon, ReceiptRoundedIcon, PriceCheckIcon } from "Assets/Icons";
 import { DateRangePicker } from 'react-date-range';
 
-import BoxItem from "Components/Boxes/BoxItem/BoxItem";
-
 import { APIContext } from "Contexts";
+import { useTopSales } from "../../Hooks/AnalystHooks/useTopSales"
 
 
 import  "./ReportsArea.css";
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 
-//SE AGREGA UN SELECT PARA VISUALIZAR DISTITNOS GRAFICOS
 const ReportsArea = () => {
 
   const [sales,setSales] = useState([]);
   const [purchases,setPurchases] = useState([]);
-  const [totalIncome,setTotalIncome] = useState([]);
   const [changeChart,setChangeChart] = useState(false)
   const [salesCancelled, setSalesCancelled] = useState([]); 
+  const [totalIncomeSales,setTotalIncomeSales] = useState([]);
+  const [changeParameters,setChangeParameters] = useState(true);
+  const [purchasesCancelled,setPurchasesCancelled] = useState([]);
+  const [totalIncomePurchases,setTotalIncomePurchases] = useState([]);
 
   const [endDates,setEndDates] = useState(new Date());
   const [startDates,setStartDates] = useState(new Date());
   const [dates,setDates] = useState({startDate:new Date("2023-01-01") ,endDate: new Date()});
+  
+  const { mostSelledProducts } = useTopSales();
 
   const { get } = useContext(APIContext);
 
@@ -30,13 +34,12 @@ const ReportsArea = () => {
     get("sale/getSales").then((data) => {
       setSalesCancelled(data.sales.filter((r)=>r.cancelled === true).length)
       setSales(data.sales.filter((r)=> r.dispatched === true ))
-      setTotalIncome(data.sales.reduce((sum, obj) => sum + obj.totalPrice, 0)); 
-
+      setTotalIncomeSales(data.sales.reduce((sum, obj) => sum + obj.totalPrice, 0));
     });
   },[get])
  
   const getPurchases = useCallback(()=>{
-    get("purchase/getPurchases").then((data) => {
+    get("purchase/getPurchases").then((data) => {   
       setPurchases(
         data.purchases.map((r) => ({
           purchaseId: "#" + r.purchaseId,
@@ -52,6 +55,8 @@ const ReportsArea = () => {
           }))
         })) 
       )
+      setPurchasesCancelled(data.purchases.filter((r)=>r.cancelled === true).length)
+      setTotalIncomePurchases(data.purchases.reduce((sum, obj) => sum + obj.totalPrice, 0));
     });
   },[get]);
 
@@ -62,6 +67,10 @@ const ReportsArea = () => {
 
   const changeChartHandler = () => {
     changeChart? setChangeChart(false) : setChangeChart(true) 
+  }
+
+  const changeParameterstHandler = () => {
+    changeParameters? setChangeParameters(false) : setChangeParameters(true) 
   }
 
   const extracPurchasestData = () => {
@@ -104,15 +113,22 @@ const ReportsArea = () => {
 
   return (
     <>
+      <div className="buttons-box">
+        <Button 
+          styles="area-button"
+          buttonText={!changeChart ? "Sales" : "Purchase"} 
+          buttonFunction={changeParameters?changeChartHandler:null} 
+        />
+        <Button 
+          styles="area-button"
+          buttonText={changeParameters?"other parameters": "back"} 
+          buttonFunction={changeParameterstHandler} 
+        />
+      </div>
+      { changeParameters?
       <div className="analyst-div">
         <div className="lineChart">
-          <h2>{changeChart ? "Sales" : "Purchase"} evolution</h2>
-          <h3>Change to: </h3>
-          <Button 
-            styles="area-button"
-            buttonText={!changeChart ? "Sales" : "Purchase"} 
-            buttonFunction={changeChartHandler} 
-          />
+          <h2>{changeChart ? "Sales" : "Purchase"} evolution (time / units)</h2>
           <LineCharts axes={changeChart ? extracSalesData() : extracPurchasestData() } title={changeChart ? "Sales" : "Purchase"} dates={dates}/>
         </div>
         <div>
@@ -122,33 +138,58 @@ const ReportsArea = () => {
             ranges={[selectionRange]}
             onChange={handleSelect}
           />
-          <select>
-            <option value="">Purchases</option>
-            <option value="">Sales</option>
-            <option value="">Sales/Purchases</option>
-          </select>
         </div>
-      </div>
-      <div className="analyst-boxes">
-          <div className="analyst-card">
-            <BoxItem quantity={sales.length} title="Total completed Sales"  color="rgba(40, 205, 54, 0.738)" />
-          </div>
-          <div className="analyst-card">
-            <BoxItem quantity={salesCancelled} title="Total cancelled Sales"  color="rgba(13, 13, 13, 0.699)" />
-          </div>
-          <div className="analyst-card">
-            <BoxItem quantity={"$" + totalIncome} title="sales revenue"  color="rgba(0, 103, 199, 0.699)" />
-          </div>
-      </div>
-      <br></br>
-      <hr></hr>
-      <div className="analyst-div">
+      </div> :
+      <div className="analyst-div-2">
         <div className="barChart">
-          <h2>SALES vs PURCHAES</h2>
-          <Bars values={{ sales: sales.length,purchases: purchases.length}}
+          <h4>Sales vs Purchases</h4>
+          <Bars values={{ sales: sales.length,purchases: purchases.length}}/>
+        </div>
+        <div>
+          <h4>Most selled products</h4>
+          <Table         
+            content={mostSelledProducts(sales).map((u) => u)}
+            thead={[
+              "Product name",
+              "Quantity"            
+            ]}
+            mapKeys={["name","quantity"]}
+            entity="products"
+            tableId={"pending-products-table"}
           />
         </div>
+        <div>
+          <div className="content-boxes">
+              <h4>Sales parameters</h4>
+              <div className="analyst-boxes">
+                <div className="analyst-card">
+                  <BoxParameters quantity={sales.length} title="Total completed Sales" color="40, 205, 54" icon={<PriceCheckIcon/>}/>
+                </div>
+                <div className="analyst-card">
+                  <BoxParameters quantity={salesCancelled} title="Total cancelled Sales"  color="255, 156, 0" icon={<ReceiptRoundedIcon/>}/>
+                </div>
+                <div className="analyst-card">
+                  <BoxParameters quantity={"$" + totalIncomeSales} title="sales revenue"  color="0, 103, 199" icon={<ArrowCircleUpIcon/>} />
+                </div>
+              </div>
+          </div>
+          <div className="content-boxes">
+              <h4>Purchases parameters</h4>
+              <div className="analyst-boxes">
+                <div className="analyst-card">
+                  <BoxParameters quantity={purchases.length} title="Total completed purchases" color="40, 205, 54" icon={<ShoppingCartRoundedIcon/>}/>
+                </div>
+                <div className="analyst-card">
+                  <BoxParameters quantity={purchasesCancelled} title="Total cancelled purchases"  color="255, 156, 0" icon={<RemoveShoppingCartRoundedIcon/>} />
+                </div>
+                <div className="analyst-card">
+                  <BoxParameters quantity={"$" + totalIncomePurchases} title="Purchases revenue"  color="0, 103, 199" icon={<ArrowCircleDownIcon/>}/>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
+      }
     </>
   );
 };

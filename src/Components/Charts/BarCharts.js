@@ -23,11 +23,10 @@ ChartJS.register(
     Filler
 );
 
-//AGREGAR A PROPS TITLE O LABEL
-const Bars = ({values,label}) => {
+const Bars = ({values}) => {
     
     const data = {
-        labels: ["Sales  -  Purchases"],
+        labels: [" "],
         datasets: [
             {
                 label: 'sales',
