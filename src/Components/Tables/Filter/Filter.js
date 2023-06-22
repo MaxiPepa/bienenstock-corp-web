@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const Filter = ({ content, thead, mapKeys, setFilteredContent }) => {
+const Filter = ({
+  content,
+  thead,
+  mapKeys,
+  setFilteredContent,
+  filterText,
+  setFilterText,
+}) => {
   const notMap = [
     "Details",
     "Cancel",
@@ -11,7 +18,6 @@ const Filter = ({ content, thead, mapKeys, setFilteredContent }) => {
     null,
   ];
 
-  const [filterText, setFilterText] = useState("");
   const [selectedOption, setSelectedOption] = useState("all");
 
   const handleFilterTextChange = (event) => {
@@ -21,6 +27,7 @@ const Filter = ({ content, thead, mapKeys, setFilteredContent }) => {
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
+    setFilteredContent(content);
     setFilterText("");
   };
 
@@ -48,8 +55,14 @@ const Filter = ({ content, thead, mapKeys, setFilteredContent }) => {
           if (value.startsWith("#") || value.startsWith("$")) {
             value = value.slice(1);
           }
-
-          return value.startsWith(filterOption.toLowerCase());
+          if (
+            value.includes(filterOption.toLowerCase()) ||
+            value.startsWith(filterOption.toLowerCase())
+          ) {
+            return value.startsWith(filterOption.toLowerCase());
+          } else {
+            return false;
+          }
         }
       })
     );

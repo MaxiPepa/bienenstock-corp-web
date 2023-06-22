@@ -10,6 +10,7 @@ const ConfirmStorageButton = ({
   products,
   register,
   setCurrentId,
+  setCurrentDate,
   resetField,
   role,
   showExpiration,
@@ -37,6 +38,7 @@ const ConfirmStorageButton = ({
     setShowModal(true);
     setSectionModal(true);
     setCurrentId();
+    setCurrentDate();
   };
 
   return (

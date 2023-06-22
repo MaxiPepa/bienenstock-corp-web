@@ -6,8 +6,14 @@ import "./Table.css";
 
 const Table = ({ content, thead, mapKeys, entity, tableId }) => {
   const [filteredContent, setFilteredContent] = useState([]);
+  const [filterText, setFilterText] = useState("");
 
-  const items = filteredContent.length > 0 ? filteredContent : content;
+  const items =
+    filteredContent.length > 0
+      ? filteredContent
+      : filterText !== ""
+      ? filteredContent
+      : content;
 
   return (
     <div className="table">
@@ -16,6 +22,8 @@ const Table = ({ content, thead, mapKeys, entity, tableId }) => {
         thead={thead}
         mapKeys={mapKeys}
         setFilteredContent={setFilteredContent}
+        filterText={filterText}
+        setFilterText={setFilterText}
       />
       <div className="table-container" id={tableId ? tableId : null}>
         <table>
