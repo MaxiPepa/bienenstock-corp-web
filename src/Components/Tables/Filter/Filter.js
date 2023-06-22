@@ -48,21 +48,18 @@ const Filter = ({
               return true;
           }
         } else {
-          let value = item[selectedOption].toString();
+          const filterOptionLower = filterOption.toLowerCase();
 
+          let value = item[selectedOption].toString();
           value = value.toLowerCase();
 
           if (value.startsWith("#") || value.startsWith("$")) {
             value = value.slice(1);
           }
-          if (
-            value.includes(filterOption.toLowerCase()) ||
-            value.startsWith(filterOption.toLowerCase())
-          ) {
-            return value.startsWith(filterOption.toLowerCase());
-          } else {
-            return false;
-          }
+
+          return value.includes(filterOptionLower)
+            ? value.startsWith(filterOptionLower)
+            : false;
         }
       })
     );
