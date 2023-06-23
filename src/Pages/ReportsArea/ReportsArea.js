@@ -2,9 +2,10 @@ import { useContext,useCallback,useEffect,useState } from "react";
 import { Button, LineCharts, Bars,BoxParameters,Table} from "Components";
 import { ArrowCircleUpIcon,ArrowCircleDownIcon, RemoveShoppingCartRoundedIcon, ShoppingCartRoundedIcon, ReceiptRoundedIcon, PriceCheckIcon } from "Assets/Icons";
 import { DateRangePicker } from 'react-date-range';
+import { useTopSales } from "Hooks";
 
 import { APIContext } from "Contexts";
-import { useTopSales } from "../../Hooks/AnalystHooks/useTopSales"
+
 
 
 import  "./ReportsArea.css";
