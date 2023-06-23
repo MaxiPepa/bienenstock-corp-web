@@ -285,6 +285,7 @@ const SalesArea = () => {
                 <PDFDownloadLink
                   document={<Invoice data={invoiceData} />}
                   fileName={fileNameInvoice}
+                  className="pdf-download-button"
                 >
                   <button className="area-button">Click to download</button>
                 </PDFDownloadLink>
