@@ -26,7 +26,26 @@ export const useProductsValidation = () => {
     return true;
   };
 
-  const requiredValidations = (formData) => {
+  const validateInteger = (value) => {
+    const numberRegex = /^\d+$/;
+
+    if (numberRegex.test(value)) {
+      return true;
+    } else {
+      return "The value must be a valid number";
+    }
+  };
+
+  const validateStorageDate = (storagedate) => (value) => {
+    const selectedDate = new Date(value);
+    const storageDate = new Date(storagedate.date);
+    if (selectedDate < storageDate) {
+      return `The date must be equal or greater than the ${storagedate.section} date`;
+    }
+    return true;
+  };
+
+  const requiredValidations = (formData, storagedate) => {
     switch (formData) {
       case "productCode":
         return { required: true, maxLength: 10 };
@@ -38,13 +57,19 @@ export const useProductsValidation = () => {
         return { required: true, validate: validatePrice };
 
       case "quantity":
-        return { required: true, min: 1 };
+        return { required: true, min: 1, validate: validateInteger };
 
       case "supplier":
         return { required: true, maxLength: 100 };
 
       case "sectionDate":
-        return { required: true, validate: validateDate };
+        return {
+          required: true,
+          validate: {
+            validateStorageDate: validateStorageDate(storagedate),
+            validateDate: validateDate,
+          },
+        };
 
       case "saleDate":
         return { required: true, validate: validateDate };
@@ -54,7 +79,8 @@ export const useProductsValidation = () => {
 
       case "identifier":
         return { required: true, validate: validateIdentifier };
-
+      case "businessName":
+        return { required: true, maxLength: 100 };
       default:
         break;
     }
@@ -76,7 +102,10 @@ export const useProductsValidation = () => {
 
       case "validate":
         return errorType.message;
-
+      case "validateDate":
+        return errorType.message;
+      case "validateStorageDate":
+        return errorType.message;
       default:
         break;
     }

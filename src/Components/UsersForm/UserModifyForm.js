@@ -7,7 +7,7 @@ import { arrayModifyUsersInputs } from "Assets/Constants";
 
 import { APIContext, StatesContext } from "Contexts";
 
-const UserModifyForm = ({ user }) => {
+const UserModifyForm = ({ user, setCompleteInputValue }) => {
   const { requiredValidations, errorMessages } = useUserValidation();
 
   const { setAlert, setShowModal } = useContext(StatesContext);
@@ -21,14 +21,15 @@ const UserModifyForm = ({ user }) => {
   } = useForm();
 
   const onSubmitUser = async (data) => {
-    await post("user/modifyUser", { id: user.userId, ...data }).then(() => {
+    await post("user/modifyUser", { id: user.userId, ...data }).then((res) => {
       setAlert({
         show: true,
-        message: "User added",
-        type: "success",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
       reset();
       setShowModal(false);
+      setCompleteInputValue(false);
     });
   };
 

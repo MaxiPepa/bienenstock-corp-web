@@ -7,6 +7,7 @@ const ConfirmationForm = ({
   onConfirm,
   setModalConfirm,
   setCompleteInputValue,
+  actionText,
 }) => {
   const { setShowModal } = useContext(StatesContext);
 
@@ -25,7 +26,7 @@ const ConfirmationForm = ({
     <>
       <div className="confirmation-container">
         <h3 className="area-subtitle">
-          Would you like to confirm the operation?
+          Are you sure you want to {actionText}?
         </h3>
         <div className="buttons-confirmation-container">
           <button

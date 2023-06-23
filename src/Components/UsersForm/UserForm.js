@@ -22,11 +22,11 @@ const UserForm = ({ setUserModal }) => {
   } = useForm();
 
   const onSubmitUser = async (data) => {
-    await post("user/saveUser", data).then(() => {
+    await post("user/saveUser", data).then((res) => {
       setAlert({
         show: true,
-        message: "User added",
-        type: "success",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
       reset();
       setShowModal(false);

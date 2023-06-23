@@ -9,14 +9,16 @@
 }
 
 .login-container {
-  width: 700px;
+  width: 900px;
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-bottom: 20px;
+  background-color: #00000033;
+  border-radius: 10px;
+  padding: 50px;
 }
 
 .left-login-container {
@@ -34,7 +36,32 @@
 }
 
 .left-login-container > h2 > span {
+  font-size: 40px;
   color: var(--c-color-1);
+  font-weight: 600;
+  animation: blurAnimation 2s ease-in-out infinite;
+}
+
+.title {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 40px;
+  border-right: 3px solid #2c2c2c;
+  animation: typing 2s steps(38) 1s 1 normal both, blink 1s steps(1) infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90%;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 .right-login-container {
@@ -72,13 +99,13 @@
   left: 5px;
 }
 
-.inputs input {
+.input-icons > input {
   position: relative;
   width: 100%;
   height: 40px;
   background: transparent;
   padding: 5px;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #ffffff;
   border-radius: 5px;
   color: var(--c-color-1);
   font-size: 1rem;
@@ -86,22 +113,25 @@
   padding-left: 2rem;
 }
 
-.inputs input::placeholder {
+.input-icons > input::placeholder {
   color: rgb(233, 233, 233);
   font-size: 1rem;
   font-weight: 400;
 }
 
-/*so as not to change the style of the suggestion list*/
-.inputs input:-webkit-autofill,
-.inputs input :-webkit-autofill:focus {
+.input-icons > input:-webkit-autofill,
+.input-icons > input :-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-.inputs input:focus {
+.input-icons > input:focus {
   outline: none;
   border: 1px solid var(--c-color-1);
   color: var(--c-color-1);
+}
+
+.error-input {
+  border: 2px solid rgb(109, 11, 11) !important;
 }
 
 .error-login-message {
@@ -131,7 +161,7 @@
 #copyright {
   position: absolute;
   text-align: center;
-  bottom: 0;
+  bottom: 20px;
   color: white;
 }
 
@@ -151,29 +181,47 @@
 
 @media (768px <= width < 1024px) {
   .login-container {
-    width: 100%;
+    width: 60%;
     flex-direction: column;
   }
   .left-login-container {
     width: 90%;
   }
   .right-login-container {
-    width: 50%;
+    width: 100%;
+  }
+  .left-login-container > h2,
+  .left-login-container > h2 > span {
+    font-size: 35px;
+    font-weight: 600;
   }
 }
 
 @media (width < 768px) {
   .login-container {
-    width: 100%;
+    width: 90%;
     flex-direction: column;
   }
   .left-login-container {
-    width: 90%;
+    width: 95%;
   }
-  .left-login-container > h2 {
-    font-size: 35px;
+  .left-login-container > h2,
+  .left-login-container > h2 > span {
+    font-size: 25px;
+    font-weight: 600;
   }
   .right-login-container {
-    width: 80%;
+    width: 100%;
+  }
+  .title {
+    border-right: 2px solid #2c2c2c;
+  }
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
   }
 }

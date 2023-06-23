@@ -1,7 +1,10 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { arraySaleAditionalInputs, paymentTypeTranslator } from "Assets/Constants";
+import {
+  arraySaleAditionalInputs,
+  paymentTypeTranslator,
+} from "Assets/Constants";
 
 import { useProductsValidation } from "Hooks";
 import { APIContext, StatesContext } from "Contexts";
@@ -86,7 +89,7 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
           )}
         </div>
       ))}
-      <div className="inputs-maped input-content">
+      <div className="input-content">
         <label>Payment Type</label>
         <select
           {...registerSale("paymentType", { required: true })}
@@ -106,7 +109,7 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
           </p>
         )}
       </div>
-      <div className="inputs-maped input-content">
+      <div className="input-content">
         <label>Bill Type</label>
         <select
           {...registerSale("billType", { required: true })}

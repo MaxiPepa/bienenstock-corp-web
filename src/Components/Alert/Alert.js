@@ -39,13 +39,18 @@ const Alert = () => {
   return (
     <>
       {alert.show && (
-        <div className={"alert-box " + alert.type}>
-          <div className="alert-content">
-            {alertStyle()}
-            <p>{alert.message}</p>
-            <button className="close-alert-button" onClick={closeAlertHandler}>
-              <CloseRoundedIcon />
-            </button>
+        <div className="alert-container ">
+          <div className={"alert-box " + alert.type}>
+            <div className="alert-content">
+              {alertStyle()}
+              <p>{alert.message}</p>
+              <button
+                className="close-alert-button"
+                onClick={closeAlertHandler}
+              >
+                <CloseRoundedIcon />
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -3,6 +3,9 @@
   max-height: calc(100vh - 360px);
   overflow: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .table-container::-webkit-scrollbar {
@@ -20,6 +23,13 @@
 
 .table-container::-webkit-scrollbar-thumb:hover {
   background: #333333;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
 table {
@@ -62,7 +72,7 @@ th[data-column="Expiration"],
 th[data-column="Cancel"],
 th[data-column="Modify user"],
 th[data-column="Delete user"],
-th[data-column="Active"],
+th[data-column="Activate"],
 th[data-column="Dispatch Status"],
 th[data-column="Income status"],
 th[data-column="Invoice"],
@@ -113,6 +123,50 @@ tbody > tr:hover {
   color: #9c9a00;
 }
 
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  padding: 0 10px;
+}
+
+.filter > span {
+  font-family: "Exo";
+  font-size: 20px;
+  font-weight: 600;
+  color: #131313;
+}
+
+.filter > input {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #b8b8b8;
+  background-color: #e7e7e7;
+  color: #131313;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
+.filter > select {
+  width: auto;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #b8b8b8;
+  background-color: #e7e7e7;
+  color: #131313;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
 @media (1024px <= width < 1920px) {
   table {
     font-size: 12px;
@@ -122,5 +176,19 @@ tbody > tr:hover {
 @media (width < 768px) {
   table {
     font-size: 12px;
+  }
+  .filter {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .filter > span {
+    font-size: 15px;
+  }
+  .filter > input {
+    width: 100%;
+  }
+  .filter > select {
+    width: 100%;
   }
 }

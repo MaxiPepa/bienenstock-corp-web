@@ -1,8 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import { PDFViewer } from "@react-pdf/renderer";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import { isMobile } from "react-device-detect";
 
 import { ROLES } from "Assets/Constants";
-import { parsingDateTime } from "Assets/Parsing";
+import { parsingDate, parsingDateTime } from "Assets/Parsing";
 
 import {
   Button,
@@ -47,6 +48,7 @@ const SalesArea = () => {
   const [cancelSaleId, setCancelSaleId] = useState();
   const [productsDetails, setProductsDetails] = useState([]);
   const [invoiceData, setInvoiceData] = useState([]);
+  const [fileNameInvoice, setFileNameInvoice] = useState();
 
   const openSaleHistoryCartModal = useCallback(
     (products) => {
@@ -70,6 +72,12 @@ const SalesArea = () => {
   const openPdfInvoiceModal = useCallback(
     (objetInvoiceData) => {
       setInvoiceData(objetInvoiceData);
+      setFileNameInvoice(
+        "invoice-" +
+          objetInvoiceData.saleId.toString().padStart(8, "0") +
+          "-" +
+          parsingDate(objetInvoiceData.date)
+      );
       setShowModal(true);
       setShowPdfModal(true);
       setShowCartModal(false);
@@ -92,6 +100,9 @@ const SalesArea = () => {
             quantity: p.quantity,
             unitPrice: "$" + p.unitPrice,
           })),
+          pending: !r.dispatched && !r.cancelled,
+          cancelled: r.cancelled,
+          completed: r.dispatched && !r.cancelled,
           status: r.dispatched ? (
             <div className="icon-container">
               <CheckIcon className="check-icon status-icon" />
@@ -100,7 +111,7 @@ const SalesArea = () => {
           ) : r.cancelled ? (
             <div className="icon-container">
               <ClearIcon className="nodispatched-icon status-icon" />
-              <div className="tooltip">Canceled</div>
+              <div className="tooltip">Cancelled</div>
             </div>
           ) : (
             <div className="icon-container">
@@ -119,13 +130,15 @@ const SalesArea = () => {
             />
           ),
           invoice: (
-            <Button
-              buttonIcon={<PictureAsPdfRoundedIcon />}
-              styles={"table-button-style invoice-style"}
-              buttonFunction={() => {
-                openPdfInvoiceModal(r);
-              }}
-            />
+            <>
+              <Button
+                buttonIcon={<PictureAsPdfRoundedIcon />}
+                styles={"table-button-style invoice-style"}
+                buttonFunction={() => {
+                  openPdfInvoiceModal(r);
+                }}
+              />
+            </>
           ),
           cancel: !r.dispatched &&
             userData.userType === ROLES.SELLER &&
@@ -171,11 +184,11 @@ const SalesArea = () => {
     const rq = {
       saleId: cancelSaleId,
     };
-    post("Sale/CancelSale", rq).then((rs) => {
+    post("Sale/CancelSale", rq).then((res) => {
       setAlert({
         show: true,
-        message: rs.message,
-        type: rs.success ? "success" : "error",
+        message: res.message,
+        type: res.success ? "success" : "error",
       });
     });
   };
@@ -202,7 +215,7 @@ const SalesArea = () => {
           "Total Price",
           "Sale Date",
           "Dispatch Status",
-          "DispatchDate",
+          "Dispatch Date",
           "Details",
           "Invoice",
           userData.userType === ROLES.SELLER ? "Cancel" : null,
@@ -227,7 +240,14 @@ const SalesArea = () => {
             ? "New Sale"
             : showCartModal
             ? "Sale Details"
-            : "Invoice"
+            : showPdfModal
+            ? "Invoice"
+            : "Rescind Sale"
+        }
+        modalId={
+          !showInputsModal && !showCartModal && !showPdfModal
+            ? "confirmation-modal"
+            : null
         }
         setShowCartModal={setShowCartModal}
         setShowInputsModal={setShowInputsModal}
@@ -259,15 +279,30 @@ const SalesArea = () => {
           />
         ) : showPdfModal ? (
           <>
-            <PDFViewer
-              width={"100%"}
-              height={(window.innerHeight - 300).toString()}
-            >
-              <Invoice data={invoiceData} />
-            </PDFViewer>
+            {isMobile ? (
+              <>
+                <h3>You're on a mobile device</h3>
+                <PDFDownloadLink
+                  document={<Invoice data={invoiceData} />}
+                  fileName={fileNameInvoice}
+                >
+                  <button className="area-button">Click to download</button>
+                </PDFDownloadLink>
+              </>
+            ) : (
+              <PDFViewer
+                width={"100%"}
+                height={(window.innerHeight - 300).toString()}
+              >
+                <Invoice data={invoiceData} />
+              </PDFViewer>
+            )}
           </>
         ) : (
-          <ConfirmationForm onConfirm={cancelSale} />
+          <ConfirmationForm
+            onConfirm={cancelSale}
+            actionText={"rescind this sale"}
+          />
         )}
       </Modal>
     </div>

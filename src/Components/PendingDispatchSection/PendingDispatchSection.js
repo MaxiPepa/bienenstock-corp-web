@@ -27,6 +27,7 @@ const PendingDispatchSection = ({ reload }) => {
   const [pendingDispatch, setPendingDispatch] = useState([]);
   const [productsById, setProductsById] = useState([]);
   const [currentSaleId, setCurrentSaleId] = useState();
+  const [currentSaleDate, setCurrentSaleDate] = useState();
   const [dispatchModal, setDispatchModal] = useState(false);
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const PendingDispatchSection = ({ reload }) => {
               setCurrentId={() => setCurrentSaleId(r.saleId)}
               role={userData.userType}
               setSectionModal={setDispatchModal}
+              setCurrentDate={() => setCurrentSaleDate(r.date)}
             />
           ),
         }))
@@ -121,7 +123,10 @@ const PendingDispatchSection = ({ reload }) => {
                       placeholder="dd/mm/aaaa"
                       {...register(
                         "sectionDate",
-                        requiredValidations("sectionDate")
+                        requiredValidations("sectionDate", {
+                          date: currentSaleDate,
+                          section: "sale",
+                        })
                       )}
                     />
                   </div>

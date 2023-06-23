@@ -28,6 +28,7 @@ const PendingEntrySection = ({ reload }) => {
   const [pendingEntry, setPendingEntry] = useState([]);
   const [productsById, setProductsById] = useState([]);
   const [currentPurchaseId, setCurrentPurchaseId] = useState();
+  const [currentPurchaseDate, setCurrentPurchaseDate] = useState();
   const [entryModal, setEntryModal] = useState(false);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const PendingEntrySection = ({ reload }) => {
               setProductsById={setProductsById}
               register={register}
               setCurrentId={() => setCurrentPurchaseId(r.purchaseId)}
+              setCurrentDate={() => setCurrentPurchaseDate(r.date)}
               resetField={resetField}
               role={userData.userType}
               showExpiration={true}
@@ -138,18 +140,18 @@ const PendingEntrySection = ({ reload }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Table
               thead={[
-                userData.userType === ROLES.DEPOSITOR && "Expiration",
                 "Product Code",
                 "Name",
                 "Quantity",
                 "Unit Price",
+                userData.userType === ROLES.DEPOSITOR && "Expiration",
               ]}
               mapKeys={[
-                userData.userType === ROLES.DEPOSITOR && "expiration",
                 "productCode",
                 "name",
                 "quantity",
                 "unitPrice",
+                userData.userType === ROLES.DEPOSITOR && "expiration",
               ]}
               content={productsById}
               entity="product"
@@ -165,7 +167,10 @@ const PendingEntrySection = ({ reload }) => {
                       placeholder="dd/mm/aaaa"
                       {...register(
                         "sectionDate",
-                        requiredValidations("sectionDate")
+                        requiredValidations("sectionDate", {
+                          date: currentPurchaseDate,
+                          section: "purchase",
+                        })
                       )}
                     />
                   </div>
