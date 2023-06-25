@@ -1,0 +1,37 @@
+.parameters-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  gap: 30px;
+}
+
+.parameters-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  gap: 5px;
+}
+
+.parameters-section > span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.parameters {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

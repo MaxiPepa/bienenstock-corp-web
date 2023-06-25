@@ -1,60 +1,121 @@
-.analyst-div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -2.5%;
+.buttons-box {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
 }
 
-.analyst-div-2{
-    display: flex;
-    justify-content: space-around;
-    align-items: end;
-    padding:0px;
-    margin-top: 2%;
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 70vh;
+  gap: 20px;
 }
 
-
-.lineChart {
-    width: 85%;
-    margin: 25px 5px 5px 0px;
+.chart-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.analyst-boxes{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.chart {
+  width: 60%;
+  height: auto;
+  overflow: hidden;
 }
 
-.analyst-boxes-2{
-    margin-top: 10px;
+.chart > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+.chart > div > canvas {
+  width: 100%;
+  height: 100%;
 }
 
-.analyst-card{
-    margin-right:10px;
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  min-width: 500px;
+  height: 100%;
+  overflow: hidden;
 }
 
-.barChart{
-    margin-top: 20px;
-    text-align: center;
-    width: 300px;
-    height: 400px;
+.calendar {
+  min-width: 350px;
+  width: auto;
+  height: auto;
 }
 
-.rdrDefinedRangesWrapper {
-    display: none;
+.rdrDateRangePickerWrapper {
+  width: auto;
+  height: auto;
 }
 
-.content-boxes{
-    background-color: rgba(182, 182, 182, 0.589);
-    border: none;
-    border-radius: 10px;
-    margin-bottom: 50px;
-    padding: 10px;
+/*
+    *LA OTRA SECCION
+*/
+
+.analytics-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  gap: 20px;
 }
 
-.buttons-box{
-    width: 250px;
-    display: flex;
-    justify-content: space-around;
+.analytics {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 60vh;
+  gap: 50px;
+}
+
+.chart-container {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.barChart {
+  text-align: center;
+  width: 300px;
+  height: 100%;
+}
+
+.analytics-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 70%;
+  height: 60vh;
+  gap: 20px;
+}
+
+#reports-table {
+  width: 50%;
+  overflow: auto;
 }

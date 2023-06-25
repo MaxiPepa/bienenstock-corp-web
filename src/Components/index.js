@@ -31,7 +31,7 @@ import UserModifyForm from "./UsersForm/UserModifyForm";
 import Invoice from "./Invoice/Invoice";
 import LineCharts from "./Charts/LineCharts";
 import Bars from "./Charts/BarCharts";
-import BoxParameters from "./Boxes/BoxParameters/BoxParameters";
+import ParametersSection from "./ParametersSection/ParametersSection";
 
 export {
   Alert,
@@ -67,5 +67,5 @@ export {
   Invoice,
   LineCharts,
   Bars,
-  BoxParameters
+  ParametersSection,
 };
