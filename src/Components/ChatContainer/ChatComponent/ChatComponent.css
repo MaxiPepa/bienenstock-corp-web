@@ -163,7 +163,10 @@
   .chat-component {
     height: 75vh;
     width: 90%;
-    bottom: 80px;
+    bottom: 70px;
     right: 20px;
+  }
+  .chat-input > textarea::placeholder {
+    font-size: 0.9rem;
   }
 }

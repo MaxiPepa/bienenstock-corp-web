@@ -17,20 +17,19 @@
   gap: 20px;
 }
 
-.chart-container {
+.chart-section {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
 .chart {
   width: 60%;
-  height: auto;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -56,20 +55,9 @@
   overflow: hidden;
 }
 
-.calendar {
-  min-width: 350px;
-  width: auto;
-  height: auto;
+.rdrDefinedRangesWrapper {
+  display: none;
 }
-
-.rdrDateRangePickerWrapper {
-  width: auto;
-  height: auto;
-}
-
-/*
-    *LA OTRA SECCION
-*/
 
 .analytics-container {
   display: flex;
@@ -116,6 +104,152 @@
 }
 
 #reports-table {
-  width: 50%;
-  overflow: auto;
+  width: 95%;
+  max-height: calc(65vh - 360px);
+}
+
+/*
+ *calendar styles
+*/
+
+.rdrCalendarWrapper {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #0000001a;
+}
+
+.rdrDateDisplayWrapper {
+  background: #404040;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.rdrDateInput > input {
+  background: #404040;
+  color: #fff;
+}
+
+.rdrMonthAndYearWrapper {
+  background: #40404063;
+}
+
+.rdrMonthPicker > select,
+.rdrYearPicker > select {
+  background: #40404056;
+  color: #fff;
+}
+
+.rdrWeekDays > span {
+  color: #000000;
+}
+
+.rdrNextPrevButton {
+  background: #40404056;
+  color: #fff;
+}
+
+.rdrDayNumber span {
+  color: #000000;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.rdrStartEdge {
+  color: #00000042 !important;
+}
+
+.rdrInRange {
+  background-color: #00000042;
+}
+
+.rdrEndEdge {
+  color: #00000042 !important;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  background-color: #3d91ff !important;
+}
+
+@media (1024px <= width < 1920px) {
+  #reports-table {
+    width: 95%;
+  }
+}
+
+@media (768px <= width < 1024px) {
+  .analytics {
+    height: 65vh;
+  }
+  .chart-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .chart {
+    width: 100%;
+  }
+}
+
+@media (width < 768px) {
+  .analytics {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .analytics-section {
+    width: 100%;
+  }
+  .chart-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .chart-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chart {
+    width: 100%;
+    height: 200px;
+  }
+  .chart > div {
+    width: 100%;
+    height: 100%;
+  }
+  .chart > div > canvas {
+    width: 100%;
+    height: 100%;
+  }
+  .calendar-container {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .rdrMonthAndYearWrapper {
+    padding-top: 5px;
+    padding: 0 15px;
+  }
+
+  .rdrDay {
+    height: 3em;
+  }
+  .rdrDayNumber > span {
+    font-size: 0.8rem;
+  }
+
+  .rdrDateInput {
+    background-color: #404040;
+  }
+
+  .rdrDateInput > input {
+    width: 90%;
+    height: 2em;
+  }
+  .rdrDateDisplayItem + .rdrDateDisplayItem {
+    margin-left: 0;
+  }
+  .rdrDateDisplay {
+    padding: 0 15px;
+  }
 }

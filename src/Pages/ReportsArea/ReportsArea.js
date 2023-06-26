@@ -6,9 +6,9 @@ import { useTopSales } from "Hooks";
 import { Button, LineCharts, Bars, Table, ParametersSection } from "Components";
 import { APIContext } from "Contexts";
 
-import "./ReportsArea.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import "./ReportsArea.css";
 
 const ReportsArea = () => {
   const [sales, setSales] = useState([]);
@@ -157,7 +157,7 @@ const ReportsArea = () => {
           <h2 className="area-subtitle">
             {changeChart ? "Sales" : "Purchase"} evolution (time / units)
           </h2>
-          <div className="chart-container">
+          <div className="chart-section">
             <div className="chart">
               <LineCharts
                 axes={changeChart ? extracSalesData() : extracPurchasestData()}
@@ -166,14 +166,12 @@ const ReportsArea = () => {
               />
             </div>
             <div className="calendar-container">
-              <div className="calendar">
-                <DateRangePicker
-                  staticRanges={[]}
-                  inputRanges={[]}
-                  ranges={[selectionRange]}
-                  onChange={handleSelect}
-                />
-              </div>
+              <DateRangePicker
+                staticRanges={[]}
+                inputRanges={[]}
+                ranges={[selectionRange]}
+                onChange={handleSelect}
+              />
             </div>
           </div>
         </div>

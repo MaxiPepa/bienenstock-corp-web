@@ -58,6 +58,101 @@ const Table = ({ content, thead, mapKeys, entity, tableId }) => {
                 </td>
               </tr>
             )}
+            {items.length > 0 ? (
+              items.map((attr, index) => {
+                return (
+                  <tr key={index}>
+                    {mapKeys.map((key) => (
+                      <td key={index + key} data-column={typeof attr[key]}>
+                        {attr[key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={thead.length}>
+                  <h3 className="no-table-message">No {entity} to show</h3>
+                </td>
+              </tr>
+            )}
+            {items.length > 0 ? (
+              items.map((attr, index) => {
+                return (
+                  <tr key={index}>
+                    {mapKeys.map((key) => (
+                      <td key={index + key} data-column={typeof attr[key]}>
+                        {attr[key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={thead.length}>
+                  <h3 className="no-table-message">No {entity} to show</h3>
+                </td>
+              </tr>
+            )}
+            {items.length > 0 ? (
+              items.map((attr, index) => {
+                return (
+                  <tr key={index}>
+                    {mapKeys.map((key) => (
+                      <td key={index + key} data-column={typeof attr[key]}>
+                        {attr[key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={thead.length}>
+                  <h3 className="no-table-message">No {entity} to show</h3>
+                </td>
+              </tr>
+            )}
+            {items.length > 0 ? (
+              items.map((attr, index) => {
+                return (
+                  <tr key={index}>
+                    {mapKeys.map((key) => (
+                      <td key={index + key} data-column={typeof attr[key]}>
+                        {attr[key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={thead.length}>
+                  <h3 className="no-table-message">No {entity} to show</h3>
+                </td>
+              </tr>
+            )}
+            {items.length > 0 ? (
+              items.map((attr, index) => {
+                return (
+                  <tr key={index}>
+                    {mapKeys.map((key) => (
+                      <td key={index + key} data-column={typeof attr[key]}>
+                        {attr[key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={thead.length}>
+                  <h3 className="no-table-message">No {entity} to show</h3>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

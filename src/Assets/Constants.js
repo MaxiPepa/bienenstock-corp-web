@@ -289,26 +289,26 @@ export const paymentTypeTranslator = (type) => {
 };
 
 export const optionsBarChart = {
-  responsive : true,
-  animation : true,
-  plugins : {
-      legend : {display : false}
+  responsive: true,
+  animation: true,
+  plugins: {
+    legend: { display: false },
   },
-  scales : {
-      y : {max : 100},
-      x: {ticks: { color: 'rgba(0, 220, 195)'}}
+  scales: {
+    y: {},
+    x: { ticks: { color: "rgba(0, 220, 195)" } },
   },
   maintainAspectRatio: false,
 };
 
 export const optionsLineChart = {
-  scales : {
-      y : {
-          min : 0,
-          ticks: { color: 'rgb(0, 0, 0)'}
-      },
-      x: {
-        ticks: { color: 'rgb(0, 0, 0)'}
-      }
-    }
+  scales: {
+    y: {
+      min: 0,
+      ticks: { color: "rgb(0, 0, 0)" },
+    },
+    x: {
+      ticks: { color: "rgb(0, 0, 0)" },
+    },
+  },
 };
