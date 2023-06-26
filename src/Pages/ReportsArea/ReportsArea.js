@@ -80,7 +80,7 @@ const ReportsArea = () => {
     changeParameters ? setChangeParameters(false) : setChangeParameters(true);
   };
 
-  const extracPurchasestData = () => {
+  const extractPurchasestData = () => {
     const dates = purchases.map((x) => {
       const date = new Date(x.date);
       const formattedDate = date.toISOString().split("T")[0];
@@ -94,7 +94,7 @@ const ReportsArea = () => {
     return { dates, quantity };
   };
 
-  const extracSalesData = () => {
+  const extractSalesData = () => {
     const dates = sales.map((x) => {
       const date = new Date(x.date);
       const formattedDate = date.toISOString().split("T")[0];
@@ -160,7 +160,9 @@ const ReportsArea = () => {
           <div className="chart-section">
             <div className="chart">
               <LineCharts
-                axes={changeChart ? extracSalesData() : extracPurchasestData()}
+                axes={
+                  changeChart ? extractSalesData() : extractPurchasestData()
+                }
                 title={changeChart ? "Sales" : "Purchase"}
                 dates={dates}
               />
