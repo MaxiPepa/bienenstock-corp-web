@@ -287,3 +287,28 @@ export const paymentTypeTranslator = (type) => {
       break;
   }
 };
+
+export const optionsBarChart = {
+  responsive: true,
+  animation: true,
+  plugins: {
+    legend: { display: false },
+  },
+  scales: {
+    y: {},
+    x: { ticks: { color: "rgba(0, 220, 195)" } },
+  },
+  maintainAspectRatio: false,
+};
+
+export const optionsLineChart = {
+  scales: {
+    y: {
+      min: 0,
+      ticks: { color: "rgb(0, 0, 0)" },
+    },
+    x: {
+      ticks: { color: "rgb(0, 0, 0)" },
+    },
+  },
+};

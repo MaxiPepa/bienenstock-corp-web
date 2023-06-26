@@ -34,6 +34,8 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import PendingActionsRoundedIcon from "@mui/icons-material/PendingActionsRounded";
 import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
 import PictureAsPdfRoundedIcon from '@mui/icons-material/PictureAsPdfRounded';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 
 export {
   ArrowCircleUpIcon,
@@ -72,4 +74,6 @@ export {
   PendingActionsRoundedIcon,
   LocalShippingRoundedIcon,
   PictureAsPdfRoundedIcon,
+  ArrowCircleDownIcon,
+  PriceCheckIcon
 };

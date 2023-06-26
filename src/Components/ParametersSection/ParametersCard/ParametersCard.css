@@ -1,0 +1,88 @@
+.parameters-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+
+.parameters-card:last-child {
+  border-bottom: none;
+}
+
+.parameters-icon-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.parameters-icon-title > span {
+  font-size: 1.5rem;
+}
+
+.parameters-icon-title > svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.parameters-value {
+  font-size: 1.5rem;
+}
+
+@media (1920px <= width < 2510px) {
+}
+
+@media (1280px <= width < 1920px) {
+  .parameters-icon-title > span {
+    font-size: 1.1rem;
+  }
+  .parameters-icon-title > svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  .parameters-value {
+    font-size: 1rem;
+  }
+}
+
+@media (1024px <= width < 1280px) {
+  .parameters-card {
+    padding: 5px;
+  }
+  .parameters-icon-title > span {
+    font-size: 1.1rem;
+  }
+  .parameters-icon-title > svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  .parameters-value {
+    font-size: 1rem;
+  }
+}
+
+@media (width < 768px) {
+  .parameters-card {
+    padding: 5px;
+  }
+  .parameters-icon-title > span {
+    font-size: 1.1rem;
+  }
+  .parameters-icon-title > svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  .parameters-value {
+    font-size: 1rem;
+  }
+}

@@ -231,6 +231,12 @@
   width: 800px;
 }
 
+@media (1920px <= width) {
+  .modal-body {
+    flex-direction: row;
+  }
+}
+
 @media (768px <= width < 1920px) {
   .modal-content {
     margin: 50px auto;

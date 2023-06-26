@@ -28,9 +28,12 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
         type: "error",
       });
     } else {
+      const purchaseDate = new Date(data.purchaseDate);
+      const timezoneOffset = purchaseDate.getTimezoneOffset();
+      purchaseDate.setMinutes(purchaseDate.getMinutes() - timezoneOffset);
       const rq = {
         ...data,
-        purchaseDate: new Date(data.purchaseDate).toISOString(),
+        purchaseDate: purchaseDate.toISOString(),
         products: cartData,
       };
       post("purchase/savePurchase", rq).then((res) => {

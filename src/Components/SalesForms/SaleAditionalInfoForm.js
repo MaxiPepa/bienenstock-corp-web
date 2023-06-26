@@ -31,9 +31,12 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
         type: "error",
       });
     } else {
+      const saleDate = new Date(data.saleDate);
+      const timezoneOffset = saleDate.getTimezoneOffset();
+      saleDate.setMinutes(saleDate.getMinutes() - timezoneOffset);
       const rq = {
         ...data,
-        saleDate: new Date(data.saleDate).toISOString(),
+        saleDate: saleDate.toISOString(),
         products: cartData.map((i) => ({
           productId: i.productId,
           productName: i.name,
