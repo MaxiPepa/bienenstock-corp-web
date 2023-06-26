@@ -161,7 +161,7 @@
 
 @media (width < 768px) {
   .chat-component {
-    height: 75vh;
+    height: 80vh;
     width: 90%;
     bottom: 70px;
     right: 20px;
