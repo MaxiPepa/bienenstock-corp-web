@@ -53,7 +53,7 @@ export const NAVIGATIONSLINKS = [
     navigation: "/reports-area",
     icon: <LeaderboardRoundedIcon />,
     navItemName: "Reports",
-    dashboardItemName: "Total Reports",
+    dashboardItemName: "Reports",
     color: "#0064e9",
   },
 ];

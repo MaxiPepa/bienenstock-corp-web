@@ -30,7 +30,7 @@ const Boxes = () => {
       case ROLES.DEPOSITOR:
         return companyStats.pendingTransactions;
       case ROLES.ANALYST:
-        return companyStats.totalReports;
+        return !companyStats.totalReports ? null : companyStats.totalReports;
       default:
         return 0;
     }

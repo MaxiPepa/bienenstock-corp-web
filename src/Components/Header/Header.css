@@ -20,8 +20,14 @@ header > p {
   font-size: 1.5rem;
   font-weight: 900;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 
 header > p > span {
   color: var(--c-color-1);
+}
+
+header > p:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
