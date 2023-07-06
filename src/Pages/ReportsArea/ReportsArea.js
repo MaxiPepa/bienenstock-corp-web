@@ -23,7 +23,7 @@ const ReportsArea = () => {
   const [changeChart, setChangeChart] = useState(false);
   const [changeParameters, setChangeParameters] = useState(true);
   const [dates, setDates] = useState({
-    startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
+    startDate: new Date(new Date().setDate(new Date().getDate() - 30)),
     endDate: new Date(),
     key: "selection",
   });
@@ -35,7 +35,6 @@ const ReportsArea = () => {
     
     const result = [];
     
-    // Crear un mapa para almacenar las fechas y las cantidades acumuladas
     const map = new Map();
     data.forEach(item => {
       const { date, quantity } = item;
@@ -46,12 +45,10 @@ const ReportsArea = () => {
       }
     });
     
-    // Convertir el mapa en un arreglo de objetos con las fechas y las cantidades acumuladas
     map.forEach((quantity, date) => {
       result.push({ date, quantity });
     });
     
-    // Ordenar el arreglo por fecha de forma ascendente
     result.sort((a, b) => a.date.localeCompare(b.date));
     
     return result;
@@ -76,18 +73,6 @@ const ReportsArea = () => {
   useEffect(() => {
     getStatistics();
   }, [getStatistics]);
-
-  const extractPurchasestData = () => {
-    const dates = state.purchases.map(x => x.date );
-    const quantity = state.purchases.map(x => x.quantity);
-    return { dates, quantity };
-  };
-
-  const extractSalesData = () => {
-    const dates = state.sales.map(x => x.date );
-    const quantity = state.sales.map(x => x.quantity);
-    return { dates, quantity };
-  };
 
   const handleSelect = (date) => {
     setDates(date.selection);
@@ -133,9 +118,7 @@ const ReportsArea = () => {
           <div className="chart-section">
             <div className="chart">
               <LineCharts
-                axes={
-                  changeChart ? extractSalesData() : extractPurchasestData()
-                }
+                axes={changeChart ? state.sales : state.purchases}
                 title={"Products"}
                 colorPicker={changeChart}
                 dates={dates}

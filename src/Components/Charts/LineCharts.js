@@ -28,14 +28,10 @@ const LineCharts = ({axes,title,dates,colorPicker}) => {
   const filterChartData = () => {
     let filter = []
   
-    filter = axes.dates.map( (item,index) => {
-      if (new Date(item) >= dates.startDate && new Date(item) <= dates.endDate ){
-        return index;
-      }
-    }) 
+    filter = axes.filter( (item) => new Date(item.date) >= dates.startDate && new Date(item.date) <= dates.endDate ) 
 
-    const labels = axes.dates.filter((x,index) => filter.includes(index)) ;
-    const quantity = axes.quantity.filter((x,index) => filter.includes(index));
+    const labels = filter.map((x) => x.date) ;
+    const quantity = filter.map((x) => x.quantity);
   
     return {
       labels: labels,
