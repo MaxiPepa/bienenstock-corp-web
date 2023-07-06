@@ -16,16 +16,25 @@ nav > ul > li > .navlink {
   color: #f1f1f1;
   font-size: 1.5rem;
   font-weight: 600;
-  transition: all 0.5s ease;
   background: none;
   border: none;
   border-bottom: 1px solid #f1f1f1;
+  transition: all 0.3s ease;
 }
 
 nav > ul > li > .navlink:hover {
   cursor: pointer;
   background: #f1f1f1;
   color: #2e2e2e;
+}
+
+nav > ul > li > .logout {
+  background: rgba(255, 0, 0, 0.186);
+}
+
+nav > ul > li > .logout:hover {
+  background: rgba(255, 0, 0, 0.5);
+  color: #f1f1f1;
 }
 
 @media (1366px <= width < 1920px) {

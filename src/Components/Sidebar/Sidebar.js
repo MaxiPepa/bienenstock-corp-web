@@ -104,7 +104,7 @@ const Sidebar = () => {
             navItemName={"Settings"}
           />
           <li>
-            <button onClick={logoutHandler} className="navlink">
+            <button onClick={logoutHandler} className="navlink logout">
               <ExitToAppIcon />
               <span>Logout</span>
             </button>
