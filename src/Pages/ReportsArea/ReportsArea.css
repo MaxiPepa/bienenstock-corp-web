@@ -113,8 +113,7 @@
 */
 
 .rdrCalendarWrapper {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   background-color: #0000001a;
 }
 
@@ -170,6 +169,15 @@
   background-color: #3d91ff !important;
 }
 
+.rdrMonthAndYearPickers select {
+  color: #000000;
+}
+
+.rdrMonthAndYearPickers select:hover {
+  background-color: #40404056;
+  color: #000000;
+}
+
 @media (1024px <= width < 1920px) {
   #reports-table {
     width: 95%;
@@ -209,31 +217,57 @@
   .chart-section {
     flex-direction: column;
     align-items: center;
+    padding-bottom: 90px;
   }
   .chart {
     width: 100%;
-    height: 200px;
+    height: 250px;
   }
   .chart > div {
     width: 100%;
     height: 100%;
   }
   .chart > div > canvas {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
   }
   .calendar-container {
     width: 100%;
+    height: auto;
     min-width: 0;
   }
 
+  .rdrDateDisplayWrapper {
+    width: 300px;
+  }
+
   .rdrMonthAndYearWrapper {
-    padding-top: 5px;
+    width: 300px;
     padding: 0 15px;
   }
 
+  .rdrMonths,
+  .rdrMonthsVertical {
+    width: 300px;
+    height: auto;
+  }
+
+  .rdrMonth {
+    width: 300px;
+    padding: 3px;
+  }
+
   .rdrDay {
-    height: 3em;
+    height: 2.5em;
+  }
+
+  .rdrDay > button {
+    width: 2em;
+    height: 2em;
+  }
+
+  .rdrNextPrevButton {
+    margin: 0;
   }
   .rdrDayNumber > span {
     font-size: 0.8rem;
