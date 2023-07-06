@@ -1,7 +1,6 @@
 import { useContext, useCallback, useEffect, useState } from "react";
 
 import { DateRangePicker } from "react-date-range";
-import { useTopSales } from "Hooks";
 
 import { Button, LineCharts, Bars, Table, ParametersSection } from "Components";
 import { APIContext } from "Contexts";
@@ -11,125 +10,84 @@ import "react-date-range/dist/theme/default.css";
 import "./ReportsArea.css";
 
 const ReportsArea = () => {
-  const [sales, setSales] = useState([]);
-  const [purchases, setPurchases] = useState([]);
-  const [changeChart, setChangeChart] = useState(false);
-  const [salesCancelled, setSalesCancelled] = useState([]);
-  const [totalIncomeSales, setTotalIncomeSales] = useState([]);
-  const [changeParameters, setChangeParameters] = useState(true);
-  const [purchasesCancelled, setPurchasesCancelled] = useState([]);
-  const [totalIncomePurchases, setTotalIncomePurchases] = useState([]);
 
-  const [endDates, setEndDates] = useState(new Date());
-  const [startDates, setStartDates] = useState(new Date());
+  const [state, setState] = useState({
+    cancelledPurchases: 0, 
+    cancelledSales: 0,
+    products: [],
+    purchases: [],
+    sales: [],
+    totalPurchaseIncome: 0,
+    totalSaleIncome: 0,
+  });
+  const [changeChart, setChangeChart] = useState(false);
+  const [changeParameters, setChangeParameters] = useState(true);
   const [dates, setDates] = useState({
-    startDate: new Date("2023-01-01"),
+    startDate: new Date(new Date().setDate(new Date().getDate() - 30)),
     endDate: new Date(),
+    key: "selection",
   });
 
-  const { mostSelledProducts } = useTopSales();
-
   const { get } = useContext(APIContext);
+    
 
-  const getSales = useCallback(() => {
-    get("sale/getSales").then((data) => {
-      setSalesCancelled(data.sales.filter((r) => r.cancelled === true).length);
-      setSales(data.sales.filter((r) => r.dispatched === true));
-      setTotalIncomeSales(
-        data.sales.reduce((sum, obj) => sum + obj.totalPrice, 0)
-      );
+  const groupData = (data) => {
+    
+    const result = [];
+    
+    const map = new Map();
+    data.forEach(item => {
+      const { date, quantity } = item;
+      if (map.has(date)) {
+        map.set(date, map.get(date) + quantity);
+      } else {
+        map.set(date, quantity);
+      }
     });
-  }, [get]);
+    
+    map.forEach((quantity, date) => {
+      result.push({ date, quantity });
+    });
+    
+    result.sort((a, b) => a.date.localeCompare(b.date));
+    
+    return result;
+    
+  }
 
-  const getPurchases = useCallback(() => {
-    get("purchase/getPurchases").then((data) => {
-      setPurchases(
-        data.purchases.map((r) => ({
-          purchaseId: "#" + r.purchaseId,
-          userFullName: r.userFullName,
-          supplier: r.supplier,
-          totalPrice: "$ " + r.totalPrice,
-          date: r.date,
-          products: r.products.map((p) => ({
-            productCode: "#" + p.productCode,
-            name: p.name,
-            quantity: p.quantity,
-            unitPrice: "$ " + p.unitPrice,
-          })),
-        }))
-      );
-      setPurchasesCancelled(
-        data.purchases.filter((r) => r.cancelled === true).length
-      );
-      setTotalIncomePurchases(
-        data.purchases.reduce((sum, obj) => sum + obj.totalPrice, 0)
-      );
-    });
-  }, [get]);
+
+  const getStatistics = useCallback(()=>{
+    get("report/getStatistics").then((data)=>{
+      setState({
+        cancelledPurchases: data.cancelledPurchases, 
+        cancelledSales: data.cancelledSales,
+        products: data.products,
+        purchases: groupData(data.purchases),
+        sales: groupData(data.sales),
+        totalPurchaseIncome: data.totalPurchaseIncome,
+        totalSaleIncome: data.totalSaleIncome,
+      })
+    })
+  },[get])
 
   useEffect(() => {
-    getPurchases();
-    getSales();
-  }, [getPurchases, getSales]);
-
-  const changeChartHandler = () => {
-    changeChart ? setChangeChart(false) : setChangeChart(true);
-  };
-
-  const changeParameterstHandler = () => {
-    changeParameters ? setChangeParameters(false) : setChangeParameters(true);
-  };
-
-  const extractPurchasestData = () => {
-    const dates = purchases.map((x) => {
-      const date = new Date(x.date);
-      const formattedDate = date.toISOString().split("T")[0];
-      return formattedDate;
-    });
-
-    const quantity = purchases.map((obj) =>
-      obj.products.reduce((acc, product) => acc + product.quantity, 0)
-    );
-
-    return { dates, quantity };
-  };
-
-  const extractSalesData = () => {
-    const dates = sales.map((x) => {
-      const date = new Date(x.date);
-      const formattedDate = date.toISOString().split("T")[0];
-      return formattedDate;
-    });
-
-    const quantity = sales.map((obj) =>
-      obj.products.reduce((total, product) => total + product.quantity, 0)
-    );
-
-    return { dates, quantity };
-  };
+    getStatistics();
+  }, [getStatistics]);
 
   const handleSelect = (date) => {
-    setStartDates(date.selection.startDate);
-    setEndDates(date.selection.endDate);
     setDates(date.selection);
-  };
-
-  const selectionRange = {
-    startDate: startDates,
-    endDate: endDates,
-    key: "selection",
   };
 
   const parameters = {
     sales: {
-      total: sales.length,
-      cancelled: salesCancelled,
-      income: totalIncomeSales,
+      total: state.sales.length,
+      cancelled: state.cancelledSales,
+      income: state.totalSaleIncome,
     },
     purchases: {
-      total: purchases.length,
-      cancelled: purchasesCancelled,
-      income: totalIncomePurchases,
+      total: state.purchases.length,
+      cancelled: state.cancelledPurchases,
+      income: state.totalPurchaseIncome,
     },
   };
 
@@ -143,13 +101,13 @@ const ReportsArea = () => {
           <Button
             styles="area-button"
             buttonText={!changeChart ? "Sales" : "Purchase"}
-            buttonFunction={changeParameters ? changeChartHandler : null}
+            buttonFunction={()=>setChangeChart(!changeChart)}
           />
         )}
         <Button
           styles="area-button"
           buttonText={changeParameters ? "Other parameters" : "Go back"}
-          buttonFunction={changeParameterstHandler}
+          buttonFunction={() => setChangeParameters(!changeParameters)}
         />
       </div>
       {changeParameters ? (
@@ -160,10 +118,9 @@ const ReportsArea = () => {
           <div className="chart-section">
             <div className="chart">
               <LineCharts
-                axes={
-                  changeChart ? extractSalesData() : extractPurchasestData()
-                }
-                title={changeChart ? "Sales" : "Purchase"}
+                axes={changeChart ? state.sales : state.purchases}
+                title={"Products"}
+                colorPicker={changeChart}
                 dates={dates}
               />
             </div>
@@ -171,7 +128,7 @@ const ReportsArea = () => {
               <DateRangePicker
                 staticRanges={[]}
                 inputRanges={[]}
-                ranges={[selectionRange]}
+                ranges={[dates]}
                 onChange={handleSelect}
               />
             </div>
@@ -184,17 +141,16 @@ const ReportsArea = () => {
             <div className="chart-container">
               <div className="barChart">
                 <Bars
-                  values={{ sales: sales.length, purchases: purchases.length }}
+                  values={{ sales: parameters.sales.total, purchases: parameters.purchases.total }}
                 />
                 <h4>Sales vs Purchases</h4>
               </div>
             </div>
             <div className="analytics-section">
               <ParametersSection parameters={parameters} />
-
               <h4>Most selled products</h4>
               <Table
-                content={mostSelledProducts(sales).map((u) => u)}
+                content={state.products}
                 thead={["Product name", "Quantity"]}
                 mapKeys={["name", "quantity"]}
                 entity="products"
