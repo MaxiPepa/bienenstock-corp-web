@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState} from 'react';
 import { optionsLineChart } from 'Assets/Constants';
 
 import { Line } from 'react-chartjs-2';
@@ -25,62 +24,36 @@ chartjs.register(
   Filler
 )
 
-const LineCharts = ({axes,title,dates}) => {
-
-  const [filterDate,setFilterDate] = useState(dates);
-  const [values,setValues] = useState([]); 
-  
+const LineCharts = ({axes,title,dates,colorPicker}) => {
   const filterChartData = () => {
-
     let filter = []
-    const startDate = new Date(
-      filterDate.startDate.getFullYear().toString(),
-      filterDate.startDate.getMonth(),
-      filterDate.startDate.getDate()
-    );
   
-    const endDate = new Date( 
-      filterDate.endDate.getFullYear(),
-      filterDate.endDate.getMonth(),
-      filterDate.endDate.getDate()
-    );
-  
-    filter = values.filter( item => new Date(item.date) >= startDate && new Date(item.date) <= endDate) 
-  
-    const labels = filter.map((i) => i.date) ;
-    const quantity = filter.map((i) => i.quantity);
+    filter = axes.dates.map( (item,index) => {
+      if (new Date(item) >= dates.startDate && new Date(item) <= dates.endDate ){
+        return index;
+      }
+    }) 
+
+    const labels = axes.dates.filter((x,index) => filter.includes(index)) ;
+    const quantity = axes.quantity.filter((x,index) => filter.includes(index));
   
     return {
-      labels: labels.reverse(),
+      labels: labels,
       datasets: [
         {
           label: title,
-          data: quantity.reverse(),
+          data: quantity,
           tension: 0.5,
           fill : true,
-          borderColor: title === "Sales" ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
-          backgroundColor: title === "Sales" ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132,0.5)',
+          borderColor: colorPicker ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
+          backgroundColor: colorPicker ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132,0.5)',
           pointRadius: 5,
-          pointBorderColor: title === "Sales" ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
-          pointBackgroundColor: title === "Sales" ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
+          pointBorderColor: colorPicker ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
+          pointBackgroundColor: colorPicker ? 'rgba(0, 220, 195, 0.5)':'rgb(255, 99, 132)',
         }
       ],
     };
   }
-  
-  const configureAxes = useCallback(() => {
-    setValues( axes.dates.map((e,i)=>{
-      return {
-        date: e,
-        quantity:axes.quantity[i] 
-      } 
-    }))
-    setFilterDate(dates)
-  },[axes,dates])
-  
-  useEffect(()=>{
-    configureAxes()
-  },[configureAxes])
 
   return (
     <div>
