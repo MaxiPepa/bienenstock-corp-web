@@ -74,6 +74,12 @@ const SettingInfoBox = () => {
         img.src = event.target.result;
       };
       reader.readAsDataURL(file);
+    } else {
+      setAlert({
+        show: true,
+        type: "error",
+        message: "You must select an image",
+      });
     }
   };
 
