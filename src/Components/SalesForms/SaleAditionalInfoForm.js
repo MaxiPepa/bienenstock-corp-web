@@ -64,7 +64,6 @@ const AditionalInfoForm = ({ cartData, setCartData, setShowInputsModal }) => {
       });
     }
   };
-
   return (
     <form
       onSubmit={handleSubmitSale(onSubmitSale)}

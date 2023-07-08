@@ -19,8 +19,18 @@ export const useProductsValidation = () => {
   };
 
   const validateIdentifier = (value) => {
-    if (value < 1000000 || value > 99999999) {
+    const isDNI = /^\d{8}$/;
+    const isCUIT = /^\d{2}-\d{8}-\d$/;
+
+    if (!isDNI.test(value) && !isCUIT.test(value)) {
       return "The type of identification is invalid";
+    }
+
+    if (isDNI.test(value)) {
+      const numericValue = parseInt(value, 10);
+      if (numericValue <= 1000000 || numericValue >= 99999999) {
+        return "The type of identification is invalid";
+      }
     }
 
     return true;
