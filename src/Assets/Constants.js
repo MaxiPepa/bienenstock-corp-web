@@ -148,7 +148,7 @@ export const arraySaleAditionalInputs = [
     labelName: "Identifier: ",
     styles: "input",
     type: "text",
-    placeholder: "37986324 / 30-41975211-9",
+    placeholder: "37986324 / 30-37986324-9",
     formData: "identifier",
   },
 ];
